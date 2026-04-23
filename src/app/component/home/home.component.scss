@@ -72,11 +72,11 @@
                 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 
                 @media (min-width: 480px) {
-                    font-size: 2rem;
+                    font-size: 2.5rem;
                 }
 
                 @media (min-width: 768px) {
-                    font-size: 2.5rem;
+                    font-size: 3rem;
                 }
             }
 
@@ -269,19 +269,7 @@
     }
 }
 
-// Touch device optimizations
-@media (hover: none) and (pointer: coarse) {
-    .carousel-container {
-        .carousel-arrow {
-            display: none; // Completely hide arrows on touch devices
-        }
 
-        .dot {
-            min-width: 10px;
-            min-height: 10px;
-        }
-    }
-}
 
 
 
@@ -458,9 +446,7 @@
 // Touch device optimizations
 @media (hover: none) and (pointer: coarse) {
     .carousel-container {
-        .carousel-arrow {
-            display: none;
-        }
+
 
         .dot {
             min-width: 10px;
@@ -492,7 +478,7 @@
     }
 
     .about-description {
-        font-size: 0.85rem;
+        font-size: 1rem;
         line-height: 1.5;
     }
 
