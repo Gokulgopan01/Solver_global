@@ -1,0 +1,14 @@
+/* solve white border issue */
+/* RESET DEFAULT SPACING */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Prevent horizontal scroll issues */
+body {
+    overflow-x: hidden;
+}

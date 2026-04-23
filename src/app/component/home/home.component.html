@@ -1,0 +1,63 @@
+<!-- home.component.html -->
+<div class="carousel-container">
+    <div class="carousel-slide" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+        @for (slide of slides; track slide.id) {
+        <div class="slide">
+            <div class="slide-image">
+                <img [src]="slide.imagePath" [alt]="slide.title">
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content fade-up">
+                <h2 class="slide-title">{{ slide.title }}</h2>
+                <p class="slide-description">{{ slide.description }}</p>
+                <button class="read-more-btn">READ MORE</button>
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="carousel-dots">
+        @for (slide of slides; track slide.id; let i = $index) {
+        <button class="dot" [class.active]="i === currentIndex" (click)="goToSlide(i)">
+        </button>
+        }
+    </div>
+
+    <!-- Navigation Arrows (Optional, good for tablet/desktop but hidden on mobile) -->
+    <button class="carousel-arrow prev" (click)="prevSlide()" aria-label="Previous slide">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" />
+        </svg>
+    </button>
+    <button class="carousel-arrow next" (click)="nextSlide()" aria-label="Next slide">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z" />
+            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none" />
+        </svg>
+    </button>
+</div>
+<!-- About Section -->
+<section class="about-section">
+    <div class="about-container">
+        <div class="about-image slide-left">
+            <img src="assets/home_images/about.jpeg" alt="About MAHREQ Migration">
+        </div>
+        <div class="about-content">
+            <div class="about-tag">About SOLVER GLOBAL</div>
+            <h2 class="about-title">MAKING YOUR VISION A LIVING REALITY</h2>
+            <p class="about-description">
+                Headquartered in Dubai, UAE, MAHREQ Migration stands as a beacon of excellence in the migration
+                industry,
+                leveraging five years of specialized expertise in Citizenship, Skilled Migration, Work Permits, and
+                Study
+                Abroad programs, with a dedicated team of professionals committed to providing transparent,
+                personalized,
+                and sophisticated solutions that empower individuals and families to seamlessly turn their global
+                dreams
+                into reality with trust, integrity, and unmatched service quality.
+            </p>
+        </div>
+    </div>
+</section>

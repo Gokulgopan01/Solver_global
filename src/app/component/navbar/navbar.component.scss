@@ -1,0 +1,136 @@
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #111;
+
+    i {
+        font-size: 1.2rem;
+        color: #5c9fc9; // gold accent
+    }
+}
+
+/* Desktop Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+
+    a {
+        text-decoration: none;
+        color: #333;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        transition: 0.3s;
+
+        &:hover {
+            color: #c9a45c; // gold tone
+        }
+    }
+
+    .btn {
+        background: #111;
+        color: #fff;
+        padding: 0.5rem 1.2rem;
+        border-radius: 4px;
+
+        &:hover {
+            background: #000;
+        }
+    }
+}
+
+/* Hamburger */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+
+    span {
+        width: 25px;
+        height: 2px;
+        background: #111;
+        margin: 4px 0;
+        transition: 0.3s;
+    }
+
+    span.open:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    span.open:nth-child(2) {
+        opacity: 0;
+    }
+
+    span.open:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    padding: 1rem 2rem;
+    border-top: 1px solid #eee;
+
+    a {
+        padding: 0.8rem 0;
+        text-decoration: none;
+        color: #333;
+        border-bottom: 1px solid #f1f1f1;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .btn {
+        margin-top: 1rem;
+        text-align: center;
+        background: #111;
+        color: #fff;
+        padding: 0.7rem;
+        border-radius: 4px;
+    }
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
