@@ -7,10 +7,10 @@
                 <img [src]="slide.imagePath" [alt]="slide.title">
             </div>
             <div class="slide-overlay"></div>
-            <div class="slide-content fade-up">
-                <h2 class="slide-title">{{ slide.title }}</h2>
-                <p class="slide-description">{{ slide.description }}</p>
-                <button class="read-more-btn">READ MORE</button>
+            <div class="slide-content ">
+                <h2 class="slide-title fade-in">{{ slide.title }}</h2>
+                <p class="slide-description fade-up">{{ slide.description }}</p>
+                <button class="read-more-btn fade-in">READ MORE</button>
             </div>
         </div>
         }
@@ -45,9 +45,9 @@
             <img src="assets/home_images/about.jpeg" alt="About MAHREQ Migration">
         </div>
         <div class="about-content">
-            <div class="about-tag">About SOLVER GLOBAL</div>
-            <h2 class="about-title">MAKING YOUR VISION A LIVING REALITY</h2>
-            <p class="about-description">
+            <div class="about-tag slide-right">About SOLVER GLOBAL</div>
+            <h2 class="about-title slide-right">MAKING YOUR VISION A LIVING REALITY</h2>
+            <p class="about-description slide-right">
                 Headquartered in Dubai, UAE, MAHREQ Migration stands as a beacon of excellence in the migration
                 industry,
                 leveraging five years of specialized expertise in Citizenship, Skilled Migration, Work Permits, and
@@ -58,6 +58,115 @@
                 dreams
                 into reality with trust, integrity, and unmatched service quality.
             </p>
+        </div>
+    </div>
+</section>
+
+
+<!-- Our Services -->
+<section class="services-section">
+    <div class="services-container">
+        <!-- Section Header -->
+        <div class="services-header">
+            <h2 class="section-title">OUR SERVICES</h2>
+            <p class="section-subtitle">
+                Comprehensive global solutions tailored to your ambitions — from education to permanent settlement.
+            </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="services-grid">
+            @for (service of services; track service.id) {
+            <div class="service-card slide-left" (click)="onServiceClick(service)">
+                <div class="card-icon ">
+                    <i [class]="service.icon"></i>
+                </div>
+                <h3 class="card-title">{{ service.title }}</h3>
+                <p class="card-description">{{ service.description }}</p>
+                <div class="card-hover-content">
+                    <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+<!-- WHy US-->
+<!-- ========== WHY US SECTION ========== -->
+<section class="whyus-section">
+    <div class="whyus-container">
+
+        <!-- Centered Big Title -->
+        <div class="whyus-header">
+            <h1 class="whyus-main-title">WHY US</h1>
+            <div class="whyus-underline"></div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="whyus-two-columns">
+
+            <!-- Left Column -->
+            <div class="whyus-left">
+                <h2 class="whyus-left-heading">
+                    PROVIDING CARE AT EVERY STEP OF<br>
+                    YOUR MIGRATION JOURNEY
+                </h2>
+                <p class="whyus-left-text">
+                    Our services are built around a team of highly skilled Migration consultants and lawyers who work
+                    relentlessly to ensure that each client receives the best possible guidance, maximizing their
+                    chances of a successful application while minimizing the stress and uncertainty that often
+                    accompanies the migration process.
+                </p>
+            </div>
+
+            <!-- Right Column -->
+            <div class="whyus-right">
+
+
+                <!-- Vision & Mission Row -->
+                <div class="whyus-vision-mission">
+                    <div class="vision-box">
+                        <h3 class="vision-mission-title">OUR VISION</h3>
+                        <p class="vision-mission-text">
+                            Our vision is to provide individuals and families with the tools and guidance they need to
+                            achieve their migration goals, offering personalized support at every stage while
+                            maintaining the highest ethical standards, and staying ahead of changes in migration laws
+                            and regulations to deliver optimal results.
+                        </p>
+                    </div>
+                    <div class="mission-box">
+                        <h3 class="vision-mission-title">OUR MISSION</h3>
+                        <p class="vision-mission-text">
+                            Our mission is to deliver exceptional migration services with integrity, transparency, and
+                            unwavering commitment to our clients' success, ensuring every journey is guided by expertise
+                            and compassion.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="whyus-stats">
+            <div class="stat-item">
+                <div class="stat-number">5000+</div>
+                <div class="stat-label">Successful Cases</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Expert Consultants</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Countries Served</div>
+            </div>
         </div>
     </div>
 </section>

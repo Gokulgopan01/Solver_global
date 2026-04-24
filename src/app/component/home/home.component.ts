@@ -8,6 +8,13 @@ interface Slide {
   imagePath: string;
 }
 
+interface Service {
+  id: number
+  title: string
+  description: string
+  icon: string
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -42,6 +49,48 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   ];
 
+  //our services
+
+  services: Service[] = [
+    {
+      id: 1,
+      title: 'Student Visa',
+      description: 'Begin your global experience with a Student Visa. Learn, explore, and grow in top educational destinations worldwide.',
+      icon: 'fas fa-graduation-cap'
+    },
+    {
+      id: 2,
+      title: 'Permanent Residency',
+      description: 'Permanent Residency unlocks endless potential. Your new beginning starts here with global settlement solutions.',
+      icon: 'fas fa-home'
+    },
+    {
+      id: 3,
+      title: 'Work Visa',
+      description: 'Unlock international career opportunities with expert work visa guidance and global placement support.',
+      icon: 'fas fa-briefcase'
+    },
+    {
+      id: 4,
+      title: 'Business Migration',
+      description: 'Expand your enterprise internationally. Tailored business visa and investment migration strategies.',
+      icon: 'fas fa-chart-line'
+    },
+    {
+      id: 5,
+      title: 'Family Sponsorship',
+      description: 'Reunite with loved ones through seamless family sponsorship programs across multiple countries.',
+      icon: 'fas fa-heart'
+    },
+    {
+      id: 6,
+      title: 'Citizenship Solutions',
+      description: 'Achieve your dream of second citizenship with expert legal pathways and due diligence.',
+      icon: 'fas fa-passport'
+    }
+  ];
+
+
   currentIndex: number = 0;
   private intervalId: any;
   private readonly AUTO_SLIDE_INTERVAL = 5000; // 5 seconds
@@ -57,9 +106,17 @@ export class HomeComponent implements OnInit, OnDestroy {
           entry.target.classList.add('show');
         }
       });
-    }, { threshold: 0.2 });
+    }, {
+      threshold: 0.5,
+      rootMargin: "0px 0px -100px 0px"
+    });
 
+    // Existing elements
     document.querySelectorAll('.fade-in, .fade-up, .slide-left, .slide-right')
+      .forEach(el => observer.observe(el));
+
+    // NEW: Observe service cards for animation
+    document.querySelectorAll('.service-card')
       .forEach(el => observer.observe(el));
   }
 
@@ -100,5 +157,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   private resetAutoSlide(): void {
     this.stopAutoSlide();
     this.startAutoSlide();
+  }
+
+  onServiceClick(service: Service): void {
+    console.log('Service clicked:', service.title);
+    // Add your navigation or modal logic here
   }
 }

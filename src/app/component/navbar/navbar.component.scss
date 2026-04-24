@@ -11,7 +11,7 @@
 .nav-container {
     max-width: 1200px;
     margin: auto;
-    padding: 1rem 2rem;
+    padding: 1.3rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -22,14 +22,14 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: 1px;
     color: #111;
 
     i {
-        font-size: 1.2rem;
-        color: #5c9fc9; // gold accent
+        font-size: 1.6rem;
+        color: #0F172A; // gold accent
     }
 }
 
@@ -43,8 +43,8 @@
     a {
         text-decoration: none;
         color: #333;
-        font-size: 0.9rem;
-        letter-spacing: 1px;
+        font-size: 1.8rem;
+        letter-spacing: 1.5px;
         transition: 0.3s;
 
         &:hover {
@@ -55,7 +55,8 @@
     .btn {
         background: #111;
         color: #fff;
-        padding: 0.5rem 1.2rem;
+        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
         border-radius: 4px;
 
         &:hover {
