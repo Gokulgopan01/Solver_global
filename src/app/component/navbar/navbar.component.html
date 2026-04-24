@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar" [class.scrolled]="isScrolled">
     <div class="nav-container">
 
         <!-- Logo -->
@@ -9,32 +9,34 @@
 
         <!-- Desktop Links -->
         <ul class="nav-links">
-            <li><a href="#">Work</a></li>
-            <li><a href="#">PR</a></li>
-            <li><a href="#">Study</a></li>
-            <li><a href="#">Visit</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#" class="btn">Learn More</a></li>
+            <li><a href="#" class="nav-link">Work</a></li>
+            <li><a href="#" class="nav-link">PR</a></li>
+            <li><a href="#" class="nav-link">Study</a></li>
+            <li><a href="#" class="nav-link">Visit</a></li>
+            <li><a href="#" class="nav-link">About</a></li>
+            <li><a href="#" class="nav-link">Contact</a></li>
+            <li><a href="#" class="btn-cta">Learn More</a></li>
         </ul>
 
         <!-- Mobile Menu Button -->
-        <div class="menu-toggle" (click)="toggleMenu()">
-            <span [class.open]="isMenuOpen"></span>
-            <span [class.open]="isMenuOpen"></span>
-            <span [class.open]="isMenuOpen"></span>
+        <div class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
 
     </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" [class.active]="isMenuOpen">
-        <a href="#" (click)="closeMenu()">Work</a>
-        <a href="#" (click)="closeMenu()">PR</a>
-        <a href="#" (click)="closeMenu()">Study</a>
-        <a href="#" (click)="closeMenu()">Visit</a>
-        <a href="#" (click)="closeMenu()">About</a>
-        <a href="#" (click)="closeMenu()">Contact</a>
-        <a href="#" class="btn" (click)="closeMenu()">Learn More</a>
+        <div class="mobile-links">
+            <a href="#" class="mobile-link" (click)="closeMenu()">Work</a>
+            <a href="#" class="mobile-link" (click)="closeMenu()">PR</a>
+            <a href="#" class="mobile-link" (click)="closeMenu()">Study</a>
+            <a href="#" class="mobile-link" (click)="closeMenu()">Visit</a>
+            <a href="#" class="mobile-link" (click)="closeMenu()">About</a>
+            <a href="#" class="mobile-link" (click)="closeMenu()">Contact</a>
+            <a href="#" class="btn-cta mobile-cta" (click)="closeMenu()">Learn More</a>
+        </div>
     </div>
 </nav>

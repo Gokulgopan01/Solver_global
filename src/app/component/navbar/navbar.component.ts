@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   isMenuOpen = false;
+  isScrolled = false
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

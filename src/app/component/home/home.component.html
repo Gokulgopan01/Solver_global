@@ -1,5 +1,5 @@
 <!-- home.component.html -->
-<div class="carousel-container">
+<div class="carousel-container" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event, 'hero')">
     <div class="carousel-slide" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
         @for (slide of slides; track slide.id) {
         <div class="slide">
@@ -109,7 +109,7 @@
         <div class="whyus-two-columns">
 
             <!-- Left Column -->
-            <div class="whyus-left">
+            <div class="whyus-left slide-left">
                 <h2 class="whyus-left-heading">
                     PROVIDING CARE AT EVERY STEP OF<br>
                     YOUR MIGRATION JOURNEY
@@ -127,7 +127,7 @@
 
 
                 <!-- Vision & Mission Row -->
-                <div class="whyus-vision-mission">
+                <div class="whyus-vision-mission slide-right">
                     <div class="vision-box">
                         <h3 class="vision-mission-title">OUR VISION</h3>
                         <p class="vision-mission-text">
@@ -151,22 +151,135 @@
 
         <!-- Stats Section -->
         <div class="whyus-stats">
-            <div class="stat-item">
+            <div class="stat-item fade-up">
                 <div class="stat-number">5000+</div>
                 <div class="stat-label">Successful Cases</div>
             </div>
-            <div class="stat-item">
+            <div class="stat-item fade-up">
                 <div class="stat-number">98%</div>
                 <div class="stat-label">Success Rate</div>
             </div>
-            <div class="stat-item">
+            <div class="stat-item fade-up">
                 <div class="stat-number">15+</div>
                 <div class="stat-label">Expert Consultants</div>
             </div>
-            <div class="stat-item">
+            <div class="stat-item fade-up">
                 <div class="stat-number">20+</div>
                 <div class="stat-label">Countries Served</div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- ========== HIGHLIGHT QUOTE SECTION ========== -->
+<section class="quote-section" style="background-image: url('assets/home_images/ADD.png');">
+    <div class="quote-overlay"></div>
+    <div class="quote-container fade-up show">
+        <p class="quote-text">
+            "At <strong>Solver Global</strong>, we are dedicated to delivering a personalized and seamless experience
+            for every client, staying current with the latest migration laws and regulations, and leveraging our vast
+            network of specialists to ensure a smooth and successful migration journey."
+        </p>
+    </div>
+</section>
+
+<!-- ========== SHOWCASE GALLERY SECTION ========== -->
+<section class="showcase-section">
+    <div class="showcase-header">
+        <h4 class="section-subtitle">POPULAR PROGRAMS</h4>
+        <h2 class="section-title">SHOWCASE</h2>
+    </div>
+
+    <div class="showcase-grid">
+        @for (program of showcasePrograms; track program.id) {
+        <div class="showcase-item fade-up">
+            <img [src]="program.image" [alt]="program.name">
+            <div class="showcase-overlay">
+                <h3 class="program-name">{{ program.name }}</h3>
+            </div>
+        </div>
+        }
+    </div>
+</section>
+
+<!-- ========== TESTIMONIALS HEADER ========== -->
+<section class="testimonials-header-section">
+    <div class="testimonials-header">
+        <h4 class="section-subtitle">CLIENTS TESTIMONIALS</h4>
+        <h2 class="section-title">WHAT CUSTOMERS SAYING ABOUT US</h2>
+    </div>
+</section>
+
+<!-- ========== TESTIMONIALS SECTION ========== -->
+<section class="testimonials-section">
+    <div class="testimonial-carousel-container" (touchstart)="onTouchStart($event)"
+        (touchend)="onTouchEnd($event, 'testimonial')">
+        <div class="testimonial-slide" [style.transform]="'translateX(-' + currentTestimonialIndex * 100 + '%)'">
+            @for (testimonial of testimonials; track testimonial.id) {
+            <div class="testimonial-card-wrapper">
+                <div class="testimonial-card">
+                    <div class="avatar-container">
+                        <img [src]="testimonial.avatar" [alt]="testimonial.name">
+                    </div>
+                    <h3 class="client-name">{{ testimonial.name }}</h3>
+                    <p class="client-service">{{ testimonial.service }}</p>
+
+                    <div class="rating-row">
+                        <span class="country-text">{{ testimonial.country }}</span>
+                        <div class="stars">
+                            @for (star of [1, 2, 3, 4, 5]; track star) {
+                            <i class="fas fa-star" [class.active]="star <= testimonial.rating"></i>
+                            }
+                        </div>
+                    </div>
+
+                    <p class="testimonial-content">
+                        "{{ testimonial.content }}"
+                    </p>
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="carousel-dots testimonial-dots">
+            @for (testimonial of testimonials; track testimonial.id; let i = $index) {
+            <button class="dot" [class.active]="i === currentTestimonialIndex" (click)="goToTestimonial(i)"></button>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- ========== CONTACT SECTION ========== -->
+<section class="contact-section">
+    <h2 class="contact-title">CONTACT</h2>
+
+    <div class="contact-grid">
+        <div class="contact-card fade-up">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <h4 class="contact-subtitle">ADDRESS</h4>
+            <p class="contact-text">1094 Budapest, Ferencesek utca 6.,<br>Hungary</p>
+        </div>
+
+        <div class="contact-divider"></div>
+
+        <div class="contact-card fade-up">
+            <i class="fas fa-mobile-alt contact-icon"></i>
+            <h4 class="contact-subtitle">PHONE NUMBER</h4>
+            <p class="contact-text">+971589807417, +971589866084</p>
+        </div>
+
+        <div class="contact-divider"></div>
+
+        <div class="contact-card fade-up">
+            <i class="far fa-envelope contact-icon"></i>
+            <h4 class="contact-subtitle">EMAIL</h4>
+            <p class="contact-text">info&#64;solverglobal.com</p>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SCROLL UP BUTTON ========== -->
+<button class="scroll-top-btn" [class.show]="showScrollButton" (click)="scrollToTop()" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+</button>

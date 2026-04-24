@@ -1,5 +1,5 @@
 // home.component.ts
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 
 interface Slide {
   id: number;
@@ -13,6 +13,22 @@ interface Service {
   title: string
   description: string
   icon: string
+}
+
+interface Testimonial {
+  id: number;
+  name: string;
+  service: string;
+  country: string;
+  rating: number;
+  content: string;
+  avatar: string;
+}
+
+interface ShowcaseProgram {
+  id: number;
+  name: string;
+  image: string;
 }
 
 @Component({
@@ -88,15 +104,83 @@ export class HomeComponent implements OnInit, OnDestroy {
       description: 'Achieve your dream of second citizenship with expert legal pathways and due diligence.',
       icon: 'fas fa-passport'
     }
+
   ];
 
+  // Showcase Programs
+  showcasePrograms: ShowcaseProgram[] = [
+    { id: 1, name: 'DOMINICA', image: 'assets/home_images/photo_gallery (1).jpg' },
+    { id: 2, name: 'SAINT LUCIA', image: 'assets/home_images/photo_gallery (2).jpg' },
+    { id: 3, name: 'VANUATU', image: 'assets/home_images/photo_gallery (3).jpg' },
+    { id: 4, name: 'CANADA', image: 'assets/home_images/photo_gallery (4).jpg' },
+    { id: 5, name: 'EUROPE', image: 'assets/home_images/photo_gallery (5).jpg' },
+    { id: 6, name: 'CARIBBEAN', image: 'assets/home_images/photo_gallery (6).jpg' }
+  ];
+
+  // Testimonials
+  testimonials: Testimonial[] = [
+    {
+      id: 1,
+      name: 'Diljith Dinesh',
+      service: 'Visit Visa',
+      country: 'Canada',
+      rating: 5,
+      content: 'They did an excellent job in getting visitor visa for my parents just in 2 months. Excellent service follow up and after service too.',
+      avatar: 'https://ui-avatars.com/api/?name=Diljith+Dinesh&background=0F172A&color=fff'
+    },
+    {
+      id: 2,
+      name: 'Sarah Jenkins',
+      service: 'Student Visa',
+      country: 'Australia',
+      rating: 5,
+      content: 'Solver Global made my university application and visa process completely stress-free. Their counselors are incredibly knowledgeable and supportive.',
+      avatar: 'https://ui-avatars.com/api/?name=Sarah+Jenkins&background=0F172A&color=fff'
+    },
+    {
+      id: 3,
+      name: 'Ahmed Al-Farsi',
+      service: 'Skilled Migration',
+      country: 'Germany',
+      rating: 5,
+      content: 'The team guided me through every step of the complex skilled migration process. Their attention to detail ensured my application was approved without delays.',
+      avatar: 'https://ui-avatars.com/api/?name=Ahmed+Farsi&background=0F172A&color=fff'
+    },
+    {
+      id: 4,
+      name: 'Priya Sharma',
+      service: 'Work Permit',
+      country: 'UK',
+      rating: 4,
+      content: 'Highly professional and responsive. They successfully secured my work permit and provided great advice on settling in.',
+      avatar: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=0F172A&color=fff'
+    },
+    {
+      id: 5,
+      name: 'Michael Chen',
+      service: 'Permanent Residency',
+      country: 'Canada',
+      rating: 5,
+      content: 'Achieving PR seemed like an impossible dream, but Solver Global made it a reality. I cannot recommend their dedicated team enough.',
+      avatar: 'https://ui-avatars.com/api/?name=Michael+Chen&background=0F172A&color=fff'
+    }
+  ];
 
   currentIndex: number = 0;
+  currentTestimonialIndex: number = 0;
+
   private intervalId: any;
+  private testimonialIntervalId: any;
   private readonly AUTO_SLIDE_INTERVAL = 5000; // 5 seconds
+
+  // Touch swipe tracking
+  private touchStartX: number = 0;
+  private touchEndX: number = 0;
+  private readonly SWIPE_THRESHOLD = 50;
 
   ngOnInit(): void {
     this.startAutoSlide();
+    this.startTestimonialAutoSlide();
   }
 
   ngAfterViewInit() {
@@ -122,8 +206,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopAutoSlide();
+    this.stopTestimonialAutoSlide();
   }
 
+  // --- Hero Carousel Methods ---
   goToSlide(index: number): void {
     if (index >= 0 && index < this.slides.length) {
       this.currentIndex = index;
@@ -159,8 +245,82 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.startAutoSlide();
   }
 
+  // --- Testimonial Carousel Methods ---
+  goToTestimonial(index: number): void {
+    if (index >= 0 && index < this.testimonials.length) {
+      this.currentTestimonialIndex = index;
+      this.resetTestimonialAutoSlide();
+    }
+  }
+
+  nextTestimonial(): void {
+    this.currentTestimonialIndex = (this.currentTestimonialIndex + 1) % this.testimonials.length;
+    this.resetTestimonialAutoSlide();
+  }
+
+  prevTestimonial(): void {
+    this.currentTestimonialIndex = (this.currentTestimonialIndex - 1 + this.testimonials.length) % this.testimonials.length;
+    this.resetTestimonialAutoSlide();
+  }
+
+  private startTestimonialAutoSlide(): void {
+    this.testimonialIntervalId = setInterval(() => {
+      this.nextTestimonial();
+    }, this.AUTO_SLIDE_INTERVAL);
+  }
+
+  private stopTestimonialAutoSlide(): void {
+    if (this.testimonialIntervalId) {
+      clearInterval(this.testimonialIntervalId);
+      this.testimonialIntervalId = null;
+    }
+  }
+
+  private resetTestimonialAutoSlide(): void {
+    this.stopTestimonialAutoSlide();
+    this.startTestimonialAutoSlide();
+  }
+
+  // --- Swipe Gesture Logic ---
+  onTouchStart(event: TouchEvent): void {
+    this.touchStartX = event.changedTouches[0].screenX;
+  }
+
+  onTouchEnd(event: TouchEvent, carouselType: 'hero' | 'testimonial'): void {
+    this.touchEndX = event.changedTouches[0].screenX;
+    this.handleSwipe(carouselType);
+  }
+
+  private handleSwipe(carouselType: 'hero' | 'testimonial'): void {
+    const diff = this.touchStartX - this.touchEndX;
+
+    if (Math.abs(diff) > this.SWIPE_THRESHOLD) {
+      if (diff > 0) {
+        // Swiped left (Next)
+        if (carouselType === 'hero') this.nextSlide();
+        else this.nextTestimonial();
+      } else {
+        // Swiped right (Prev)
+        if (carouselType === 'hero') this.prevSlide();
+        else this.prevTestimonial();
+      }
+    }
+  }
+
   onServiceClick(service: Service): void {
     console.log('Service clicked:', service.title);
     // Add your navigation or modal logic here
+  }
+
+  // --- Scroll Up Button Logic ---
+  showScrollButton = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showScrollButton = window.scrollY > 500;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
