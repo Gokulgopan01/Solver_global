@@ -1,24 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --color-slate-900: #0F172A;
-  --color-slate-800: #1E293B;
-  --color-slate-700: #334155;
-  --color-slate-400: #94A3B8;
-  --color-gold-500: #FFD700;
-  --color-gold-600: #FFA500;
-  --color-gold-muted: #c9a45c;
-  --color-light-bg: #F8FAFC;
-  --color-white: #ffffff;
-  
-  --font-primary: 'Inter', sans-serif;
-  --font-heading: 'Outfit', sans-serif;
-  
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-dark: rgba(15, 23, 42, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --glass-blur: blur(16px);
-  --transition-smooth: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    --color-slate-900: #0F172A;
+    --color-slate-800: #1E293B;
+    --color-slate-700: #334155;
+    --color-slate-400: #94A3B8;
+    --color-gold-500: #FFD700;
+    --color-gold-600: #FFA500;
+    --color-gold-muted: #c9a45c;
+    --color-light-bg: #F8FAFC;
+    --color-white: #ffffff;
+
+    --font-primary: 'Inter', sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-dark: rgba(15, 23, 42, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-blur: blur(16px);
+    --transition-smooth: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* solve white border issue */
@@ -34,7 +34,12 @@ body {
     color: var(--color-slate-700);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-heading);
     color: var(--color-slate-900);
     margin: 0;

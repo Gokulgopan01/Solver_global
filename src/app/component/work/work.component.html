@@ -1,0 +1,147 @@
+<div class="work-page">
+    <!-- Breadcrumbs -->
+    <div class="breadcrumb-container">
+        <div class="container">
+            <nav class="breadcrumbs">
+                <a routerLink="/" class="breadcrumb-link">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Work</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Work Opportunities Abroad</h1>
+                <p class="hero-text">
+                    We offer opportunities in a range of unskilled roles such as room attendants, chefs, cleaners, and
+                    hotel reception staff across European countries. If you are interested in working abroad in these
+                    positions, get in touch with us. Our team will guide you through the entire process — from job
+                    placement to accommodation and basic support — ensuring a smooth and secure transition.
+                </p>
+                <button class="btn-primary" (click)="scrollToForm()">Apply Now</button>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="assets/home_images/work.png" alt="Work Abroad" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Roles Section -->
+    <section class="roles-section">
+        <div class="container">
+            <h2 class="section-title">Popular Roles</h2>
+            <div class="roles-grid">
+                <div class="role-image-card" *ngFor="let job of jobRoles">
+                    <img [src]="job.image" [alt]="job.title" class="card-bg">
+                    <div class="card-overlay">
+                        <div class="card-content">
+                            <h3>{{ job.title }}</h3>
+                            <p>{{ job.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why SOLVERS GLOBAL Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title text-center">Why SOLVERS GLOBAL?</h2>
+            <div class="features-grid">
+                <div class="feature-item" *ngFor="let feature of features">
+                    <div class="feature-icon">
+                        <i [class]="feature.icon"></i>
+                    </div>
+                    <p class="feature-title">{{ feature.title }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="section-title text-center">Trusted by Our Candidates</h2>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <img src="assets/home_images/trust1.jpeg" alt="Successful Candidate 1">
+                </div>
+                <div class="trust-card">
+                    <img src="assets/home_images/trust2.jpeg" alt="Successful Candidate 2">
+                </div>
+                <div class="trust-card">
+                    <img src="assets/home_images/trust3.jpeg" alt="Successful Candidate 3">
+                </div>
+            </div>
+            <p class="trust-subtitle text-center">Join hundreds of successful candidates who found their dream jobs
+                abroad through SOLVERS GLOBAL.</p>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section class="form-section" id="application-form">
+        <div class="container">
+            <div class="form-card">
+                <h2 class="form-title">Application</h2>
+                <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" formControlName="name" placeholder="John Doe">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" formControlName="state" placeholder="State">
+                        </div>
+                        <div class="form-group">
+                            <label>District</label>
+                            <input type="text" formControlName="district" placeholder="District">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" formControlName="age" placeholder="e.g. 25">
+                    </div>
+                    <div class="form-group">
+                        <label>Education Summary</label>
+                        <textarea formControlName="educationSummary"
+                            placeholder="Briefly describe your education..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Job Preference</label>
+                        <input type="text" formControlName="jobPreferences"
+                            placeholder="Which roles are you interested in?">
+                    </div>
+                    <div class="form-group">
+                        <label>Resume</label>
+                        <div class="file-drop-area">
+                            <i class="fas fa-file-upload"></i>
+                            <span>Upload CV (PDF, DOC)</span>
+                            <input type="file" class="file-input" (change)="onFileChange($event)">
+                            <div class="file-name" *ngIf="applicationForm.get('resume')?.value">
+                                {{ applicationForm.get('resume')?.value }}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit" [disabled]="!applicationForm.valid">Submit
+                        Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="cta-card">
+                <h2>Start Your Journey Abroad Today</h2>
+                <p>Our experts are ready to guide you to your next career chapter in Europe.</p>
+                <button class="btn-contact">Contact Us</button>
+            </div>
+        </div>
+    </section>
+</div>

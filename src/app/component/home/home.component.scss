@@ -68,7 +68,7 @@
                 margin-bottom: 1.2rem;
                 letter-spacing: -0.02em;
                 text-transform: uppercase;
-                background: linear-gradient(135deg, var(--color-white) 0%, var(--color-slate-400) 100%);
+                background: linear-gradient(135deg, var(--color-white) 0%);
                 -webkit-background-clip: text;
                 background-clip: text;
                 color: transparent;
@@ -807,6 +807,35 @@
     }
 }
 
+//differnt colours on each cards,
+/* Alternate cards (even = light style by default) */
+.service-card:nth-child(even) {
+    background: var(--glass-bg);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+/* Text colors for light cards */
+.service-card:nth-child(even) .card-title {
+    color: var(--color-slate-900);
+}
+
+.service-card:nth-child(even) .card-description {
+    color: var(--color-slate-700);
+}
+
+.service-card:nth-child(even) .card-icon {
+    background: rgba(15, 23, 42, 0.08);
+}
+
+.service-card:nth-child(even) .card-icon i {
+    color: var(--color-slate-900);
+}
+
+.service-card:nth-child(even) .learn-more {
+    color: var(--color-slate-900);
+}
+
 // ============================================
 // WHY US SECTION
 // Two-column layout with centered big "WHY US" title
@@ -914,7 +943,9 @@
 
 // Left Column Styles
 .whyus-left {
-    background: #0F172A;
+    background: var(--glass-dark);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     border-radius: 1.5rem;
     padding: 2rem 1.5rem;
     transition: all 0.3s ease;
@@ -1353,7 +1384,7 @@
 
 .testimonials-section {
     padding: 3rem 1rem 5rem;
-    background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)),
+    background:
         url("/assets/home_images/ADD.png");
     background-size: cover;
     background-position: center;
