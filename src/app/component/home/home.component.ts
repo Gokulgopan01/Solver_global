@@ -113,8 +113,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     { id: 2, name: 'SAINT LUCIA', image: 'assets/home_images/photo_gallery (2).jpg' },
     { id: 3, name: 'VANUATU', image: 'assets/home_images/photo_gallery (3).jpg' },
     { id: 4, name: 'CANADA', image: 'assets/home_images/photo_gallery (4).jpg' },
-    { id: 5, name: 'EUROPE', image: 'assets/home_images/photo_gallery (5).jpg' },
-    { id: 6, name: 'CARIBBEAN', image: 'assets/home_images/photo_gallery (6).jpg' }
   ];
 
   // Testimonials

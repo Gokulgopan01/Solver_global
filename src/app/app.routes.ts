@@ -5,6 +5,7 @@ import { WorkComponent } from './component/work/work.component';
 import { VisitVisaComponent } from './component/visit-visa/visit-visa.component';
 import { StudyAbroadComponent } from './component/study-abroad/study-abroad.component';
 import { GalleryComponent } from './component/gallery/gallery.component';
+import { HireWorkersComponent } from './component/hire-workers/hire-workers.component';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,10 @@ export const routes: Routes = [
     {
         path: 'gallery',
         component: GalleryComponent
+    },
+    {
+        path: 'hire-workers',
+        component: HireWorkersComponent
     },
     {
         path: 'navbar',

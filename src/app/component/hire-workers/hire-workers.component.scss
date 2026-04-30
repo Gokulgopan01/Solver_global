@@ -1,0 +1,220 @@
+.hire-page {
+    padding-top: 80px;
+    background: #fdfdfd;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.hire-hero {
+    background: var(--color-slate-900);
+    color: white;
+    padding: 6rem 0;
+    text-align: center;
+    margin-bottom: 4rem;
+
+    h1 {
+        font-family: var(--font-heading);
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        color: var(--color-gold-500);
+        text-transform: uppercase;
+    }
+
+    p {
+        font-size: 1.2rem;
+        opacity: 0.8;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+.talent-section {
+    padding-bottom: 5rem;
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--color-slate-900);
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.talent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.talent-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: translateY(-5px);
+        border-color: var(--color-gold-500);
+    }
+
+    h3 {
+        color: var(--color-gold-600);
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 0.8rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #f8fafc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--color-slate-700);
+            transition: color 0.3s;
+
+            &:hover {
+                color: var(--color-gold-600);
+                
+                i {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            i {
+                font-size: 0.8rem;
+                opacity: 0;
+                transform: translateX(-10px);
+                transition: all 0.3s;
+            }
+        }
+    }
+}
+
+.form-section {
+    padding: 6rem 0;
+    background: #f8fafc;
+}
+
+.form-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+    max-width: 900px;
+    margin: 0 auto;
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 3rem;
+
+        h2 {
+            font-size: 2rem;
+            color: var(--color-slate-900);
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: 1 / -1;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--color-slate-600);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    input, select, textarea {
+        padding: 1rem;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 12px;
+        font-family: inherit;
+        font-size: 1rem;
+        transition: all 0.3s;
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-gold-500);
+            box-shadow: 0 0 0 4px rgba(218, 165, 32, 0.1);
+        }
+    }
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 2.5rem;
+    padding: 1.2rem;
+    background: var(--color-slate-900);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    &:hover:not(:disabled) {
+        background: var(--color-gold-500);
+        color: var(--color-slate-900);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(218, 165, 32, 0.2);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+@media (max-width: 768px) {
+    .hire-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .form-card {
+        padding: 2rem 1.5rem;
+    }
+}
