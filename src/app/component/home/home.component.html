@@ -16,27 +16,28 @@
         }
     </div>
 
-    <!-- Navigation Dots -->
-    <div class="carousel-dots">
-        @for (slide of slides; track slide.id; let i = $index) {
-        <button class="dot" [class.active]="i === currentIndex" (click)="goToSlide(i)">
+    <!-- Navigation Controls -->
+    <div class="carousel-controls">
+        <button class="carousel-arrow prev" (click)="prevSlide()" aria-label="Previous slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" />
+            </svg>
         </button>
-        }
-    </div>
+        
+        <div class="carousel-dots">
+            @for (slide of slides; track slide.id; let i = $index) {
+            <button class="dot" [class.active]="i === currentIndex" (click)="goToSlide(i)"></button>
+            }
+        </div>
 
-    <!-- Navigation Arrows (Optional, good for tablet/desktop but hidden on mobile) -->
-    <button class="carousel-arrow prev" (click)="prevSlide()" aria-label="Previous slide">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-            <path fill="none" d="M0 0h24v24H0z" />
-            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" />
-        </svg>
-    </button>
-    <button class="carousel-arrow next" (click)="nextSlide()" aria-label="Next slide">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-            <path fill="none" d="M0 0h24v24H0z" />
-            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none" />
-        </svg>
-    </button>
+        <button class="carousel-arrow next" (click)="nextSlide()" aria-label="Next slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none" />
+            </svg>
+        </button>
+    </div>
 </div>
 <!-- About Section -->
 <section class="about-section">
@@ -45,7 +46,7 @@
             <img src="assets/home_images/about.jpeg" alt="About MAHREQ Migration">
         </div>
         <div class="about-content">
-            <div class="about-tag slide-right">About SOLVER GLOBAL</div>
+            <div class="about-tag slide-right">About SOLVERS GLOBAL</div>
             <h2 class="about-title slide-right">MAKING YOUR VISION A LIVING REALITY</h2>
             <p class="about-description slide-right">
                 Headquartered in Dubai, UAE, MAHREQ Migration stands as a beacon of excellence in the migration
@@ -176,7 +177,7 @@
     <!-- <div class="quote-overlay"></div> -->
     <div class="quote-container fade-up show">
         <p class="quote-text">
-            "At <strong>Solver Global</strong>, we are dedicated to delivering a personalized and seamless experience
+            "At <strong>Solvers Global</strong>, we are dedicated to delivering a personalized and seamless experience
             for every client, staying current with the latest migration laws and regulations, and leveraging our vast
             network of specialists to ensure a smooth and successful migration journey."
         </p>
@@ -258,7 +259,14 @@
         <div class="contact-card fade-up">
             <i class="fas fa-map-marker-alt contact-icon"></i>
             <h4 class="contact-subtitle">ADDRESS</h4>
-            <p class="contact-text">1094 Budapest, Ferencesek utca 6.,<br>Hungary</p>
+            <p class="contact-text">
+                <strong>Budapest:</strong><br>
+                Prevent Webmarket KFT<br>
+                Cserje utca. 3A. Szada 2111 Hungary<br><br>
+                <strong>India:</strong><br>
+                MANJUTHULLI, CHOOZHATTUKOTTA, Malayam,<br>
+                Thiruvananthapuram- 695571, Kerala, India
+            </p>
         </div>
 
         <div class="contact-divider"></div>
@@ -266,7 +274,7 @@
         <div class="contact-card fade-up">
             <i class="fas fa-mobile-alt contact-icon"></i>
             <h4 class="contact-subtitle">PHONE NUMBER</h4>
-            <p class="contact-text">+971589807417, +971589866084</p>
+            <p class="contact-text">+971 58 980 7417<br>+91 9074896565</p>
         </div>
 
         <div class="contact-divider"></div>
@@ -274,7 +282,7 @@
         <div class="contact-card fade-up">
             <i class="far fa-envelope contact-icon"></i>
             <h4 class="contact-subtitle">EMAIL</h4>
-            <p class="contact-text">info&#64;solverglobal.com</p>
+            <p class="contact-text">recrutments&#64;solversglobal.com<br>sharoondeva8893&#64;gmail.com</p>
         </div>
     </div>
 </section>
