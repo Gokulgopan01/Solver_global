@@ -2,16 +2,39 @@
     <div class="nav-container">
 
         <!-- Logo -->
-        <div class="logo">
+        <div class="logo" routerLink="/">
             <img src="assets/logo.png" alt="Solver Global Logo" class="navbar-logo">
             <span>Solvers Global</span>
         </div>
 
         <!-- Desktop Links -->
         <ul class="nav-links">
-            <li><a routerLink="/work" routerLinkActive="active" class="nav-link">Work</a></li>
-            <li><a href="#" class="nav-link">Study Abroad</a></li>
-            <li><a routerLink="/visit-visa" routerLinkActive="active" class="nav-link">Visit Visa</a></li>
+            <li class="has-dropdown">
+                <a routerLink="/work" routerLinkActive="active" class="nav-link">Work</a>
+                <ul class="dropdown-menu">
+                    <li><a routerLink="/work">Visa & Paperwork</a></li>
+                    <li><a routerLink="/work">Accommodation</a></li>
+                    <li><a routerLink="/work">Health Insurance</a></li>
+                    <li><a routerLink="/work">Local Documentation</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a routerLink="/study-abroad" routerLinkActive="active" class="nav-link">Study Abroad</a>
+                <ul class="dropdown-menu">
+                    <li><a routerLink="/study-abroad">University Guidance</a></li>
+                    <li><a routerLink="/study-abroad">Student Visa</a></li>
+                    <li><a routerLink="/study-abroad">Student Housing</a></li>
+                    <li><a routerLink="/study-abroad">Career Stay-Back</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a routerLink="/visit-visa" routerLinkActive="active" class="nav-link">Visit Visa</a>
+                <ul class="dropdown-menu">
+                    <li><a routerLink="/visit-visa">Hungary Visa</a></li>
+                    <li><a routerLink="/visit-visa">Slovenia Visa</a></li>
+                    <li><a routerLink="/visit-visa">Austria Visa</a></li>
+                </ul>
+            </li>
             <li><a href="#" class="nav-link">Hire Workers</a></li>
             <li><a href="#" class="nav-link">Contact US</a></li>
             <li><a href="#" class="btn-cta">Gallery</a></li>
@@ -26,15 +49,49 @@
 
     </div>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>
+    
+    <!-- Mobile Sidebar -->
     <div class="mobile-menu" [class.active]="isMenuOpen">
+        <div class="mobile-header">
+            <span class="mobile-logo">Solvers Global</span>
+            <div class="close-btn" (click)="closeMenu()">&times;</div>
+        </div>
+        
         <div class="mobile-links">
-            <a routerLink="/work" class="mobile-link" (click)="closeMenu()">Work</a>
-            <a routerLink="/study-abroad" class="mobile-link" (click)="closeMenu()">Study Abroad</a>
-            <a routerLink="/visit-visa" class="mobile-link" (click)="closeMenu()">Visit Visa</a>
+            <div class="mobile-group">
+                <a class="mobile-link" (click)="toggleDropdown('work', $event)">Work <i class="fas fa-chevron-down"></i></a>
+                <div class="mobile-submenu" [class.active]="activeDropdown === 'work'">
+                    <a routerLink="/work" (click)="closeMenu()">Visa & Paperwork</a>
+                    <a routerLink="/work" (click)="closeMenu()">Accommodation</a>
+                    <a routerLink="/work" (click)="closeMenu()">Health Insurance</a>
+                    <a routerLink="/work" (click)="closeMenu()">Local Documentation</a>
+                </div>
+            </div>
+
+            <div class="mobile-group">
+                <a class="mobile-link" (click)="toggleDropdown('study', $event)">Study Abroad <i class="fas fa-chevron-down"></i></a>
+                <div class="mobile-submenu" [class.active]="activeDropdown === 'study'">
+                    <a routerLink="/study-abroad" (click)="closeMenu()">University Guidance</a>
+                    <a routerLink="/study-abroad" (click)="closeMenu()">Student Visa</a>
+                    <a routerLink="/study-abroad" (click)="closeMenu()">Student Housing</a>
+                    <a routerLink="/study-abroad" (click)="closeMenu()">Career Stay-Back</a>
+                </div>
+            </div>
+
+            <div class="mobile-group">
+                <a class="mobile-link" (click)="toggleDropdown('visa', $event)">Visit Visa <i class="fas fa-chevron-down"></i></a>
+                <div class="mobile-submenu" [class.active]="activeDropdown === 'visa'">
+                    <a routerLink="/visit-visa" (click)="closeMenu()">Hungary</a>
+                    <a routerLink="/visit-visa" (click)="closeMenu()">Slovenia</a>
+                    <a routerLink="/visit-visa" (click)="closeMenu()">Austria</a>
+                </div>
+            </div>
+
             <a routerLink="/hire-workers" class="mobile-link" (click)="closeMenu()">Hire Workers</a>
             <a routerLink="/contact-us" class="mobile-link" (click)="closeMenu()">Contact US</a>
-            <a href="#" class="btn-cta mobile-cta" (click)="closeMenu()">Gallery</a>
+            <a href="#" class="mobile-cta" (click)="closeMenu()">Gallery</a>
         </div>
     </div>
 </nav>

@@ -1,0 +1,370 @@
+.study-abroad-page {
+    background: #fdfdfd;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+// Hero Section
+.hero-section {
+    position: relative;
+    height: 75vh;
+    min-height: 600px;
+    background: url('/assets/home_images/Solver_home_hero_study.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    color: white;
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to right, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
+    }
+
+    .hero-container {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-content {
+        max-width: 700px;
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
+
+            @media (max-width: 768px) {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn-primary {
+            padding: 1.2rem 2.5rem;
+            background: var(--color-gold-500);
+            color: var(--color-slate-900);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+
+            &:hover {
+                background: white;
+                transform: translateY(-3px);
+                box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+            }
+        }
+    }
+}
+
+// Services Section
+.services-section {
+    padding: 8rem 0;
+
+    .section-header {
+        margin-bottom: 5rem;
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            color: var(--color-slate-900);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-slate-600);
+        }
+
+        @media (max-width: 600px) {
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+    }
+
+    .service-card {
+        padding: 3rem 2rem;
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        transition: var(--transition-smooth);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        text-align: center;
+
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-gold-500);
+
+            .icon-box {
+                background: var(--color-gold-500);
+                color: var(--color-slate-900);
+            }
+        }
+
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            background: #f8fafc;
+            color: var(--color-gold-600);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 2rem;
+            transition: var(--transition-smooth);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-slate-900);
+        }
+
+        p {
+            font-size: 1rem;
+            color: var(--color-slate-600);
+            line-height: 1.7;
+        }
+    }
+}
+
+// Package Details
+.package-details {
+    padding: 8rem 0;
+    background: var(--color-slate-900);
+    color: white;
+
+    .package-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+
+        @media (max-width: 992px) {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+    }
+
+    .package-image {
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    .package-content {
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-gold-500);
+        }
+
+        p {
+            font-size: 1.2rem;
+            opacity: 0.85;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+
+            @media (max-width: 600px) {
+                grid-template-columns: 1fr;
+            }
+
+            li {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 1.1rem;
+
+                i {
+                    color: var(--color-gold-500);
+                }
+            }
+        }
+
+        .btn-consult {
+            padding: 1.2rem 3rem;
+            background: white;
+            color: var(--color-slate-900);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+
+            &:hover {
+                background: var(--color-gold-500);
+                transform: scale(1.05);
+            }
+        }
+    }
+}
+
+// Enquiry Section
+.enquiry-section {
+    padding: 10rem 0;
+    background: #f8fafc;
+
+    .enquiry-card {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 5rem;
+        background: white;
+        border-radius: 40px;
+        box-shadow: 0 50px 100px rgba(0, 0, 0, 0.08);
+
+        @media (max-width: 768px) {
+            padding: 2.5rem;
+        }
+
+        .enquiry-header {
+            text-align: center;
+            margin-bottom: 4rem;
+
+            h2 {
+                font-size: 2.5rem;
+                margin-bottom: 0.8rem;
+                color: var(--color-slate-900);
+            }
+
+            p {
+                font-size: 1.1rem;
+                color: var(--color-slate-600);
+            }
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem 2.5rem;
+            margin-bottom: 2.5rem;
+
+            @media (max-width: 600px) {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: span 2;
+
+                @media (max-width: 600px) {
+                    grid-column: span 1;
+                }
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+
+            label {
+                font-weight: 700;
+                font-size: 0.95rem;
+                color: var(--color-slate-800);
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 1.1rem 1.4rem;
+                background: #f1f5f9;
+                border: 2px solid #f1f5f9;
+                border-radius: 14px;
+                font-size: 1rem;
+                color: var(--color-slate-900);
+                transition: all 0.3s ease;
+
+                &:focus {
+                    outline: none;
+                    border-color: var(--color-gold-500);
+                    background: white;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+                }
+            }
+
+            textarea {
+                height: 150px;
+                resize: none;
+            }
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.3rem;
+            background: var(--color-slate-900);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover:not(:disabled) {
+                background: var(--color-gold-500);
+                color: var(--color-slate-900);
+                transform: translateY(-3px);
+                box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+            }
+
+            &:disabled {
+                opacity: 0.5;
+            }
+        }
+    }
+}

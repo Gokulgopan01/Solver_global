@@ -1,0 +1,102 @@
+<div class="study-abroad-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Your Future Starts Here</h1>
+                <p class="hero-text">
+                    Embark on an international academic journey with Solvers Global. We provide a complete package including guidance, documentation, visa support, and career stay-back options.
+                </p>
+                <button class="btn-primary" (click)="scrollToEnquiry()">Start Your Application</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Comprehensive Student Services</h2>
+                <p class="section-subtitle">A seamless transition from application to graduation and beyond.</p>
+            </div>
+
+            <div class="services-grid">
+                @for (service of services; track service.title) {
+                <div class="service-card">
+                    <div class="icon-box">
+                        <i [class]="service.icon"></i>
+                    </div>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description }}</p>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Package Features -->
+    <section class="package-details">
+        <div class="container">
+            <div class="package-wrapper">
+                <div class="package-image">
+                    <img src="/assets/home_images/Solver_home_hero_study.png" alt="Study Abroad Features">
+                </div>
+                <div class="package-content">
+                    <h2>THE COMPLETE STUDY PACKAGE</h2>
+                    <p>We don't just help you apply; we ensure you succeed. Our package is designed to remove all obstacles from your path to international education.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Personal Education Consultant</li>
+                        <li><i class="fas fa-check-circle"></i> University & Scholarship Guidance</li>
+                        <li><i class="fas fa-check-circle"></i> Visa Processing & Interview Prep</li>
+                        <li><i class="fas fa-check-circle"></i> Guaranteed Student Accommodation</li>
+                        <li><i class="fas fa-check-circle"></i> Post-study Stay Back Support</li>
+                        <li><i class="fas fa-check-circle"></i> Travel Ticketing & Landing Support</li>
+                    </ul>
+                    <button class="btn-consult" (click)="scrollToEnquiry()">Get Free Consultation</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enquiry Section -->
+    <section class="enquiry-section" id="enquiry-section">
+        <div class="container">
+            <div class="enquiry-card">
+                <div class="enquiry-header">
+                    <h2>GET AS ENQUIRED</h2>
+                    <p>Tell us your study goals and our experts will guide you to the right university and country.</p>
+                </div>
+                <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" formControlName="name" placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" formControlName="email" placeholder="john&#64;example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" formControlName="phone" placeholder="+00 000 0000">
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Country</label>
+                            <input type="text" formControlName="country" placeholder="e.g. Hungary, Germany, UK">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Interested Course</label>
+                            <input type="text" formControlName="course" placeholder="e.g. Computer Science, Business Management">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Additional Message</label>
+                            <textarea formControlName="message" placeholder="Tell us more about your academic background..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit" [disabled]="enquiryForm.invalid">Submit Enquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
