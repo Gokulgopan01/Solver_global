@@ -109,10 +109,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Showcase Programs
   showcasePrograms: ShowcaseProgram[] = [
-    { id: 1, name: 'DOMINICA', image: 'assets/home_images/photo_gallery (1).jpg' },
-    { id: 2, name: 'SAINT LUCIA', image: 'assets/home_images/photo_gallery (2).jpg' },
-    { id: 3, name: 'VANUATU', image: 'assets/home_images/photo_gallery (3).jpg' },
-    { id: 4, name: 'CANADA', image: 'assets/home_images/photo_gallery (4).jpg' },
+    { id: 1, name: 'DOMINICA', image: 'assets/home_images/Solver_Home_hero_travel.png' },
+    { id: 2, name: 'SAINT LUCIA', image: 'assets/home_images/Solver_Home_hero_office.png' },
+    { id: 3, name: 'VANUATU', image: 'assets/home_images/Solver_Home_hero_section.png' },
+    { id: 4, name: 'CANADA', image: 'assets/home_images/Solver_home_hero_study.png' },
   ];
 
   // Testimonials
