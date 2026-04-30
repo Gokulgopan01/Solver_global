@@ -1,0 +1,35 @@
+<div class="gallery-page">
+    <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+    <header class="gallery-header">
+        <div class="container">
+            <h1 class="fade-up">Our Showcase</h1>
+            <p class="fade-up delay-1">Explore the journey of Solvers Global through our lens. From student success to professional milestones.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="gallery-grid">
+            @for (img of images; track img.url; let i = $index) {
+            <div class="gallery-item fade-in" [style.transition-delay]="(i * 0.1) + 's'" (click)="openLightbox(img.url)">
+                <div class="image-wrapper">
+                    <img [src]="img.url" [alt]="img.title">
+                    <div class="image-overlay">
+                        <span class="image-title">{{ img.title }}</span>
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    @if (selectedImage) {
+    <div class="lightbox" (click)="closeLightbox()">
+        <div class="lightbox-content" (click)="$event.stopPropagation()">
+            <img [src]="selectedImage" alt="Enlarged View">
+            <button class="close-btn" (click)="closeLightbox()">&times;</button>
+        </div>
+    </div>
+    }
+</div>

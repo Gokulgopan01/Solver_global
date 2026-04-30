@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-work',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, BreadcrumbComponent],
   templateUrl: './work.component.html',
   styleUrl: './work.component.scss'
 })
 export class WorkComponent {
+  breadcrumbItems: BreadcrumbItem[] = [{ label: 'Work', url: '/work' }];
+
   // Main Application Form
   applicationForm = new FormGroup({
     name: new FormControl('', [Validators.required]),

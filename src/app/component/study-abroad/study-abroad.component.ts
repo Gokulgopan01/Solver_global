@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-study-abroad',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, BreadcrumbComponent],
   templateUrl: './study-abroad.component.html',
   styleUrl: './study-abroad.component.scss'
 })
@@ -19,6 +20,8 @@ export class StudyAbroadComponent {
     country: new FormControl('', [Validators.required]),
     message: new FormControl('')
   });
+
+  breadcrumbItems: BreadcrumbItem[] = [{ label: 'Study Abroad', url: '/study-abroad' }];
 
   services = [
     {

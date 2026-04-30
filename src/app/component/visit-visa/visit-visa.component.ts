@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-visit-visa',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, BreadcrumbComponent],
   templateUrl: './visit-visa.component.html',
   styleUrl: './visit-visa.component.scss'
 })
@@ -17,6 +18,8 @@ export class VisitVisaComponent {
     country: new FormControl('', [Validators.required]),
     message: new FormControl('', [Validators.required])
   });
+
+  breadcrumbItems: BreadcrumbItem[] = [{ label: 'Visit Visa', url: '/visit-visa' }];
 
   countries = [
     {
