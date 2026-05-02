@@ -13,7 +13,7 @@
     background: var(--color-slate-900);
     color: white;
     padding: 6rem 0;
-    text-align: center;
+    text-align: left;
     margin-bottom: 4rem;
 
     h1 {
@@ -29,7 +29,7 @@
         font-size: 1.2rem;
         opacity: 0.8;
         max-width: 800px;
-        margin: 0 auto;
+        margin: 0;
     }
 }
 
@@ -164,16 +164,27 @@
     input, select, textarea {
         padding: 1rem;
         border: 1.5px solid #e2e8f0;
+        background: #fdfdfd;
         border-radius: 12px;
         font-family: inherit;
         font-size: 1rem;
         transition: all 0.3s;
+        color: var(--color-slate-900);
 
         &:focus {
             outline: none;
             border-color: var(--color-gold-500);
             box-shadow: 0 0 0 4px rgba(218, 165, 32, 0.1);
         }
+    }
+
+    select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230F172A'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1.2rem;
+        padding-right: 3rem;
     }
 }
 

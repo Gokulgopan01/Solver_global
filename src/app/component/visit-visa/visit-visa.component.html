@@ -5,7 +5,8 @@
             <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
             <div class="hero-content">
                 <h1 class="hero-title">Discover Europe with Our Visit Visa Services</h1>
-                <p class="hero-subtitle">Seamless travel experiences to Hungary, Slovenia, and Austria. Your journey starts here.</p>
+                <p class="hero-subtitle">Seamless travel experiences to Hungary, Slovenia, and Austria. Your journey
+                    starts here.</p>
                 <button class="cta-btn" (click)="scrollToEnquiry()">ENQUIRE NOW</button>
             </div>
         </div>
@@ -45,9 +46,10 @@
     <section id="enquiry-section" class="enquiry-section">
         <div class="enquiry-container">
             <div class="enquiry-info">
-                <h2 class="enquiry-title">GET AS ENQUIRED</h2>
+                <h2 class="enquiry-title">VISIT VISA ASSISTANCE</h2>
                 <p class="enquiry-text">
-                    Have questions about the application process, requirements, or fees? Fill out the form, and our visa specialists will get back to you with all the details you need.
+                    Planning to travel abroad? Submit your details and travel requirements, and our team will get back
+                    to you with the best options and next steps.
                 </p>
                 <div class="contact-details">
                     <div class="contact-item">
@@ -74,7 +76,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="country">Interested Country</label>
+                        <label for="country">Which Country You Are Planning For</label>
                         <select id="country" formControlName="country">
                             <option value="" disabled selected>Select a country</option>
                             <option value="Hungary">Hungary</option>
@@ -85,7 +87,8 @@
 
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" formControlName="message" rows="4" placeholder="How can we help you?"></textarea>
+                        <textarea id="message" formControlName="message" rows="4"
+                            placeholder="How can we help you?"></textarea>
                     </div>
 
                     <button type="submit" class="submit-btn" [disabled]="enquiryForm.invalid">SEND ENQUIRY</button>

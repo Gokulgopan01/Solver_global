@@ -19,12 +19,11 @@ export class WorkComponent {
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required]),
-    state: new FormControl('', [Validators.required]),
-    district: new FormControl('', [Validators.required]),
     age: new FormControl('', [Validators.required, Validators.min(18)]),
     educationSummary: new FormControl('', [Validators.required]),
-    jobPreferences: new FormControl('', [Validators.required]),
-    resume: new FormControl(null)
+    jobPreference: new FormControl('', [Validators.required]),
+    resume: new FormControl(null),
+    agreeToPolicy: new FormControl(false, [Validators.requiredTrue])
   });
 
   // Service Enquiry Form (used for renewal, accommodation, insurance, documentation)
@@ -90,7 +89,7 @@ export class WorkComponent {
     {
       id: 'documentation',
       title: 'Local Documentation',
-      image: 'assets/work/visa_renewal.png', // Fallback to renewal image since quota was hit
+      image: 'assets/work/visa_renewal.png',
       description: 'From address cards to local registration, we ensure all your documentation is in order so you can live and work legally in Hungary.',
       icon: 'fas fa-id-card'
     }
@@ -103,6 +102,11 @@ export class WorkComponent {
         resume: file
       });
     }
+  }
+
+  get resumeFileName(): string {
+    const file = this.applicationForm.get('resume')?.value as File | null;
+    return file?.name || 'Choose File (PDF/DOCX)';
   }
 
   scrollToForm(serviceTitle?: string) {

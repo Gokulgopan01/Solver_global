@@ -54,3 +54,22 @@ body {
 html {
     scroll-behavior: smooth;
 }
+
+/* Global Form Elements Update */
+select {
+    color-scheme: dark; /* Ensures browser-level dropdown lists use dark theme */
+    cursor: pointer;
+
+    option {
+        background-color: var(--color-slate-800);
+        color: white;
+    }
+}
+
+/* Ensure inputs and selects have consistent font */
+input,
+select,
+textarea,
+button {
+    font-family: inherit;
+}

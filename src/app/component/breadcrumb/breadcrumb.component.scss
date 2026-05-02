@@ -7,7 +7,7 @@
 .breadcrumb-list {
     display: flex;
     align-items: center;
-    justify-content: center; // Centered as per user image
+    justify-content: flex-start; // Left aligned as per user request
     list-style: none;
     margin: 0;
     padding: 0;
