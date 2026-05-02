@@ -14,7 +14,7 @@
     position: relative;
     height: 70vh;
     min-height: 500px;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/work/work.png') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/assets/work/work.png') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     display: flex;
@@ -72,25 +72,36 @@
             }
 
             .btn-primary {
-                background: var(--color-gold-500);
+                padding: 1.2rem 3rem;
+                background: white;
                 color: var(--color-slate-900);
                 border: none;
-                box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+                border-radius: 12px;
+                font-size: 1.1rem;
+                font-weight: 700;
+                cursor: pointer;
+                transition: var(--transition-smooth);
 
                 &:hover {
-                    transform: translateY(-3px);
-                    background: white;
+                    background: var(--color-gold-500);
+                    transform: scale(1.05);
                 }
             }
 
             .btn-secondary {
-                background: transparent;
-                color: white;
-                border: 2px solid white;
+                padding: 1.2rem 3rem;
+                background: white;
+                color: var(--color-slate-900);
+                border: none;
+                border-radius: 12px;
+                font-size: 1.1rem;
+                font-weight: 700;
+                cursor: pointer;
+                transition: var(--transition-smooth);
 
                 &:hover {
-                    background: white;
-                    color: var(--color-slate-900);
+                    background: var(--color-gold-500);
+                    transform: scale(1.05);
                 }
             }
         }

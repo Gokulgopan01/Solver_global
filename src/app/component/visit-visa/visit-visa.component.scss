@@ -8,7 +8,7 @@
     position: relative;
     height: 60vh;
     min-height: 400px;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/visit_visa/hungary.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/assets/visit_visa/hungary.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -60,21 +60,19 @@
     }
 
     .cta-btn {
-        background: linear-gradient(135deg, var(--color-gold-500), var(--color-gold-600));
-        border: none;
-        padding: 1rem 2.5rem;
-        font-size: 1rem;
-        font-weight: 700;
+        padding: 1.2rem 3rem;
+        background: white;
         color: var(--color-slate-900);
-        border-radius: 50px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 700;
         cursor: pointer;
         transition: var(--transition-smooth);
-        box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
 
         &:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
-            background: white;
+            background: var(--color-gold-500);
+            transform: scale(1.05);
         }
     }
 }
