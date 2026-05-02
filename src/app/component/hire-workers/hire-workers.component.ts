@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-hire-workers',
@@ -11,6 +12,8 @@ import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.co
   styleUrl: './hire-workers.component.scss'
 })
 export class HireWorkersComponent {
+  private notificationService = inject(NotificationService);
+
   hireForm = new FormGroup({
     employerName: new FormControl('', [Validators.required]),
     shopName: new FormControl('', [Validators.required]),
@@ -33,10 +36,10 @@ export class HireWorkersComponent {
   onSubmit() {
     if (this.hireForm.valid) {
       console.log('Hire Form Submitted:', this.hireForm.value);
-      alert('Request sent successfully! Our recruitment team will contact you shortly to match the perfect candidates for your shop.');
+      this.notificationService.showSuccess('Request sent successfully! Our recruitment team will contact you shortly to match the perfect candidates for your shop.');
       this.hireForm.reset();
     } else {
-      alert('Please fill in all required fields.');
+      this.notificationService.showError('Please fill in all required fields.');
     }
   }
 

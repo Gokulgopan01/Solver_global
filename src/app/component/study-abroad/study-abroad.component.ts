@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-study-abroad',
@@ -12,6 +13,8 @@ import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.co
   styleUrl: './study-abroad.component.scss'
 })
 export class StudyAbroadComponent {
+  private notificationService = inject(NotificationService);
+
   enquiryForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -59,10 +62,10 @@ export class StudyAbroadComponent {
   onSubmit() {
     if (this.enquiryForm.valid) {
       console.log('Study Abroad Enquiry Submitted:', this.enquiryForm.value);
-      alert('Thank you for your enquiry! Our education consultant will contact you shortly to guide you through your study abroad journey.');
+      this.notificationService.showSuccess('Thank you for your enquiry! Our education consultant will contact you shortly to guide you through your study abroad journey.');
       this.enquiryForm.reset();
     } else {
-      alert('Please fill in all required fields correctly.');
+      this.notificationService.showError('Please fill in all required fields correctly.');
     }
   }
 

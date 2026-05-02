@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-visit-visa',
@@ -12,6 +13,8 @@ import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.co
   styleUrl: './visit-visa.component.scss'
 })
 export class VisitVisaComponent {
+  private notificationService = inject(NotificationService);
+
   enquiryForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -45,10 +48,10 @@ export class VisitVisaComponent {
   onSubmit() {
     if (this.enquiryForm.valid) {
       console.log('Enquiry Form Submitted:', this.enquiryForm.value);
-      alert('Thank you for your enquiry! Our team will contact you shortly regarding your visit visa.');
+      this.notificationService.showSuccess('Thank you for your enquiry! Our team will contact you shortly regarding your visit visa.');
       this.enquiryForm.reset();
     } else {
-      alert('Please fill in all fields correctly before submitting.');
+      this.notificationService.showError('Please fill in all fields correctly before submitting.');
     }
   }
 

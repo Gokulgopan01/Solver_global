@@ -73,3 +73,17 @@ textarea,
 button {
     font-family: inherit;
 }
+
+/* MatSnackBar Styles */
+.success-snackbar {
+    --mdc-snackbar-container-color: #0F172A !important;
+    --mdc-snackbar-supporting-text-color: #ffffff !important;
+    --mat-snack-bar-button-color: #FFD700 !important;
+    border-left: 4px solid #FFD700;
+}
+
+.error-snackbar {
+    --mdc-snackbar-container-color: #991b1b !important;
+    --mdc-snackbar-supporting-text-color: #ffffff !important;
+    --mat-snack-bar-button-color: #ffffff !important;
+}

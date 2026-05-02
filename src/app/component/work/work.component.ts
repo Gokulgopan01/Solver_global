@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-work',
@@ -12,6 +13,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './work.component.scss'
 })
 export class WorkComponent {
+  private notificationService = inject(NotificationService);
+
   breadcrumbItems: BreadcrumbItem[] = [{ label: 'Work', url: '/work' }];
 
   // Main Application Form
@@ -127,20 +130,20 @@ export class WorkComponent {
   onSubmitApplication() {
     if (this.applicationForm.valid) {
       console.log('Application Submitted:', this.applicationForm.value);
-      alert('Thank you for your application! We will get in touch with you soon.');
+      this.notificationService.showSuccess('Application submitted successfully! We will contact you soon.');
       this.applicationForm.reset();
     } else {
-      alert('Please fill in all required fields correctly.');
+      this.notificationService.showError('Please fill in all required fields correctly.');
     }
   }
 
   onSubmitServiceEnquiry() {
     if (this.serviceForm.valid) {
       console.log('Service Enquiry Submitted:', this.serviceForm.value);
-      alert(`Your enquiry for ${this.serviceForm.value.serviceType} has been sent successfully! Our team will contact you.`);
+      this.notificationService.showSuccess(`Your enquiry for ${this.serviceForm.value.serviceType} has been sent!`);
       this.serviceForm.reset();
     } else {
-      alert('Please fill in your contact details correctly.');
+      this.notificationService.showError('Please fill in your contact details correctly.');
     }
   }
 }
