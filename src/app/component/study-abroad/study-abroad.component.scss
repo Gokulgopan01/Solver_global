@@ -1,5 +1,5 @@
 .study-abroad-page {
-    padding-top: 80px;
+    // padding-top: 40px;
     background: #fdfdfd;
 }
 
@@ -14,21 +14,21 @@
     position: relative;
     height: 75vh;
     min-height: 600px;
-    background: url('/assets/home_images/Solver_home_hero_study.png') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/home_images/Solver_home_hero_study.png') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     display: flex;
     align-items: center;
     color: white;
 
-    .hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(to right, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
-    }
+    // .hero-overlay {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     background: linear-gradient(to right, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
+    // }
 
     .hero-container {
         position: relative;

@@ -4,12 +4,12 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    background: white;
+    background: var(--color-slate-900);
     transition: var(--transition-smooth);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
     &.scrolled {
-        background: rgba(255, 255, 255, 0.9);
+        // background: #676a6f;
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
@@ -39,7 +39,7 @@
     font-family: var(--font-heading);
     font-size: 1.4rem;
     font-weight: 800;
-    color: var(--color-slate-900);
+    color: var(--color-gold-500);
     cursor: pointer;
     text-transform: uppercase;
 
@@ -64,7 +64,7 @@
 
     .nav-link {
         text-decoration: none;
-        color: var(--color-slate-700);
+        color: var(--color-white);
         font-size: 0.9rem;
         font-weight: 700;
         text-transform: uppercase;
@@ -119,8 +119,8 @@
 
     .btn-cta {
         padding: 0.7rem 1.8rem;
-        background: var(--color-slate-900);
-        color: white;
+        background: var(--color-gold-500);
+        color: black;
         border-radius: 50px;
         text-decoration: none;
         font-weight: 700;
@@ -128,8 +128,8 @@
         transition: var(--transition-smooth);
 
         &:hover {
-            background: var(--color-gold-500);
-            color: var(--color-slate-900);
+            background: var(--color-white);
+            color: black;
             transform: translateY(-2px);
         }
     }
@@ -146,7 +146,7 @@
     .bar {
         width: 25px;
         height: 2px;
-        background: var(--color-slate-900);
+        background: var(--color-white);
         transition: 0.3s;
     }
 

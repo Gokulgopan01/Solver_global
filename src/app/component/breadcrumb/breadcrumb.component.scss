@@ -1,18 +1,13 @@
 .breadcrumb-nav {
-    background: #f8fafc;
-    padding: 1.2rem 0;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+    background: transparent;
+    padding: 1.5rem 0;
+    border-bottom: none;
 }
 
 .breadcrumb-list {
     display: flex;
     align-items: center;
+    justify-content: center; // Centered as per user image
     list-style: none;
     margin: 0;
     padding: 0;
@@ -21,20 +16,20 @@
 }
 
 .breadcrumb-item {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-slate-500);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
 
     a {
         text-decoration: none;
-        color: var(--color-slate-600);
+        color: rgba(255, 255, 255, 0.9);
         transition: color 0.3s ease;
         display: flex;
         align-items: center;
         gap: 6px;
 
         &:hover {
-            color: var(--color-gold-600);
+            color: var(--color-gold-500);
         }
 
         i {
@@ -43,14 +38,14 @@
     }
 
     &.active {
-        color: var(--color-gold-600);
+        color: var(--color-gold-500);
         font-weight: 700;
         text-transform: capitalize;
     }
 }
 
 .breadcrumb-separator {
-    color: #cbd5e1;
+    color: rgba(255, 255, 255, 0.4);
     font-size: 0.75rem;
     display: flex;
     align-items: center;
