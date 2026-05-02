@@ -40,27 +40,27 @@ export class WorkComponent {
   jobRoles = [
     {
       title: 'Kitchen Assistant',
-      image: 'assets/home_images/Kitchen Assistant.png',
+      image: 'assets/work/Kitchen Assistant.png',
       description: 'Support culinary teams in high-paced international kitchens across Europe.'
     },
     {
       title: 'Room Attendant',
-      image: 'assets/home_images/Room Attendant.png',
+      image: 'assets/work/Room Attendant.png',
       description: 'Ensure guest comfort by maintaining luxury hotel room standards.'
     },
     {
       title: 'Cleaning Staff',
-      image: 'assets/home_images/Cleaning Staff.png',
+      image: 'assets/work/Cleaning Staff.png',
       description: 'Professional maintenance for corporate and hospitality environments.'
     },
     {
       title: 'Hotel Receptionist',
-      image: 'assets/home_images/Hotel Receptionist.png',
+      image: 'assets/work/Hotel Receptionist.png',
       description: 'Be the face of luxury European hotels and manage guest relations.'
     },
     {
       title: 'General Worker',
-      image: 'assets/home_images/General Worker.png',
+      image: 'assets/work/General Worker.png',
       description: 'Versatile roles assisting across various service sectors.'
     }
   ];

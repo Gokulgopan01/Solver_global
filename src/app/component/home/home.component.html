@@ -24,7 +24,7 @@
                 <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" />
             </svg>
         </button>
-        
+
         <div class="carousel-dots">
             @for (slide of slides; track slide.id; let i = $index) {
             <button class="dot" [class.active]="i === currentIndex" (click)="goToSlide(i)"></button>
@@ -187,7 +187,7 @@
 <!-- ========== SHOWCASE GALLERY SECTION ========== -->
 <section class="showcase-section">
     <div class="showcase-header">
-        <h4 class="section-subtitle">POPULAR PROGRAMS</h4>
+        <h4 class="section-subtitle">POPULAR DESTINATION</h4>
         <h2 class="section-title">SHOWCASE</h2>
     </div>
 

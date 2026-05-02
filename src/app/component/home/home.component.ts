@@ -41,27 +41,27 @@ export class HomeComponent implements OnInit, OnDestroy {
   slides: Slide[] = [
     {
       id: 1,
-      title: 'Study Abroad Program',
-      description: 'Unlock the treasures of global cultures, create meaningful connections, and grow personally by studying abroad.',
-      imagePath: 'assets/home_images/Solver_Home_hero_section.png'
+      title: 'Unskilled Jobs in Europe',
+      description: 'We connect you with trusted unskilled job opportunities across European countries. From job placement to accommodation, transportation, and complete paperwork assistance, we support you at every step of your journey.',
+      imagePath: 'assets/home_images/Unskilled_Jobs_in_Europe.png'
     },
     {
       id: 2,
-      title: 'Skilled Migration',
-      description: 'Skilled Migration refers to programs designed to attract individuals with specialized skills, qualifications, and experience to work and settle in a specific country.',
-      imagePath: 'assets/home_images/Solver_home_hero_study.png'
+      title: 'Study Abroad',
+      description: 'Pursue your education in top international institutions with our complete guidance. From course selection and university applications to visa processing and accommodation, we support you throughout your study abroad journey.',
+      imagePath: 'assets/home_images/Study_Abroad.png'
     },
     {
       id: 3,
-      title: 'Work Permits Program',
-      description: 'Work permit programs are integral to addressing global labor demands while offering individuals valuable international work experience.',
-      imagePath: 'assets/home_images/Solver_Home_hero_office.png'
+      title: 'Citizenship & Documentation Services',
+      description: 'We assist with citizenship applications, visa renewals, and all types of legal documentation in European countries. Our team ensures accurate processing and complete support at every stage.',
+      imagePath: 'assets/home_images/Documentation_Services.png'
     },
     {
       id: 4,
-      title: 'Visit Visa Program',
-      description: 'Uncover unique experiences, make lifelong connections, and grow with a visit visa program.',
-      imagePath: 'assets/home_images/Solver_Home_hero_travel.png'
+      title: 'Visit Visa Services',
+      description: 'Travel abroad with confidence through our reliable visit visa assistance. We handle documentation, application processing, and travel guidance to ensure a smooth and hassle-free experience.',
+      imagePath: 'assets/home_images/Visit_Visa_Services.png'
     }
   ];
 
@@ -109,10 +109,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Showcase Programs
   showcasePrograms: ShowcaseProgram[] = [
-    { id: 1, name: 'DOMINICA', image: 'assets/home_images/Solver_Home_hero_travel.png' },
-    { id: 2, name: 'SAINT LUCIA', image: 'assets/home_images/Solver_Home_hero_office.png' },
-    { id: 3, name: 'VANUATU', image: 'assets/home_images/Solver_Home_hero_section.png' },
-    { id: 4, name: 'CANADA', image: 'assets/home_images/Solver_home_hero_study.png' },
+    { id: 1, name: 'Budapest', image: 'assets/home_images/hungary.png' },
+    { id: 2, name: 'Fisherman\'s bastion', image: 'assets/home_images/fisherman_bastion.png' },
+    { id: 3, name: 'Neuschwanstein Castle', image: 'assets/home_images/Neuschwanstein_castle.png' },
   ];
 
   // Testimonials
@@ -130,7 +129,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       id: 2,
       name: 'Sarah Jenkins',
       service: 'Student Visa',
-      country: 'Australia',
+      country: 'England',
       rating: 5,
       content: 'Solver Global made my university application and visa process completely stress-free. Their counselors are incredibly knowledgeable and supportive.',
       avatar: 'https://ui-avatars.com/api/?name=Sarah+Jenkins&background=0F172A&color=fff'
@@ -139,7 +138,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       id: 3,
       name: 'Ahmed Al-Farsi',
       service: 'Skilled Migration',
-      country: 'Germany',
+      country: 'Oman',
       rating: 5,
       content: 'The team guided me through every step of the complex skilled migration process. Their attention to detail ensured my application was approved without delays.',
       avatar: 'https://ui-avatars.com/api/?name=Ahmed+Farsi&background=0F172A&color=fff'
@@ -148,19 +147,19 @@ export class HomeComponent implements OnInit, OnDestroy {
       id: 4,
       name: 'Priya Sharma',
       service: 'Work Permit',
-      country: 'UK',
+      country: 'India',
       rating: 4,
       content: 'Highly professional and responsive. They successfully secured my work permit and provided great advice on settling in.',
       avatar: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=0F172A&color=fff'
     },
     {
       id: 5,
-      name: 'Michael Chen',
-      service: 'Permanent Residency',
-      country: 'Canada',
+      name: 'Ananya Nair',
+      service: 'Study Abroad',
+      country: 'India',
       rating: 5,
-      content: 'Achieving PR seemed like an impossible dream, but Solver Global made it a reality. I cannot recommend their dedicated team enough.',
-      avatar: 'https://ui-avatars.com/api/?name=Michael+Chen&background=0F172A&color=fff'
+      content: 'Studying abroad felt overwhelming at first, but Solver Global guided me through every step. From university selection to visa approval and accommodation, everything was handled smoothly.',
+      avatar: 'https://ui-avatars.com/api/?name=Ananya+Nair&background=0F172A&color=fff'
     }
   ];
 

@@ -11,18 +11,15 @@ import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.co
 })
 export class GalleryComponent {
   images = [
-    { url: 'assets/home_images/trust1.jpeg', title: 'Professional Consultation' },
-    { url: 'assets/home_images/trust2.jpeg', title: 'Study Abroad Guidance' },
-    { url: 'assets/home_images/trust3.jpeg', title: 'Work Permit Success' },
-    { url: 'assets/home_images/photo_gallery (4).jpg', title: 'Student Community' },
-    { url: 'assets/home_images/photo_gallery (5).jpg', title: 'Visa Approval Event' },
-    { url: 'assets/home_images/photo_gallery (6).jpg', title: 'Global Mobility Summit' },
-    { url: 'assets/home_images/Cleaning Staff.png', title: 'Employment Services' },
-    { url: 'assets/home_images/Hotel Receptionist.png', title: 'Hospitality Placements' },
-    { url: 'assets/home_images/Kitchen Assistant.png', title: 'Culinary Opportunities' },
-    { url: 'assets/home_images/Room Attendant.png', title: 'Hotel Operations' },
-    { url: 'assets/home_images/General Worker.png', title: 'Industrial Placements' },
-    { url: 'assets/home_images/work.png', title: 'Professional Network' }
+    { url: 'assets/gallery/trust1.jpeg', title: 'Professional Consultation' },
+    { url: 'assets/gallery/trust2.jpeg', title: 'Study Abroad Guidance' },
+    { url: 'assets/gallery/trust3.jpeg', title: 'Work Permit Success' },
+    { url: 'assets/work/Cleaning Staff.png', title: 'Employment Services' },
+    { url: 'assets/work/Hotel Receptionist.png', title: 'Hospitality Placements' },
+    { url: 'assets/work/Kitchen Assistant.png', title: 'Culinary Opportunities' },
+    { url: 'assets/work/Room Attendant.png', title: 'Hotel Operations' },
+    { url: 'assets/work/General Worker.png', title: 'Industrial Placements' },
+    { url: 'assets/work/work.png', title: 'Professional Network' }
   ];
 
   breadcrumbItems: BreadcrumbItem[] = [{ label: 'Gallery', url: '/gallery' }];
