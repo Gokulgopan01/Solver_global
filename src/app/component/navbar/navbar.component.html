@@ -10,34 +10,35 @@
         <!-- Desktop Links -->
         <ul class="nav-links">
             <li class="has-dropdown">
-                <a routerLink="/work" routerLinkActive="active" class="nav-link">Work</a>
+                <a routerLink="/work-abroad" routerLinkActive="active" class="nav-link">Work</a>
                 <ul class="dropdown-menu">
-                    <li><a routerLink="/work">Visa & Paperwork</a></li>
-                    <li><a routerLink="/work">Accommodation</a></li>
-                    <li><a routerLink="/work">Health Insurance</a></li>
-                    <li><a routerLink="/work">Local Documentation</a></li>
+                    <li><a routerLink="/work-abroad">Visa & Paperwork</a></li>
+                    <li><a routerLink="/work-abroad">Accommodation</a></li>
+                    <li><a routerLink="/work-abroad">Health Insurance</a></li>
+                    <li><a routerLink="/work-abroad">Local Documentation</a></li>
                 </ul>
             </li>
             <li class="has-dropdown">
-                <a routerLink="/study-abroad" routerLinkActive="active" class="nav-link">Study Abroad</a>
+                <a routerLink="/study-abroad-programs" routerLinkActive="active" class="nav-link">Study Abroad</a>
                 <ul class="dropdown-menu">
-                    <li><a routerLink="/study-abroad">University Guidance</a></li>
-                    <li><a routerLink="/study-abroad">Student Visa</a></li>
-                    <li><a routerLink="/study-abroad">Student Housing</a></li>
-                    <li><a routerLink="/study-abroad">Career Stay-Back</a></li>
+                    <li><a routerLink="/study-abroad-programs">University Guidance</a></li>
+                    <li><a routerLink="/study-abroad-programs">Student Visa</a></li>
+                    <li><a routerLink="/study-abroad-programs">Student Housing</a></li>
+                    <li><a routerLink="/study-abroad-programs">Career Stay-Back</a></li>
                 </ul>
             </li>
             <li class="has-dropdown">
-                <a routerLink="/visit-visa" routerLinkActive="active" class="nav-link">Visit Visa</a>
+                <a routerLink="/visit-visa-services" routerLinkActive="active" class="nav-link">Visit Visa</a>
                 <ul class="dropdown-menu">
-                    <li><a routerLink="/visit-visa">Hungary Visa</a></li>
-                    <li><a routerLink="/visit-visa">Slovenia Visa</a></li>
-                    <li><a routerLink="/visit-visa">Austria Visa</a></li>
+                    <li><a routerLink="/visit-visa-services">Hungary Visa</a></li>
+                    <li><a routerLink="/visit-visa-services">Slovenia Visa</a></li>
+                    <li><a routerLink="/visit-visa-services">Austria Visa</a></li>
                 </ul>
             </li>
-            <li><a routerLink="/hire-workers" class="nav-link">Employer</a></li>
+            <li><a routerLink="/client-reviews" routerLinkActive="active" class="nav-link">Reviews</a></li>
+            <li><a routerLink="/international-recruitment" class="nav-link">Employer</a></li>
             <li><a href="#" class="nav-link">Contact US</a></li>
-            <li><a routerLink="/gallery" class="btn-cta">Gallery</a></li>
+            <li><a routerLink="/success-gallery" class="btn-cta">gallery</a></li>
         </ul>
 
         <!-- Mobile Menu Button -->
@@ -64,10 +65,10 @@
                 <a class="mobile-link" (click)="toggleDropdown('work', $event)">Work <i
                         class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu" [class.active]="activeDropdown === 'work'">
-                    <a routerLink="/work" (click)="closeMenu()">Visa & Paperwork</a>
-                    <a routerLink="/work" (click)="closeMenu()">Accommodation</a>
-                    <a routerLink="/work" (click)="closeMenu()">Health Insurance</a>
-                    <a routerLink="/work" (click)="closeMenu()">Local Documentation</a>
+                    <a routerLink="/work-abroad" (click)="closeMenu()">Visa & Paperwork</a>
+                    <a routerLink="/work-abroad" (click)="closeMenu()">Accommodation</a>
+                    <a routerLink="/work-abroad" (click)="closeMenu()">Health Insurance</a>
+                    <a routerLink="/work-abroad" (click)="closeMenu()">Local Documentation</a>
                 </div>
             </div>
 
@@ -75,10 +76,10 @@
                 <a class="mobile-link" (click)="toggleDropdown('study', $event)">Study Abroad <i
                         class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu" [class.active]="activeDropdown === 'study'">
-                    <a routerLink="/study-abroad" (click)="closeMenu()">University Guidance</a>
-                    <a routerLink="/study-abroad" (click)="closeMenu()">Student Visa</a>
-                    <a routerLink="/study-abroad" (click)="closeMenu()">Student Housing</a>
-                    <a routerLink="/study-abroad" (click)="closeMenu()">Career Stay-Back</a>
+                    <a routerLink="/study-abroad-programs" (click)="closeMenu()">University Guidance</a>
+                    <a routerLink="/study-abroad-programs" (click)="closeMenu()">Student Visa</a>
+                    <a routerLink="/study-abroad-programs" (click)="closeMenu()">Student Housing</a>
+                    <a routerLink="/study-abroad-programs" (click)="closeMenu()">Career Stay-Back</a>
                 </div>
             </div>
 
@@ -86,15 +87,16 @@
                 <a class="mobile-link" (click)="toggleDropdown('visa', $event)">Visit Visa <i
                         class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu" [class.active]="activeDropdown === 'visa'">
-                    <a routerLink="/visit-visa" (click)="closeMenu()">Hungary</a>
-                    <a routerLink="/visit-visa" (click)="closeMenu()">Slovenia</a>
-                    <a routerLink="/visit-visa" (click)="closeMenu()">Austria</a>
+                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Hungary</a>
+                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Slovenia</a>
+                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Austria</a>
                 </div>
             </div>
 
-            <a routerLink="/hire-workers" class="mobile-link" (click)="closeMenu()">Hire Workers</a>
+            <a routerLink="/client-reviews" class="mobile-link" (click)="closeMenu()">Reviews</a>
+            <a routerLink="/international-recruitment" class="mobile-link" (click)="closeMenu()">Hire Workers</a>
             <a routerLink="/contact-us" class="mobile-link" (click)="closeMenu()">Contact US</a>
-            <a routerLink="/gallery" class="mobile-cta" (click)="closeMenu()">Gallery</a>
+            <a routerLink="/success-gallery" class="mobile-cta" (click)="closeMenu()">gallery</a>
         </div>
     </div>
 </nav>

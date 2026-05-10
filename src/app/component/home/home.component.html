@@ -203,51 +203,10 @@
     </div>
 </section>
 
-<!-- ========== TESTIMONIALS HEADER ========== -->
-<section class="testimonials-header-section">
-    <div class="testimonials-header">
-        <h4 class="section-subtitle">CLIENTS TESTIMONIALS</h4>
-        <h2 class="section-title">WHAT CUSTOMERS SAYING ABOUT US</h2>
-    </div>
-</section>
-
-<!-- ========== TESTIMONIALS SECTION ========== -->
-<section class="testimonials-section">
-    <div class="testimonial-carousel-container" (touchstart)="onTouchStart($event)"
-        (touchend)="onTouchEnd($event, 'testimonial')">
-        <div class="testimonial-slide" [style.transform]="'translateX(-' + currentTestimonialIndex * 100 + '%)'">
-            @for (testimonial of testimonials; track testimonial.id) {
-            <div class="testimonial-card-wrapper">
-                <div class="testimonial-card">
-                    <div class="avatar-container">
-                        <img [src]="testimonial.avatar" [alt]="testimonial.name">
-                    </div>
-                    <h3 class="client-name">{{ testimonial.name }}</h3>
-                    <p class="client-service">{{ testimonial.service }}</p>
-
-                    <div class="rating-row">
-                        <span class="country-text">{{ testimonial.country }}</span>
-                        <div class="stars">
-                            @for (star of [1, 2, 3, 4, 5]; track star) {
-                            <i class="fas fa-star" [class.active]="star <= testimonial.rating"></i>
-                            }
-                        </div>
-                    </div>
-
-                    <p class="testimonial-content">
-                        "{{ testimonial.content }}"
-                    </p>
-                </div>
-            </div>
-            }
-        </div>
-
-        <!-- Navigation Dots -->
-        <div class="carousel-dots testimonial-dots">
-            @for (testimonial of testimonials; track testimonial.id; let i = $index) {
-            <button class="dot" [class.active]="i === currentTestimonialIndex" (click)="goToTestimonial(i)"></button>
-            }
-        </div>
+<!-- BREADCRUMB SECTION -->
+<section class="home-breadcrumb-section">
+    <div class="container">
+        <app-breadcrumb [items]="[{label: 'HOME', url: '/'}]"></app-breadcrumb>
     </div>
 </section>
 

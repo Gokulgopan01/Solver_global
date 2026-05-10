@@ -31,10 +31,12 @@ interface ShowcaseProgram {
   image: string;
 }
 
+import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [BreadcrumbComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

@@ -6,6 +6,7 @@ import { VisitVisaComponent } from './component/visit-visa/visit-visa.component'
 import { StudyAbroadComponent } from './component/study-abroad/study-abroad.component';
 import { GalleryComponent } from './component/gallery/gallery.component';
 import { HireWorkersComponent } from './component/hire-workers/hire-workers.component';
+import { ReviewsComponent } from './component/reviews/reviews.component';
 
 export const routes: Routes = [
     {
@@ -13,27 +14,27 @@ export const routes: Routes = [
         component: HomeComponent
     },
     {
-        path: 'work',
+        path: 'work-abroad',
         component: WorkComponent
     },
     {
-        path: 'visit-visa',
+        path: 'visit-visa-services',
         component: VisitVisaComponent
     },
     {
-        path: 'study-abroad',
+        path: 'study-abroad-programs',
         component: StudyAbroadComponent
     },
     {
-        path: 'gallery',
+        path: 'success-gallery',
         component: GalleryComponent
     },
     {
-        path: 'hire-workers',
+        path: 'international-recruitment',
         component: HireWorkersComponent
     },
     {
-        path: 'navbar',
-        component: NavbarComponent
+        path: 'client-reviews',
+        component: ReviewsComponent
     }
 ];

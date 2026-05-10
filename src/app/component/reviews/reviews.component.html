@@ -1,0 +1,150 @@
+<div class="reviews-page">
+    <!-- Hero Section -->
+    <section class="reviews-hero"
+        [style.backgroundImage]="'linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), url(' + 'assets/home_images/fisherman_bastion.png' + ')'">
+        <div class="container">
+            <div class="hero-header">
+                <app-breadcrumb [items]="[{label: 'REVIEWS'}]"></app-breadcrumb>
+                <div class="rating-badge">
+                    <div class="star-group">
+                        <i class="fas fa-star"></i>
+                        <span class="rating-value">4.9</span>
+                    </div>
+                    <div class="rating-info">
+                        <span class="avg-label">Average Rating</span>
+                        <span class="count-label">Based on 1200+ reviews</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-main">
+                <span class="subtitle">REVIEWS & TESTIMONIALS</span>
+                <h1>Trusted by Thousands.<br>Chosen for Results.</h1>
+                <p>Real experiences from real people who achieved their goals with Solvers Global.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-text">
+                        <h3>1,000+</h3>
+                        <p>Happy Clients</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="stat-text">
+                        <h3>6+</h3>
+                        <p>Years of Experience</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-globe"></i></div>
+                    <div class="stat-text">
+                        <h3>28+</h3>
+                        <p>Countries Served</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-star"></i></div>
+                    <div class="stat-text">
+                        <h3>800+</h3>
+                        <p>5-Star Reviews</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Content -->
+    <section class="reviews-main">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">WHAT OUR CLIENTS SAY</span>
+                <h2>Success Stories That Inspire</h2>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card" *ngFor="let review of reviews">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p class="review-comment">{{ review.comment }}</p>
+                    <div class="reviewer-meta">
+                        <div class="reviewer-info">
+                            <div class="reviewer-img">
+                                <img [src]="review.avatar || 'assets/avatars/default.png'" alt="Reviewer">
+                            </div>
+                            <div class="reviewer-details">
+                                <h4>{{ review.name }}</h4>
+                                <span class="review-country">{{ review.country }}</span>
+                            </div>
+                        </div>
+                        <div class="review-stars">
+                            <i *ngFor="let star of getStars(review.rating)" class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <div class="cta-icon"><i class="fas fa-comment-dots"></i></div>
+                    <div class="cta-text">
+                        <h3>Your Success Story Could Be Next</h3>
+                        <p>Let our experts help you achieve your dreams.</p>
+                    </div>
+                </div>
+                <button class="btn-primary" (click)="openModal()">
+                    Post a Review <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Modal -->
+    <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <div class="modal-header">
+                <h2>Share Your Experience</h2>
+                <button class="close-btn" (click)="closeModal()">&times;</button>
+            </div>
+            <form (ngSubmit)="submitReview()" #reviewForm="ngForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" [(ngModel)]="newReview.name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="modal-stars">
+                        <i *ngFor="let star of [1,2,3,4,5]" [class.fas]="newReview.rating! >= star"
+                            [class.far]="newReview.rating! < star" class="fa-star"
+                            (click)="newReview.rating = star"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+
+                    <input type="text" id="country" name="country" [(ngModel)]="newReview.country" required
+                        placeholder="Enter your country">
+                </div>
+                <div class="form-group">
+                    <label>Your Review</label>
+                    <textarea name="comment" [(ngModel)]="newReview.comment" required rows="4"
+                        placeholder="How was your experience?"></textarea>
+                </div>
+                <button type="submit" class="btn-submit" [disabled]="!reviewForm.form.valid || loading">
+                    {{ loading ? 'Posting...' : 'Submit Review' }}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
