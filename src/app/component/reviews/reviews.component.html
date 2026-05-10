@@ -5,7 +5,7 @@
         <div class="container">
             <div class="hero-header">
                 <app-breadcrumb [items]="[{label: 'REVIEWS'}]"></app-breadcrumb>
-                <div class="rating-badge">
+                <!-- <div class="rating-badge">
                     <div class="star-group">
                         <i class="fas fa-star"></i>
                         <span class="rating-value">4.9</span>
@@ -14,7 +14,7 @@
                         <span class="avg-label">Average Rating</span>
                         <span class="count-label">Based on 1200+ reviews</span>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="hero-main">
@@ -75,13 +75,29 @@
                     <p class="review-comment">{{ review.comment }}</p>
                     <div class="reviewer-meta">
                         <div class="reviewer-info">
+
                             <div class="reviewer-img">
-                                <img [src]="review.avatar || 'assets/avatars/default.png'" alt="Reviewer">
+                                <img [src]="review.avatar || 'assets/avatars/default.png'" [alt]="review.name">
                             </div>
+
                             <div class="reviewer-details">
+
                                 <h4>{{ review.name }}</h4>
-                                <span class="review-country">{{ review.country }}</span>
+
+                                <div class="review-meta">
+
+                                    <span class="role" *ngIf="review.role">
+                                        {{ review.role }}
+                                    </span>
+
+                                    <span class="review-country" *ngIf="review.country">
+                                        {{ review.country }}
+                                    </span>
+
+                                </div>
+
                             </div>
+
                         </div>
                         <div class="review-stars">
                             <i *ngFor="let star of getStars(review.rating)" class="fas fa-star"></i>
@@ -121,6 +137,12 @@
                 <div class="form-group">
                     <label>Full Name</label>
                     <input type="text" name="name" [(ngModel)]="newReview.name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+
+                    <input type="text" [(ngModel)]="newReview.role" name="role"
+                        placeholder="Student / Assistant / Employer" required />
                 </div>
                 <div class="form-group">
                     <label>Rating</label>

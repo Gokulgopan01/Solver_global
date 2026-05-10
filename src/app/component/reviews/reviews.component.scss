@@ -309,6 +309,39 @@
     }
 }
 
+.reviewer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    h4 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
+.review-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.role {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #b07d52;
+    background: rgba(176, 125, 82, 0.12);
+    padding: 3px 10px;
+    border-radius: 30px;
+}
+
+.review-country {
+    font-size: 0.85rem;
+    color: #777;
+}
+
 // CTA Section
 .cta-section {
     padding-bottom: 80px;
@@ -395,22 +428,29 @@
     justify-content: center;
     z-index: 1000;
     padding: 20px;
+
+    @media (max-width: 640px) {
+        padding: 10px;
+    }
 }
 
 .modal-content {
     background: white;
-    width: 95%;
+    width: 92%;
     max-width: 500px;
     border-radius: 24px;
     padding: 40px;
     position: relative;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    max-height: 90vh;
+    max-height: 95vh;
     overflow-y: auto;
+    box-sizing: border-box;
 
-    @media (max-width: 480px) {
-        padding: 25px 20px;
-        border-radius: 20px;
+    @media (max-width: 640px) {
+        padding: 20px;
+        border-radius: 16px;
+        width: 95%;
+        margin: 0 auto;
     }
 
     .modal-header {
@@ -419,7 +459,7 @@
         align-items: center;
         margin-bottom: 30px;
 
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
             margin-bottom: 20px;
         }
 
@@ -428,9 +468,12 @@
             font-weight: 800;
             color: #0f172a;
             margin: 0;
+            line-height: 1.2;
+            word-wrap: break-word;
 
-            @media (max-width: 480px) {
-                font-size: 1.25rem;
+            @media (max-width: 640px) {
+                font-size: 1.2rem;
+                padding-right: 10px;
             }
         }
 
@@ -441,6 +484,11 @@
             line-height: 1;
             cursor: pointer;
             color: #64748b;
+            flex-shrink: 0;
+
+            @media (max-width: 640px) {
+                font-size: 1.75rem;
+            }
 
             &:hover {
                 color: #0f172a;
@@ -451,12 +499,21 @@
     .form-group {
         margin-bottom: 25px;
 
+        @media (max-width: 640px) {
+            margin-bottom: 15px;
+        }
+
         label {
             display: block;
             font-weight: 600;
             font-size: 0.9rem;
             margin-bottom: 10px;
             color: #475569;
+
+            @media (max-width: 640px) {
+                font-size: 0.85rem;
+                margin-bottom: 6px;
+            }
         }
 
         input,
@@ -466,6 +523,12 @@
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             font-family: inherit;
+            box-sizing: border-box;
+
+            @media (max-width: 640px) {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
 
             &:focus {
                 outline: none;
@@ -479,6 +542,11 @@
             gap: 10px;
             font-size: 1.5rem;
             color: #FFD700;
+
+            @media (max-width: 640px) {
+                font-size: 1.25rem;
+                gap: 8px;
+            }
 
             i {
                 cursor: pointer;

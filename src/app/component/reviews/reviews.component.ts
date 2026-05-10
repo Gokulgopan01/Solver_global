@@ -12,6 +12,7 @@ interface Review {
   created_at: string;
   avatar?: string;
   country: string;
+  role: string;
 }
 
 @Component({
@@ -29,17 +30,22 @@ export class ReviewsComponent implements OnInit {
     name: '',
     rating: 5,
     country: '',
-    comment: ''
+    comment: '',
+    role: ''
   };
 
   loading = false;
   isModalOpen = false;
 
   avatars = [
-    'https://i.pravatar.cc/150?u=1',
-    'https://i.pravatar.cc/150?u=2',
-    'https://i.pravatar.cc/150?u=3',
-    'https://i.pravatar.cc/150?u=4'
+    'https://api.dicebear.com/7.x/notionists/svg?seed=John',
+    'https://api.dicebear.com/7.x/notionists/svg?seed=Emma',
+    'https://api.dicebear.com/7.x/notionists/svg?seed=David',
+    'https://api.dicebear.com/7.x/notionists/svg?seed=Sophia',
+    'https://api.dicebear.com/7.x/notionists/svg?seed=Alex',
+    'https://api.dicebear.com/7.x/notionists/svg?seed=Mia',
+    'https://api.dicebear.com/7.x/notionists/svg?seed=Chris',
+    'https://api.dicebear.com/7.x/notionists/svg?seed=Lisa'
   ];
 
   openModal() {
@@ -56,6 +62,7 @@ export class ReviewsComponent implements OnInit {
   resetForm() {
     this.newReview = {
       name: '',
+      role: '',
       rating: 5,
       comment: '',
       country: ''
@@ -79,16 +86,21 @@ export class ReviewsComponent implements OnInit {
       return;
     }
 
-    this.reviews = (data || []).map((r: any, index: number) => ({
+    this.reviews = (data || []).map((r: any) => ({
       ...r,
-      avatar: this.avatars[index % this.avatars.length]
+      role: r.Role,
+      avatar: this.avatars[r.id % this.avatars.length]
     }));
   }
 
   // SUBMIT REVIEW
   async submitReview() {
 
-    if (!this.newReview.name || !this.newReview.comment) {
+    if (
+      !this.newReview.name ||
+      !this.newReview.role ||
+      !this.newReview.comment
+    ) {
       return;
     }
 
@@ -99,6 +111,7 @@ export class ReviewsComponent implements OnInit {
       .insert([
         {
           name: this.newReview.name,
+          Role: this.newReview.role,
           country: this.newReview.country,
           rating: this.newReview.rating,
           comment: this.newReview.comment
@@ -113,12 +126,15 @@ export class ReviewsComponent implements OnInit {
       return;
     }
 
-    // Add instantly to UI
     if (data && data.length > 0) {
-      const newReviewWithAvatar = {
-        ...data[0],
-        avatar: this.avatars[Math.floor(Math.random() * this.avatars.length)]
-      } as Review;
+
+      const review = data[0];
+
+      const newReviewWithAvatar: Review = {
+        ...review,
+        avatar: this.avatars[review.id % this.avatars.length]
+      };
+
       this.reviews.unshift(newReviewWithAvatar);
     }
 
