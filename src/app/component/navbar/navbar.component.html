@@ -35,7 +35,7 @@
                     <li><a routerLink="/visit-visa">Austria Visa</a></li>
                 </ul>
             </li>
-            <li><a routerLink="/hire-workers" class="nav-link">Hire Workers</a></li>
+            <li><a routerLink="/hire-workers" class="nav-link">Employers</a></li>
             <li><a href="#" class="nav-link">Contact US</a></li>
             <li><a routerLink="/gallery" class="btn-cta">Gallery</a></li>
         </ul>
@@ -51,17 +51,18 @@
 
     <!-- Mobile Menu Overlay -->
     <div class="mobile-overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>
-    
+
     <!-- Mobile Sidebar -->
     <div class="mobile-menu" [class.active]="isMenuOpen">
         <div class="mobile-header">
             <span class="mobile-logo">Solvers Global</span>
             <div class="close-btn" (click)="closeMenu()">&times;</div>
         </div>
-        
+
         <div class="mobile-links">
             <div class="mobile-group">
-                <a class="mobile-link" (click)="toggleDropdown('work', $event)">Work <i class="fas fa-chevron-down"></i></a>
+                <a class="mobile-link" (click)="toggleDropdown('work', $event)">Work <i
+                        class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu" [class.active]="activeDropdown === 'work'">
                     <a routerLink="/work" (click)="closeMenu()">Visa & Paperwork</a>
                     <a routerLink="/work" (click)="closeMenu()">Accommodation</a>
@@ -71,7 +72,8 @@
             </div>
 
             <div class="mobile-group">
-                <a class="mobile-link" (click)="toggleDropdown('study', $event)">Study Abroad <i class="fas fa-chevron-down"></i></a>
+                <a class="mobile-link" (click)="toggleDropdown('study', $event)">Study Abroad <i
+                        class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu" [class.active]="activeDropdown === 'study'">
                     <a routerLink="/study-abroad" (click)="closeMenu()">University Guidance</a>
                     <a routerLink="/study-abroad" (click)="closeMenu()">Student Visa</a>
@@ -81,7 +83,8 @@
             </div>
 
             <div class="mobile-group">
-                <a class="mobile-link" (click)="toggleDropdown('visa', $event)">Visit Visa <i class="fas fa-chevron-down"></i></a>
+                <a class="mobile-link" (click)="toggleDropdown('visa', $event)">Visit Visa <i
+                        class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu" [class.active]="activeDropdown === 'visa'">
                     <a routerLink="/visit-visa" (click)="closeMenu()">Hungary</a>
                     <a routerLink="/visit-visa" (click)="closeMenu()">Slovenia</a>
