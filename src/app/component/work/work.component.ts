@@ -8,7 +8,7 @@ import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'app-work',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, BreadcrumbComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './work.component.html',
   styleUrl: './work.component.scss'
 })
@@ -39,31 +39,65 @@ export class WorkComponent {
     message: new FormControl('')
   });
 
+  bottomFeatures = [
+    {
+      icon: 'fas fa-globe-europe',
+      title: 'Work Across Europe',
+      description: 'Opportunities in top cities and industries.'
+    },
+    {
+      icon: 'fas fa-shield-alt',
+      title: '100% Legal & Safe',
+      description: 'We ensure complete legal compliance and safety.'
+    },
+    {
+      icon: 'fas fa-users-cog',
+      title: 'End-to-End Support',
+      description: 'From application to arrival – we\'re with you.'
+    },
+    {
+      icon: 'fas fa-file-signature',
+      title: 'Quick & Easy Process',
+      description: 'Simple steps to start your journey abroad.'
+    }
+  ];
+
   jobRoles = [
     {
       title: 'Kitchen Assistant',
       image: 'assets/work/Kitchen Assistant.png',
-      description: 'Support culinary teams in high-paced international kitchens across Europe.'
+      tag: 'High Demand',
+      icon: 'fas fa-utensils',
+      description: 'Support culinary teams in high-paced international kitchens across Europe.',
+      features: [
+        { icon: 'fas fa-user-graduate', label: 'Great Career Growth' },
+        { icon: 'fas fa-euro-sign', label: 'Competitive Salary' },
+        { icon: 'fas fa-globe', label: 'International Exposure' }
+      ]
     },
     {
       title: 'Room Attendant',
       image: 'assets/work/Room Attendant.png',
-      description: 'Ensure guest comfort by maintaining luxury hotel room standards.'
+      tag: 'Always Hiring',
+      icon: 'fas fa-bed',
+      description: 'Ensure guest comfort by maintaining luxury hotel room standards.',
+      features: [
+        { icon: 'fas fa-shield-alt', label: 'Stable Employment' },
+        { icon: 'fas fa-home', label: 'Accommodation Provided' },
+        { icon: 'fas fa-graduation-cap', label: 'Training Support' }
+      ]
     },
     {
       title: 'Cleaning Staff',
       image: 'assets/work/Cleaning Staff.png',
-      description: 'Professional maintenance for corporate and hospitality environments.'
-    },
-    {
-      title: 'Hotel Receptionist',
-      image: 'assets/work/Hotel Receptionist.png',
-      description: 'Be the face of luxury European hotels and manage guest relations.'
-    },
-    {
-      title: 'General Worker',
-      image: 'assets/work/General Worker.png',
-      description: 'Versatile roles assisting across various service sectors.'
+      tag: 'Urgent Opening',
+      icon: 'fas fa-broom',
+      description: 'Professional maintenance for corporate and hospitality environments.',
+      features: [
+        { icon: 'fas fa-clock', label: 'Long Term Opportunities' },
+        { icon: 'fas fa-lock', label: 'Safe & Secure Workplace' },
+        { icon: 'fas fa-balance-scale', label: 'Work-Life Balance' }
+      ]
     }
   ];
 

@@ -1,47 +1,125 @@
 <div class="work-page">
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="container hero-container">
-            <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
-            <div class="hero-content fade-in show">
-                <h1 class="hero-title">Work & Life in Europe</h1>
-                <p class="hero-text">
-                    Beyond just job placement, we provide end-to-end support for your journey. From visa renewals to
-                    accommodation and insurance, SOLVERS GLOBAL is your trusted partner in Hungary and across the EU.
+    <section class="work-hero" [style.backgroundImage]="'url(' + 'assets/work/professional_support.png' + ')'">
+        <div class="container">
+            <div class="hero-content">
+                <span class="service-tag">OUR SERVICES</span>
+                <h1 class="hero-title">Professional Support <span class="gold-text">Services</span></h1>
+                <div class="gold-line"></div>
+                <p class="hero-subtitle">
+                    We don't just find you a job; we help you settle into your new life.
                 </p>
-                <div class="hero-btns">
-                    <button class="btn-primary" (click)="scrollToForm()">Apply Jobs</button>
-                    <button class="btn-secondary" (click)="scrollToForm('Visa Renewal')">Other Services</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-grid-section">
+        <div class="container">
+            <div class="services-grid">
+                <!-- Visa & Paperwork Renewal -->
+                <div class="service-card" (click)="scrollToForm('Visa Renewal')">
+                    <div class="card-image">
+                        <img src="assets/work/visa_renewal.png" alt="Visa Renewal">
+                        <div class="card-icon"><i class="fas fa-file-invoice"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Visa & Paperwork Renewal</h3>
+                        <p>We help you renew your expiring EU and Hungary work visas seamlessly. Don't let your status
+                            lapse — our legal experts are here to help.</p>
+                        <button class="enquire-btn">Enquire Now <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Accommodation in Hungary -->
+                <div class="service-card" (click)="scrollToForm('Accommodation in Hungary')">
+                    <div class="card-image">
+                        <img src="assets/work/hungary_accommodation.png" alt="Accommodation">
+                        <div class="card-icon"><i class="fas fa-home"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Accommodation in Hungary</h3>
+                        <p>Finding a place to stay in a new country can be hard. We provide safe, comfortable, and
+                            affordable accommodation.</p>
+                        <button class="enquire-btn">Enquire Now <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Work & Health Insurance -->
+                <div class="service-card" (click)="scrollToForm('Work & Health Insurance')">
+                    <div class="card-image">
+                        <img src="assets/work/insurance_service.png" alt="Insurance">
+                        <div class="card-icon"><i class="fas fa-user-shield"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Work & Health Insurance</h3>
+                        <p>Stay protected while working abroad. We assist in securing the necessary medical and work
+                            insurance required by EU authorities.</p>
+                        <button class="enquire-btn">Enquire Now <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Local Documentation -->
+                <div class="service-card" (click)="scrollToForm('Local Documentation')">
+                    <div class="card-image">
+                        <img src="assets/work/visa_renewal.png" alt="Documentation">
+                        <div class="card-icon"><i class="fas fa-id-card"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Local Documentation</h3>
+                        <p>From address cards to local registration, we ensure all your documentation is in order so you
+                            can live and work legally in Hungary.</p>
+                        <button class="enquire-btn">Enquire Now <i class="fas fa-chevron-right"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section (Renewal, Accommodation, etc.) -->
-    <section class="services-section">
+    <!-- Why Choose Section -->
+    <section class="why-choose-section">
         <div class="container">
-            <div class="section-header text-center">
-                <h2 class="section-title">Professional Support Services</h2>
-                <p class="section-subtitle">We don't just find you a job; we help you settle into your new life.</p>
+            <h2 class="section-title">Why Choose Solvers Global?</h2>
+            <div class="gold-line-center"></div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h4>Expert Guidance</h4>
+                    <p>Our experienced team provides end-to-end support at every step.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Legal & Safe</h4>
+                    <p>100% legal processes and compliance with EU regulations.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+                    <h4>Trusted Support</h4>
+                    <p>Thousands of professionals trust us for a smooth transition abroad.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                    <h4>Global Network</h4>
+                    <p>Strong partnerships and local presence for better assistance.</p>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="services-grid">
-                @for (service of settlementServices; track service.id) {
-                <div class="service-card-work" (click)="scrollToForm(service.title)">
-                    <div class="service-image">
-                        <img [src]="service.image" [alt]="service.title">
-                        <div class="service-icon-float">
-                            <i [className]="service.icon"></i>
-                        </div>
-                    </div>
-                    <div class="service-info">
-                        <h3>{{ service.title }}</h3>
-                        <p>{{ service.description }}</p>
-                        <span class="learn-more">Enquire Now <i class="fas fa-chevron-right"></i></span>
+    <!-- Final CTA Section -->
+    <section class="final-cta-section">
+        <div class="container">
+            <div class="cta-bar">
+                <div class="cta-left">
+                    <div class="icon-circle"><i class="fas fa-headset"></i></div>
+                    <div class="cta-text">
+                        <h3>Ready to start your journey abroad?</h3>
+                        <p>Let our experts guide you to a secure and successful future.</p>
                     </div>
                 </div>
-                }
+                <button class="cta-btn" (click)="scrollToForm()">Book Free Consultation <i
+                        class="fas fa-chevron-right"></i></button>
+                <div class="cta-airplane"><i class="fas fa-plane"></i></div>
             </div>
         </div>
     </section>
@@ -50,20 +128,60 @@
     <section class="roles-section">
         <div class="container">
             <div class="section-header text-center">
+                <span class="job-tag">JOB OPPORTUNITIES</span>
                 <h2 class="section-title">Popular Job Roles</h2>
+                <div class="gold-line-center"></div>
                 <p class="section-subtitle">Discover opportunities currently in high demand across Europe.</p>
             </div>
 
             <div class="job-grid">
                 @for (job of jobRoles; track job.title) {
-                <div class="job-card">
+                <div class="job-card-premium">
                     <div class="job-image">
                         <img [src]="job.image" [alt]="job.title">
+                        <div class="job-badge" *ngIf="job.tag">
+                            <i class="fas fa-bolt" *ngIf="job.tag === 'High Demand'"></i>
+                            <i class="fas fa-chart-line" *ngIf="job.tag === 'Always Hiring'"></i>
+                            <i class="fas fa-fire" *ngIf="job.tag === 'Urgent Opening'"></i>
+                            {{ job.tag }}
+                        </div>
+                        <div class="job-icon-float">
+                            <i [className]="job.icon"></i>
+                        </div>
                     </div>
-                    <div class="job-info">
+                    <div class="job-content">
                         <h3>{{ job.title }}</h3>
-                        <p>{{ job.description }}</p>
-                        <button class="apply-btn" (click)="scrollToForm()">Apply for this role</button>
+                        <p class="job-desc">{{ job.description }}</p>
+
+                        <div class="job-features">
+                            @for (feature of job.features; track feature.label) {
+                            <div class="job-feature-item">
+                                <i [className]="feature.icon"></i>
+                                <span>{{ feature.label }}</span>
+                            </div>
+                            }
+                        </div>
+
+                        <button class="apply-btn-premium" (click)="scrollToForm()">
+                            Apply for this role <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Features Bar -->
+    <section class="bottom-features-section">
+        <div class="container">
+            <div class="features-bar">
+                @for (feature of bottomFeatures; track feature.title) {
+                <div class="bar-item">
+                    <div class="icon-box"><i [className]="feature.icon"></i></div>
+                    <div class="bar-content">
+                        <h4>{{ feature.title }}</h4>
+                        <p>{{ feature.description }}</p>
                     </div>
                 </div>
                 }
