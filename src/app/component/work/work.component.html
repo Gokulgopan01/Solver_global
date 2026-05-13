@@ -108,31 +108,76 @@
         </div>
     </section>
 
-    <!-- Why Choose Section -->
+    <!-- Why Candidates Choose Solvers Global — Infinite Marquee -->
     <section class="why-choose-section">
-        <div class="container">
-            <h2 class="section-title">Why Choose Solvers Global?</h2>
-            <div class="gold-line-center"></div>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-users"></i></div>
-                    <h4>Expert Guidance</h4>
-                    <p>Our experienced team provides end-to-end support at every step.</p>
+        <div class="why-choose-header">
+            <h2 class="why-heading">Why Candidates Choose Solvers Global?</h2>
+            <div class="why-gold-line"></div>
+        </div>
+
+        <div class="why-marquee-wrapper">
+            <div class="why-marquee-track">
+                <!-- Original set -->
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-balance-scale"></i></div>
+                    <h4>Legal & Transparent Process</h4>
+                    <p>We follow verified and compliant recruitment procedures.</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h4>Legal & Safe</h4>
-                    <p>100% legal processes and compliance with EU regulations.</p>
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-route"></i></div>
+                    <h4>End-to-End Guidance</h4>
+                    <p>From job applications to relocation support, we stay with you throughout.</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-handshake"></i></div>
-                    <h4>Trusted Support</h4>
-                    <p>Thousands of professionals trust us for a smooth transition abroad.</p>
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-user-friends"></i></div>
+                    <h4>Dedicated Candidate Support</h4>
+                    <p>Our team assists candidates personally at every important stage.</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-globe"></i></div>
-                    <h4>Global Network</h4>
-                    <p>Strong partnerships and local presence for better assistance.</p>
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-check-double"></i></div>
+                    <h4>Verified Opportunities</h4>
+                    <p>We connect applicants with genuine overseas opportunities.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-bolt"></i></div>
+                    <h4>Fast Communication</h4>
+                    <p>Quick updates and responsive assistance throughout the process.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-globe-europe"></i></div>
+                    <h4>International Support Network</h4>
+                    <p>Local support and guidance for smoother settlement abroad.</p>
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-balance-scale"></i></div>
+                    <h4>Legal & Transparent Process</h4>
+                    <p>We follow verified and compliant recruitment procedures.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-route"></i></div>
+                    <h4>End-to-End Guidance</h4>
+                    <p>From job applications to relocation support, we stay with you throughout.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-user-friends"></i></div>
+                    <h4>Dedicated Candidate Support</h4>
+                    <p>Our team assists candidates personally at every important stage.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-check-double"></i></div>
+                    <h4>Verified Opportunities</h4>
+                    <p>We connect applicants with genuine overseas opportunities.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-bolt"></i></div>
+                    <h4>Fast Communication</h4>
+                    <p>Quick updates and responsive assistance throughout the process.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon-wrap"><i class="fas fa-globe-europe"></i></div>
+                    <h4>International Support Network</h4>
+                    <p>Local support and guidance for smoother settlement abroad.</p>
                 </div>
             </div>
         </div>
@@ -271,52 +316,6 @@
         </div>
     </section>
 
-    <!-- Service Enquiry Form (Floating-style Card) -->
-    <section class="enquiry-section" id="service-enquiry-form">
-        <div class="container">
-            <div class="enquiry-wrapper">
-                <div class="enquiry-info">
-                    <h2>GET ASSISTANCE</h2>
-                    <p>Looking for support abroad? Submit your details, and our team will help you with renewals,
-                        accommodation, or local documentation.</p>
-                    <ul class="enquiry-features">
-                        <li><i class="fas fa-check-circle"></i> Quick Response Time</li>
-                        <li><i class="fas fa-check-circle"></i> Legal Assistance</li>
-                        <li><i class="fas fa-check-circle"></i> Document Verification</li>
-                    </ul>
-                </div>
-                <div class="enquiry-box">
-                    <form [formGroup]="serviceForm" (ngSubmit)="onSubmitServiceEnquiry()">
-                        <div class="form-group">
-                            <label>Service Needed</label>
-                            <select formControlName="serviceType">
-                                <option value="" disabled selected>Select Service</option>
-                                <option value="Visa Renewal">Visa & Paperwork Renewal</option>
-                                <option value="Accommodation in Hungary">Accommodation in Hungary</option>
-                                <option value="Work & Health Insurance">Work & Health Insurance</option>
-                                <option value="Local Documentation">Local Documentation</option>
-                                <option value="Other Assistance">Other Assistance</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" formControlName="name" placeholder="Your Name">
-                        </div>
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <input type="email" formControlName="email" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <input type="tel" formControlName="phone" placeholder="Phone">
-                        </div>
-                        <button type="submit" class="btn-submit-service" [disabled]="serviceForm.invalid">Send
-                            Enquiry</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Main Job Application Form -->
     <section class="application-section" id="application-form">
