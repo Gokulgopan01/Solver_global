@@ -62,7 +62,7 @@ export class WorkComponent {
     }
   ];
 
-  jobRoles = [
+  unskilledJobs = [
     {
       title: 'Kitchen Assistant',
       image: 'assets/work/Kitchen Assistant.png',
@@ -97,6 +97,69 @@ export class WorkComponent {
         { icon: 'fas fa-clock', label: 'Long Term Opportunities' },
         { icon: 'fas fa-lock', label: 'Safe & Secure Workplace' },
         { icon: 'fas fa-balance-scale', label: 'Work-Life Balance' }
+      ]
+    },
+    {
+      title: 'General Worker',
+      image: 'assets/work/General Worker.png',
+      tag: 'High Demand',
+      icon: 'fas fa-hard-hat',
+      description: 'Support warehouse, factory, and logistics operations in fast-growing industries across Europe.',
+      features: [
+        { icon: 'fas fa-briefcase', label: 'Stable Employment' },
+        { icon: 'fas fa-home', label: 'Accommodation Support' },
+        { icon: 'fas fa-users', label: 'Team-Based Work Environment' }
+      ]
+    }
+  ];
+
+  skilledJobs = [
+    {
+      title: 'Receptionist',
+      image: 'assets/work/Hotel Receptionist.png',
+      tag: 'Skilled',
+      icon: 'fas fa-user-tie',
+      description: 'Manage front desk operations and guest services in professional environments.',
+      features: [
+        { icon: 'fas fa-language', label: 'Multilingual Environment' },
+        { icon: 'fas fa-laptop', label: 'Digital Skills' },
+        { icon: 'fas fa-smile', label: 'Guest Satisfaction' }
+      ]
+    },
+    {
+      title: 'Chef',
+      image: 'assets/work/chef.png',
+      tag: 'Expertise',
+      icon: 'fas fa-hat-chef',
+      description: 'Lead kitchen teams and create culinary masterpieces in premium restaurants.',
+      features: [
+        { icon: 'fas fa-award', label: 'Culinary Mastery' },
+        { icon: 'fas fa-clock', label: 'Flexible Shifts' },
+        { icon: 'fas fa-euro-sign', label: 'High Pay Potential' }
+      ]
+    },
+    {
+      title: 'Barboy / Barback',
+      image: 'assets/work/barboy.png',
+      tag: 'Entry Skilled',
+      icon: 'fas fa-glass-martini-alt',
+      description: 'Support bar operations and maintain beverage service standards in busy venues.',
+      features: [
+        { icon: 'fas fa-bolt', label: 'Fast-Paced Work' },
+        { icon: 'fas fa-cocktail', label: 'Mixology Support' },
+        { icon: 'fas fa-moon', label: 'Nightlife Exposure' }
+      ]
+    },
+    {
+      title: 'Driver (Heavy)',
+      image: 'assets/work/driver.png',
+      tag: 'High Demand',
+      icon: 'fas fa-truck',
+      description: 'Professional logistics and heavy vehicle operation across European borders.',
+      features: [
+        { icon: 'fas fa-id-card', label: 'Specialized License' },
+        { icon: 'fas fa-route', label: 'Long Distance Travel' },
+        { icon: 'fas fa-shield-check', label: 'Safety Standards' }
       ]
     }
   ];

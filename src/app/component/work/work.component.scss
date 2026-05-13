@@ -10,62 +10,60 @@
 }
 
 // Hero Section
-.work-hero {
-    height: 35vh;
-    min-height: 320px;
-    background-size: 100% 100%;
-    background-position: center;
+.hero-section {
+    position: relative;
+    height: 75vh;
+    min-height: 600px;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/assets/work/banner.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
     display: flex;
     align-items: center;
-    position: relative;
-    padding-top: 20px;
+    color: white;
+
+    .hero-container {
+        position: relative;
+        z-index: 2;
+    }
 
     .hero-content {
-        max-width: 600px;
-
-        .service-tag {
-            display: inline-block;
-            background: #FFD700;
-            color: #0f172a;
-            padding: 2px 10px;
-            border-radius: 4px;
-            font-size: 0.65rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-        }
+        max-width: 700px;
 
         .hero-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #0f172a;
-            line-height: 1.1;
-            margin-bottom: 10px;
-
-            .gold-text {
-                color: #FFD700;
-            }
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
 
             @media (max-width: 768px) {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
         }
 
-        .gold-line {
-            width: 40px;
-            height: 2px;
-            background: #FFD700;
-            margin-bottom: 15px;
+        .hero-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        .hero-subtitle {
-            font-size: 1rem;
-            color: #475569;
-            line-height: 1.4;
-            margin-bottom: 0;
+        .btn-primary {
+            padding: 1.2rem 3rem;
+            background: white;
+            color: var(--color-slate-900);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
 
-            @media (max-width: 768px) {
-                font-size: 0.95rem;
+            &:hover {
+                background: var(--color-gold-500);
+                transform: scale(1.05);
             }
         }
     }
@@ -73,11 +71,54 @@
 
 // Services Grid Section
 .services-grid-section {
-    padding: 30px 0;
+    padding: 60px 0 30px;
     background: #f8fafc;
-    margin-top: -30px;
+    margin-top: -40px;
     position: relative;
     z-index: 10;
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+
+        .section-subtitle {
+            display: block;
+            color: #FFD700;
+            font-weight: 800;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 15px;
+
+            @media (max-width: 768px) {
+                font-size: 1.8rem;
+            }
+        }
+
+        .section-subtitle {
+            display: block;
+            color: #FFD700;
+            font-weight: 800;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .gold-line-center {
+            width: 40px;
+            height: 3px;
+            background: #FFD700;
+            margin: 0 auto;
+        }
+    }
 
     .services-grid {
         display: grid;
@@ -349,9 +390,18 @@
 
 // Popular Roles Section
 .roles-section {
-    padding: 40px 0;
+    padding: 80px 0;
     align-items: center;
-    background: white;
+
+    &.unskilled-section {
+        background: white;
+    }
+
+    &.skilled-section {
+        background: #f8fafc;
+        border-top: 1px solid #f1f5f9;
+        border-bottom: 1px solid #f1f5f9;
+    }
 
     .section-header {
         display: flex;
@@ -385,6 +435,22 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
+
+        &.grid-4-col {
+            grid-template-columns: repeat(4, 1fr);
+
+            @media (max-width: 1200px) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            @media (max-width: 992px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media (max-width: 640px) {
+                grid-template-columns: 1fr;
+            }
+        }
 
         @media (max-width: 992px) {
             grid-template-columns: repeat(2, 1fr);

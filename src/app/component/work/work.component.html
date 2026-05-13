@@ -1,14 +1,16 @@
 <div class="work-page">
     <!-- Hero Section -->
-    <section class="work-hero" [style.backgroundImage]="'url(' + 'assets/work/professional_support.png' + ')'">
-        <div class="container">
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-container">
+            <!-- <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb> -->
             <div class="hero-content">
-                <span class="service-tag">OUR SERVICES</span>
-                <h1 class="hero-title">Professional Support <span class="gold-text">Services</span></h1>
-                <div class="gold-line"></div>
-                <p class="hero-subtitle">
-                    We don't just find you a job; we help you settle into your new life.
+                <h1 class="hero-title">Start Your Career Journey in Europe</h1>
+                <p class="hero-text">
+                    We don’t just help you find a job — we guide you through your complete relocation journey including
+                    interviews, visa processing, accommodation, documentation, insurance, and settlement support.
                 </p>
+                <button class="btn-primary" (click)="scrollToForm()">Apply Now</button>
             </div>
         </div>
     </section>
@@ -16,6 +18,14 @@
     <!-- Services Grid -->
     <section class="services-grid-section">
         <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">OUR SERVICES</span>
+                <h2 class="section-title">Complete Relocation & Work Support</h2>
+                <div class="gold-line-center"></div>
+            </div>
+            <!-- <p class="section-subtitle">From the moment you apply until you settle abroad, our team supports every stage
+                of your journey
+            </p> -->
             <div class="services-grid">
                 <!-- Visa & Paperwork Renewal -->
                 <div class="service-card" (click)="scrollToForm('Visa Renewal')">
@@ -24,9 +34,9 @@
                         <div class="card-icon"><i class="fas fa-file-invoice"></i></div>
                     </div>
                     <div class="card-content">
-                        <h3>Visa & Paperwork Renewal</h3>
-                        <p>We help you renew your expiring EU and Hungary work visas seamlessly. Don't let your status
-                            lapse — our legal experts are here to help.</p>
+                        <h3>Job Placement Assistance</h3>
+                        <p>We connect candidates with verified employers across Europe in hospitality, logistics,
+                            warehouse, manufacturing, and service industries.</p>
                         <button class="enquire-btn">Enquire Now <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
@@ -38,9 +48,8 @@
                         <div class="card-icon"><i class="fas fa-home"></i></div>
                     </div>
                     <div class="card-content">
-                        <h3>Accommodation in Hungary</h3>
-                        <p>Finding a place to stay in a new country can be hard. We provide safe, comfortable, and
-                            affordable accommodation.</p>
+                        <h3>Visa Processing</h3>
+                        <p>We handle work permit applications, embassy procedures, and visa documentation support.</p>
                         <button class="enquire-btn">Enquire Now <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
@@ -52,9 +61,9 @@
                         <div class="card-icon"><i class="fas fa-user-shield"></i></div>
                     </div>
                     <div class="card-content">
-                        <h3>Work & Health Insurance</h3>
-                        <p>Stay protected while working abroad. We assist in securing the necessary medical and work
-                            insurance required by EU authorities.</p>
+                        <h3>Documentation Support</h3>
+                        <p>From contracts to legal paperwork, we ensure every document is properly processed and
+                            verified.</p>
                         <button class="enquire-btn">Enquire Now <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
@@ -66,9 +75,32 @@
                         <div class="card-icon"><i class="fas fa-id-card"></i></div>
                     </div>
                     <div class="card-content">
-                        <h3>Local Documentation</h3>
-                        <p>From address cards to local registration, we ensure all your documentation is in order so you
-                            can live and work legally in Hungary.</p>
+                        <h3>Accommodation Assistance</h3>
+                        <p>Safe and affordable accommodation support for candidates relocating abroad.</p>
+                        <button class="enquire-btn">Enquire Now <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="service-card" (click)="scrollToForm('Local Documentation')">
+                    <div class="card-image">
+                        <img src="assets/work/visa_renewal.png" alt="Documentation">
+                        <div class="card-icon"><i class="fas fa-id-card"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Work & Health Insurance</h3>
+                        <p>We assist in arranging the required insurance coverage for legal employment and healthcare
+                            access.</p>
+                        <button class="enquire-btn">Enquire Now <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="service-card" (click)="scrollToForm('Local Documentation')">
+                    <div class="card-image">
+                        <img src="assets/work/visa_renewal.png" alt="Documentation">
+                        <div class="card-icon"><i class="fas fa-id-card"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Airport & Arrival Guidance</h3>
+                        <p>Travel guidance and onboarding assistance to help you settle smoothly in your new country.
+                        </p>
                         <button class="enquire-btn">Enquire Now <i class="fas fa-chevron-right"></i></button>
                     </div>
                 </div>
@@ -117,25 +149,26 @@
                         <p>Let our experts guide you to a secure and successful future.</p>
                     </div>
                 </div>
-                <button class="cta-btn" (click)="scrollToForm()">Book Free Consultation <i
+                <button class="cta-btn" (click)="scrollToForm()">Get Consultation <i
                         class="fas fa-chevron-right"></i></button>
                 <div class="cta-airplane"><i class="fas fa-plane"></i></div>
             </div>
         </div>
     </section>
 
-    <!-- Popular Roles Section -->
-    <section class="roles-section">
+    <!-- Unskilled Job Roles Section -->
+    <section class="roles-section unskilled-section">
         <div class="container">
             <div class="section-header text-center">
-                <span class="job-tag">JOB OPPORTUNITIES</span>
-                <h2 class="section-title">Popular Job Roles</h2>
+                <span class="job-tag">UNSKILLED OPPORTUNITIES</span>
+                <h2 class="section-title">Entry-Level & Unskilled Opportunities in Europe</h2>
                 <div class="gold-line-center"></div>
-                <p class="section-subtitle">Discover opportunities currently in high demand across Europe.</p>
+                <p class="section-subtitle">Start your international career with high-demand roles offering stable
+                    income and growth opportunities.</p>
             </div>
 
-            <div class="job-grid">
-                @for (job of jobRoles; track job.title) {
+            <div class="job-grid grid-4-col">
+                @for (job of unskilledJobs; track job.title) {
                 <div class="job-card-premium">
                     <div class="job-image">
                         <img [src]="job.image" [alt]="job.title">
@@ -143,6 +176,55 @@
                             <i class="fas fa-bolt" *ngIf="job.tag === 'High Demand'"></i>
                             <i class="fas fa-chart-line" *ngIf="job.tag === 'Always Hiring'"></i>
                             <i class="fas fa-fire" *ngIf="job.tag === 'Urgent Opening'"></i>
+                            {{ job.tag }}
+                        </div>
+                        <div class="job-icon-float">
+                            <i [className]="job.icon"></i>
+                        </div>
+                    </div>
+                    <div class="job-content">
+                        <h3>{{ job.title }}</h3>
+                        <p class="job-desc">{{ job.description }}</p>
+
+                        <div class="job-features">
+                            @for (feature of job.features; track feature.label) {
+                            <div class="job-feature-item">
+                                <i [className]="feature.icon"></i>
+                                <span>{{ feature.label }}</span>
+                            </div>
+                            }
+                        </div>
+
+                        <button class="apply-btn-premium" (click)="scrollToForm()">
+                            Apply for this role <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Skilled Job Roles Section -->
+    <section class="roles-section skilled-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="job-tag">SKILLED OPPORTUNITIES</span>
+                <h2 class="section-title">Skilled Career Opportunities Abroad</h2>
+                <div class="gold-line-center"></div>
+                <p class="section-subtitle">Elevate your career with professional roles in diverse industries.</p>
+            </div>
+
+            <div class="job-grid grid-4-col">
+                @for (job of skilledJobs; track job.title) {
+                <div class="job-card-premium">
+                    <div class="job-image">
+                        <img [src]="job.image" [alt]="job.title">
+                        <div class="job-badge" *ngIf="job.tag">
+                            <i class="fas fa-bolt" *ngIf="job.tag === 'High Demand'"></i>
+                            <i class="fas fa-chart-line" *ngIf="job.tag === 'Always Hiring'"></i>
+                            <i class="fas fa-fire" *ngIf="job.tag === 'Urgent Opening'"></i>
+                            <i class="fas fa-star" *ngIf="job.tag === 'Skilled' || job.tag === 'Expertise'"></i>
                             {{ job.tag }}
                         </div>
                         <div class="job-icon-float">
@@ -283,7 +365,8 @@
                                 <p><strong>India:</strong> Manjuthulli Choozhattukotta Malayam, TVM, Kerala, India
                                 <p>
                                     <br>
-                                <p><strong>Budapest:</strong> Prevent Webmarket KFT, Cserje utca. 3A. Szada 2111 Hungary
+                                <p><strong>Budapest:</strong> Prevent Webmarket KFT, Cserje utca. 3A. Szada 2111
+                                    Hungary
                                 </p>
                                 <!-- <p>Prevent Webmarket KFT<br>Cserje utca. 3A. Szada 2111<br>Hungary</p> -->
                             </div>
@@ -359,7 +442,8 @@
                         <div class="form-footer">
                             <div class="privacy-note">
                                 <i class="fas fa-shield-alt"></i>
-                                We respect your privacy. Your information will only be used for recruitment purposes.
+                                We respect your privacy. Your information will only be used for recruitment
+                                purposes.
                             </div>
                             <div class="submit-wrapper">
                                 <div class="checkbox-group">

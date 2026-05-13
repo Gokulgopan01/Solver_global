@@ -12,8 +12,12 @@
         // border-bottom-right-radius: 80px;
     }
 
+    @media (max-width: 768px) {
+        height: 100vh;
+    }
+
     @media (max-width: 479px) {
-        height: 90vh;
+        height: 95vh;
     }
 
     .carousel-slide {
@@ -38,9 +42,14 @@
                 height: 100%;
                 object-fit: cover;
                 display: block;
+                object-position: center center;
 
                 @media (max-width: 768px) {
-                    object-position: 60% center; // 👈 shift view to the right
+                    object-position: center;
+                }
+
+                @media (max-width: 479px) {
+                    object-position: 55% center;
                 }
             }
         }
@@ -51,10 +60,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg,
-                    rgba(0, 0, 0, 0.7) 0%,
-                    rgba(0, 0, 0, 0.5) 50%,
-                    rgba(0, 0, 0, 0.7) 100%);
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, 0.3) 0%,
+                    rgba(0, 0, 0, 0.4) 50%,
+                    rgba(0, 0, 0, 0.8) 100%);
         }
 
         .slide-content {
@@ -133,7 +142,7 @@
                 padding: 10px 26px;
                 font-size: 0.8rem;
                 font-weight: 600;
-                border-radius: 8px;
+                // border-radius: 8px;
                 border: none;
                 box-shadow: 0 6px 18px rgba(250, 204, 21, 0.35);
                 transition: all 0.25s ease;
@@ -141,6 +150,27 @@
                 &:hover {
                     background: #EAB308;
                     transform: translateY(-2px);
+                }
+            }
+
+            @media (max-width: 768px) {
+                top: auto !important;
+                bottom: 80px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                text-align: center !important;
+                align-items: center !important;
+                width: 90% !important;
+
+                .slide-title {
+                    font-size: 1.8rem !important;
+                }
+
+                .slide-description {
+                    font-size: 0.95rem !important;
+                    margin-bottom: 1.5rem !important;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
                 }
             }
         }
@@ -340,7 +370,7 @@
 .about-image {
     flex: 1;
     position: relative;
-    border-radius: 20px;
+    // border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;

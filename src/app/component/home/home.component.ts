@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
     {
       id: 3,
-      title: 'Citizenship & Documentation Services',
+      title: 'Documentation Services',
       description: 'We assist with citizenship applications, visa renewals, and all types of legal documentation in European countries. Our team ensures accurate processing and complete support at every stage.',
       imagePath: 'assets/home_images/Documentation_Services.png'
     },

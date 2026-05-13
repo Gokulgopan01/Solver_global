@@ -37,16 +37,6 @@ export class ReviewsComponent implements OnInit {
   loading = false;
   isModalOpen = false;
 
-  avatars = [
-    'https://api.dicebear.com/7.x/notionists/svg?seed=John',
-    'https://api.dicebear.com/7.x/notionists/svg?seed=Emma',
-    'https://api.dicebear.com/7.x/notionists/svg?seed=David',
-    'https://api.dicebear.com/7.x/notionists/svg?seed=Sophia',
-    'https://api.dicebear.com/7.x/notionists/svg?seed=Alex',
-    'https://api.dicebear.com/7.x/notionists/svg?seed=Mia',
-    'https://api.dicebear.com/7.x/notionists/svg?seed=Chris',
-    'https://api.dicebear.com/7.x/notionists/svg?seed=Lisa'
-  ];
 
   openModal() {
     this.isModalOpen = true;
@@ -88,8 +78,7 @@ export class ReviewsComponent implements OnInit {
 
     this.reviews = (data || []).map((r: any) => ({
       ...r,
-      role: r.Role,
-      avatar: this.avatars[r.id % this.avatars.length]
+      role: r.Role
     }));
   }
 
@@ -129,16 +118,33 @@ export class ReviewsComponent implements OnInit {
     if (data && data.length > 0) {
 
       const review = data[0];
-
-      const newReviewWithAvatar: Review = {
-        ...review,
-        avatar: this.avatars[review.id % this.avatars.length]
-      };
-
-      this.reviews.unshift(newReviewWithAvatar);
+      this.reviews.unshift(review);
     }
 
     this.closeModal();
+  }
+
+  // GET INITIALS
+  getInitials(name: string): string {
+    if (!name) return '??';
+    const parts = name.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return parts[0][0].toUpperCase();
+  }
+
+  // GET AVATAR COLOR
+  getAvatarColor(name: string): string {
+    const colors = [
+      '#6366f1', '#8b5cf6', '#ec4899', '#f43f5e',
+      '#f59e0b', '#10b981', '#06b6d4', '#3b82f6'
+    ];
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+      hash = name.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return colors[Math.abs(hash) % colors.length];
   }
 
   // STAR DISPLAY

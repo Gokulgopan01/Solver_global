@@ -76,8 +76,8 @@
                     <div class="reviewer-meta">
                         <div class="reviewer-info">
 
-                            <div class="reviewer-img">
-                                <img [src]="review.avatar || 'assets/avatars/default.png'" [alt]="review.name">
+                            <div class="reviewer-img initials-avatar" [style.background-color]="getAvatarColor(review.name)">
+                                {{ getInitials(review.name) }}
                             </div>
 
                             <div class="reviewer-details">
