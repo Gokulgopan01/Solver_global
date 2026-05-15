@@ -6,11 +6,17 @@
             <div class="slide-image">
                 <img [src]="slide.imagePath" [alt]="slide.title">
             </div>
-            <!-- <div class="slide-overlay"></div> -->
+            <div class="slide-overlay"></div>
             <div class="slide-content ">
-                <h2 class="slide-title fade-in">{{ slide.title }}</h2>
+                <div class="slide-eyebrow fade-in">
+                    <span class="eyebrow-icon"><i class="fas fa-sparkles"></i></span>
+                    <span class="eyebrow-text">{{ slide.eyebrow }}</span>
+                </div>
+                <h2 class="slide-title fade-in">{{ slide.title }} <span class="highlight">{{ slide.titleHighlight
+                        }}</span></h2>
                 <p class="slide-description fade-up">{{ slide.description }}</p>
-                <button class="read-more-btn fade-in">READ MORE</button>
+                <button class="find-jobs-btn fade-in">{{ slide.buttonText }} <i
+                        class="fas fa-arrow-up-right"></i></button>
             </div>
         </div>
         }
@@ -64,27 +70,91 @@
 </section>
 
 
+<!-- WHY US -->
+<section class="whyus-section">
+    <div class="whyus-wrapper">
+
+        <!-- LEFT: Image Panel -->
+        <div class="whyus-image-panel">
+            <img src="assets/home_images/photo_gallery (2).jpg" alt="Why Choose Solvers Global" class="whyus-bg-img">
+            <div class="whyus-trust-badge">
+                <div class="trust-badge-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="trust-badge-text">
+                    <strong>Trusted by Thousands</strong>
+                    <span>Delivering success stories<br>across the globe.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Content Panel -->
+        <div class="whyus-content-panel">
+            <div class="whyus-eyebrow">
+                <span class="eyebrow-line"></span>
+                <span class="eyebrow-text">WHY CHOOSE US</span>
+                <span class="eyebrow-line"></span>
+            </div>
+            <h2 class="whyus-big-title">Why Us</h2>
+            <p class="whyus-subtitle">We combine expertise, integrity, and a personalized approach to<br>deliver
+                unmatched immigration and migration solutions.</p>
+
+            <!-- Three Pillars -->
+            <div class="whyus-pillars">
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fas fa-eye"></i></div>
+                    <h4 class="pillar-title">Our Vision</h4>
+                    <p class="pillar-text">To be a global leader in migration services, empowering individuals and
+                        families to build better futures.</p>
+                    <div class="pillar-underline"></div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fas fa-gem"></i></div>
+                    <h4 class="pillar-title">Our Mission</h4>
+                    <p class="pillar-text">To deliver exceptional migration services with integrity, transparency, and a
+                        client-first approach.</p>
+                    <div class="pillar-underline"></div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fas fa-users"></i></div>
+                    <h4 class="pillar-title">Our Values</h4>
+                    <p class="pillar-text">Integrity, transparency, compassion, and excellence drive everything we do,
+                        every single day.</p>
+                    <div class="pillar-underline"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
 <!-- Our Services -->
 <section class="services-section">
     <div class="services-container">
         <!-- Section Header -->
         <div class="services-header">
-            <h2 class="section-title">OUR SERVICES</h2>
-            <p class="section-subtitle">
-                Comprehensive global solutions tailored to your ambitions — from education to permanent settlement.
-            </p>
+            <div class="services-eyebrow">
+                <span class="eyebrow-line"></span>
+                <span class="eyebrow-text">OUR SERVICES</span>
+                <span class="eyebrow-line"></span>
+            </div>
+            <h2 class="services-main-title">Comprehensive Solutions for Your Global Journey</h2>
+            <p class="services-subtitle">From education to permanent settlement, we provide end-to-end support<br>to
+                help you achieve your global ambitions.</p>
         </div>
 
         <!-- Services Grid -->
         <div class="services-grid">
             @for (service of services; track service.id) {
-            <div class="service-card slide-left" (click)="onServiceClick(service)">
-                <div class="card-icon ">
-                    <i [class]="service.icon"></i>
-                </div>
-                <h3 class="card-title">{{ service.title }}</h3>
-                <p class="card-description">{{ service.description }}</p>
-                <div class="card-hover-content">
+            <div class="service-card slide-left" [style.background-image]="'url(' + service.bgImage + ')'"
+                (click)="onServiceClick(service)">
+                <div class="card-bg-overlay"></div>
+                <div class="card-inner">
+                    <div class="card-icon">
+                        <i [class]="service.icon"></i>
+                    </div>
+                    <h3 class="card-title">{{ service.title }}</h3>
+                    <p class="card-description">{{ service.description }}</p>
                     <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
@@ -95,82 +165,6 @@
 
 
 
-<!-- WHy US-->
-<!-- ========== WHY US SECTION ========== -->
-<section class="whyus-section">
-    <div class="whyus-container">
-
-        <!-- Centered Big Title -->
-        <div class="whyus-header">
-            <h1 class="whyus-main-title">WHY US</h1>
-            <div class="whyus-underline"></div>
-        </div>
-
-        <!-- Two Column Layout -->
-        <div class="whyus-two-columns">
-
-            <!-- Left Column -->
-            <div class="whyus-left slide-left">
-                <h2 class="whyus-left-heading">
-                    PROVIDING CARE AT EVERY STEP OF<br>
-                    YOUR MIGRATION JOURNEY
-                </h2>
-                <p class="whyus-left-text">
-                    Our services are built around a team of highly skilled Migration consultants and lawyers who work
-                    relentlessly to ensure that each client receives the best possible guidance, maximizing their
-                    chances of a successful application while minimizing the stress and uncertainty that often
-                    accompanies the migration process.
-                </p>
-            </div>
-
-            <!-- Right Column -->
-            <div class="whyus-right">
-
-
-                <!-- Vision & Mission Row -->
-                <div class="whyus-vision-mission slide-right">
-                    <div class="vision-box">
-                        <h3 class="vision-mission-title">OUR VISION</h3>
-                        <p class="vision-mission-text">
-                            Our vision is to provide individuals and families with the tools and guidance they need to
-                            achieve their migration goals, offering personalized support at every stage while
-                            maintaining the highest ethical standards, and staying ahead of changes in migration laws
-                            and regulations to deliver optimal results.
-                        </p>
-                    </div>
-                    <div class="mission-box">
-                        <h3 class="vision-mission-title">OUR MISSION</h3>
-                        <p class="vision-mission-text">
-                            Our mission is to deliver exceptional migration services with integrity, transparency, and
-                            unwavering commitment to our clients' success, ensuring every journey is guided by expertise
-                            and compassion.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Stats Section -->
-        <div class="whyus-stats">
-            <div class="stat-item fade-up">
-                <div class="stat-number">5000+</div>
-                <div class="stat-label">Successful Cases</div>
-            </div>
-            <div class="stat-item fade-up">
-                <div class="stat-number">98%</div>
-                <div class="stat-label">Success Rate</div>
-            </div>
-            <div class="stat-item fade-up">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Expert Consultants</div>
-            </div>
-            <div class="stat-item fade-up">
-                <div class="stat-number">20+</div>
-                <div class="stat-label">Countries Served</div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- ========== HIGHLIGHT QUOTE SECTION ========== -->
 <section class="quote-section" style="background-image: url('assets/home_images/ADD.png');">
@@ -200,13 +194,6 @@
             </div>
         </div>
         }
-    </div>
-</section>
-
-<!-- BREADCRUMB SECTION -->
-<section class="home-breadcrumb-section">
-    <div class="container">
-        <app-breadcrumb [items]="[{label: 'HOME', url: '/'}]"></app-breadcrumb>
     </div>
 </section>
 

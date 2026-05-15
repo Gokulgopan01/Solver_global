@@ -3,9 +3,12 @@ import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 
 interface Slide {
   id: number;
+  eyebrow: string;
   title: string;
+  titleHighlight: string;
   description: string;
   imagePath: string;
+  buttonText: string;
 }
 
 interface Service {
@@ -13,6 +16,7 @@ interface Service {
   title: string
   description: string
   icon: string
+  bgImage: string
 }
 
 interface Testimonial {
@@ -36,7 +40,7 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [BreadcrumbComponent],
+  imports: [],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -44,27 +48,39 @@ export class HomeComponent implements OnInit, OnDestroy {
   slides: Slide[] = [
     {
       id: 1,
-      title: 'Unskilled Jobs in Europe',
+      eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
+      title: 'UNSKILLED JOBS IN',
+      titleHighlight: 'EUROPE',
       description: 'We connect you with trusted unskilled job opportunities across European countries. From job placement to accommodation, transportation, and complete paperwork assistance, we support you at every step of your journey.',
-      imagePath: 'assets/home_images/Unskilled_Jobs_in_Europe.png'
+      imagePath: 'assets/home_images/Unskilled_Jobs_in_Europe.png',
+      buttonText: 'FIND JOBS'
     },
     {
       id: 2,
-      title: 'Study Abroad',
+      eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
+      title: 'STUDY',
+      titleHighlight: 'ABROAD',
       description: 'Pursue your education in top international institutions with our complete guidance. From course selection and university applications to visa processing and accommodation, we support you throughout your study abroad journey.',
-      imagePath: 'assets/home_images/Study_Abroad.png'
+      imagePath: 'assets/home_images/Study_Abroad.png',
+      buttonText: 'LEARN MORE'
     },
     {
       id: 3,
-      title: 'Documentation Services',
+      eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
+      title: 'DOCUMENTATION',
+      titleHighlight: 'SERVICES',
       description: 'We assist with citizenship applications, visa renewals, and all types of legal documentation in European countries. Our team ensures accurate processing and complete support at every stage.',
-      imagePath: 'assets/home_images/Documentation_Services.png'
+      imagePath: 'assets/home_images/Documentation_Services.png',
+      buttonText: 'LEARN MORE'
     },
     {
       id: 4,
-      title: 'Visit Visa Services',
+      eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
+      title: 'VISIT VISA',
+      titleHighlight: 'SERVICES',
       description: 'Travel abroad with confidence through our reliable visit visa assistance. We handle documentation, application processing, and travel guidance to ensure a smooth and hassle-free experience.',
-      imagePath: 'assets/home_images/Visit_Visa_Services.png'
+      imagePath: 'assets/home_images/Visit_Visa_Services.png',
+      buttonText: 'SEE SERVICES'
     }
   ];
 
@@ -75,39 +91,44 @@ export class HomeComponent implements OnInit, OnDestroy {
       id: 1,
       title: 'Student Visa',
       description: 'Begin your global experience with a Student Visa. Learn, explore, and grow in top educational destinations worldwide.',
-      icon: 'fas fa-graduation-cap'
+      icon: 'fas fa-graduation-cap',
+      bgImage: 'assets/home_images/Study_Abroad.png'
     },
     {
       id: 2,
       title: 'Permanent Residency',
       description: 'Permanent Residency unlocks endless potential. Your new beginning starts here with global settlement solutions.',
-      icon: 'fas fa-home'
+      icon: 'fas fa-home',
+      bgImage: 'assets/home_images/hungary.png'
     },
     {
       id: 3,
       title: 'Work Visa',
       description: 'Unlock international career opportunities with expert work visa guidance and global placement support.',
-      icon: 'fas fa-briefcase'
+      icon: 'fas fa-briefcase',
+      bgImage: 'assets/home_images/work.png'
     },
     {
       id: 4,
       title: 'Business Migration',
       description: 'Expand your enterprise internationally. Tailored business visa and investment migration strategies.',
-      icon: 'fas fa-chart-line'
+      icon: 'fas fa-chart-line',
+      bgImage: 'assets/home_images/Solver_Home_hero_office.png'
     },
     {
       id: 5,
       title: 'Family Sponsorship',
       description: 'Reunite with loved ones through seamless family sponsorship programs across multiple countries.',
-      icon: 'fas fa-heart'
+      icon: 'fas fa-heart',
+      bgImage: 'assets/home_images/Unskilled_Jobs_in_Europe.png'
     },
     {
       id: 6,
       title: 'Citizenship Solutions',
       description: 'Achieve your dream of second citizenship with expert legal pathways and due diligence.',
-      icon: 'fas fa-passport'
+      icon: 'fas fa-passport',
+      bgImage: 'assets/home_images/Documentation_Services.png'
     }
-
   ];
 
   // Showcase Programs
