@@ -12,17 +12,17 @@
             <li class="has-dropdown">
                 <a routerLink="/work-abroad" routerLinkActive="active" class="nav-link">Work</a>
                 <ul class="dropdown-menu">
-                    <li><a routerLink="/work-abroad">Visa & Paperwork</a></li>
+                    <li><a routerLink="/work-abroad">Work Permit Visa</a></li>
+                    <li><a routerLink="/work-abroad">Job Placement</a></li>
                     <li><a routerLink="/work-abroad">Accommodation</a></li>
-                    <li><a routerLink="/work-abroad">Health Insurance</a></li>
-                    <li><a routerLink="/work-abroad">Local Documentation</a></li>
+                    <li><a routerLink="/work-abroad">Other Services</a></li>
                 </ul>
             </li>
             <li class="has-dropdown">
                 <a routerLink="/study-abroad-programs" routerLinkActive="active" class="nav-link">Study Abroad</a>
                 <ul class="dropdown-menu">
-                    <li><a routerLink="/study-abroad-programs">University Guidance</a></li>
                     <li><a routerLink="/study-abroad-programs">Student Visa</a></li>
+                    <li><a routerLink="/study-abroad-programs">University admission</a></li>
                     <li><a routerLink="/study-abroad-programs">Student Housing</a></li>
                     <li><a routerLink="/study-abroad-programs">Career Stay-Back</a></li>
                 </ul>
@@ -30,9 +30,10 @@
             <li class="has-dropdown">
                 <a routerLink="/visit-visa-services" routerLinkActive="active" class="nav-link">Visit Visa</a>
                 <ul class="dropdown-menu">
-                    <li><a routerLink="/visit-visa-services">Hungary Visa</a></li>
-                    <li><a routerLink="/visit-visa-services">Slovenia Visa</a></li>
-                    <li><a routerLink="/visit-visa-services">Austria Visa</a></li>
+                    <li><a routerLink="/visit-visa-services">Visit Visa</a></li>
+                    <li><a routerLink="/visit-visa-services">Tourist Visa</a></li>
+                    <li><a routerLink="/visit-visa-services">Business Visa</a></li>
+                    <li><a routerLink="/visit-visa-services">Other Visa</a></li>
                 </ul>
             </li>
             <li><a routerLink="/client-reviews" routerLinkActive="active" class="nav-link">Reviews</a></li>
@@ -65,10 +66,10 @@
                 <a class="mobile-link" (click)="toggleDropdown('work', $event)">Work <i
                         class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu" [class.active]="activeDropdown === 'work'">
-                    <a routerLink="/work-abroad" (click)="closeMenu()">Visa & Paperwork</a>
+                    <a routerLink="/work-abroad" (click)="closeMenu()">Work Permit Visa</a>
+                    <a routerLink="/work-abroad" (click)="closeMenu()">Job Placement</a>
                     <a routerLink="/work-abroad" (click)="closeMenu()">Accommodation</a>
-                    <a routerLink="/work-abroad" (click)="closeMenu()">Health Insurance</a>
-                    <a routerLink="/work-abroad" (click)="closeMenu()">Local Documentation</a>
+                    <a routerLink="/work-abroad" (click)="closeMenu()">Other Services</a>
                 </div>
             </div>
 
@@ -76,8 +77,8 @@
                 <a class="mobile-link" (click)="toggleDropdown('study', $event)">Study Abroad <i
                         class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu" [class.active]="activeDropdown === 'study'">
-                    <a routerLink="/study-abroad-programs" (click)="closeMenu()">University Guidance</a>
                     <a routerLink="/study-abroad-programs" (click)="closeMenu()">Student Visa</a>
+                    <a routerLink="/study-abroad-programs" (click)="closeMenu()">University admission</a>
                     <a routerLink="/study-abroad-programs" (click)="closeMenu()">Student Housing</a>
                     <a routerLink="/study-abroad-programs" (click)="closeMenu()">Career Stay-Back</a>
                 </div>
@@ -87,9 +88,10 @@
                 <a class="mobile-link" (click)="toggleDropdown('visa', $event)">Visit Visa <i
                         class="fas fa-chevron-down"></i></a>
                 <div class="mobile-submenu" [class.active]="activeDropdown === 'visa'">
-                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Hungary</a>
-                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Slovenia</a>
-                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Austria</a>
+                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Visit Visa</a>
+                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Tourist Visa</a>
+                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Business Visa</a>
+                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Other Visa</a>
                 </div>
             </div>
 

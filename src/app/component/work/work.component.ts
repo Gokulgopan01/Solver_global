@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
@@ -14,6 +14,8 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class WorkComponent {
   private notificationService = inject(NotificationService);
+
+  activeSection: string = 'job-placement';
 
   breadcrumbItems: BreadcrumbItem[] = [{ label: 'Work', url: '/work' }];
 
@@ -220,6 +222,49 @@ export class WorkComponent {
       const element = document.getElementById('application-form');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+
+  scrollToSection(sectionId: string) {
+    this.activeSection = sectionId;
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 120; // Offset for fixed header if any
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    const sections = [
+      'job-placement',
+      'visa-processing',
+      'documentation-support',
+      'accommodation-assistance',
+      'work-health-insurance',
+      'airport-arrival',
+      'transportation-support',
+      'unskilled-jobs',
+      'skilled-jobs'
+    ];
+
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const offset = 150; // Offset for active state triggering
+
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const currentSection = document.getElementById(sections[i]);
+      if (currentSection) {
+        if (currentSection.offsetTop - offset <= scrollPosition) {
+          this.activeSection = sections[i];
+          break;
+        }
       }
     }
   }
