@@ -9,11 +9,72 @@
     padding-top: 60px;
     position: relative;
     border-top: 2px solid #FFD700; // Gold top border
+    overflow: hidden;
+
+    // Faint map watermark overlay
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -5%;
+        width: 45%; // Restricted to the left side behind the brand info
+        height: 100%;
+        background-image: url('/assets/images/footer_map-.png');
+        background-size: cover;
+        background-position: left center;
+        background-repeat: no-repeat;
+        
+        // This CSS filter completely destroys the checkerboard pattern 
+        // inside the PNG and turns the map into a solid bright white shape.
+        filter: grayscale(100%) contrast(0%) brightness(200%);
+        opacity: 0.05; // Makes it a very subtle background watermark
+        pointer-events: none;
+        z-index: 0;
+
+        @media (max-width: 1024px) {
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+    }
+
+    // Airplane and dashed path decoration
+    .footer-airplane-path {
+        position: absolute;
+        bottom: 20%;
+        right: 5%;
+        width: 30%;
+        height: 120px;
+        border-bottom: 2px dashed rgba(255, 215, 0, 0.15); // Faint golden dashed line
+        border-right: 2px dashed rgba(255, 215, 0, 0.15); 
+        border-bottom-right-radius: 120px;
+        transform: rotate(-10deg);
+        pointer-events: none;
+        z-index: 0;
+
+        &::after {
+            content: '\f072'; // FontAwesome Plane icon
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            color: rgba(255, 215, 0, 0.4);
+            font-size: 24px;
+            transform: rotate(-45deg); // Point the airplane along the upward curve
+        }
+
+        @media (max-width: 1024px) {
+            display: none; // Hide on smaller screens
+        }
+    }
 
     .container {
         max-width: 1300px;
         margin: 0 auto;
         padding: 0 20px;
+        position: relative;
+        z-index: 1;
     }
 }
 
@@ -24,6 +85,8 @@
     display: grid;
     grid-template-columns: 1.2fr 1fr 0.6fr 0.8fr;
     gap: 40px;
+    position: relative;
+    z-index: 1;
 
     @media (max-width: 1024px) {
         grid-template-columns: repeat(2, 1fr);
@@ -120,7 +183,8 @@
                 font-size: 0.8rem;
             }
 
-            span, a {
+            span,
+            a {
                 font-size: 0.9rem;
                 color: #94a3b8;
                 text-decoration: none;

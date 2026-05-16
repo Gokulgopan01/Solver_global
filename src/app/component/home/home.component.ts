@@ -32,6 +32,7 @@ interface Testimonial {
 interface ShowcaseProgram {
   id: number;
   name: string;
+  country: string;
   image: string;
 }
 
@@ -69,7 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
       title: 'DOCUMENTATION',
       titleHighlight: 'SERVICES',
-      description: 'We assist with citizenship applications, visa renewals, and all types of legal documentation in European countries. Our team ensures accurate processing and complete support at every stage.',
+      description: 'We assist with visa renewals, and all types of legal documentation in Hungary. Our team ensures accurate processing and complete support at every stage.',
       imagePath: 'assets/home_images/Documentation_Services.png',
       buttonText: 'LEARN MORE'
     },
@@ -86,46 +87,47 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   //our services
 
+
   services: Service[] = [
     {
       id: 1,
       title: 'Student Visa',
-      description: 'Begin your global experience with a Student Visa. Learn, explore, and grow in top educational destinations worldwide.',
+      description: 'Get complete guidance for studying abroad, from university admissions and documentation to visa approval, accommodation, and travel support for a smooth international education journey.',
       icon: 'fas fa-graduation-cap',
       bgImage: 'assets/home_images/Study_Abroad.png'
     },
     {
       id: 2,
-      title: 'Permanent Residency',
-      description: 'Permanent Residency unlocks endless potential. Your new beginning starts here with global settlement solutions.',
-      icon: 'fas fa-home',
-      bgImage: 'assets/home_images/hungary.png'
-    },
-    {
-      id: 3,
-      title: 'Work Visa',
-      description: 'Unlock international career opportunities with expert work visa guidance and global placement support.',
+      title: 'Unskilled Jobs in Europe',
+      description: 'Secure trusted unskilled job opportunities across Europe with full support including interviews, work permits, visa processing, accommodation, transportation, and settlement assistance.',
       icon: 'fas fa-briefcase',
       bgImage: 'assets/home_images/work.png'
     },
     {
+      id: 3,
+      title: 'Skilled Jobs in Europe',
+      description: 'Advance your international career with verified skilled job placements in Europe, backed by expert guidance for recruitment, documentation, work permits, relocation, and onboarding.',
+      icon: 'fas fa-home',
+      bgImage: 'assets/home_images/Hotel_Receptionist.png'
+    },
+    {
       id: 4,
-      title: 'Business Migration',
-      description: 'Expand your enterprise internationally. Tailored business visa and investment migration strategies.',
+      title: 'Visit Visa',
+      description: 'Travel confidently with reliable visit visa assistance, complete documentation support, fast application processing, and professional guidance for a hassle-free travel experience.',
       icon: 'fas fa-chart-line',
-      bgImage: 'assets/home_images/Solver_Home_hero_office.png'
+      bgImage: 'assets/home_images/visit_visa.png'
     },
     {
       id: 5,
       title: 'Family Sponsorship',
-      description: 'Reunite with loved ones through seamless family sponsorship programs across multiple countries.',
+      description: 'Reconnect with your loved ones through smooth and transparent family sponsorship solutions, including complete visa guidance, legal documentation, and end-to-end support.',
       icon: 'fas fa-heart',
-      bgImage: 'assets/home_images/Unskilled_Jobs_in_Europe.png'
+      bgImage: 'assets/home_images/family.png'
     },
     {
       id: 6,
-      title: 'Citizenship Solutions',
-      description: 'Achieve your dream of second citizenship with expert legal pathways and due diligence.',
+      title: 'Accommodation Guidance',
+      description: 'Find safe, comfortable, and affordable accommodation abroad with our complete housing assistance, helping you settle smoothly in your new destination.',
       icon: 'fas fa-passport',
       bgImage: 'assets/home_images/Documentation_Services.png'
     }
@@ -133,9 +135,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Showcase Programs
   showcasePrograms: ShowcaseProgram[] = [
-    { id: 1, name: 'Budapest', image: 'assets/home_images/hungary.png' },
-    { id: 2, name: 'Fisherman\'s bastion', image: 'assets/home_images/fisherman_bastion.png' },
-    { id: 3, name: 'Neuschwanstein Castle', image: 'assets/home_images/Neuschwanstein_castle.png' },
+    { id: 1, name: 'Bratislava', country: 'Slovakia', image: 'assets/home_images/slovakia.png' },
+    { id: 2, name: 'Amsterdam', country: 'Netherlands', image: 'assets/home_images/Armstordam.png' },
+    { id: 3, name: 'Dubrovnik', country: 'Croatia', image: 'assets/home_images/croatia.png' },
+    { id: 4, name: 'Prague', country: 'Czech Republic', image: 'assets/home_images/Czech Republic.png' },
+    { id: 5, name: 'Vienna', country: 'Austria', image: 'assets/home_images/Austria.png' },
   ];
 
   // Testimonials
