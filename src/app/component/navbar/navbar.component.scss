@@ -184,8 +184,10 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 85%;
-    max-width: 380px;
+    width: 55vw;
+    max-width: 320px;
+    min-width: 260px;
+    // max-width: 380px;
     height: 100vh;
     background: var(--color-slate-900);
     z-index: 1000;

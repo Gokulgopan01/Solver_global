@@ -8,7 +8,7 @@ import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'app-study-abroad',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, BreadcrumbComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './study-abroad.component.html',
   styleUrl: './study-abroad.component.scss'
 })
@@ -17,55 +17,135 @@ export class StudyAbroadComponent {
 
   enquiryForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required]),
-    course: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-    message: new FormControl('')
+    email: new FormControl('', [Validators.required, Validators.email]),
+    preferredCountry: new FormControl('', [Validators.required]),
+    programLevel: new FormControl('', [Validators.required]),
+    intake: new FormControl('', [Validators.required]),
+    message: new FormControl(''),
+    agreeToPolicy: new FormControl(false, [Validators.requiredTrue])
   });
 
   breadcrumbItems: BreadcrumbItem[] = [{ label: 'Study Abroad', url: '/study-abroad' }];
 
-  services = [
+  heroFeatures = [
     {
-      title: 'Complete Guidance',
-      description: 'Expert advice on university selection, course matching, and career path mapping to ensure your academic success.',
-      icon: 'fas fa-graduation-cap'
+      icon: 'fas fa-passport',
+      title: 'Student Visa Support',
+      desc: 'End-to-end visa guidance with high success rate.'
     },
     {
-      title: 'Accommodation Support',
-      description: 'We find safe and comfortable student housing, from university dorms to private apartments, tailored to your budget.',
-      icon: 'fas fa-home'
+      icon: 'fas fa-university',
+      title: 'University Admission',
+      desc: 'Get admission in top ranked universities.'
     },
     {
-      title: 'Documentation & Paperwork',
-      description: 'Hassle-free management of all academic and legal documents required for your international enrollment.',
-      icon: 'fas fa-file-alt'
+      icon: 'fas fa-home',
+      title: 'Student Housing',
+      desc: 'Safe, comfortable and affordable accommodation.'
     },
     {
-      title: 'Stay Back Opportunities',
-      description: 'Learn about post-study work permits and career options that allow you to gain international work experience.',
-      icon: 'fas fa-briefcase'
+      icon: 'fas fa-briefcase',
+      title: 'Career Stay-Back',
+      desc: 'Work opportunities and career guidance abroad.'
+    }
+  ];
+
+  destinations = [
+    {
+      id: 'uk',
+      name: 'Germany',
+      image: '/assets/home_images/Czech Republic.png',
+      flag: '/assets/flags/uk.svg'
     },
     {
-      title: 'Visa & Ticketing',
-      description: 'End-to-end assistance with student visa applications and competitive travel ticketing for your journey.',
-      icon: 'fas fa-passport'
+      id: 'canada',
+      name: 'Ireland',
+      image: '/assets/home_images/visit_visa.png',
+      flag: '/assets/flags/canada.svg'
     },
     {
-      title: 'Complete Package',
-      description: 'A dedicated one-stop solution covering everything from application to landing and initial settlement.',
-      icon: 'fas fa-box-open'
+      id: 'usa',
+      name: 'Australia',
+      image: '/assets/home_images/croatia.png',
+      flag: '/assets/flags/usa.svg'
+    },
+    {
+      id: 'australia',
+      name: 'Hungary',
+      image: '/assets/home_images/slovakia.png',
+      flag: '/assets/flags/australia.svg'
+    }
+  ];
+
+  whyChooseUs = [
+    {
+      icon: 'fas fa-user-tie',
+      title: 'Expert Counsellors',
+      desc: 'Personalized guidance from experienced education experts.'
+    },
+    {
+      icon: 'fas fa-building',
+      title: 'University Partnerships',
+      desc: 'Strong tie-ups with top universities worldwide.'
+    },
+    {
+      icon: 'fas fa-headset',
+      title: 'Complete Support',
+      desc: 'From admission to visa and accommodation, we handle all.'
+    },
+    {
+      icon: 'fas fa-file-signature',
+      title: 'High Visa Success',
+      desc: 'Proven track record with high visa success rate.'
+    },
+    {
+      icon: 'fas fa-plane-arrival',
+      title: 'Post-Arrival Support',
+      desc: 'We support you even after you reach your destination.'
+    }
+  ];
+
+  processSteps = [
+    {
+      step: '01',
+      icon: 'fas fa-comments',
+      title: 'Career Counselling',
+      desc: 'We understand your goals and suggest the best study options.'
+    },
+    {
+      step: '02',
+      icon: 'fas fa-search',
+      title: 'University Shortlisting',
+      desc: 'We help you choose the right university and course.'
+    },
+    {
+      step: '03',
+      icon: 'fas fa-file-alt',
+      title: 'Admission Assistance',
+      desc: 'We assist with applications, documents and offer letters.'
+    },
+    {
+      step: '04',
+      icon: 'fas fa-passport',
+      title: 'Visa Guidance',
+      desc: 'Complete visa support with documentation and filing.'
+    },
+    {
+      step: '05',
+      icon: 'fas fa-plane-departure',
+      title: 'Pre-Departure & Post-Arrival Support',
+      desc: 'From travel guidance to settling abroad, we\'re with you always.'
     }
   ];
 
   onSubmit() {
     if (this.enquiryForm.valid) {
       console.log('Study Abroad Enquiry Submitted:', this.enquiryForm.value);
-      this.notificationService.showSuccess('Thank you for your enquiry! Our education consultant will contact you shortly to guide you through your study abroad journey.');
+      this.notificationService.showSuccess('Thank you for your enquiry! Our experts will get in touch with you shortly.');
       this.enquiryForm.reset();
     } else {
-      this.notificationService.showError('Please fill in all required fields correctly.');
+      this.notificationService.showError('Please fill in all required fields and agree to the privacy policy.');
     }
   }
 

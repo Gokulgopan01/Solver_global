@@ -17,7 +17,7 @@
     }
 
     @media (max-width: 479px) {
-        height: 95vh;
+        height: 85vh;
     }
 
     .carousel-slide {
@@ -1538,12 +1538,36 @@
             padding: 0;
 
             // Masonry 8-column irregular layout matching reference exactly
-            .showcase-item:nth-child(1) { grid-column: span 4; } // Paris
-            .showcase-item:nth-child(2) { grid-column: span 2; } // Zurich
-            .showcase-item:nth-child(3) { grid-column: span 2; } // Rome
-            .showcase-item:nth-child(4) { grid-column: span 2; } // Berlin
-            .showcase-item:nth-child(5) { grid-column: span 3; } // Istanbul
-            .showcase-view-more { grid-column: span 3; }         // View More Box
+            .showcase-item:nth-child(1) {
+                grid-column: span 4;
+            }
+
+            // Paris
+            .showcase-item:nth-child(2) {
+                grid-column: span 2;
+            }
+
+            // Zurich
+            .showcase-item:nth-child(3) {
+                grid-column: span 2;
+            }
+
+            // Rome
+            .showcase-item:nth-child(4) {
+                grid-column: span 2;
+            }
+
+            // Berlin
+            .showcase-item:nth-child(5) {
+                grid-column: span 3;
+            }
+
+            // Istanbul
+            .showcase-view-more {
+                grid-column: span 3;
+            }
+
+            // View More Box
         }
     }
 
