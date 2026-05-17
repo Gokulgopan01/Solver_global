@@ -15,7 +15,10 @@
                 <h2 class="slide-title fade-in">{{ slide.title }} <span class="highlight">{{ slide.titleHighlight
                         }}</span></h2>
                 <p class="slide-description fade-up">{{ slide.description }}</p>
-                <button class="find-jobs-btn fade-in">{{ slide.buttonText }} <i class="fas fa-arrow-right"></i></button>
+                <button class="find-jobs-btn fade-in" (click)="navigateTo(slide.route)">
+                    {{ slide.buttonText }}
+                    <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
         }
@@ -77,11 +80,11 @@
     <div class="whyus-wrapper">
 
         <!-- LEFT: Image Panel -->
-        <div class="whyus-image-panel">
+        <div class="whyus-image-panel slide-left">
             <img src="assets/home_images/hungary.png" alt="Why Choose Solvers Global" class="whyus-bg-img">
             <div class="whyus-trust-badge">
                 <div class="trust-badge-icon"><i class="fas fa-shield-alt"></i></div>
-                <div class="trust-badge-text">
+                <div class="trust-badge-text slide-left">
                     <strong>Trusted by Thousands</strong>
                     <span>Delivering success stories<br>across the globe.</span>
                 </div>
@@ -157,7 +160,8 @@
                     </div>
                     <h3 class="card-title">{{ service.title }}</h3>
                     <p class="card-description">{{ service.description }}</p>
-                    <span class="learn-more">Learn More <i class="fas fa-arrow-right"></i></span>
+                    <span class="learn-more" (click)="navigateTo(service.route)">Learn More <i
+                            class="fas fa-arrow-right"></i></span>
                 </div>
             </div>
             }
@@ -248,10 +252,11 @@
             <div class="view-more-icon">
                 <i class="far fa-image"></i>
             </div>
-            <h3 class="view-more-title">VIEW MORE</h3>
+            <h3 class="view-more-title">KNOW MORE</h3>
             <p class="view-more-text">Explore more amazing destinations<br>and plan your next adventure<br>with our visa
                 support.</p>
-            <button class="view-more-btn">VIEW MORE <i class="fas fa-arrow-right"></i></button>
+            <button class="view-more-btn" (click)="navigateTo('/visit-visa-services')">VIEW MORE <i
+                    class="fas fa-arrow-right"></i></button>
         </div>
     </div>
 </section>

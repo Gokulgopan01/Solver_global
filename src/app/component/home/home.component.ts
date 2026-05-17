@@ -1,5 +1,6 @@
 // home.component.ts
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Slide {
   id: number;
@@ -9,6 +10,7 @@ interface Slide {
   description: string;
   imagePath: string;
   buttonText: string;
+  route: string;
 }
 
 interface Service {
@@ -17,6 +19,7 @@ interface Service {
   description: string
   icon: string
   bgImage: string
+  route: string
 }
 
 interface Testimonial {
@@ -36,8 +39,6 @@ interface ShowcaseProgram {
   image: string;
 }
 
-import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
-
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -54,7 +55,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       titleHighlight: 'EUROPE',
       description: 'We connect you with trusted unskilled job opportunities across European countries. From job placement to accommodation, transportation, and complete paperwork assistance, we support you at every step of your journey.',
       imagePath: 'assets/home_images/Unskilled_Jobs_in_Europe.png',
-      buttonText: 'FIND JOBS'
+      buttonText: 'FIND JOBS',
+      route: '/work-abroad'
     },
     {
       id: 2,
@@ -63,7 +65,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       titleHighlight: 'ABROAD',
       description: 'Pursue your education in top international institutions with our complete guidance. From course selection and university applications to visa processing and accommodation, we support you throughout your study abroad journey.',
       imagePath: 'assets/home_images/Study_Abroad.png',
-      buttonText: 'LEARN MORE'
+      buttonText: 'LEARN MORE',
+      route: '/study-abroad-programs'
     },
     {
       id: 3,
@@ -72,7 +75,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       titleHighlight: 'SERVICES',
       description: 'We assist with visa renewals, and all types of legal documentation in Hungary. Our team ensures accurate processing and complete support at every stage.',
       imagePath: 'assets/home_images/Documentation_Services.png',
-      buttonText: 'LEARN MORE'
+      buttonText: 'LEARN MORE',
+      route: '/work-abroad'
     },
     {
       id: 4,
@@ -81,7 +85,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       titleHighlight: 'SERVICES',
       description: 'Travel abroad with confidence through our reliable visit visa assistance. We handle documentation, application processing, and travel guidance to ensure a smooth and hassle-free experience.',
       imagePath: 'assets/home_images/Visit_Visa_Services.png',
-      buttonText: 'SEE SERVICES'
+      buttonText: 'SEE SERVICES',
+      route: '/visit-visa-services'
     }
   ];
 
@@ -94,42 +99,48 @@ export class HomeComponent implements OnInit, OnDestroy {
       title: 'Student Visa',
       description: 'Get complete guidance for studying abroad, from university admissions and documentation to visa approval, accommodation, and travel support for a smooth international education journey.',
       icon: 'fas fa-graduation-cap',
-      bgImage: 'assets/home_images/Study_Abroad.png'
+      bgImage: 'assets/home_images/Study_Abroad.png',
+      route: '/study-abroad-programs'
     },
     {
       id: 2,
       title: 'Unskilled Jobs in Europe',
       description: 'Secure trusted unskilled job opportunities across Europe with full support including interviews, work permits, visa processing, accommodation, transportation, and settlement assistance.',
       icon: 'fas fa-briefcase',
-      bgImage: 'assets/home_images/work.png'
+      bgImage: 'assets/home_images/work.png',
+      route: '/work-abroad'
     },
     {
       id: 3,
       title: 'Skilled Jobs in Europe',
       description: 'Advance your international career with verified skilled job placements in Europe, backed by expert guidance for recruitment, documentation, work permits, relocation, and onboarding.',
       icon: 'fas fa-home',
-      bgImage: 'assets/home_images/Hotel_Receptionist.png'
+      bgImage: 'assets/home_images/Hotel_Receptionist.png',
+      route: '/work-abroad'
     },
     {
       id: 4,
       title: 'Visit Visa',
       description: 'Travel confidently with reliable visit visa assistance, complete documentation support, fast application processing, and professional guidance for a hassle-free travel experience.',
       icon: 'fas fa-chart-line',
-      bgImage: 'assets/home_images/visit_visa.png'
+      bgImage: 'assets/home_images/visit_visa.png',
+      route: '/visit-visa-services'
     },
     {
       id: 5,
       title: 'Family Sponsorship',
       description: 'Reconnect with your loved ones through smooth and transparent family sponsorship solutions, including complete visa guidance, legal documentation, and end-to-end support.',
       icon: 'fas fa-heart',
-      bgImage: 'assets/home_images/family.png'
+      bgImage: 'assets/home_images/family.png',
+      route: '/visit-visa-services'
     },
     {
       id: 6,
       title: 'Accommodation Guidance',
       description: 'Find safe, comfortable, and affordable accommodation abroad with our complete housing assistance, helping you settle smoothly in your new destination.',
       icon: 'fas fa-passport',
-      bgImage: 'assets/home_images/Documentation_Services.png'
+      bgImage: 'assets/home_images/Documentation_Services.png',
+      route: '/work-abroad'
     }
   ];
 
@@ -193,6 +204,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   currentIndex: number = 0;
   currentTestimonialIndex: number = 0;
+  constructor(private router: Router) { }
 
   private intervalId: any;
   private testimonialIntervalId: any;
@@ -240,6 +252,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.currentIndex = index;
       this.resetAutoSlide();
     }
+  }
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 
   nextSlide(): void {
@@ -334,7 +349,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onServiceClick(service: Service): void {
     console.log('Service clicked:', service.title);
-    // Add your navigation or modal logic here
+    this.router.navigate([service])
   }
 
   // --- Scroll Up Button Logic ---

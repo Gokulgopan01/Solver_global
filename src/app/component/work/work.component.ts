@@ -269,6 +269,8 @@ export class WorkComponent {
     }
   }
 
+  
+
   onSubmitApplication() {
     if (this.applicationForm.valid) {
       console.log('Application Submitted:', this.applicationForm.value);
