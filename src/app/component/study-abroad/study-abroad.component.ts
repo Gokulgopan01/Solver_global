@@ -19,9 +19,8 @@ export class StudyAbroadComponent {
     name: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    preferredCountry: new FormControl('', [Validators.required]),
     programLevel: new FormControl('', [Validators.required]),
-    intake: new FormControl('', [Validators.required]),
+    interestedCourse: new FormControl('', [Validators.required]),
     message: new FormControl(''),
     agreeToPolicy: new FormControl(false, [Validators.requiredTrue])
   });
@@ -51,60 +50,278 @@ export class StudyAbroadComponent {
     }
   ];
 
-  destinations = [
+
+
+  hungaryUniversities = [
+    { name: 'University of Debrecen', image: 'assets/study_abroad/universities/debrecen.jpg', location: 'Debrecen, Hungary', ranking: '#563', rankingSystem: 'QS World University Rankings 2026' },
+    { name: 'Budapest University of Technology and Economics', image: 'assets/study_abroad/universities/Economics.jpg', location: 'Budapest, Hungary', ranking: '#711-720', rankingSystem: 'QS World University Rankings 2026' },
+    { name: 'Semmelweis University', image: 'assets/study_abroad/universities/Semmelweis.webp', location: 'Budapest, Hungary', ranking: '#201-250', rankingSystem: 'QS World University Rankings 2026' },
+    { name: 'Eötvös Loránd University', image: 'assets/study_abroad/universities/Eotvos.png', location: 'Budapest, Hungary', ranking: '#548', rankingSystem: 'QS World University Rankings 2026' },
+    { name: 'University of Szeged', image: 'assets/study_abroad/universities/Szegedi.jpg', location: 'Szeged, Hungary', ranking: '#597', rankingSystem: 'QS World University Rankings 2026' },
+    { name: 'IBS Budapest', image: 'assets/study_abroad/universities/IBS.jpg', location: 'Budapest, Hungary', ranking: '#1001-1200', rankingSystem: 'QS World University Rankings 2026' },
+    { name: 'University of Pécs', image: 'assets/study_abroad/universities/Pecs.webp', location: 'Pécs, Hungary', ranking: '#741-750', rankingSystem: 'QS World University Rankings 2026' }
+  ];
+
+  visibleUniversitiesCount = 4;
+
+  showMoreUniversities() {
+    this.visibleUniversitiesCount = this.hungaryUniversities.length;
+  }
+
+  get visibleUniversities() {
+    return this.hungaryUniversities.slice(0, this.visibleUniversitiesCount);
+  }
+
+  coursesData = [
     {
-      id: 'uk',
-      name: 'Germany',
-      image: '/assets/home_images/Czech Republic.png',
-      flag: '/assets/flags/uk.svg'
+      level: 'Bachelor programs',
+      categories: [
+        {
+          name: 'Agriculture Programs',
+          courses: ['Agricultural Engineering, BSc']
+        },
+        {
+          name: 'Business Programs',
+          courses: [
+            'Business Administration and Management, BSc',
+            'Commerce and Marketing, BSc'
+          ]
+        },
+        {
+          name: 'Engineering Programs',
+          courses: [
+            'Biochemical Engineering, BSc',
+            'Chemical Engineering, BSc',
+            'Civil Engineering, BSc',
+            'Electrical Engineering, BSc',
+            'Engineering Management, BSc',
+            'Environmental Engineering, BSc',
+            'Mechanical Engineering, BSc',
+            '  a., Automotive Production Process Control Specialization',
+            '  b., Building Services Engineering Specializaton',
+            '  c., Operation and Maintenance Specialization',
+            'Mechatronics Engineering, BSc',
+            'Vehicle Engineering, BSc'
+          ]
+        },
+        {
+          name: 'Health Sciences Programs',
+          courses: [
+            'Nursing and Patient Care (Physiotherapy), BSc',
+            'Nursing and Patient Care (Nurse), BSc',
+            'Health Care and Disease Prevention (Public Health), BSc'
+          ]
+        },
+        {
+          name: 'Humanities & Education Programs',
+          courses: [
+            'Communication and Media Studies, BA',
+            'English and American Studies, BA',
+            'Romance Philology and Cultures (French Studies), BA',
+            'Psychology, BA'
+          ]
+        },
+        {
+          name: 'IT Programs',
+          courses: [
+            'Business Informatics, BSc',
+            'Computer Science, BSc',
+            'Computer Science Engineering, BSc'
+          ]
+        },
+        {
+          name: 'Music Programs',
+          courses: [
+            'Musical Creative Art and Musicology, BA',
+            'Classical Performing Arts (Music), BA',
+            'Contemporary Music, BA'
+          ]
+        },
+        {
+          name: 'Science Programs',
+          courses: [
+            'Biology, BSc',
+            'Biotechnology, BSc',
+            'Chemistry, BSc',
+            'Earth Sciences, BSc',
+            'Mathematics, BSc',
+            'Physics, BSc'
+          ]
+        }
+      ]
     },
     {
-      id: 'canada',
-      name: 'Ireland',
-      image: '/assets/home_images/visit_visa.png',
-      flag: '/assets/flags/canada.svg'
-    },
-    {
-      id: 'usa',
-      name: 'Australia',
-      image: '/assets/home_images/croatia.png',
-      flag: '/assets/flags/usa.svg'
-    },
-    {
-      id: 'australia',
-      name: 'Hungary',
-      image: '/assets/home_images/slovakia.png',
-      flag: '/assets/flags/australia.svg'
+      level: 'Master programs',
+      categories: [
+        {
+          name: 'Agriculture Programs',
+          courses: [
+            'Animal Husbandry Engineering, MSc',
+            'Agricultural Environmental Management Engineering, MSc',
+            'Crop Production Engineering, MSc',
+            'Food Safety and Quality Engineering, MSc',
+            'Plant Protection, MSc'
+          ]
+        },
+        {
+          name: 'Business Program',
+          courses: ['International Economy and Business, MSc']
+        },
+        {
+          name: 'Engineering Programs',
+          courses: [
+            'Chemical Engineering, MSc',
+            'Electrical Engineering, MSc',
+            'Engineering Management, MSc',
+            'Environmental Engineering, MSc',
+            'Mechatronical Engineering, MSc',
+            'Mechanical Engineering, MSc',
+            'Sports Engineering, MSc',
+            'Urban Systems Engineering, MSc',
+            'Vehicle Engineering, MSc',
+            'Postgraduate Diploma in Lean Engineer'
+          ]
+        },
+        {
+          name: 'Medical and Health Science Programs',
+          courses: [
+            'Pharmaceutical Research and Development Manager, MSc',
+            'Public Health, MSc',
+            'Social Work in Health Care, MSc',
+            'Social Work and Social Economics, MA'
+          ]
+        },
+        {
+          name: 'Humanities Programs',
+          courses: [
+            'English Studies, MA',
+            'American Studies, MA',
+            'Instruction of English as a Foreign Language, MA'
+          ]
+        },
+        {
+          name: 'IT Programs',
+          courses: [
+            'Business Informatics, MSc',
+            'Computer Science, MSc',
+            'Computer Science Engineering, MSc',
+            'Data Science, MSc',
+            'Postgraduate Diploma in Artificial Intelligence'
+          ]
+        },
+        {
+          name: 'Law Program',
+          courses: ['European and International Business Law- LL.M.']
+        },
+        {
+          name: 'Music Program',
+          courses: ['Classical Musical Performance, MA']
+        },
+        {
+          name: 'Science Programs',
+          courses: [
+            'Applied Mathematics, MSc',
+            'Biology, MSc',
+            'Chemistry, MSc',
+            'Environmental Sciences, MSc',
+            'Geography, MSc',
+            'Geoinformatics, MSc',
+            'Hydrobiology - Water Quality Management, MSc',
+            'Molecular Biology, MSc',
+            'Physics, MSc'
+          ]
+        }
+      ]
     }
   ];
 
-  whyChooseUs = [
-    {
-      icon: 'fas fa-user-tie',
-      title: 'Expert Counsellors',
-      desc: 'Personalized guidance from experienced education experts.'
-    },
-    {
-      icon: 'fas fa-building',
-      title: 'University Partnerships',
-      desc: 'Strong tie-ups with top universities worldwide.'
-    },
-    {
-      icon: 'fas fa-headset',
-      title: 'Complete Support',
-      desc: 'From admission to visa and accommodation, we handle all.'
-    },
-    {
-      icon: 'fas fa-file-signature',
-      title: 'High Visa Success',
-      desc: 'Proven track record with high visa success rate.'
-    },
-    {
-      icon: 'fas fa-plane-arrival',
-      title: 'Post-Arrival Support',
-      desc: 'We support you even after you reach your destination.'
+  searchQuery: string = '';
+  selectedFilter: string = 'All Programs';
+
+  setFilter(filter: string) {
+    this.selectedFilter = filter;
+  }
+
+  get filteredCourses() {
+    let data = this.coursesData;
+
+    // Apply level filter
+    if (this.selectedFilter === "Bachelor's") {
+      data = data.filter(level => level.level === 'Bachelor programs');
+    } else if (this.selectedFilter === "Master's") {
+      data = data.filter(level => level.level === 'Master programs');
+    } else if (this.selectedFilter !== 'All Programs') {
+      // Apply category filter (e.g., Engineering, Business)
+      data = data.map(level => ({
+        ...level,
+        categories: level.categories.filter(cat => cat.name.toLowerCase().includes(this.selectedFilter.toLowerCase()))
+      })).filter(level => level.categories.length > 0);
     }
-  ];
+
+    // Apply search query
+    if (!this.searchQuery) {
+      return data;
+    }
+    const query = this.searchQuery.toLowerCase();
+    return data.map(level => ({
+      ...level,
+      categories: level.categories.map(cat => ({
+        ...cat,
+        courses: cat.courses.filter(course => course.toLowerCase().includes(query))
+      })).filter(cat => cat.courses.length > 0)
+    })).filter(level => level.categories.length > 0);
+  }
+
+  get allCoursesList(): string[] {
+    const courses: string[] = [];
+    this.coursesData.forEach(level => {
+      level.categories.forEach(cat => {
+        cat.courses.forEach(course => {
+          courses.push(course);
+        });
+      });
+    });
+    return [...new Set(courses)].sort();
+  }
+
+  onSearch(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.searchQuery = filterValue;
+  }
+
+  clearSearch() {
+    this.searchQuery = '';
+  }
+
+  expandedCategories: Set<string> = new Set();
+
+  toggleCategory(name: string) {
+    if (this.expandedCategories.has(name)) {
+      this.expandedCategories.delete(name);
+    } else {
+      this.expandedCategories.add(name);
+    }
+  }
+
+  get suggestions(): string[] {
+    if (!this.searchQuery) return [];
+    const query = this.searchQuery.toLowerCase();
+    const allCoursesFlat: string[] = [];
+    this.coursesData.forEach(level => {
+      level.categories.forEach(cat => {
+        cat.courses.forEach(course => {
+          if (course.toLowerCase().includes(query)) {
+            allCoursesFlat.push(course);
+          }
+        });
+      });
+    });
+    return [...new Set(allCoursesFlat)].slice(0, 5);
+  }
+
+  selectSuggestion(course: string) {
+    this.searchQuery = course;
+  }
 
   processSteps = [
     {

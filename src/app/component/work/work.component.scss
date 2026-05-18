@@ -20,6 +20,10 @@
     background-size: cover;
     background-position: center;
 
+    @media (max-width: 480px) and (min-width: 300px) {
+        background-position: right center !important;
+    }
+
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -56,7 +60,7 @@
             margin-bottom: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--color-slate-900);
+            color: white;
             line-height: 1.2;
 
             .text-gold {
@@ -76,7 +80,7 @@
         .hero-text {
             font-size: 1.1rem;
             line-height: 1.6;
-            color: var(--color-slate-700);
+            color: white;
             margin: 0;
 
             @media (max-width: 480px) {

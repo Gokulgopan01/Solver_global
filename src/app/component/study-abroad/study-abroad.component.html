@@ -6,7 +6,7 @@
                 <h1 class="hero-title">STUDY ABROAD,<br><span class="text-gold">BUILD YOUR FUTURE</span></h1>
                 <p class="hero-text">
                     Get expert guidance for university admission, student visa, accommodation and career support to<br>
-                    study in top destinations worldwide.
+                    study in Hungary.
                 </p>
             </div>
         </div>
@@ -21,10 +21,11 @@
                     <div class="tag-line-small">
                         EXPLORE, LEARN, SUCCEED
                     </div>
-                    <h2 class="section-title">Study in the World's<br>Top Destinations</h2>
+                    <h2 class="section-title">Study in Hungary’s<br>Top Universities</h2>
+
                     <p class="section-desc">
-                        From world-class education to global exposure, we help you choose the right country and
-                        university for your dreams.
+                        Unlock world-class education, affordable tuition, and globally recognized degrees in Hungary.
+                        We help you find the right university, course, and student visa pathway for your future success.
                     </p>
 
                     <ul class="feature-checklist">
@@ -39,165 +40,249 @@
                     </button>
                 </div>
 
-                <!-- Right Grid -->
-                <div class="destinations-grid">
-                    @for (dest of destinations; track dest.id) {
-                    <div class="destination-card">
-                        <img [src]="dest.image" [alt]="dest.name" class="dest-bg">
-                        <div class="dest-overlay"></div>
-                        <div class="dest-info">
-                            <div class="dest-title">
-                                <img [src]="dest.flag" [alt]="dest.name + ' flag'" class="dest-flag" *ngIf="dest.flag">
-                                <h3>{{ dest.name }}</h3>
-                            </div>
-                            <a href="javascript:void(0)" class="explore-link">Explore <i
-                                    class="fas fa-arrow-right"></i></a>
+                <!-- Right Image -->
+                <div class="destinations-image-container">
+                    <img src="assets/study_abroad/study.png" alt="Study Abroad" class="dest-image-single">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Universities in Hungary Section -->
+    <section class="hungary-universities-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <div class="tag-line-small center">TOP UNIVERSITIES IN HUNGARY</div>
+                <h2 class="section-title text-dark">Explore Top-Ranked Universities</h2>
+                <div class="gold-line-center"></div>
+            </div>
+
+            <div class="universities-grid">
+                @for (uni of visibleUniversities; track uni.name) {
+                <div class="university-card">
+                    <div class="card-image-wrap">
+                        <img [src]="uni.image" [alt]="uni.name" class="uni-image">
+                        <div class="wishlist-icon">
+                            <i class="far fa-heart"></i>
                         </div>
                     </div>
+                    <div class="card-content">
+                        <h3>{{ uni.name }}</h3>
+                        <div class="uni-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{ uni.location }}</span>
+                        </div>
+                        <div class="uni-ranking">
+                            <div class="ranking-badge">{{ uni.ranking }}</div>
+                            <div class="ranking-system">{{ uni.rankingSystem }}</div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+
+            @if (visibleUniversitiesCount < hungaryUniversities.length) { <div class="text-center mt-5">
+                <button (click)="showMoreUniversities()" class="btn-view-all">VIEW ALL UNIVERSITIES</button>
+        </div>
+        }
+</div>
+</section>
+
+<!-- Courses Section -->
+<section class="courses-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <div class="tag-line-small center">BROWSE PROGRAMS</div>
+            <h2 class="section-title text-dark">Popular Programs to Study in Hungary</h2>
+            <div class="gold-line-center"></div>
+        </div>
+
+        <!-- Filters and Search Row -->
+        <div class="courses-controls-row">
+            <div class="filters-container">
+                <button (click)="setFilter('All Programs')" [class.active]="selectedFilter === 'All Programs'"
+                    class="filter-btn">All Programs</button>
+                <button (click)="setFilter('Bachelor\'s')" [class.active]="selectedFilter === 'Bachelor\'s'"
+                    class="filter-btn">Bachelor's</button>
+                <button (click)="setFilter('Master\'s')" [class.active]="selectedFilter === 'Master\'s'"
+                    class="filter-btn">Master's</button>
+                <button (click)="setFilter('Engineering')" [class.active]="selectedFilter === 'Engineering'"
+                    class="filter-btn">Engineering</button>
+                <button (click)="setFilter('Business')" [class.active]="selectedFilter === 'Business'"
+                    class="filter-btn">Business</button>
+                <button (click)="setFilter('Health')" [class.active]="selectedFilter === 'Health'"
+                    class="filter-btn">Health Sciences</button>
+            </div>
+
+            <!-- Search Bar on Right -->
+            <div class="search-container-inline">
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" [value]="searchQuery" (input)="onSearch($event)"
+                        placeholder="Search for courses..." class="search-input">
+                    @if (searchQuery) {
+                    <i class="fas fa-times clear-icon" (click)="clearSearch()"></i>
+                    }
+
+                    <!-- Suggestions Dropdown -->
+                    @if (suggestions.length > 0) {
+                    <ul class="suggestions-dropdown">
+                        @for (suggestion of suggestions; track suggestion) {
+                        <li (click)="selectSuggestion(suggestion)">{{ suggestion }}</li>
+                        }
+                    </ul>
                     }
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Why Choose Us Section -->
-    <section class="why-choose-us-section">
-        <div class="container">
-            <div class="section-header text-center">
-                <div class="tag-line-small center">WHY CHOOSE US</div>
-                <h2 class="section-title text-dark">Your Success is Our Priority</h2>
-                <div class="gold-line-center"></div>
-            </div>
+        <!-- Courses Display -->
+        <div class="courses-display">
+            @for (level of filteredCourses; track level.level) {
+            <div class="program-level-block">
+                <h3 class="level-title">{{ level.level }}</h3>
 
-            <div class="why-grid">
-                @for (item of whyChooseUs; track item.title) {
-                <div class="why-card">
-                    <div class="icon-wrap">
-                        <i [class]="item.icon"></i>
+                <div class="categories-grid">
+                    @for (cat of level.categories; track cat.name) {
+                    <div class="category-card" [class.expanded]="expandedCategories.has(cat.name)">
+                        <h4 class="category-name" (click)="toggleCategory(cat.name)">
+                            {{ cat.name }}
+                            <i class="fas fa-chevron-down arrow-icon"></i>
+                        </h4>
+                        <ul class="course-list" *ngIf="expandedCategories.has(cat.name) || searchQuery">
+                            @for (course of cat.courses; track course) {
+                            <li class="course-item">
+                                <i class="fas fa-graduation-cap course-icon"></i>
+                                <span>{{ course }}</span>
+                            </li>
+                            }
+                        </ul>
                     </div>
-                    <h4>{{ item.title }}</h4>
-                    <p>{{ item.desc }}</p>
+                    }
                 </div>
-                }
             </div>
+            }
+            @if (filteredCourses.length === 0) {
+            <div class="no-results text-center">
+                <p>No courses found matching "{{ searchQuery }}".</p>
+            </div>
+            }
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Our Process Section -->
-    <section class="process-section">
-        <div class="container">
-            <div class="section-header text-center">
-                <div class="tag-line-small center">OUR PROCESS</div>
-                <h2 class="section-title text-dark">How We Help You Study Abroad</h2>
-            </div>
-
-            <div class="process-timeline">
-                @for (step of processSteps; track step.step) {
-                <div class="process-step">
-                    <div class="step-number">{{ step.step }}</div>
-                    <div class="step-icon-box">
-                        <i [class]="step.icon"></i>
-                    </div>
-                    <h4>{{ step.title }}</h4>
-                    <p>{{ step.desc }}</p>
-                </div>
-                }
-            </div>
+<!-- Our Process Section -->
+<section class="process-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <div class="tag-line-small center">OUR PROCESS</div>
+            <h2 class="section-title text-dark">How We Help You Study Abroad</h2>
         </div>
-    </section>
 
-    <!-- Ready to Study Abroad (Enquiry) Section -->
-    <section class="enquiry-section" id="enquiry-section">
-        <div class="container">
-            <div class="enquiry-wrapper">
-                <!-- Left: Support Info -->
-                <div class="support-info">
-                    <div class="tag-line-small">
-                        START YOUR JOURNEY TODAY
+        <div class="process-timeline">
+            @for (step of processSteps; track step.step) {
+            <div class="process-step">
+                <div class="step-number">{{ step.step }}</div>
+                <div class="step-icon-box">
+                    <i [class]="step.icon"></i>
+                </div>
+                <h4>{{ step.title }}</h4>
+                <p>{{ step.desc }}</p>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Ready to Study Abroad (Enquiry) Section -->
+<section class="enquiry-section" id="enquiry-section">
+    <div class="container">
+        <div class="enquiry-wrapper">
+            <!-- Left: Support Info -->
+            <div class="support-info">
+                <div class="tag-line-small">
+                    <i class="fas fa-paper-plane"></i> START YOUR JOURNEY TODAY
+                </div>
+                <h1>Ready to<br>Study <span class="text-gold">Abroad?</span></h1>
+                <p class="support-subtitle">
+                    Fill out the form and our experts will get in touch with you to guide you step-by-step.
+                </p>
+
+                <div class="contact-details">
+                    <div class="contact-card">
+                        <div class="icon-circle">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="text">
+                            <h4>Call Us</h4>
+                            <span>+36 70 600 7991</span>
+                        </div>
                     </div>
-                    <h1>Ready to<br>Study Abroad?</h1>
-                    <p class="support-subtitle">
-                        Fill out the form and our experts will get in touch with you to guide you step-by-step.
-                    </p>
 
-                    <div class="contact-details">
-                        <div class="contact-card">
-                            <div class="icon-circle">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="text">
-                                <h4>CALL US</h4>
-                                <span>+36 706097991</span>
-                            </div>
+                    <div class="contact-card">
+                        <div class="icon-circle">
+                            <i class="fas fa-envelope"></i>
                         </div>
-
-                        <div class="contact-card">
-                            <div class="icon-circle">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="text">
-                                <h4>EMAIL US</h4>
-                                <p>recrutments&#64;solversglobal.in</p>
-                            </div>
+                        <div class="text">
+                            <h4>Email Us</h4>
+                            <p>Sharoondeva&#64;solversglobal.in</p>
                         </div>
+                    </div>
 
-                        <div class="contact-card">
-                            <div class="icon-circle">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="text">
-                                <h4>OUR OFFICE</h4>
-                                <p>India: Manjuthulli Choozhattukotta<br>Malayyam, TVM, Kerala, India</p>
-                            </div>
+                    <div class="contact-card">
+                        <div class="icon-circle">
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
+                        <div class="text">
+                            <h4>Our Office</h4>
+                            <p>Budapest, Pannónia Street 1, 1065 Hungary</p>
+                        </div>
+                    </div>
 
-                        <div class="contact-card">
-                            <div class="icon-circle">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="text">
-                                <h4>OFFICE HOURS</h4>
-                                <p>Mon – Fri: 09:00 – 18:00 CET</p>
-                            </div>
+                    <div class="contact-card">
+                        <div class="icon-circle">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="text">
+                            <h4>Office Hours</h4>
+                            <p>Mon – Fri: 09:00 – 18:00 CET</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Right: Application Form -->
-                <div class="application-card">
-                    <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Full Name</label>
+            <!-- Right: Application Form -->
+            <div class="application-card">
+                <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <div class="input-wrapper">
+                                <i class="far fa-user"></i>
                                 <input type="text" formControlName="name" placeholder="Enter your full name">
                             </div>
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="tel" formControlName="phone" placeholder="Phone number">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-phone-alt"></i>
+                                <input type="tel" formControlName="phone" placeholder="Enter your phone number">
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Email Address</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="far fa-envelope"></i>
                                 <input type="email" formControlName="email" placeholder="Enter your email address">
                             </div>
-                            <div class="form-group">
-                                <label>Preferred Country</label>
-                                <select formControlName="preferredCountry">
-                                    <option value="" disabled selected>Select country</option>
-                                    <option value="UK">United Kingdom</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="USA">United States</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
                         </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Select Program Level</label>
+                        <div class="form-group">
+                            <label>Select Program Level</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-graduation-cap"></i>
                                 <select formControlName="programLevel">
                                     <option value="" disabled selected>Select level</option>
                                     <option value="Bachelors">Bachelor's</option>
@@ -205,44 +290,52 @@
                                     <option value="Diploma">Diploma</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>Intake</label>
-                                <select formControlName="intake">
-                                    <option value="" disabled selected>Select intake</option>
-                                    <option value="Fall">Fall (Sep/Oct)</option>
-                                    <option value="Spring">Spring (Jan/Feb)</option>
-                                    <option value="Summer">Summer (May/Jun)</option>
-                                </select>
-                            </div>
                         </div>
+                    </div>
 
-                        <div class="form-group full-width">
-                            <label>Message (Optional)</label>
+                    <div class="form-group full-width">
+                        <label>Select Interested Course</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-book"></i>
+                            <select formControlName="interestedCourse">
+                                <option value="" disabled selected>Select course</option>
+                                @for (course of allCoursesList; track course) {
+                                <option [value]="course">{{ course }}</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Message (Optional)</label>
+                        <div class="input-wrapper textarea-wrapper">
+                            <i class="far fa-edit"></i>
                             <textarea formControlName="message" rows="4"
                                 placeholder="Tell us about your study goals or any questions..."></textarea>
                         </div>
+                    </div>
 
-                        <!-- Privacy & Submit -->
-                        <div class="form-footer">
-                            <div class="privacy-note">
-                                <i class="fas fa-shield-alt text-gold"></i>
-                                <span>We respect your privacy. Your information will only be used for counselling
-                                    purposes.</span>
-                            </div>
-
-                            <div class="submit-row">
-                                <div class="checkbox-group">
-                                    <input type="checkbox" id="policy" formControlName="agreeToPolicy">
-                                    <label for="policy">I agree to the <a href="#">Privacy Policy</a>.</label>
-                                </div>
-                                <button type="submit" class="btn-submit-support" [disabled]="enquiryForm.invalid">
-                                    SUBMIT ENQUIRY <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
+                    <!-- Privacy & Submit -->
+                    <div class="form-footer">
+                        <div class="privacy-note">
+                            <i class="fas fa-shield-alt text-gold"></i>
+                            <span>We respect your privacy. Your information will only be used for counseling
+                                purposes.</span>
                         </div>
-                    </form>
-                </div>
+
+                        <div class="submit-row">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="policy" formControlName="agreeToPolicy">
+                                <label for="policy">I agree to the <a href="#">Privacy Policy</a>.</label>
+                            </div>
+                            <button type="submit" class="btn-submit-support" [disabled]="enquiryForm.invalid">
+                                SUBMIT ENQUIRY <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </div>
