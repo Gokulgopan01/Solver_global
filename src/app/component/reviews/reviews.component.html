@@ -1,7 +1,7 @@
 <div class="reviews-page">
     <!-- Hero Section -->
     <section class="reviews-hero"
-        [style.backgroundImage]="'linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), url(' + 'assets/home_images/fisherman_bastion.png' + ')'">
+        [style.backgroundImage]="'linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), url(' + 'assets/visit_visa/austria.png' + ')'">
         <div class="container">
             <div class="hero-header">
                 <app-breadcrumb [items]="[{label: 'REVIEWS'}]"></app-breadcrumb>
@@ -65,12 +65,17 @@
         <div class="container">
 
             <!-- Employee Reviews -->
-            <div class="review-section" *ngIf="employeeReviews.length">
+            <div class="review-section employee-section" *ngIf="employeeReviews.length">
 
                 <div class="review-section-header">
                     <div>
-                        <h2>Employee Reviews</h2>
-                        <p>Experiences of career growth and successful placements.</p>
+                        <div class="section-icon-wrapper">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <h2>Employee Reviews <span class="review-count">({{ employeeReviews.length }})</span></h2>
+                            <p>Experiences of career growth and successful placements.</p>
+                        </div>
                     </div>
 
                     <button class="view-all-btn" *ngIf="employeeReviews.length > 3" (click)="toggleView('employee')">
@@ -139,12 +144,17 @@
             </div>
 
             <!-- Student Reviews -->
-            <div class="review-section" *ngIf="studentReviews.length">
+            <div class="review-section student-section" *ngIf="studentReviews.length">
 
                 <div class="review-section-header">
                     <div>
-                        <h2>Student Reviews</h2>
-                        <p>Students share how we helped them unlock global opportunities.</p>
+                        <div class="section-icon-wrapper">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h2>Student Reviews <span class="review-count">({{ studentReviews.length }})</span></h2>
+                            <p>Students share how we helped them unlock global opportunities.</p>
+                        </div>
                     </div>
 
                     <button class="view-all-btn" *ngIf="studentReviews.length > 3" (click)="toggleView('student')">
@@ -213,12 +223,17 @@
             </div>
 
             <!-- Employer Reviews -->
-            <div class="review-section" *ngIf="employerReviews.length">
+            <div class="review-section employer-section" *ngIf="employerReviews.length">
 
                 <div class="review-section-header">
                     <div>
-                        <h2>Employer Reviews</h2>
-                        <p>Hear from employees who found the right talent and achieved hiring goals.</p>
+                        <div class="section-icon-wrapper">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div>
+                            <h2>Employer Reviews <span class="review-count">({{ employerReviews.length }})</span></h2>
+                            <p>Hear from employees who found the right talent and achieved hiring goals.</p>
+                        </div>
                     </div>
 
                     <button class="view-all-btn" *ngIf="employerReviews.length > 3" (click)="toggleView('employer')">

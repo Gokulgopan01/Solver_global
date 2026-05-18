@@ -206,27 +206,29 @@
     gap: 14px;
 }
 
-/* ICON CIRCLE */
-.review-section-header h2::before {
-    content: '';
+/* ICON WRAPPER */
+.section-icon-wrapper {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    display: inline-block;
-    margin-right: 14px;
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 /* DIFFERENT COLORS FOR EACH SECTION */
-.review-section:nth-child(1) h2::before {
+.employee-section .section-icon-wrapper {
     background: #2563eb;
 }
 
-.review-section:nth-child(2) h2::before {
+.student-section .section-icon-wrapper {
     background: #4caf50;
 }
 
-.review-section:nth-child(3) h2::before {
+.employer-section .section-icon-wrapper {
     background: #f97316;
 }
 
@@ -240,8 +242,15 @@
     line-height: 1;
 }
 
+.review-count {
+    font-size: 18px;
+    color: #64748b;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
 .review-section-header p {
-    margin: 6px 0 0 56px;
+    margin: 6px 0 0 0;
     font-size: 13px;
     color: #64748b;
     max-width: 500px;
@@ -429,7 +438,7 @@
     }
 
     .review-section-header p {
-        margin-left: 56px;
+        margin-left: 0;
     }
 
     .reviews-grid {
