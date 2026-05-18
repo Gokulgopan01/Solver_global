@@ -25,6 +25,10 @@ interface Review {
 export class ReviewsComponent implements OnInit {
 
   reviews: Review[] = [];
+  studentReviews: Review[] = [];
+  employerReviews: Review[] = [];
+  employeeReviews: Review[] = [];
+  expandedReviews: { [key: number]: boolean } = {};
 
   newReview: Partial<Review> = {
     name: '',
@@ -32,6 +36,12 @@ export class ReviewsComponent implements OnInit {
     country: '',
     comment: '',
     role: ''
+  };
+
+  showAll = {
+    student: false,
+    employer: false,
+    employee: false
   };
 
   loading = false;
@@ -80,6 +90,60 @@ export class ReviewsComponent implements OnInit {
       ...r,
       role: r.Role
     }));
+
+    this.sortReviewsByRole();
+  }
+
+  sortReviewsByRole() {
+
+    this.studentReviews = [];
+    this.employerReviews = [];
+    this.employeeReviews = [];
+
+    this.reviews.forEach((review) => {
+
+      const role = review.role?.toLowerCase()?.trim();
+
+      // STUDENT
+      if (role === 'student') {
+        this.studentReviews.push(review);
+      }
+
+      // EMPLOYER / WORKER / EMPLOYEE
+      else if (
+        role === 'employer'
+      ) {
+        this.employerReviews.push(review);
+      }
+
+      // OTHER
+      else {
+        this.employeeReviews.push(review);
+      }
+    });
+  }
+
+  getVisibleReviews(
+    reviews: Review[],
+    section: 'student' | 'employer' | 'employee'
+  ) {
+    return this.showAll[section]
+      ? reviews
+      : reviews.slice(0, 3);
+  }
+
+  toggleView(section: 'student' | 'employer' | 'employee') {
+    this.showAll[section] =
+      !this.showAll[section];
+  }
+
+  toggleReadMore(reviewId: number) {
+    this.expandedReviews[reviewId] =
+      !this.expandedReviews[reviewId];
+  }
+
+  isExpanded(reviewId: number): boolean {
+    return !!this.expandedReviews[reviewId];
   }
 
   // SUBMIT REVIEW
@@ -118,7 +182,12 @@ export class ReviewsComponent implements OnInit {
     if (data && data.length > 0) {
 
       const review = data[0];
-      this.reviews.unshift(review);
+      this.reviews.unshift({
+        ...review,
+        role: review.Role
+      });
+
+      this.sortReviewsByRole();
     }
 
     this.closeModal();

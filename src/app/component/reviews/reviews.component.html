@@ -61,8 +61,242 @@
         </div>
     </section>
 
-    <!-- Reviews Content -->
     <section class="reviews-main">
+        <div class="container">
+
+            <!-- Employee Reviews -->
+            <div class="review-section" *ngIf="employeeReviews.length">
+
+                <div class="review-section-header">
+                    <div>
+                        <h2>Employee Reviews</h2>
+                        <p>Experiences of career growth and successful placements.</p>
+                    </div>
+
+                    <button class="view-all-btn" *ngIf="employeeReviews.length > 3" (click)="toggleView('employee')">
+
+                        {{ showAll.employee ? 'View Less' : 'View All' }}
+                    </button>
+                </div>
+
+                <div class="reviews-grid">
+
+                    <div class="review-card" *ngFor="let review of getVisibleReviews(employeeReviews, 'employee')">
+
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+
+                        <div class="review-comment-wrapper">
+
+                            <p class="review-comment" [class.expanded]="isExpanded(review.id)">
+
+                                {{ review.comment }}
+                            </p>
+
+                            <button *ngIf="(review.comment?.length || 0) > 180" class="read-more-btn"
+                                (click)="toggleReadMore(review.id)">
+
+                                {{ isExpanded(review.id)
+                                ? 'Read Less'
+                                : 'Read More' }}
+                            </button>
+
+                        </div>
+
+                        <div class="reviewer-meta">
+
+                            <div class="reviewer-info">
+
+                                <div class="reviewer-img initials-avatar"
+                                    [style.background-color]="getAvatarColor(review.name)">
+                                    {{ getInitials(review.name) }}
+                                </div>
+
+                                <div class="reviewer-details">
+
+                                    <h4>{{ review.name }}</h4>
+
+                                    <div class="review-meta">
+                                        <span class="role">{{ review.role }}</span>
+
+                                        <span class="review-country">
+                                            {{ review.country }}
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="review-stars">
+                                <i *ngFor="let star of getStars(review.rating)" class="fas fa-star">
+                                </i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Reviews -->
+            <div class="review-section" *ngIf="studentReviews.length">
+
+                <div class="review-section-header">
+                    <div>
+                        <h2>Student Reviews</h2>
+                        <p>Students share how we helped them unlock global opportunities.</p>
+                    </div>
+
+                    <button class="view-all-btn" *ngIf="studentReviews.length > 3" (click)="toggleView('student')">
+
+                        {{ showAll.student ? 'View Less' : 'View All' }}
+                    </button>
+                </div>
+
+                <div class="reviews-grid">
+
+                    <div class="review-card" *ngFor="let review of getVisibleReviews(studentReviews, 'student')">
+
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+
+                        <div class="review-comment-wrapper">
+
+                            <p class="review-comment" [class.expanded]="isExpanded(review.id)">
+
+                                {{ review.comment }}
+                            </p>
+
+                            <button *ngIf="(review.comment?.length || 0) > 180" class="read-more-btn"
+                                (click)="toggleReadMore(review.id)">
+
+                                {{ isExpanded(review.id)
+                                ? 'Read Less'
+                                : 'Read More' }}
+                            </button>
+
+                        </div>
+
+                        <div class="reviewer-meta">
+
+                            <div class="reviewer-info">
+
+                                <div class="reviewer-img initials-avatar"
+                                    [style.background-color]="getAvatarColor(review.name)">
+                                    {{ getInitials(review.name) }}
+                                </div>
+
+                                <div class="reviewer-details">
+
+                                    <h4>{{ review.name }}</h4>
+
+                                    <div class="review-meta">
+                                        <span class="role">{{ review.role }}</span>
+
+                                        <span class="review-country">
+                                            {{ review.country }}
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="review-stars">
+                                <i *ngFor="let star of getStars(review.rating)" class="fas fa-star">
+                                </i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employer Reviews -->
+            <div class="review-section" *ngIf="employerReviews.length">
+
+                <div class="review-section-header">
+                    <div>
+                        <h2>Employer Reviews</h2>
+                        <p>Hear from employees who found the right talent and achieved hiring goals.</p>
+                    </div>
+
+                    <button class="view-all-btn" *ngIf="employerReviews.length > 3" (click)="toggleView('employer')">
+
+                        {{ showAll.employer ? 'View Less' : 'View All' }}
+
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="reviews-grid">
+
+                    <div class="review-card" *ngFor="let review of getVisibleReviews(employerReviews, 'employer')">
+
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+
+                        <div class="review-comment-wrapper">
+
+                            <p class="review-comment" [class.expanded]="isExpanded(review.id)">
+
+                                {{ review.comment }}
+                            </p>
+
+                            <button *ngIf="(review.comment?.length || 0) > 180" class="read-more-btn"
+                                (click)="toggleReadMore(review.id)">
+
+                                {{ isExpanded(review.id)
+                                ? 'Read Less'
+                                : 'Read More' }}
+                            </button>
+
+                        </div>
+
+                        <div class="reviewer-meta">
+
+                            <div class="reviewer-info">
+
+                                <div class="reviewer-img initials-avatar"
+                                    [style.background-color]="getAvatarColor(review.name)">
+                                    {{ getInitials(review.name) }}
+                                </div>
+
+                                <div class="reviewer-details">
+
+                                    <h4>{{ review.name }}</h4>
+
+                                    <div class="review-meta">
+                                        <span class="role">{{ review.role }}</span>
+
+                                        <span class="review-country">
+                                            {{ review.country }}
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="review-stars">
+                                <i *ngFor="let star of getStars(review.rating)" class="fas fa-star">
+                                </i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </section>
+
+    <!-- Reviews Content -->
+    <!-- <section class="reviews-main">
         <div class="container">
             <div class="section-header">
                 <span class="section-subtitle">WHAT OUR CLIENTS SAY</span>
@@ -76,7 +310,8 @@
                     <div class="reviewer-meta">
                         <div class="reviewer-info">
 
-                            <div class="reviewer-img initials-avatar" [style.background-color]="getAvatarColor(review.name)">
+                            <div class="reviewer-img initials-avatar"
+                                [style.background-color]="getAvatarColor(review.name)">
                                 {{ getInitials(review.name) }}
                             </div>
 
@@ -106,7 +341,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Bottom CTA -->
     <section class="cta-section">
@@ -140,9 +375,13 @@
                 </div>
                 <div class="form-group">
                     <label>Role</label>
-
-                    <input type="text" [(ngModel)]="newReview.role" name="role"
-                        placeholder="Student / Assistant / Employer" required />
+                    <select name="role" [(ngModel)]="newReview.role" required>
+                        <option value="" disabled selected>Select your role</option>
+                        <option value="Student">Student</option>
+                        <option value="Employer">Employer</option>
+                        <option value="Employee">Employee</option>
+                        <option value="Visit Visa">Visit Visa</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Rating</label>
