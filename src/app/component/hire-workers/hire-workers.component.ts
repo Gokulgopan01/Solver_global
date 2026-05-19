@@ -33,6 +33,22 @@ export class HireWorkersComponent {
     { category: 'Technical', roles: ['Electrician', 'Plumber', 'Construction Worker'] }
   ];
 
+  partners = [
+    'assets/home_images/partners/partners1.png',
+    'assets/home_images/partners/partners2.jpeg',
+    'assets/home_images/partners/partners3.png',
+    'assets/home_images/partners/partners4.png',
+    'assets/home_images/partners/partners5.jpeg',
+    'assets/home_images/partners/partners6.png',
+    'assets/home_images/partners/partners7.png',
+    'assets/home_images/partners/partners8.png',
+    'assets/home_images/partners/partners9.png',
+    'assets/home_images/partners/partners10.png',
+    'assets/home_images/partners/mc.jpeg',
+    'assets/home_images/partners/mcc.jpeg',
+    'assets/home_images/partners/trio.jpeg'
+  ];
+
   onSubmit() {
     if (this.hireForm.valid) {
       console.log('Hire Form Submitted:', this.hireForm.value);

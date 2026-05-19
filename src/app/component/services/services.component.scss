@@ -5,12 +5,16 @@
 // Hero Section
 .hero-section {
     position: relative;
-    height: 45vh;
+    padding-top: 100px;
+    height: 55vh;
     min-height: 350px;
-    background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.7)), url('/assets/visit_visa/hungary.png');
+    background: url('/assets/visit_visa/banner.png');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+
+    display: flex;
+    align-items: center;
+    overflow: hidden;
     display: flex;
     align-items: center;
     color: white;

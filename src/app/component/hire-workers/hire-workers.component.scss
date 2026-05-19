@@ -27,6 +27,12 @@
 .text-dark-blue { color: #1e3a8a; }
 .text-gray { color: var(--text-gray); }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
 /* Hero Section */
 .employer-hero {
     padding: 60px 0;
@@ -373,26 +379,47 @@
         }
     }
 
-    .partners-logos {
+    .partners-carousel {
+        flex: 1;
+        overflow: hidden;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 30px;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+    }
 
-        .company-logo {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 1.1rem;
-            opacity: 0.7;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: 1px;
+    .carousel-track {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+        animation: scroll 30s linear infinite;
+        white-space: nowrap;
 
-            i {
-                font-size: 1.3rem;
-            }
+        &:hover {
+            animation-play-state: paused;
         }
+    }
+
+    .partner-img {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50% - 20px));
     }
 }
 

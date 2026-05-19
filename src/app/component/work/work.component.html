@@ -420,6 +420,39 @@
         </div>
     </section>
 
+    <!-- Student Reviews Section -->
+    <section class="reviews-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <div class="tag-line-small center">TESTIMONIALS</div>
+                <h2 class="section-title text-dark">What Our Employees Say</h2>
+                <div class="gold-line-center"></div>
+            </div>
+
+            <div class="reviews-grid">
+                @for (review of workersReviews; track review.name) {
+                <div class="review-card">
+                    <div class="review-header">
+                        <img [src]="review.image" [alt]="review.name" class="reviewer-image">
+                        <div class="reviewer-info">
+                            <h4>{{ review.name }}</h4>
+                            <span class="review-role"><i class="fas fa-briefcase"></i> {{ review.role }}</span>
+                            <span class="review-location"><i class="fas fa-map-marker-alt"></i> {{ review.location }}</span>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        @for (star of [1,2,3,4,5]; track star) {
+                        <i class="fas fa-star text-gold"></i>
+                        }
+                    </div>
+                    <p class="review-text">"{{ review.review }}"</p>
+                    <i class="fas fa-quote-right quote-icon"></i>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+
     <!-- Bottom Features Bar -->
     <section class="bottom-features-section">
         <div class="container">
@@ -622,20 +655,23 @@
                             <label>Upload Photos (Min. 1, Max. 3)</label>
                             <div class="photo-upload-container">
                                 <div class="photo-preview-grid" *ngIf="photoPreviews.length > 0">
-                                    <div class="photo-preview-card" *ngFor="let preview of photoPreviews; let i = index">
+                                    <div class="photo-preview-card"
+                                        *ngFor="let preview of photoPreviews; let i = index">
                                         <img [src]="preview" alt="Uploaded Photo">
                                         <button type="button" class="remove-photo-btn" (click)="removePhoto(i)">
                                             <i class="fas fa-times"></i>
                                         </button>
                                     </div>
-                                    <div class="photo-add-card" *ngIf="uploadedPhotos.length < 3" (click)="photoInput.click()">
+                                    <div class="photo-add-card" *ngIf="uploadedPhotos.length < 3"
+                                        (click)="photoInput.click()">
                                         <i class="fas fa-plus"></i>
                                         <span>Add Photo</span>
                                     </div>
                                 </div>
 
                                 <div class="file-upload-wrapper" *ngIf="photoPreviews.length === 0">
-                                    <input type="file" #photoInput (change)="onPhotosChange($event)" id="photo-upload" multiple accept="image/*">
+                                    <input type="file" #photoInput (change)="onPhotosChange($event)" id="photo-upload"
+                                        multiple accept="image/*">
                                     <label for="photo-upload">
                                         <div class="upload-icon-circle">
                                             <i class="fas fa-camera"></i>
@@ -647,7 +683,8 @@
                                         </div>
                                     </label>
                                 </div>
-                                <input type="file" #photoInput style="display: none" (change)="onPhotosChange($event)" multiple accept="image/*">
+                                <input type="file" #photoInput style="display: none" (change)="onPhotosChange($event)"
+                                    multiple accept="image/*">
                             </div>
                         </div>
 

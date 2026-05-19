@@ -219,6 +219,33 @@ export class WorkComponent {
     }
   ];
 
+  workersReviews = [
+    {
+      name: 'Akhil M L',
+      image: 'assets/reviews/Akhil ML.jpeg',
+      review: 'Solvers Global placed me as a Chef in Budapest, Hungary. Their support was outstanding from visa processing to arrival. I have been working here for over a year and loving every moment!',
+      role: 'Chef',
+      location: 'Budapest, Hungary',
+      rating: 5
+    },
+    {
+      name: 'Ajin J S',
+      image: 'assets/reviews/Ajin JS.jpeg',
+      review: 'I work as a Room Attendant in Debrecen thanks to Solvers Global. The entire process was smooth and professional. They truly care about the workers and made my dream of working abroad a reality.',
+      role: 'Room Attendant',
+      location: 'Debrecen, Hungary',
+      rating: 5
+    },
+    {
+      name: 'Tijo Jerish',
+      image: 'assets/reviews/Tijo Jerish.jpeg',
+      review: 'Solvers Global helped me secure a General Worker position in Budapest. Their team guided me through every step. I am truly grateful for their end-to-end support and dedication.',
+      role: 'General Worker',
+      location: 'Budapest, Hungary',
+      rating: 5
+    }
+  ];
+
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -345,7 +372,7 @@ export class WorkComponent {
     }
   }
 
-  
+
 
   onSubmitApplication() {
     if (this.applicationForm.valid) {

@@ -194,6 +194,38 @@
     </div>
 </section>
 
+<!-- Student Reviews Section -->
+<section class="reviews-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <div class="tag-line-small center">TESTIMONIALS</div>
+            <h2 class="section-title text-dark">What Our Students Say</h2>
+            <div class="gold-line-center"></div>
+        </div>
+
+        <div class="reviews-grid">
+            @for (review of studentReviews; track review.name) {
+            <div class="review-card">
+                <div class="review-header">
+                    <img [src]="review.image" [alt]="review.name" class="reviewer-image">
+                    <div class="reviewer-info">
+                        <h4>{{ review.name }}</h4>
+                        <span>{{ review.university }}</span>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    @for (star of [1,2,3,4,5]; track star) {
+                    <i class="fas fa-star text-gold"></i>
+                    }
+                </div>
+                <p class="review-text">"{{ review.review }}"</p>
+                <i class="fas fa-quote-right quote-icon"></i>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
 <!-- Ready to Study Abroad (Enquiry) Section -->
 <section class="enquiry-section" id="enquiry-section">
     <div class="container">

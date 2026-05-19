@@ -356,6 +356,30 @@ export class StudyAbroadComponent {
     }
   ];
 
+  studentReviews = [
+    {
+      name: 'Arjun T J',
+      image: 'assets/reviews/Arjun T J.jpeg',
+      review: 'Solvers Global helped me secure admission at a top university in Hungary. Their guidance was invaluable throughout the entire process!',
+      university: 'Eötvös Loránd University',
+      rating: 5
+    },
+    {
+      name: 'Mathangi S R',
+      image: 'assets/reviews/Mathangi S R.jpeg',
+      review: 'The visa process was seamless thanks to their expert team. Highly recommend Solvers Global for anyone looking to study in Hungary.',
+      university: 'University of Debrecen',
+      rating: 5
+    },
+    {
+      name: 'Tijo Jerish',
+      image: 'assets/reviews/Tijo Jerish.jpeg',
+      review: 'Great support from start to finish! They not only helped with admission but also provided excellent post-arrival support.',
+      university: 'Budapest University of Technology and Economics',
+      rating: 5
+    }
+  ];
+
   onSubmit() {
     if (this.enquiryForm.valid) {
       console.log('Study Abroad Enquiry Submitted:', this.enquiryForm.value);
