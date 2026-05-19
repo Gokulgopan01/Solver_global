@@ -1,0 +1,433 @@
+<div class="services-page-container">
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container hero-container">
+            <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+            <div class="hero-content">
+                <h1 class="hero-title">Discover Our Complete Range of Services</h1>
+                <p class="hero-subtitle">Seamless support for your travel, work, and living experiences abroad. Your
+                    journey starts here.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Layout -->
+    <section class="services-layout-section">
+        <div class="container services-layout">
+
+            <!-- Left Sidebar -->
+            <aside class="services-sidebar">
+                <div class="sidebar-menu">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title">OUR SERVICES</h3>
+                        <div class="accent-line"></div>
+                    </div>
+                    <ul class="sidebar-links">
+                        <li [class.active]="activeSection === 'visa-services'"><a
+                                (click)="scrollToSection('visa-services')"><span class="icon-wrap"><i
+                                        class="fas fa-passport"></i></span> Visa Services <i
+                                    class="fas fa-chevron-right arrow"></i></a></li>
+                        <li [class.active]="activeSection === 'part-time-jobs'"><a
+                                (click)="scrollToSection('part-time-jobs')"><span class="icon-wrap"><i
+                                        class="fas fa-briefcase"></i></span> Part Time Jobs <i
+                                    class="fas fa-chevron-right arrow"></i></a></li>
+                        <li [class.active]="activeSection === 'accommodation'"><a
+                                (click)="scrollToSection('accommodation')"><span class="icon-wrap"><i
+                                        class="fas fa-home"></i></span> Accommodation <i
+                                    class="fas fa-chevron-right arrow"></i></a></li>
+                        <li [class.active]="activeSection === 'legal-documents'"><a
+                                (click)="scrollToSection('legal-documents')"><span class="icon-wrap"><i
+                                        class="fas fa-file-contract"></i></span> Legal Documents <i
+                                    class="fas fa-chevron-right arrow"></i></a></li>
+                        <li [class.active]="activeSection === 'family-sponsorship'"><a
+                                (click)="scrollToSection('family-sponsorship')"><span class="icon-wrap"><i
+                                        class="fas fa-users"></i></span> Family Sponsorship <i
+                                    class="fas fa-chevron-right arrow"></i></a></li>
+                        <li [class.active]="activeSection === 'why-choose-us'"><a
+                                (click)="scrollToSection('why-choose-us')"><span class="icon-wrap"><i
+                                        class="fas fa-star"></i></span> Why Choose Us <i
+                                    class="fas fa-chevron-right arrow"></i></a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Right Main Content -->
+            <div class="services-main-content read-mode">
+
+                <!-- Visa Services -->
+                <div class="service-section" id="visa-services">
+                    <h2 class="section-title">VISA SERVICES</h2>
+                    <h3 class="section-subtitle">Professional Visa Assistance You Can Trust</h3>
+
+                    <div class="content-block">
+                        <p>Our visa support team helps individuals, students, tourists, and workers navigate the visa
+                            application process with confidence. We provide accurate documentation guidance, appointment
+                            assistance, application preparation, and continuous follow-up to improve approval success
+                            and reduce delays.</p>
+                        <p>Whether you are planning a vacation, higher studies, work opportunities, or family visits, we
+                            ensure a smooth and stress-free process.</p>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Our Visa Support Includes</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Tourist & Visit Visa Processing</li>
+                                <li><i class="fas fa-check"></i> Student Visa Assistance</li>
+                                <li><i class="fas fa-check"></i> Work Permit Guidance</li>
+                                <li><i class="fas fa-check"></i> Visa Renewals & Extensions</li>
+                                <li><i class="fas fa-check"></i> Documentation Verification</li>
+                                <li><i class="fas fa-check"></i> Embassy Appointment Support</li>
+                                <li><i class="fas fa-check"></i> Travel Insurance Assistance</li>
+                                <li><i class="fas fa-check"></i> Interview Preparation Guidance</li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <h4>Why Clients Trust Our Visa Services</h4>
+                            <ul>
+                                <li><i class="fas fa-star"></i> Experienced visa consultants</li>
+                                <li><i class="fas fa-star"></i> Transparent processing support</li>
+                                <li><i class="fas fa-star"></i> Updated immigration guidance</li>
+                                <li><i class="fas fa-star"></i> Fast communication & follow-up</li>
+                                <li><i class="fas fa-star"></i> Professional document handling</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="spacer-30"></div>
+
+                    <h3 class="section-subtitle">Explore Europe With Confidence</h3>
+
+                    <div class="destination-list">
+                        <!-- Hungary -->
+                        <div class="destination-item">
+                            <div class="dest-image">
+                                <img src="assets/visit_visa/hungary.png" alt="Hungary">
+                            </div>
+                            <div class="dest-content">
+                                <h4>Hungary</h4>
+                                <p>Discover the beauty of Central Europe through Hungary’s rich culture, modern
+                                    lifestyle, and affordable opportunities for students and travelers. From the vibrant
+                                    streets of Budapest to relaxing thermal spas, Hungary offers an unforgettable
+                                    European experience.</p>
+                                <h5>Popular Experiences:</h5>
+                                <ul class="inline-list">
+                                    <li>Budapest City Tours</li>
+                                    <li>Danube River Cruises</li>
+                                    <li>Thermal Bath Experiences</li>
+                                    <li>Historical Landmarks & Castles</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Slovenia -->
+                        <div class="destination-item">
+                            <div class="dest-image">
+                                <img src="assets/visit_visa/slovenia.png" alt="Slovenia">
+                            </div>
+                            <div class="dest-content">
+                                <h4>Slovenia</h4>
+                                <p>Slovenia is one of Europe’s hidden treasures, known for its peaceful lifestyle,
+                                    beautiful mountains, lakes, and welcoming atmosphere. Ideal for tourism, study, and
+                                    work opportunities.</p>
+                                <h5>Popular Experiences:</h5>
+                                <ul class="inline-list">
+                                    <li>Lake Bled Excursions</li>
+                                    <li>Alpine Hiking Adventures</li>
+                                    <li>Ljubljana City Exploration</li>
+                                    <li>Nature & Eco Tourism</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Austria -->
+                        <div class="destination-item">
+                            <div class="dest-image">
+                                <img src="assets/visit_visa/austria.png" alt="Austria">
+                            </div>
+                            <div class="dest-content">
+                                <h4>Austria</h4>
+                                <p>Austria combines history, luxury, education, and natural beauty. Famous for classical
+                                    music, stunning architecture, and high-quality living standards, Austria remains one
+                                    of Europe’s most admired destinations.</p>
+                                <h5>Popular Experiences:</h5>
+                                <ul class="inline-list">
+                                    <li>Vienna Palace Tours</li>
+                                    <li>Salzburg Cultural Heritage</li>
+                                    <li>Hallstatt Village Visits</li>
+                                    <li>Mountain & Winter Experiences</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="apply-action-container">
+                        <button class="btn-apply-section" (click)="scrollToEnquiry()">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Part Time Jobs -->
+                <div class="service-section" id="part-time-jobs">
+                    <h2 class="section-title">PART-TIME JOBS</h2>
+                    <h3 class="section-subtitle">Flexible Work Opportunities for Students & Workers</h3>
+
+                    <div class="content-block">
+                        <p>We help international students and workers connect with reliable employers offering part-time
+                            and temporary jobs. Our goal is to help clients earn additional income while balancing their
+                            studies or professional responsibilities.</p>
+                        <p>We work with businesses across multiple industries to provide safe, verified, and flexible
+                            employment opportunities.</p>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Available Job Sectors</h4>
+                            <ul class="bullet-list">
+                                <li>Hospitality & Restaurants</li>
+                                <li>Retail & Supermarkets</li>
+                                <li>Warehouses & Logistics</li>
+                                <li>Cleaning & Maintenance</li>
+                                <li>Delivery & Packing Jobs</li>
+                                <li>Customer Service Roles</li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <h4>Our Support Includes</h4>
+                            <ul class="bullet-list">
+                                <li>Job Search Assistance</li>
+                                <li>Employer Connections</li>
+                                <li>Interview Guidance</li>
+                                <li>Resume & CV Support</li>
+                                <li>Work Permit Guidance</li>
+                                <li>Flexible Job Matching</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="apply-action-container">
+                        <button class="btn-apply-section" (click)="scrollToEnquiry()">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Accommodation -->
+                <div class="service-section" id="accommodation">
+                    <h2 class="section-title">ACCOMMODATION</h2>
+                    <h3 class="section-subtitle">Safe & Comfortable Living Assistance</h3>
+
+                    <div class="content-block">
+                        <p>Finding the right place to stay in a new country is one of the biggest challenges for
+                            international students and workers. Our accommodation support team helps clients secure
+                            affordable, verified, and comfortable housing options based on their budget and preferences.
+                        </p>
+                        <p>We assist with accommodation arrangements before and after arrival.</p>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Accommodation Support Includes</h4>
+                            <ul class="bullet-list">
+                                <li>Shared Apartments</li>
+                                <li>Student Dormitories</li>
+                                <li>Private Rooms & Flats</li>
+                                <li>Temporary Stay Arrangements</li>
+                                <li>Rental Agreement Assistance</li>
+                                <li>Roommate Support</li>
+                            </ul>
+                        </div>
+                        <div class="info-card">
+                            <h4>Why Choose Our Accommodation Support</h4>
+                            <ul class="bullet-list">
+                                <li>Verified housing options</li>
+                                <li>Budget-friendly choices</li>
+                                <li>Assistance with local processes</li>
+                                <li>Safe and convenient locations</li>
+                                <li>Ongoing support after move-in</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="apply-action-container">
+                        <button class="btn-apply-section" (click)="scrollToEnquiry()">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Legal Documents -->
+                <div class="service-section" id="legal-documents">
+                    <h2 class="section-title">LEGAL DOCUMENTS</h2>
+                    <h3 class="section-subtitle">Reliable Documentation & Compliance Support</h3>
+
+                    <div class="content-block">
+                        <p>Legal paperwork and registrations are essential when moving abroad. Our experienced support
+                            team helps clients complete all necessary formalities accurately and on time to avoid
+                            complications later.</p>
+                        <p>We guide clients through documentation procedures with professionalism and transparency.</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4>Documentation Services</h4>
+                        <ul class="inline-list-boxed">
+                            <li>Residence Permit Assistance</li>
+                            <li>Tax Card Registration</li>
+                            <li>Insurance Support</li>
+                            <li>Address Registration</li>
+                            <li>Employment Documentation</li>
+                            <li>Application Form Assistance</li>
+                            <li>Government Registration Guidance</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-service-list">
+                        <div class="sub-service-item">
+                            <h4>Insurance Support</h4>
+                            <p>Protect yourself with comprehensive health and travel insurance solutions tailored to
+                                your needs. We help clients choose appropriate insurance coverage required for visa
+                                applications, travel safety, and legal compliance.</p>
+                            <p class="strong-text">Coverage Assistance Includes: Health Insurance, Travel Insurance,
+                                Student Insurance, Emergency Medical Coverage.</p>
+                        </div>
+                        <div class="sub-service-item">
+                            <h4>Tax Card Registration</h4>
+                            <p>We simplify the process of obtaining tax cards and essential local registrations required
+                                for employment and legal compliance abroad.</p>
+                            <p>Our team ensures proper guidance for faster processing and accurate submissions.</p>
+                        </div>
+                    </div>
+
+                    <div class="apply-action-container">
+                        <button class="btn-apply-section" (click)="scrollToEnquiry()">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Family Sponsorship -->
+                <div class="service-section" id="family-sponsorship">
+                    <h2 class="section-title">FAMILY SPONSORSHIP</h2>
+                    <h3 class="section-subtitle">Bringing Families Together</h3>
+
+                    <div class="content-block">
+                        <p>Living abroad becomes more meaningful when you can reunite with your loved ones. Our family
+                            sponsorship support services help individuals navigate the documentation and application
+                            process required to bring family members legally and smoothly.</p>
+                        <p>We provide step-by-step guidance to reduce confusion and delays.</p>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>Sponsorship Support Includes</h4>
+                            <ul class="bullet-list">
+                                <li>Family Visa Guidance</li>
+                                <li>Documentation Assistance</li>
+                                <li>Application Preparation</li>
+                                <li>Legal Process Support</li>
+                                <li>Appointment Scheduling</li>
+                                <li>Continuous Case Follow-Up</li>
+                            </ul>
+                        </div>
+                        <div class="info-card highlight-variant">
+                            <h4>Our Commitment</h4>
+                            <p class="quote-style">We treat every application with care, confidentiality, and
+                                professionalism because we understand how important family reunification is.</p>
+                        </div>
+                    </div>
+
+                    <div class="apply-action-container">
+                        <button class="btn-apply-section" (click)="scrollToEnquiry()">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Why Clients Trust Us -->
+                <div class="service-section" id="why-choose-us">
+                    <h2 class="section-title">WHY CLIENTS TRUST SOLVERS GLOBAL</h2>
+                    <h3 class="section-subtitle">Transparent & Professional Service</h3>
+
+                    <div class="content-block">
+                        <p>We believe trust is built through honesty, guidance, and real support. Our team focuses on
+                            helping clients make informed decisions with proper assistance at every stage.</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4>What Makes Us Different</h4>
+                        <ul class="inline-list-boxed">
+                            <li>End-to-End Assistance</li>
+                            <li>Dedicated Support Team</li>
+                            <li>Verified Processes</li>
+                            <li>Fast Communication</li>
+                            <li>Personalized Guidance</li>
+                            <li>Professional Documentation Support</li>
+                            <li>Long-Term Client Relationships</li>
+                        </ul>
+                    </div>
+
+                    <div class="closing-statement">
+                        <h4>YOUR JOURNEY STARTS WITH THE RIGHT GUIDANCE</h4>
+                        <p>Whether you are planning to study, work, travel, or settle abroad, Solvers Global is
+                            committed to supporting your journey with reliable assistance and genuine care.</p>
+                        <p class="final-text">We help turn international opportunities into successful experiences.</p>
+                    </div>
+
+                    <div class="apply-action-container">
+                        <button class="btn-apply-section" (click)="scrollToEnquiry()">Apply Now</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Enquiry Section -->
+    <section id="enquiry-section" class="enquiry-section">
+        <div class="enquiry-container">
+            <div class="enquiry-info">
+                <h2 class="enquiry-title">SERVICE ENQUIRY</h2>
+                <p class="enquiry-text">
+                    Planning to travel abroad or need assistance? Submit your details and requirements, and our team
+                    will get back
+                    to you with the best options and next steps.
+                </p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+971 58 980 7417</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>recrutments&#64;solversglobal.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="enquiry-box">
+                <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" formControlName="name" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" formControlName="email" placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Which Service Are You Looking For?</label>
+                        <select id="country" formControlName="country">
+                            <option value="" disabled selected>Select a service</option>
+                            <option value="Visa Services">Visa Services</option>
+                            <option value="Part Time Jobs">Part Time Jobs</option>
+                            <option value="Accommodation">Accommodation</option>
+                            <option value="Legal Documents">Legal Documents</option>
+                            <option value="Family Sponsorship">Family Sponsorship</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" formControlName="message" rows="4"
+                            placeholder="How can we help you?"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" [disabled]="enquiryForm.invalid">SEND ENQUIRY</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>

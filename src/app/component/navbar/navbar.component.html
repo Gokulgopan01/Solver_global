@@ -23,17 +23,32 @@
                 <ul class="dropdown-menu">
                     <li><a routerLink="/study-abroad-programs">Student Visa</a></li>
                     <li><a routerLink="/study-abroad-programs">University admission</a></li>
-                    <li><a routerLink="/study-abroad-programs">Student Housing</a></li>
-                    <li><a routerLink="/study-abroad-programs">Career Stay-Back</a></li>
+                    <li><a routerLink="/study-abroad-programs">View Courses</a></li>
                 </ul>
             </li>
             <li class="has-dropdown">
-                <a routerLink="/visit-visa-services" routerLinkActive="active" class="nav-link">Visit Visa</a>
+                <a routerLink="/services" routerLinkActive="active" class="nav-link">Services</a>
                 <ul class="dropdown-menu">
-                    <li><a routerLink="/visit-visa-services">Visit Visa</a></li>
-                    <li><a routerLink="/visit-visa-services">Tourist Visa</a></li>
-                    <li><a routerLink="/visit-visa-services">Business Visa</a></li>
-                    <li><a routerLink="/visit-visa-services">Other Visa</a></li>
+                    <li class="has-nested-dropdown">
+                        <a routerLink="/services" (click)="closeMenu()">Visa <i
+                                class="fas fa-chevron-right nested-arrow"></i></a>
+                        <ul class="nested-dropdown-menu">
+                            <li><a routerLink="/services" (click)="closeMenu()">Visit Visa</a></li>
+                            <li><a routerLink="/services" (click)="closeMenu()">Tourist Visa</a></li>
+                            <li><a routerLink="/services" (click)="closeMenu()">Visa Renewal</a></li>
+                        </ul>
+                    </li>
+                    <li><a routerLink="/services" (click)="closeMenu()">Part Time Jobs</a></li>
+                    <li><a routerLink="/services" (click)="closeMenu()">Accommodation</a></li>
+                    <li class="has-nested-dropdown">
+                        <a routerLink="/services" (click)="closeMenu()">Legal Documents <i
+                                class="fas fa-chevron-right nested-arrow"></i></a>
+                        <ul class="nested-dropdown-menu">
+                            <li><a routerLink="/services" (click)="closeMenu()">Insurance</a></li>
+                            <li><a routerLink="/services" (click)="closeMenu()">Tax Card Registration</a></li>
+                        </ul>
+                    </li>
+                    <li><a routerLink="/services" (click)="closeMenu()">Family Sponsorship</a></li>
                 </ul>
             </li>
             <li><a routerLink="/client-reviews" routerLinkActive="active" class="nav-link">Reviews</a></li>
@@ -79,19 +94,35 @@
                 <div class="mobile-submenu" [class.active]="activeDropdown === 'study'">
                     <a routerLink="/study-abroad-programs" (click)="closeMenu()">Student Visa</a>
                     <a routerLink="/study-abroad-programs" (click)="closeMenu()">University admission</a>
-                    <a routerLink="/study-abroad-programs" (click)="closeMenu()">Student Housing</a>
-                    <a routerLink="/study-abroad-programs" (click)="closeMenu()">Career Stay-Back</a>
+                    <a routerLink="/study-abroad-programs" (click)="closeMenu()">View Courses</a>
                 </div>
             </div>
 
             <div class="mobile-group">
-                <a class="mobile-link" (click)="toggleDropdown('visa', $event)">Visit Visa <i
-                        class="fas fa-chevron-down"></i></a>
-                <div class="mobile-submenu" [class.active]="activeDropdown === 'visa'">
-                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Visit Visa</a>
-                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Tourist Visa</a>
-                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Business Visa</a>
-                    <a routerLink="/visit-visa-services" (click)="closeMenu()">Other Visa</a>
+                <a class="mobile-link" [class.active]="activeDropdown === 'services'"
+                    (click)="toggleDropdown('services', $event)">Services <i class="fas fa-chevron-down"></i></a>
+                <div class="mobile-submenu" [class.active]="activeDropdown === 'services'">
+                    <div class="mobile-subgroup">
+                        <a class="mobile-sublink" [class.active]="activeSubDropdown === 'visa'"
+                            (click)="toggleSubDropdown('visa', $event)">Visa <i class="fas fa-chevron-down"></i></a>
+                        <div class="mobile-sub-submenu" [class.active]="activeSubDropdown === 'visa'">
+                            <a routerLink="/services" (click)="closeMenu()">Visit Visa</a>
+                            <a routerLink="/services" (click)="closeMenu()">Tourist Visa</a>
+                            <a routerLink="/services" (click)="closeMenu()">Visa Renewal</a>
+                        </div>
+                    </div>
+                    <a routerLink="/services" (click)="closeMenu()">Part Time Jobs</a>
+                    <a routerLink="/services" (click)="closeMenu()">Accommodation</a>
+                    <div class="mobile-subgroup">
+                        <a class="mobile-sublink" [class.active]="activeSubDropdown === 'legal'"
+                            (click)="toggleSubDropdown('legal', $event)">Legal Documents <i
+                                class="fas fa-chevron-down"></i></a>
+                        <div class="mobile-sub-submenu" [class.active]="activeSubDropdown === 'legal'">
+                            <a routerLink="/services" (click)="closeMenu()">Insurance</a>
+                            <a routerLink="/services" (click)="closeMenu()">Tax Card Registration</a>
+                        </div>
+                    </div>
+                    <a routerLink="/services" (click)="closeMenu()">Family Sponsorship</a>
                 </div>
             </div>
 

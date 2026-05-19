@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -6,13 +6,14 @@ import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.co
 import { NotificationService } from '../../services/notification.service';
 
 @Component({
-  selector: 'app-visit-visa',
+  selector: 'app-services',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule, BreadcrumbComponent],
-  templateUrl: './visit-visa.component.html',
-  styleUrl: './visit-visa.component.scss'
+  templateUrl: './services.component.html',
+  styleUrl: './services.component.scss'
 })
-export class VisitVisaComponent {
+export class ServicesComponent {
+  activeSection: string = 'visa-services';
   private notificationService = inject(NotificationService);
 
   enquiryForm = new FormGroup({
@@ -22,7 +23,7 @@ export class VisitVisaComponent {
     message: new FormControl('', [Validators.required])
   });
 
-  breadcrumbItems: BreadcrumbItem[] = [{ label: 'Visit Visa', url: '/visit-visa' }];
+  breadcrumbItems: BreadcrumbItem[] = [{ label: 'Services', url: '/services' }];
 
   countries = [
     {
@@ -59,6 +60,36 @@ export class VisitVisaComponent {
     const element = document.getElementById('enquiry-section');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  scrollToSection(id: string) {
+    const element = document.getElementById(id);
+    if (element) {
+      this.activeSection = id;
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const sections = ['visa-services', 'part-time-jobs', 'accommodation', 'legal-documents', 'family-sponsorship', 'why-choose-us'];
+    let currentSection = this.activeSection;
+
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        // Trigger if the section is currently occupying the upper part of the viewport
+        if (rect.top <= 250 && rect.bottom >= 250) {
+          currentSection = section;
+          break;
+        }
+      }
+    }
+    
+    if (this.activeSection !== currentSection) {
+      this.activeSection = currentSection;
     }
   }
 }

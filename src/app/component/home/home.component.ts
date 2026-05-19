@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       description: 'Travel abroad with confidence through our reliable visit visa assistance. We handle documentation, application processing, and travel guidance to ensure a smooth and hassle-free experience.',
       imagePath: 'assets/home_images/Visit_Visa_Services.png',
       buttonText: 'SEE SERVICES',
-      route: '/visit-visa-services'
+      route: '/services'
     }
   ];
 
@@ -124,7 +124,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       description: 'Travel confidently with reliable visit visa assistance, complete documentation support, fast application processing, and professional guidance for a hassle-free travel experience.',
       icon: 'fas fa-chart-line',
       bgImage: 'assets/home_images/visit_visa.png',
-      route: '/visit-visa-services'
+      route: '/services'
     },
     {
       id: 5,
@@ -132,7 +132,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       description: 'Reconnect with your loved ones through smooth and transparent family sponsorship solutions, including complete visa guidance, legal documentation, and end-to-end support.',
       icon: 'fas fa-heart',
       bgImage: 'assets/home_images/family.png',
-      route: '/visit-visa-services'
+      route: '/services'
     },
     {
       id: 6,

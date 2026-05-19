@@ -612,9 +612,42 @@
                                     <div class="upload-text">
                                         <span class="main-text">Drag & drop your file here</span>
                                         <span class="sub-text">or choose a file</span>
-                                        <span class="format-text">PDF, DOCX (Max. 5MB)</span>
+                                        <span class="format-text">PDF, DOCX (Max. 1MB)</span>
                                     </div>
                                 </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label>Upload Photos (Min. 1, Max. 3)</label>
+                            <div class="photo-upload-container">
+                                <div class="photo-preview-grid" *ngIf="photoPreviews.length > 0">
+                                    <div class="photo-preview-card" *ngFor="let preview of photoPreviews; let i = index">
+                                        <img [src]="preview" alt="Uploaded Photo">
+                                        <button type="button" class="remove-photo-btn" (click)="removePhoto(i)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    <div class="photo-add-card" *ngIf="uploadedPhotos.length < 3" (click)="photoInput.click()">
+                                        <i class="fas fa-plus"></i>
+                                        <span>Add Photo</span>
+                                    </div>
+                                </div>
+
+                                <div class="file-upload-wrapper" *ngIf="photoPreviews.length === 0">
+                                    <input type="file" #photoInput (change)="onPhotosChange($event)" id="photo-upload" multiple accept="image/*">
+                                    <label for="photo-upload">
+                                        <div class="upload-icon-circle">
+                                            <i class="fas fa-camera"></i>
+                                        </div>
+                                        <div class="upload-text">
+                                            <span class="main-text">Drag & drop your photos here</span>
+                                            <span class="sub-text">or choose files (Upload 1 to 3 photos)</span>
+                                            <span class="format-text">JPEG, PNG formats</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <input type="file" #photoInput style="display: none" (change)="onPhotosChange($event)" multiple accept="image/*">
                             </div>
                         </div>
 

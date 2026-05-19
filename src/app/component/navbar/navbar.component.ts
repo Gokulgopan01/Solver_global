@@ -13,6 +13,7 @@ export class NavbarComponent {
   isMenuOpen = false;
   isScrolled = false;
   activeDropdown: string | null = null;
+  activeSubDropdown: string | null = null;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -27,6 +28,7 @@ export class NavbarComponent {
   closeMenu() {
     this.isMenuOpen = false;
     this.activeDropdown = null;
+    this.activeSubDropdown = null;
     this.toggleScrollLock();
   }
 
@@ -36,6 +38,12 @@ export class NavbarComponent {
       event.stopPropagation();
       this.activeDropdown = this.activeDropdown === name ? null : name;
     }
+  }
+
+  toggleSubDropdown(name: string, event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.activeSubDropdown = this.activeSubDropdown === name ? null : name;
   }
 
   private toggleScrollLock() {

@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './component/home/home.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { WorkComponent } from './component/work/work.component';
-import { VisitVisaComponent } from './component/visit-visa/visit-visa.component';
+import { ServicesComponent } from './component/services/services.component';
 import { StudyAbroadComponent } from './component/study-abroad/study-abroad.component';
 import { GalleryComponent } from './component/gallery/gallery.component';
 import { HireWorkersComponent } from './component/hire-workers/hire-workers.component';
@@ -18,8 +18,8 @@ export const routes: Routes = [
         component: WorkComponent
     },
     {
-        path: 'visit-visa-services',
-        component: VisitVisaComponent
+        path: 'services',
+        component: ServicesComponent
     },
     {
         path: 'study-abroad-programs',

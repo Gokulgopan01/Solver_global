@@ -1,60 +1,218 @@
-<div class="hire-page">
+<div class="employer-page">
     <!-- Hero Section -->
-    <header class="hire-hero">
-        <div class="container">
-            <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
-            <h1 class="fade-up">Find Expert Staff for Your Business</h1>
-            <p class="fade-up delay-1">Connect with thousands of skilled workers ready to help your shop or business grow. We handle the paperwork, you get the talent.</p>
-        </div>
-    </header>
-
-    <!-- Talent Categories -->
-    <section class="talent-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Browse Talent Categories</h2>
-                <p>Click a category to quickly request staff for your specific needs.</p>
-            </div>
-            <div class="talent-grid">
-                @for (cat of availableTalent; track cat.category) {
-                <div class="talent-card">
-                    <h3>{{ cat.category }}</h3>
-                    <ul>
-                        @for (role of cat.roles; track role) {
-                        <li (click)="setWorkerType(role)">{{ role }} <i class="fas fa-plus"></i></li>
-                        }
-                    </ul>
+    <section class="employer-hero">
+        <div class="container hero-split">
+            <div class="hero-left">
+                <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+                <h1 class="hero-title">
+                    <span class="text-dark">HIRE TRUSTED TALENT.</span><br>
+                    <span class="text-gold">GROW YOUR BUSINESS.</span>
+                </h1>
+                <p class="hero-subtitle">We connect employers with skilled, verified and hardworking professionals from around the world.</p>
+                
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Pre-Screened Candidates</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>Legal & Ethical Recruitment</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Fast & Reliable Process</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-headset"></i>
+                        <span>Ongoing Employer Support</span>
+                    </div>
                 </div>
-                }
+
+                <button class="btn-primary" (click)="scrollToForm()">
+                    <i class="fas fa-chevron-right icon-left"></i> REQUEST WORKERS NOW
+                </button>
+            </div>
+            
+            <div class="hero-right">
+                <div class="image-wrapper">
+                    <img src="assets/work/work.png" alt="Trusted Employer Handshake">
+                    <div class="floating-badge">
+                        <i class="fas fa-shield-alt shield-icon"></i>
+                        <div class="badge-text">
+                            <strong>Trusted by Employers Worldwide</strong>
+                            <span>100+ Companies</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Hire Form Section -->
-    <section class="form-section" id="hire-form-section">
+    <!-- Browse Talent Categories -->
+    <section class="talent-categories-section">
         <div class="container">
-            <div class="form-card">
-                <div class="form-header">
-                    <h2>Employer Request Form</h2>
-                    <p>Tell us what you need, and we'll match you with the best candidates.</p>
+            <div class="section-header">
+                <h2>BROWSE TALENT CATEGORIES</h2>
+                <p>Find the right talent for your business needs.</p>
+            </div>
+
+            <div class="talent-grid">
+                <!-- Hospitality -->
+                <div class="talent-card">
+                    <div class="card-header">
+                        <i class="fas fa-concierge-bell category-icon text-gold"></i>
+                        <h3>Hospitality</h3>
+                    </div>
+                    <ul class="role-list">
+                        <li><i class="fas fa-circle list-dot"></i> Kitchen Assistant</li>
+                        <li><i class="fas fa-circle list-dot"></i> Room Attendant</li>
+                        <li><i class="fas fa-circle list-dot"></i> Hotel Receptionist</li>
+                    </ul>
+                    <a class="view-more" (click)="setWorkerType('Hospitality Worker')">View more &rarr;</a>
                 </div>
 
+                <!-- Retail -->
+                <div class="talent-card">
+                    <div class="card-header">
+                        <i class="fas fa-shopping-cart category-icon text-blue"></i>
+                        <h3>Retail</h3>
+                    </div>
+                    <ul class="role-list">
+                        <li><i class="fas fa-circle list-dot"></i> Sales Person</li>
+                        <li><i class="fas fa-circle list-dot"></i> Cashier</li>
+                        <li><i class="fas fa-circle list-dot"></i> Store Manager</li>
+                    </ul>
+                    <a class="view-more" (click)="setWorkerType('Retail Worker')">View more &rarr;</a>
+                </div>
+
+                <!-- General Labor -->
+                <div class="talent-card">
+                    <div class="card-header">
+                        <i class="fas fa-users category-icon text-dark-blue"></i>
+                        <h3>General Labor</h3>
+                    </div>
+                    <ul class="role-list">
+                        <li><i class="fas fa-circle list-dot"></i> Cleaning Staff</li>
+                        <li><i class="fas fa-circle list-dot"></i> General Worker</li>
+                        <li><i class="fas fa-circle list-dot"></i> Warehouse Staff</li>
+                    </ul>
+                    <a class="view-more" (click)="setWorkerType('General Labor')">View more &rarr;</a>
+                </div>
+
+                <!-- Technical -->
+                <div class="talent-card">
+                    <div class="card-header">
+                        <i class="fas fa-wrench category-icon text-gray"></i>
+                        <h3>Technical</h3>
+                    </div>
+                    <ul class="role-list">
+                        <li><i class="fas fa-circle list-dot"></i> Electrician</li>
+                        <li><i class="fas fa-circle list-dot"></i> Plumber</li>
+                        <li><i class="fas fa-circle list-dot"></i> Construction Worker</li>
+                    </ul>
+                    <a class="view-more" (click)="setWorkerType('Technical Worker')">View more &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="stats-banner">
+        <div class="container">
+            <h2 class="stats-title">WHY EMPLOYERS CHOOSE SOLVERS GLOBAL</h2>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <i class="fas fa-certificate stat-icon"></i>
+                    <h4>100%</h4>
+                    <p>Legal & Compliant<br>Recruitment</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users stat-icon"></i>
+                    <h4>50,000+</h4>
+                    <p>Skilled Candidates<br>Deployed</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-handshake stat-icon"></i>
+                    <h4>100+</h4>
+                    <p>Trusted Employers<br>Worldwide</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-heart stat-icon"></i>
+                    <h4>98%</h4>
+                    <p>Employer<br>Satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-history stat-icon"></i>
+                    <h4>10+ Years</h4>
+                    <p>Experience in Global<br>Recruitment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Strip -->
+    <section class="partners-strip">
+        <div class="container partners-flex">
+            <div class="partners-text">
+                <p>Trusted by leading<br>companies worldwide</p>
+            </div>
+            <div class="partners-logos">
+                <span class="company-logo"><i class="fas fa-hotel"></i> ACCOR</span>
+                <span class="company-logo"><i class="fas fa-building"></i> EMAAR</span>
+                <span class="company-logo"><i class="fas fa-bed"></i> MARRIOTT</span>
+                <span class="company-logo"><i class="fas fa-h-square"></i> RADISSON</span>
+                <span class="company-logo"><i class="fas fa-gem"></i> JUMEIRAH</span>
+                <span class="company-logo"><i class="fas fa-hospital-symbol"></i> HILTON</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employer Request Form Section -->
+    <section class="request-form-section" id="hire-form-section">
+        <div class="container form-split">
+            
+            <div class="form-info-left">
+                <p class="tagline">POST YOUR REQUIREMENT</p>
+                <h2 class="form-title">Employer Request Form</h2>
+                <p class="form-desc">Tell us what you need, and we'll match you with the best candidates quickly.</p>
+                
+                <ul class="benefits-list">
+                    <li><i class="fas fa-check-circle"></i> Quick Response</li>
+                    <li><i class="fas fa-check-circle"></i> Quality Candidates</li>
+                    <li><i class="fas fa-check-circle"></i> End-to-End Support</li>
+                    <li><i class="fas fa-check-circle"></i> Transparent Process</li>
+                </ul>
+
+                <div class="info-image-wrapper">
+                    <img src="assets/home_images/work.png" alt="Employer Support">
+                    <div class="help-badge">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="help-text">
+                            <strong>Need Help?</strong>
+                            <span>+1 234 567 8900</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-card-right">
                 <form [formGroup]="hireForm" (ngSubmit)="onSubmit()">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>Your Full Name</label>
+                            <label>YOUR FULL NAME</label>
                             <input type="text" formControlName="employerName" placeholder="Enter your name">
                         </div>
                         <div class="form-group">
-                            <label>Phone Number</label>
+                            <label>PHONE NUMBER</label>
                             <input type="tel" formControlName="phone" placeholder="+123 456 7890">
                         </div>
                         <div class="form-group">
-                            <label>Shop / Business Name</label>
+                            <label>SHOP / BUSINESS NAME</label>
                             <input type="text" formControlName="shopName" placeholder="e.g. Solvers Cafe">
                         </div>
                         <div class="form-group">
-                            <label>Shop Type</label>
+                            <label>SHOP TYPE</label>
                             <select formControlName="shopType">
                                 <option value="">Select Shop Type</option>
                                 <option value="Retail">Retail Shop</option>
@@ -65,24 +223,26 @@
                             </select>
                         </div>
                         <div class="form-group full-width">
-                            <label>Shop Address</label>
+                            <label>SHOP ADDRESS</label>
                             <input type="text" formControlName="address" placeholder="Full business address">
                         </div>
                         <div class="form-group full-width">
-                            <label>What kind of worker do you need?</label>
+                            <label>WHAT KIND OF WORKER DO YOU NEED?</label>
                             <input type="text" formControlName="workerType" placeholder="e.g. Sales Person, Kitchen Assistant">
                         </div>
                         <div class="form-group full-width">
-                            <label>Additional Message (Optional)</label>
-                            <textarea formControlName="message" rows="4" placeholder="Any specific requirements..."></textarea>
+                            <label>ADDITIONAL MESSAGE (OPTIONAL)</label>
+                            <textarea formControlName="message" rows="3" placeholder="Any specific requirements..."></textarea>
                         </div>
                     </div>
 
                     <button type="submit" class="submit-btn" [disabled]="!hireForm.valid">
-                        Send Recruitment Request <i class="fas fa-paper-plane"></i>
+                        SEND RECRUITMENT REQUEST <i class="fas fa-paper-plane"></i>
                     </button>
+                    <p class="form-footer"><i class="fas fa-lock"></i> Your information is safe with us. We respect your privacy.</p>
                 </form>
             </div>
+
         </div>
     </section>
 </div>

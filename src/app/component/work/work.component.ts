@@ -5,6 +5,24 @@ import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.co
 import { RouterModule } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
 
+// Custom validator for file array range (min 1, max 3 photos)
+export function fileArrayRangeValidator(min: number, max: number) {
+  return (control: any) => {
+    const files = control.value;
+    if (!files || !Array.isArray(files) || files.length === 0) {
+      return { required: true };
+    }
+    if (files.length < min) {
+      return { minPhotos: true };
+    }
+    if (files.length > max) {
+      return { maxPhotos: true };
+    }
+    return null;
+  };
+}
+
+
 @Component({
   selector: 'app-work',
   standalone: true,
@@ -28,8 +46,12 @@ export class WorkComponent {
     educationSummary: new FormControl('', [Validators.required]),
     jobPreference: new FormControl('', [Validators.required]),
     resume: new FormControl(null),
+    photos: new FormControl<any>(null, [fileArrayRangeValidator(1, 3)]),
     agreeToPolicy: new FormControl(false, [Validators.requiredTrue])
   });
+
+  uploadedPhotos: File[] = [];
+  photoPreviews: string[] = [];
 
   // Service Enquiry Form (used for renewal, accommodation, insurance, documentation)
   serviceForm = new FormGroup({
@@ -200,10 +222,64 @@ export class WorkComponent {
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      const maxSize = 1 * 1024 * 1024; // 1 MB
+      if (file.size > maxSize) {
+        alert('Compress and upload');
+        this.notificationService.showError('File size exceeds 1MB. Please compress and upload.');
+        event.target.value = '';
+        this.applicationForm.patchValue({
+          resume: null
+        });
+        return;
+      }
       this.applicationForm.patchValue({
         resume: file
       });
     }
+  }
+
+  onPhotosChange(event: any) {
+    if (event.target.files.length > 0) {
+      const files: FileList = event.target.files;
+      const remainingSlots = 3 - this.uploadedPhotos.length;
+
+      if (files.length > remainingSlots) {
+        this.notificationService.showError(`You can only upload up to 3 photos. You have ${remainingSlots} slots remaining.`);
+        event.target.value = '';
+        return;
+      }
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        if (!file.type.startsWith('image/')) {
+          this.notificationService.showError('Only image files are allowed.');
+          continue;
+        }
+        this.uploadedPhotos.push(file);
+
+        // Generate preview
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.photoPreviews.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+
+      this.applicationForm.patchValue({
+        photos: this.uploadedPhotos.length > 0 ? this.uploadedPhotos : null
+      });
+      this.applicationForm.get('photos')?.updateValueAndValidity();
+      event.target.value = ''; // Reset input to allow selecting same file again
+    }
+  }
+
+  removePhoto(index: number) {
+    this.uploadedPhotos.splice(index, 1);
+    this.photoPreviews.splice(index, 1);
+    this.applicationForm.patchValue({
+      photos: this.uploadedPhotos.length > 0 ? this.uploadedPhotos : null
+    });
+    this.applicationForm.get('photos')?.updateValueAndValidity();
   }
 
   get resumeFileName(): string {
@@ -276,6 +352,12 @@ export class WorkComponent {
       console.log('Application Submitted:', this.applicationForm.value);
       this.notificationService.showSuccess('Application submitted successfully! We will contact you soon.');
       this.applicationForm.reset();
+      this.uploadedPhotos = [];
+      this.photoPreviews = [];
+      const cvInput = document.getElementById('cv-upload') as HTMLInputElement;
+      if (cvInput) cvInput.value = '';
+      const photoInput = document.getElementById('photo-upload') as HTMLInputElement;
+      if (photoInput) photoInput.value = '';
     } else {
       this.notificationService.showError('Please fill in all required fields correctly.');
     }

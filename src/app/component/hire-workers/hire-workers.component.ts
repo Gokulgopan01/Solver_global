@@ -45,6 +45,10 @@ export class HireWorkersComponent {
 
   setWorkerType(type: string) {
     this.hireForm.patchValue({ workerType: type });
+    this.scrollToForm();
+  }
+
+  scrollToForm() {
     const element = document.getElementById('hire-form-section');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
