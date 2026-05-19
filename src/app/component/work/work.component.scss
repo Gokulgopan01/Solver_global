@@ -141,12 +141,33 @@
                     font-size: 1.1rem;
                     font-weight: 800;
                     color: #0f172a;
-                    margin: 0 0 5px 0;
+                    margin: 0 0 6px 0;
                 }
 
-                span {
+                .review-role {
+                    display: block;
                     font-size: 0.85rem;
+                    font-weight: 700;
+                    color: #0f172a;
+                    margin-bottom: 4px;
+
+                    i {
+                        color: #FFD700;
+                        margin-right: 4px;
+                        font-size: 0.8rem;
+                    }
+                }
+
+                .review-location {
+                    display: block;
+                    font-size: 0.8rem;
                     color: #64748b;
+
+                    i {
+                        color: #94a3b8;
+                        margin-right: 4px;
+                        font-size: 0.8rem;
+                    }
                 }
             }
         }

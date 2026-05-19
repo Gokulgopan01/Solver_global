@@ -223,17 +223,17 @@ export class WorkComponent {
     {
       name: 'Akhil M L',
       image: 'assets/reviews/Akhil ML.jpeg',
-      review: 'Solvers Global placed me as a Chef in Budapest, Hungary. Their support was outstanding from visa processing to arrival. I have been working here for over a year and loving every moment!',
+      review: 'Solvers Global placed me as a Chef in Debrecen, Hungary. Their support was outstanding from visa processing to arrival. I have been working here for over a year and loving every moment!',
       role: 'Chef',
-      location: 'Budapest, Hungary',
+      location: 'Debrecen, Hungary',
       rating: 5
     },
     {
       name: 'Ajin J S',
       image: 'assets/reviews/Ajin JS.jpeg',
-      review: 'I work as a Room Attendant in Debrecen thanks to Solvers Global. The entire process was smooth and professional. They truly care about the workers and made my dream of working abroad a reality.',
+      review: 'I work as a Room Attendant in Budapest thanks to Solvers Global. The entire process was smooth and professional. They truly care about the workers and made my dream of working abroad a reality.',
       role: 'Room Attendant',
-      location: 'Debrecen, Hungary',
+      location: 'Budapest, Hungary',
       rating: 5
     },
     {
