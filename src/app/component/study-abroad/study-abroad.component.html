@@ -13,11 +13,11 @@
     </section>
 
     <!-- Top Destinations Section -->
-    <section class="destinations-section">
+    <section class="destinations-section animate-fade-in">
         <div class="container">
             <div class="destinations-wrapper">
                 <!-- Left Content -->
-                <div class="destinations-content">
+                <div class="destinations-content animate-fade-in">
                     <div class="tag-line-small">
                         EXPLORE, LEARN, SUCCEED
                     </div>
@@ -35,31 +35,32 @@
                         <li><i class="fas fa-check-circle"></i> Better career opportunities</li>
                     </ul>
 
-                    <button class="btn-outline">
+                    <button class="btn-outline" (click)="scrollToEnquiry()">
                         APPLY HERE <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
 
                 <!-- Right Image -->
                 <div class="destinations-image-container">
-                    <img src="assets/study_abroad/study.png" alt="Study Abroad" class="dest-image-single">
+                    <img src="assets/study_abroad/study.png" alt="Study Abroad"
+                        class="dest-image-single slide-left-photo scale-hover">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Top Universities in Hungary Section -->
-    <section class="hungary-universities-section">
+    <section class="hungary-universities-section animate-fade-in">
         <div class="container">
-            <div class="section-header text-center">
+            <div class="section-header text-center ">
                 <div class="tag-line-small center">TOP UNIVERSITIES IN HUNGARY</div>
                 <h2 class="section-title text-dark">Explore Top-Ranked Universities</h2>
                 <div class="gold-line-center"></div>
             </div>
 
             <div class="universities-grid">
-                @for (uni of visibleUniversities; track uni.name) {
-                <div class="university-card">
+                @for (uni of visibleUniversities; track uni.name; let idx = $index) {
+                <div class="university-card " [style.--delay-index]="idx">
                     <div class="card-image-wrap">
                         <img [src]="uni.image" [alt]="uni.name" class="uni-image">
                         <div class="wishlist-icon">
@@ -89,9 +90,9 @@
 </section>
 
 <!-- Courses Section -->
-<section class="courses-section">
+<section class="courses-section animate-fade-in">
     <div class="container">
-        <div class="section-header text-center">
+        <div class="section-header text-center animate-fade-down">
             <div class="tag-line-small center">BROWSE PROGRAMS</div>
             <h2 class="section-title text-dark">Popular Programs to Study in Hungary</h2>
             <div class="gold-line-center"></div>
@@ -139,12 +140,13 @@
         <!-- Courses Display -->
         <div class="courses-display">
             @for (level of filteredCourses; track level.level) {
-            <div class="program-level-block">
+            <div class="program-level-block animate-fade-in">
                 <h3 class="level-title">{{ level.level }}</h3>
 
                 <div class="categories-grid">
-                    @for (cat of level.categories; track cat.name) {
-                    <div class="category-card" [class.expanded]="expandedCategories.has(cat.name)">
+                    @for (cat of level.categories; track cat.name; let idx = $index) {
+                    <div class="category-card animate-fade-up" [class.expanded]="expandedCategories.has(cat.name)"
+                        [style.--delay-index]="idx">
                         <h4 class="category-name" (click)="toggleCategory(cat.name)">
                             {{ cat.name }}
                             <i class="fas fa-chevron-down arrow-icon"></i>
@@ -172,16 +174,16 @@
 </section>
 
 <!-- Our Process Section -->
-<section class="process-section">
+<section class="process-section animate-fade-in">
     <div class="container">
-        <div class="section-header text-center">
+        <div class="section-header text-center animate-fade-down">
             <div class="tag-line-small center">OUR PROCESS</div>
             <h2 class="section-title text-dark">How We Help You Study Abroad</h2>
         </div>
 
         <div class="process-timeline">
-            @for (step of processSteps; track step.step) {
-            <div class="process-step">
+            @for (step of processSteps; track step.step; let idx = $index) {
+            <div class="process-step animate-fade-up" [style.--delay-index]="idx">
                 <div class="step-number">{{ step.step }}</div>
                 <div class="step-icon-box">
                     <i [class]="step.icon"></i>
@@ -195,17 +197,17 @@
 </section>
 
 <!-- Student Reviews Section -->
-<section class="reviews-section">
+<section class="reviews-section animate-fade-in">
     <div class="container">
-        <div class="section-header text-center">
+        <div class="section-header text-center animate-fade-down">
             <div class="tag-line-small center">TESTIMONIALS</div>
             <h2 class="section-title text-dark">What Our Students Say</h2>
             <div class="gold-line-center"></div>
         </div>
 
         <div class="reviews-grid">
-            @for (review of studentReviews; track review.name) {
-            <div class="review-card">
+            @for (review of studentReviews; track review.name; let idx = $index) {
+            <div class="review-card blur-reveal" [style.--delay-index]="idx">
                 <div class="review-header">
                     <img [src]="review.image" [alt]="review.name" class="reviewer-image">
                     <div class="reviewer-info">
@@ -227,17 +229,21 @@
 </section>
 
 <!-- Ready to Study Abroad (Enquiry) Section -->
-<section class="enquiry-section" id="enquiry-section">
+<section class="enquiry-section animate-fade-in" id="enquiry-section">
     <div class="container">
         <div class="enquiry-wrapper">
             <!-- Left: Support Info -->
-            <div class="support-info">
+            <div class="support-info animate-fade-in">
                 <div class="tag-line-small">
-                    <i class="fas fa-paper-plane"></i> START YOUR JOURNEY TODAY
+                    <svg class="plane-path-svg" width="90" height="24" viewBox="0 0 90 24" fill="none">
+                        <path d="M5 18 C 25 2, 55 22, 78 8" stroke="#FFD700" stroke-width="1.8" stroke-dasharray="3 3"/>
+                        <path d="M78 8 L86 5 L83 12 Z" fill="#FFD700"/>
+                    </svg>
+                    <span>START YOUR JOURNEY TODAY</span>
                 </div>
-                <h1>Ready to<br>Study <span class="text-gold">Abroad?</span></h1>
+                <h1 class="animate-fade-down">Ready to<br><span class="text-blue">Study Abroad?</span></h1>
                 <p class="support-subtitle">
-                    Fill out the form and our experts will get in touch with you to guide you step-by-step.
+                    Fill out the form and our experts will get in touch with you to <span class="text-blue-link">guide you step-by-step.</span>
                 </p>
 
                 <div class="contact-details">
@@ -246,7 +252,7 @@
                             <i class="fas fa-phone-alt"></i>
                         </div>
                         <div class="text">
-                            <h4>Call Us</h4>
+                            <h4>CALL US</h4>
                             <span>+36 70 600 7991</span>
                         </div>
                     </div>
@@ -256,8 +262,8 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="text">
-                            <h4>Email Us</h4>
-                            <p>Sharoondeva&#64;solversglobal.in</p>
+                            <h4>EMAIL US</h4>
+                            <p>Sharoondeve&#64;solversglobal.in</p>
                         </div>
                     </div>
 
@@ -266,7 +272,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="text">
-                            <h4>Our Office</h4>
+                            <h4>OUR OFFICE</h4>
                             <p>Budapest, Pannónia Street 1, 1065 Hungary</p>
                         </div>
                     </div>
@@ -276,15 +282,15 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="text">
-                            <h4>Office Hours</h4>
-                            <p>Mon – Fri: 09:00 – 18:00 CET</p>
+                            <h4>OFFICE HOURS</h4>
+                            <p>Mon - Fri : 09:00 AM - 06:00 PM</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Right: Application Form -->
-            <div class="application-card">
+            <div class="application-card blur-reveal">
                 <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
                     <div class="form-row">
                         <div class="form-group">
@@ -350,7 +356,7 @@
                     <!-- Privacy & Submit -->
                     <div class="form-footer">
                         <div class="privacy-note">
-                            <i class="fas fa-shield-alt text-gold"></i>
+                            <i class="fas fa-shield-alt"></i>
                             <span>We respect your privacy. Your information will only be used for counseling
                                 purposes.</span>
                         </div>

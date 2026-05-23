@@ -18,7 +18,7 @@
         <div class="container services-layout">
 
             <!-- Left Sidebar -->
-            <aside class="services-sidebar">
+            <aside class="services-sidebar animate-fade-in">
                 <div class="sidebar-menu">
                     <div class="sidebar-header">
                         <h3 class="sidebar-title">OUR SERVICES</h3>
@@ -74,11 +74,17 @@
 
             <!-- Right Service List -->
             <div class="services-list-container">
+                <div class="eyebrow-wrapper">
+                    <span class="eyebrow-line"></span>
+                    <span class="eyebrow-text">About SOLVERS GLOBAL</span>
+                    <span class="eyebrow-line"></span>
+                </div>
 
                 <!-- 01 Job Placement -->
-                <div class="service-list-card" id="job-placement">
+                <div class="service-list-card animate-fade-up blur-reveal" id="job-placement">
                     <div class="card-left-img">
-                        <img src="assets/work/visa_renewal.png" alt="Job Placement">
+                        <img src="assets/work/visa_renewal.png" alt="Job Placement"
+                            class="slide-left-photo scale-hover">
                     </div>
                     <div class="card-right-content">
                         <div class="step-circle">01</div>
@@ -97,9 +103,10 @@
                 </div>
 
                 <!-- 02 Visa Processing -->
-                <div class="service-list-card" id="visa-processing">
+                <div class="service-list-card animate-fade-up blur-reveal" id="visa-processing">
                     <div class="card-left-img">
-                        <img src="assets/home_images/Visit_Visa_Services.png" alt="Visa Processing">
+                        <img src="assets/home_images/Visit_Visa_Services.png" alt="Visa Processing"
+                            class="slide-left-photo scale-hover">
                     </div>
                     <div class="card-right-content">
                         <div class="step-circle">02</div>
@@ -118,9 +125,10 @@
                 </div>
 
                 <!-- 03 Documentation Support -->
-                <div class="service-list-card" id="documentation-support">
+                <div class="service-list-card animate-fade-up blur-reveal" id="documentation-support">
                     <div class="card-left-img">
-                        <img src="assets/home_images/Documentation_Services.png" alt="Documentation Support">
+                        <img src="assets/home_images/Documentation_Services.png" alt="Documentation Support"
+                            class="slide-left-photo scale-hover">
                     </div>
                     <div class="card-right-content">
                         <div class="step-circle">03</div>
@@ -139,9 +147,10 @@
                 </div>
 
                 <!-- 04 Accommodation Assistance -->
-                <div class="service-list-card" id="accommodation-assistance">
+                <div class="service-list-card animate-fade-up blur-reveal" id="accommodation-assistance">
                     <div class="card-left-img">
-                        <img src="assets/work/hungary_accommodation.png" alt="Accommodation Assistance">
+                        <img src="assets/work/hungary_accommodation.png" alt="Accommodation Assistance"
+                            class="slide-left-photo scale-hover">
                     </div>
                     <div class="card-right-content">
                         <div class="step-circle">04</div>
@@ -161,9 +170,10 @@
                 </div>
 
                 <!-- 05 Work & Health Insurance -->
-                <div class="service-list-card" id="work-health-insurance">
+                <div class="service-list-card animate-fade-up blur-reveal" id="work-health-insurance">
                     <div class="card-left-img">
-                        <img src="assets/work/insurance_service.png" alt="Work & Health Insurance">
+                        <img src="assets/work/insurance_service.png" alt="Work & Health Insurance"
+                            class="slide-left-photo scale-hover">
                     </div>
                     <div class="card-right-content">
                         <div class="step-circle">05</div>
@@ -183,9 +193,10 @@
                 </div>
 
                 <!-- 06 Airport & Arrival Guidance -->
-                <div class="service-list-card" id="airport-arrival">
+                <div class="service-list-card animate-fade-up blur-reveal" id="airport-arrival">
                     <div class="card-left-img">
-                        <img src="assets/home_images/Study_Abroad.png" alt="Airport & Arrival Guidance">
+                        <img src="assets/home_images/Study_Abroad.png" alt="Airport & Arrival Guidance"
+                            class="slide-left-photo scale-hover">
                     </div>
                     <div class="card-right-content">
                         <div class="step-circle">06</div>
@@ -205,9 +216,10 @@
                 </div>
 
                 <!-- 07 Transportation Support -->
-                <div class="service-list-card" id="transportation-support">
+                <div class="service-list-card animate-fade-up blur-reveal" id="transportation-support">
                     <div class="card-left-img">
-                        <img src="assets/home_images/Unskilled_Jobs_in_Europe.png" alt="Transportation Support">
+                        <img src="assets/home_images/Unskilled_Jobs_in_Europe.png" alt="Transportation Support"
+                            class="slide-left-photo scale-hover">
                     </div>
                     <div class="card-right-content">
                         <div class="step-circle">07</div>
@@ -323,9 +335,9 @@
     </section>
 
     <!-- Unskilled Job Roles Section -->
-    <section class="roles-section unskilled-section" id="unskilled-jobs">
+    <section class="roles-section unskilled-section animate-fade-in" id="unskilled-jobs">
         <div class="container">
-            <div class="section-header text-center">
+            <div class="section-header text-center animate-fade-down">
                 <span class="job-tag">UNSKILLED OPPORTUNITIES</span>
                 <h2 class="section-title">Entry-Level & Unskilled Opportunities in Europe</h2>
                 <div class="gold-line-center"></div>
@@ -334,8 +346,8 @@
             </div>
 
             <div class="job-grid grid-4-col">
-                @for (job of unskilledJobs; track job.title) {
-                <div class="job-card-premium">
+                @for (job of unskilledJobs; track job.title; let idx = $index) {
+                <div class="job-card-premium animate-fade-up" [style.--delay-index]="idx">
                     <div class="job-image">
                         <img [src]="job.image" [alt]="job.title">
                         <div class="job-badge" *ngIf="job.tag">
@@ -372,9 +384,9 @@
     </section>
 
     <!-- Skilled Job Roles Section -->
-    <section class="roles-section skilled-section" id="skilled-jobs">
+    <section class="roles-section skilled-section animate-fade-in" id="skilled-jobs">
         <div class="container">
-            <div class="section-header text-center">
+            <div class="section-header text-center animate-fade-down">
                 <span class="job-tag">SKILLED OPPORTUNITIES</span>
                 <h2 class="section-title">Skilled Career Opportunities Abroad</h2>
                 <div class="gold-line-center"></div>
@@ -382,8 +394,8 @@
             </div>
 
             <div class="job-grid grid-4-col">
-                @for (job of skilledJobs; track job.title) {
-                <div class="job-card-premium">
+                @for (job of skilledJobs; track job.title; let idx = $index) {
+                <div class="job-card-premium animate-fade-up" [style.--delay-index]="idx">
                     <div class="job-image">
                         <img [src]="job.image" [alt]="job.title">
                         <div class="job-badge" *ngIf="job.tag">
@@ -421,23 +433,28 @@
     </section>
 
     <!-- Student Reviews Section -->
-    <section class="reviews-section">
+    <section class="reviews-section animate-fade-in">
         <div class="container">
-            <div class="section-header text-center">
-                <div class="tag-line-small center">TESTIMONIALS</div>
+            <div class="section-header text-center animate-fade-down">
+                <div class="eyebrow-wrapper">
+                    <span class="eyebrow-line"></span>
+                    <span class="eyebrow-text">TESTIMONIALS</span>
+                    <span class="eyebrow-line"></span>
+                </div>
                 <h2 class="section-title text-dark">What Our Employees Say</h2>
                 <div class="gold-line-center"></div>
             </div>
 
             <div class="reviews-grid">
-                @for (review of workersReviews; track review.name) {
-                <div class="review-card">
+                @for (review of workersReviews; track review.name; let idx = $index) {
+                <div class="review-card blur-reveal" [style.--delay-index]="idx">
                     <div class="review-header">
                         <img [src]="review.image" [alt]="review.name" class="reviewer-image">
                         <div class="reviewer-info">
                             <h4>{{ review.name }}</h4>
                             <span class="review-role"><i class="fas fa-briefcase"></i> {{ review.role }}</span>
-                            <span class="review-location"><i class="fas fa-map-marker-alt"></i> {{ review.location }}</span>
+                            <span class="review-location"><i class="fas fa-map-marker-alt"></i> {{ review.location
+                                }}</span>
                         </div>
                     </div>
                     <div class="review-rating">
@@ -477,10 +494,12 @@
             <div class="support-wrapper">
                 <!-- Left: Support Info -->
                 <div class="support-info">
-                    <div class="tag-line">
-                        <span class="accent-bar"></span>
-                        WE'RE HERE TO HELP
+                    <div class="eyebrow-wrapper">
+                        <span class="eyebrow-line"></span>
+                        <span class="eyebrow-text">WE'RE HERE TO HELP</span>
+                        <span class="eyebrow-line"></span>
                     </div>
+
 
                     <h1 class="support-title">
                         <span class="dark-text">LAND YOUR</span><br>
@@ -588,13 +607,18 @@
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <div class="phone-input-group input-with-icon">
-                                    <div class="country-code">
-                                        <i class="fas fa-phone-alt"></i>
-                                        <span>+31</span>
-                                        <i class="fas fa-chevron-down"></i>
+                                <div class="phone-input-group">
+                                    <div class="country-code-select">
+                                        <span class="flag">{{ selectedFlag }}</span>
+                                        <select formControlName="countryCode" class="code-select">
+                                            <option *ngFor="let c of countryCodes" [value]="c.code">
+                                                {{ c.flag }} {{ c.code }} ({{ c.name }})
+                                            </option>
+                                        </select>
+                                        <i class="fas fa-chevron-down chevron-icon"></i>
                                     </div>
-                                    <input type="tel" formControlName="phone" placeholder="Phone number">
+                                    <input type="tel" formControlName="phone" placeholder="Phone number"
+                                        class="phone-input">
                                 </div>
                             </div>
                         </div>
@@ -616,12 +640,41 @@
                             </div>
                         </div>
 
-                        <div class="form-group full-width">
-                            <label>Education Summary</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                                <input type="text" formControlName="educationSummary"
-                                    placeholder="e.g. Bachelor's Degree in Business">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Country of Residence</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-globe-europe"></i>
+                                    <select formControlName="country">
+                                        <option value="" disabled selected>Select your country</option>
+                                        <option value="India">🇮🇳 India</option>
+                                        <option value="Hungary">🇭🇺 Hungary</option>
+                                        <option value="UAE">🇦🇪 UAE</option>
+                                        <option value="USA">🇺🇸 USA</option>
+                                        <option value="UK">🇬🇧 UK</option>
+                                        <option value="Germany">🇩🇪 Germany</option>
+                                        <option value="France">🇫🇷 France</option>
+                                        <option value="Italy">🇮🇹 Italy</option>
+                                        <option value="Spain">🇪🇸 Spain</option>
+                                        <option value="Netherlands">🇳🇱 Netherlands</option>
+                                        <option value="Poland">🇵🇱 Poland</option>
+                                        <option value="Austria">🇦🇹 Austria</option>
+                                        <option value="Romania">🇷🇴 Romania</option>
+                                        <option value="Sri Lanka">🇱🇰 Sri Lanka</option>
+                                        <option value="Bangladesh">🇧🇩 Bangladesh</option>
+                                        <option value="Nepal">🇳🇵 Nepal</option>
+                                        <option value="Pakistan">🇵🇰 Pakistan</option>
+                                        <option value="Other">🌐 Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Education Summary</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <input type="text" formControlName="educationSummary"
+                                        placeholder="e.g. Bachelor's Degree in Business">
+                                </div>
                             </div>
                         </div>
 

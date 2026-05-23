@@ -602,10 +602,21 @@
     transform: translateY(0);
 }
 
+.float-up {
+  opacity: 0;
+  transform: translateY(100px) scale(0.95);
+  transition: all 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.float-up.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 .slide-left {
     opacity: 0;
-    transform: translateX(-80px); // slightly more distance
-    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); // ✅ smoother easing
+    transform: translateX(-250px);
+    transition: all 2.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .slide-left.show {

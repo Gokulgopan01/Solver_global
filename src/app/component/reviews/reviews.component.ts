@@ -18,7 +18,7 @@ interface Review {
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [CommonModule, FormsModule, BreadcrumbComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './reviews.component.html',
   styleUrl: './reviews.component.scss'
 })

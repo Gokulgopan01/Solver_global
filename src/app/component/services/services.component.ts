@@ -18,9 +18,11 @@ export class ServicesComponent {
 
   enquiryForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    country: new FormControl('', [Validators.required]),
-    message: new FormControl('', [Validators.required])
+    programLevel: new FormControl('', [Validators.required]),
+    message: new FormControl(''),
+    agreeToPolicy: new FormControl(false, [Validators.requiredTrue])
   });
 
   breadcrumbItems: BreadcrumbItem[] = [{ label: 'Services', url: '/services' }];

@@ -7,7 +7,7 @@ import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'app-hire-workers',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BreadcrumbComponent],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './hire-workers.component.html',
   styleUrl: './hire-workers.component.scss'
 })
@@ -24,7 +24,6 @@ export class HireWorkersComponent {
     message: new FormControl('')
   });
 
-  breadcrumbItems: BreadcrumbItem[] = [{ label: 'Hire Workers', url: '/hire-workers' }];
 
   availableTalent = [
     { category: 'Hospitality', roles: ['Kitchen Assistant', 'Room Attendant', 'Hotel Receptionist'] },

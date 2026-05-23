@@ -1,4 +1,4 @@
-import { Component, inject, HostListener } from '@angular/core';
+import { Component, inject, HostListener, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
@@ -30,8 +30,26 @@ export function fileArrayRangeValidator(min: number, max: number) {
   templateUrl: './work.component.html',
   styleUrl: './work.component.scss'
 })
-export class WorkComponent {
+export class WorkComponent implements AfterViewInit {
   private notificationService = inject(NotificationService);
+
+  ngAfterViewInit() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    const elementsToObserve = document.querySelectorAll(
+      '.animate-fade-in, .animate-fade-up, .animate-fade-down, .animate-slide-left, .blur-reveal, .slide-left-photo'
+    );
+    elementsToObserve.forEach(el => observer.observe(el));
+  }
 
   activeSection: string = 'job-placement';
 
@@ -40,8 +58,10 @@ export class WorkComponent {
   // Main Application Form
   applicationForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    countryCode: new FormControl('+91', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    country: new FormControl('', [Validators.required]),
     age: new FormControl('', [Validators.required, Validators.min(18)]),
     educationSummary: new FormControl('', [Validators.required]),
     jobPreference: new FormControl('', [Validators.required]),
@@ -49,6 +69,34 @@ export class WorkComponent {
     photos: new FormControl<any>(null, [fileArrayRangeValidator(1, 3)]),
     agreeToPolicy: new FormControl(false, [Validators.requiredTrue])
   });
+
+  countryCodes = [
+    { code: '+91', flag: '🇮🇳', name: 'India' },
+    { code: '+36', flag: '🇭🇺', name: 'Hungary' },
+    { code: '+971', flag: '🇦🇪', name: 'UAE' },
+    { code: '+1',  flag: '🇺🇸', name: 'USA' },
+    { code: '+44', flag: '🇬🇧', name: 'UK' },
+    { code: '+49', flag: '🇩🇪', name: 'Germany' },
+    { code: '+33', flag: '🇫🇷', name: 'France' },
+    { code: '+39', flag: '🇮🇹', name: 'Italy' },
+    { code: '+34', flag: '🇪🇸', name: 'Spain' },
+    { code: '+31', flag: '🇳🇱', name: 'Netherlands' },
+    { code: '+48', flag: '🇵🇱', name: 'Poland' },
+    { code: '+43', flag: '🇦🇹', name: 'Austria' },
+    { code: '+420', flag: '🇨🇿', name: 'Czech Republic' },
+    { code: '+421', flag: '🇸🇰', name: 'Slovakia' },
+    { code: '+386', flag: '🇸🇮', name: 'Slovenia' },
+    { code: '+40', flag: '🇷🇴', name: 'Romania' },
+    { code: '+94', flag: '🇱🇰', name: 'Sri Lanka' },
+    { code: '+880', flag: '🇧🇩', name: 'Bangladesh' },
+    { code: '+977', flag: '🇳🇵', name: 'Nepal' },
+    { code: '+92', flag: '🇵🇰', name: 'Pakistan' },
+  ];
+
+  get selectedFlag(): string {
+    const code = this.applicationForm.get('countryCode')?.value;
+    return this.countryCodes.find(c => c.code === code)?.flag ?? '🌐';
+  }
 
   uploadedPhotos: File[] = [];
   photoPreviews: string[] = [];

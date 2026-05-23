@@ -34,6 +34,7 @@ body {
     color: var(--color-slate-700);
 }
 
+
 h1,
 h2,
 h3,
@@ -57,7 +58,8 @@ html {
 
 /* Global Form Elements Update */
 select {
-    color-scheme: dark; /* Ensures browser-level dropdown lists use dark theme */
+    color-scheme: dark;
+    /* Ensures browser-level dropdown lists use dark theme */
     cursor: pointer;
 
     option {

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -12,8 +12,26 @@ import { NotificationService } from '../../services/notification.service';
   templateUrl: './study-abroad.component.html',
   styleUrl: './study-abroad.component.scss'
 })
-export class StudyAbroadComponent {
+export class StudyAbroadComponent implements AfterViewInit {
   private notificationService = inject(NotificationService);
+
+  ngAfterViewInit() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    const elementsToObserve = document.querySelectorAll(
+      '.animate-fade-in, .animate-fade-up, .animate-fade-down, .animate-slide-left, .blur-reveal, .slide-left-photo'
+    );
+    elementsToObserve.forEach(el => observer.observe(el));
+  }
 
   enquiryForm = new FormGroup({
     name: new FormControl('', [Validators.required]),

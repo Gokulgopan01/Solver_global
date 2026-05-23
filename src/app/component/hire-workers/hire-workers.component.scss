@@ -21,11 +21,25 @@
     color: var(--text-dark);
 }
 
-.text-dark { color: var(--text-dark); }
-.text-gold { color: var(--text-gold); }
-.text-blue { color: var(--text-blue); }
-.text-dark-blue { color: #1e3a8a; }
-.text-gray { color: var(--text-gray); }
+.text-dark {
+    color: var(--text-dark);
+}
+
+.text-gold {
+    color: var(--text-gold);
+}
+
+.text-blue {
+    color: var(--text-blue);
+}
+
+.text-dark-blue {
+    color: #1e3a8a;
+}
+
+.text-gray {
+    color: var(--text-gray);
+}
 
 .container {
     max-width: 1200px;
@@ -35,7 +49,7 @@
 
 /* Hero Section */
 .employer-hero {
-    padding: 60px 0;
+    padding: 80px 0;
     background-color: var(--bg-light);
     min-height: 50vh;
     display: flex;
@@ -142,7 +156,7 @@
             width: 100%;
             height: auto;
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
     }
 }
@@ -154,7 +168,7 @@
     background: white;
     padding: 15px 25px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     gap: 15px;
@@ -234,7 +248,7 @@
 
         &:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
             border-color: #cbd5e1;
         }
 
@@ -348,9 +362,9 @@
 
 /* Partners Strip */
 .partners-strip {
-    background-color: var(--bg-dark);
+    background-color: white;
     padding: 30px 0;
-    color: white;
+    color: var(--color-slate-900);
 
     .partners-flex {
         display: flex;
@@ -372,7 +386,7 @@
             text-align: center;
             opacity: 0.9;
             line-height: 1.4;
-            
+
             @media (min-width: 992px) {
                 text-align: left;
             }
@@ -418,6 +432,7 @@
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(calc(-50% - 20px));
     }
@@ -514,7 +529,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
             i {
                 font-size: 1.5rem;
@@ -545,7 +560,7 @@
     background: white;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 
     .form-grid {
         display: grid;
@@ -574,7 +589,9 @@
             letter-spacing: 0.5px;
         }
 
-        input, select, textarea {
+        input,
+        select,
+        textarea {
             width: 100%;
             box-sizing: border-box;
             padding: 12px 15px;
