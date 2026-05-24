@@ -19,70 +19,70 @@ export class GalleryComponent implements OnInit, AfterViewInit {
   @ViewChild('thumbsSwiper') thumbsSwiperRef!: ElementRef;
 
   images = [
-    {
-      url: 'assets/gallery/Armstordam.png',
-      title: 'Professional Consultation',
-      heading: 'Budapest, Hungary',
-      subheading: 'EXPERT CONSULTATION',
-      description: 'Explore and wing your career paths with certified global consultants.'
-    },
-    {
-      url: 'assets/gallery/Austria.png',
-      title: 'Study Abroad Guidance',
-      heading: 'Vienna, Austria',
-      subheading: 'GLOBAL ACADEMICS',
-      description: 'Explore world-class academic institutions and secure your study visas.'
-    },
-    {
-      url: 'assets/gallery/budhapest.jpeg',
-      title: 'Work Permit Success',
-      heading: 'Warsaw, Poland',
-      subheading: 'LEGAL WORK PERMITS',
-      description: 'Unlock direct access to employment opportunities across the Schengen zone.'
-    },
-    {
-      url: 'assets/gallery/building.jpeg',
-      title: 'Employment Services',
-      heading: 'Bratislava, Slovakia',
-      subheading: 'WORK FORCE PLACEMENT',
-      description: 'Join stable industrial teams with premium accommodation and flight assistance.'
-    },
-    {
-      url: 'assets/gallery/church.jpeg',
-      title: 'Hospitality Placements',
-      heading: 'Prague, Czechia',
-      subheading: 'LUXURY HOSPITALITY',
-      description: 'Build your career in leading European hotel chains and luxury resorts.'
-    },
-    {
-      url: 'assets/gallery/night life.jpeg',
-      title: 'Culinary Opportunities',
-      heading: 'Debrecen, Hungary',
-      subheading: 'CULINARY OPERATIONS',
-      description: 'Train with top-tier international chefs and manage premium kitchen operations.'
-    },
-    {
-      url: 'assets/gallery/train.jpeg',
-      title: 'Hotel Operations',
-      heading: 'Budapest, Hungary',
-      subheading: 'HOSPITALITY CAREERS',
-      description: 'Gain global hospitality experience in luxury hotels in major European cities.'
-    },
-    {
-      url: 'assets/gallery/snow.jpeg',
-      title: 'Industrial Placements',
-      heading: 'Szada, Hungary',
-      subheading: 'INDUSTRIAL LOGISTICS',
-      description: 'Connect with expanding warehouse and manufacturing sectors in Central Europe.'
-    },
-    {
-      url: 'assets/gallery/evening.jpeg',
-      title: 'Professional Network',
-      heading: 'Munich, Germany',
-      subheading: 'CAREER NETWORKING',
-      description: 'Bridge your qualifications with international market demands and succeed.'
-    }
-  ];
+  {
+    url: 'assets/gallery/Budhapest1.jpeg',
+    title: 'Professional Consultation',
+    heading: 'Budapest, Hungary',
+    subheading: 'GOLDEN CITY LIGHTS',
+    description: 'Explore and wing your career paths with certified global consultants.'
+  },
+  {
+    url: 'assets/gallery/Austria.png',
+    title: 'Study Abroad Guidance',
+    heading: 'Vienna, Austria',
+    subheading: 'CLASSIC EUROPEAN CHARM',
+    description: 'Explore world-class academic institutions and secure your study visas.'
+  },
+  {
+    url: 'assets/gallery/budhapest.jpeg',
+    title: 'Work Permit Success',
+    heading: 'Budapest, Hungary',
+    subheading: 'RIVERSIDE NIGHT VIBES',
+    description: 'Unlock direct access to employment opportunities across the Schengen zone.'
+  },
+  {
+    url: 'assets/gallery/Budhapest2.jpeg',
+    title: 'Employment Services',
+    heading: 'Budapest, Hungary',
+    subheading: 'DANUBE EVENING VIEWS',
+    description: 'Join stable industrial teams with premium accommodation and flight assistance.'
+  },
+  {
+    url: 'assets/gallery/Budhapest5.jpeg',
+    title: 'Hospitality Placements',
+    heading: 'Prague, Czechia',
+    subheading: 'HISTORIC NIGHTLIFE',
+    description: 'Build your career in leading European hotel chains and luxury resorts.'
+  },
+  {
+    url: 'assets/gallery/Budhapest4.jpeg',
+    title: 'Culinary Opportunities',
+    heading: 'Budapest, Hungary',
+    subheading: 'COZY WINTER STREETS',
+    description: 'Train with top-tier international chefs and manage premium kitchen operations.'
+  },
+  {
+    url: 'assets/gallery/snow1.jpeg',
+    title: 'Hotel Operations',
+    heading: 'Budapest, Hungary',
+    subheading: 'SNOWY CITY ESCAPES',
+    description: 'Gain global hospitality experience in luxury hotels in major European cities.'
+  },
+  {
+    url: 'assets/gallery/Czech Republic.png',
+    title: 'Industrial Placements',
+    heading: 'Budapest, Hungary',
+    subheading: 'EUROPEAN URBAN LIFE',
+    description: 'Connect with expanding warehouse and manufacturing sectors in Central Europe.'
+  },
+  {
+    url: 'assets/gallery/church.jpeg',
+    title: 'Professional Network',
+    heading: 'Munich, Germany',
+    subheading: 'ICONIC CITY LANDMARKS',
+    description: 'Bridge your qualifications with international market demands and succeed.'
+  }
+];
 
   activeIndex = 0;
   selectedImageUrl = '';
