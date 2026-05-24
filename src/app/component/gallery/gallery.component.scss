@@ -202,10 +202,6 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     left: 50%;
     transform: translateX(-50%);
   }
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 }
 
 // Navigation Buttons
@@ -248,12 +244,11 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   right: 80px;
   width: 50vw;
   max-width: 850px;
-  height: 185px; // Extra height to accommodate the upward scale on active card
+  height: 160px;
   z-index: 8;
   pointer-events: auto;
   left: auto;
   transform: none;
-  overflow: visible; // Allow active card to scale up without clipping
 
   @media (max-width: 1200px) {
     right: 40px;
@@ -261,25 +256,24 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   @media (max-width: 992px) {
-    bottom: 70px;
+    // On medium and small viewports, center it horizontally at the bottom
+    bottom: 20px;
     right: 50%;
     transform: translateX(50%);
-    width: 88%;
-    height: 110px;
+    width: 90%;
+    height: 120px;
   }
 
   .thumbs-swiper {
     width: 100%;
     height: 100%;
-    padding: 20px 4px 0 4px; // Top padding gives room for scale-up, side padding for border-shadow
-    overflow: visible !important;
-    box-sizing: border-box;
+    padding: 10px 0;
+    overflow: visible;
   }
 
   swiper-slide {
-    height: 140px;
+    height: 140px; // More height for cards as requested
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    overflow: visible;
 
     @media (max-width: 1200px) {
       height: 115px;
@@ -368,54 +362,6 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
   }
 }
-
-@media (max-width: 480px) {
-  .bottom-carousel-container.right-aligned {
-    bottom: 85px;
-    height: 95px;
-    width: 92%;
-  }
-
-  .thumbs-swiper {
-    padding-top: 10px !important;
-  }
-
-  swiper-slide {
-    height: 70px !important;
-  }
-
-  .thumbnail-card {
-    border-radius: 12px;
-  }
-
-  .thumbnail-card.active {
-    transform: translateY(-4px) scale(1.02);
-  }
-
-  .thumb-card-text {
-    font-size: 0.65rem !important;
-  }
-}
-
-@media (max-width: 360px) {
-  .bottom-carousel-container.right-aligned {
-    bottom: 95px;
-    height: 85px;
-  }
-
-  swiper-slide {
-    height: 60px !important;
-  }
-
-  .thumbnail-card.active {
-    transform: translateY(-2px) scale(1.01);
-  }
-
-  .thumb-card-text {
-    font-size: 0.6rem !important;
-  }
-}
-
 
 // Lightbox Overlay
 .lightbox {
