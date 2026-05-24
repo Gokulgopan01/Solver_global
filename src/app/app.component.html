@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="!isGalleryPage"></app-navbar>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer *ngIf="!isGalleryPage"></app-footer>
 <app-snackbar></app-snackbar>

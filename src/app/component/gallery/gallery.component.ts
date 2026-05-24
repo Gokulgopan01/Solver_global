@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { register } from 'swiper/element/bundle';
 
 // Register Swiper custom elements
@@ -8,7 +9,7 @@ register();
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss'

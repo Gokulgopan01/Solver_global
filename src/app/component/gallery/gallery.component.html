@@ -1,4 +1,15 @@
 <div class="gallery-page">
+    <!-- Minimal Gallery Header -->
+    <header class="gallery-header">
+        <div class="gallery-logo" routerLink="/">
+            <img src="assets/logo.png" alt="Solvers Global Logo" class="gallery-logo-img" />
+            <span class="gallery-logo-text">Solvers Global</span>
+        </div>
+        <a routerLink="/" class="gallery-home-btn" aria-label="Go to Home">
+            <i class="fas fa-home"></i>
+        </a>
+    </header>
+
     <!-- Main Swiper for full-screen background display -->
     <swiper-container #mainSwiper class="main-swiper" init="false">
         <swiper-slide *ngFor="let img of images">
