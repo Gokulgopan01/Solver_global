@@ -12,19 +12,39 @@
 
     <!-- Main Swiper for full-screen background display -->
     <swiper-container #mainSwiper class="main-swiper" init="false">
-        <swiper-slide *ngFor="let img of images">
-            <div class="full-slide-bg" (click)="openLightbox(img.url)">
-                <img [src]="img.url" [alt]="img.title" class="full-bg-img" />
+  <swiper-slide *ngFor="let img of images">
 
-                <!-- Text overlay content directly in the slide -->
-                <div class="slide-text-content">
-                    <span class="slide-subheading">{{ img.subheading }}</span>
-                    <h1 class="slide-heading">{{ img.heading }}</h1>
-                    <p class="slide-description">{{ img.description }}</p>
-                </div>
-            </div>
-        </swiper-slide>
-    </swiper-container>
+    <div class="full-slide-bg">
+
+      <!-- IMAGE -->
+      <img *ngIf="!isVideo(img.url)"
+           [src]="img.url"
+           [alt]="img.title"
+           class="full-bg-img"
+           (click)="openLightbox(img.url)" />
+
+      <!-- VIDEO -->
+      <video *ngIf="isVideo(img.url)"
+             class="full-bg-video"
+             autoplay
+             muted
+            [muted]="true"
+             loop
+             playsinline>
+        <source [src]="img.url" type="video/mp4">
+      </video>
+
+      <!-- TEXT -->
+      <div class="slide-text-content">
+        <span class="slide-subheading">{{ img.subheading }}</span>
+        <h1 class="slide-heading">{{ img.heading }}</h1>
+        <p class="slide-description">{{ img.description }}</p>
+      </div>
+
+    </div>
+
+  </swiper-slide>
+</swiper-container>
 
     <!-- Carousel Slide Change Arrows Indicators at the bottom -->
     <div class="nav-arrows-container">

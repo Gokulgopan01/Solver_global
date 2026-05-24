@@ -55,7 +55,7 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     description: 'Build your career in leading European hotel chains and luxury resorts.'
   },
   {
-    url: 'assets/gallery/Budhapest4.jpeg',
+    url: 'assets/gallery/Budhapest6.mp4',
     title: 'Culinary Opportunities',
     heading: 'Budapest, Hungary',
     subheading: 'COZY WINTER STREETS',
@@ -69,7 +69,7 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     description: 'Gain global hospitality experience in luxury hotels in major European cities.'
   },
   {
-    url: 'assets/gallery/Czech Republic.png',
+    url: 'assets/gallery/Budhapest3.mp4',
     title: 'Industrial Placements',
     heading: 'Budapest, Hungary',
     subheading: 'EUROPEAN URBAN LIFE',
@@ -92,6 +92,11 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     this.selectedImageUrl = this.images[0].url;
   }
 
+  isVideo(url: string): boolean {
+  if (!url) return false;
+
+  return url.toLowerCase().match(/\.(mp4|webm|ogg|mov)$/i) != null;
+}
   ngAfterViewInit() {
     const mainEl = this.mainSwiperRef.nativeElement;
     const thumbsEl = this.thumbsSwiperRef.nativeElement;
