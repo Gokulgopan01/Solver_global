@@ -247,6 +247,10 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     left: 50%;
     transform: translateX(-50%);
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 // Navigation Buttons
@@ -313,6 +317,10 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     height: 100%;
     padding: 10px 0;
     overflow: visible;
+  }
+
+  @media (max-width: 768px) {
+    bottom: 145px;
   }
 
   swiper-slide {
