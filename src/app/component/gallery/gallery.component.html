@@ -1,35 +1,51 @@
 <div class="gallery-page">
-    <header class="gallery-header">
-        <div class="container">
-            <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
-            <h1 class="fade-up">Our Showcase</h1>
-            <p class="fade-up delay-1">Explore the journey of Solvers Global through our lens. From student success to professional milestones.</p>
-        </div>
-    </header>
+    <!-- Main Swiper for full-screen background display -->
+    <swiper-container #mainSwiper class="main-swiper" init="false">
+        <swiper-slide *ngFor="let img of images">
+            <div class="full-slide-bg" (click)="openLightbox(img.url)">
+                <img [src]="img.url" [alt]="img.title" class="full-bg-img" />
 
-    <div class="container">
-        <div class="gallery-grid">
-            @for (img of images; track img.url; let i = $index) {
-            <div class="gallery-item fade-in" [style.transition-delay]="(i * 0.1) + 's'" (click)="openLightbox(img.url)">
-                <div class="image-wrapper">
-                    <img [src]="img.url" [alt]="img.title">
-                    <div class="image-overlay">
-                        <span class="image-title">{{ img.title }}</span>
-                        <i class="fas fa-search-plus"></i>
-                    </div>
+                <!-- Text overlay content directly in the slide -->
+                <div class="slide-text-content">
+                    <span class="slide-subheading">{{ img.subheading }}</span>
+                    <h1 class="slide-heading">{{ img.heading }}</h1>
+                    <p class="slide-description">{{ img.description }}</p>
                 </div>
             </div>
-            }
-        </div>
+        </swiper-slide>
+    </swiper-container>
+
+    <!-- Carousel Slide Change Arrows Indicators at the bottom -->
+    <div class="nav-arrows-container">
+        <button class="nav-btn prev-btn" (click)="slidePrev()" aria-label="Previous Slide">
+            <i class="fas fa-chevron-left"></i>
+        </button>   
+        <button class="nav-btn next-btn" (click)="slideNext()" aria-label="Next Slide">
+            <i class="fas fa-chevron-right"></i>
+        </button>
     </div>
 
-    <!-- Lightbox -->
-    @if (selectedImage) {
-    <div class="lightbox" (click)="closeLightbox()">
+    <!-- Right-aligned Vertical Thumbnail Carousel -->
+    <div class="bottom-carousel-container right-aligned">
+        <swiper-container #thumbsSwiper class="thumbs-swiper" init="false">
+            <swiper-slide *ngFor="let img of images; let i = index">
+                <div class="thumbnail-card" [class.active]="i === activeIndex" (click)="setActiveSlide(i)">
+                    <div class="thumb-img-container">
+                        <img [src]="img.url" [alt]="img.title" class="thumb-image" />
+                    </div>
+                    <div class="thumb-card-overlay">
+                        <span class="thumb-card-text">{{ img.title }}</span>
+                    </div>
+                </div>
+            </swiper-slide>
+        </swiper-container>
+    </div>
+
+    <!-- Fullscreen Lightbox Overlay -->
+    <div class="lightbox" *ngIf="selectedImage" (click)="closeLightbox()">
         <div class="lightbox-content" (click)="$event.stopPropagation()">
-            <img [src]="selectedImage" alt="Enlarged View">
+            <img [src]="selectedImage" alt="Enlarged Gallery View" />
             <button class="close-btn" (click)="closeLightbox()">&times;</button>
         </div>
     </div>
-    }
 </div>
