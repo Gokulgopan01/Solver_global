@@ -284,52 +284,6 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
-@media (max-width: 480px) {
-  .bottom-carousel-container.right-aligned {
-    bottom: 85px;
-    height: 95px;
-    width: 92%;
-  }
-
-  .thumbs-swiper {
-    padding-top: 10px !important;
-  }
-
-  swiper-slide {
-    height: 70px !important;
-  }
-
-  .thumbnail-card {
-    border-radius: 12px;
-  }
-
-  .thumbnail-card.active {
-    transform: translateY(-4px) scale(1.02);
-  }
-
-  .thumb-card-text {
-    font-size: 0.65rem !important;
-  }
-}
-
-@media (max-width: 360px) {
-  .bottom-carousel-container.right-aligned {
-    bottom: 95px;
-    height: 85px;
-  }
-
-  swiper-slide {
-    height: 60px !important;
-  }
-
-  .thumbnail-card.active {
-    transform: translateY(-2px) scale(1.01);
-  }
-
-  .thumb-card-text {
-    font-size: 0.6rem !important;
-  }
-}
 
 .thumbnail-card {
   position: relative;
