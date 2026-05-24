@@ -370,6 +370,47 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
+@media (max-width: 480px) {
+  .thumbnail-card {
+    height: 90%;
+    transform: scale(0.9);
+  }
+
+  .thumbnail-card.active {
+    transform: translateY(-4px) scale(0.95);
+  }
+}
+
+@media (max-width: 400px) {
+  .thumbnail-card {
+    height: 85%;
+    transform: scale(0.85);
+  }
+
+  .thumbnail-card.active {
+    transform: translateY(-3px) scale(0.9);
+  }
+
+  .thumb-card-text {
+    font-size: 0.7rem !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .thumbnail-card {
+    height: 80%;
+    transform: scale(0.8);
+  }
+
+  .thumbnail-card.active {
+    transform: translateY(-2px) scale(0.85);
+  }
+
+  .thumb-card-text {
+    font-size: 0.65rem !important;
+  }
+}
+
 // Lightbox Overlay
 .lightbox {
   position: fixed;
