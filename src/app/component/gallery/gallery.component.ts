@@ -111,14 +111,20 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     // Configure Main Swiper with autoplay
     Object.assign(mainEl, {
       effect: 'fade',
+
       fadeEffect: {
         crossFade: true
       },
+
+      speed: 1800,
+
       loop: true,
+
       autoplay: {
         delay: 5000,
         disableOnInteraction: false
       },
+
       thumbs: {
         swiper: thumbsEl,
       },
