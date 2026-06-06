@@ -291,6 +291,39 @@
     .spacer-30 {
         height: 30px;
     }
+
+    @media (max-width: 480px) {
+        padding: 24px 16px;
+        text-align: center;
+
+        .section-title {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .content-block {
+            p {
+                font-size: 0.95rem;
+                text-align: center;
+                line-height: 1.6;
+            }
+        }
+
+        .apply-action-container {
+            justify-content: center;
+            
+            .btn-apply-section {
+                padding: 10px 24px;
+                font-size: 0.9rem;
+            }
+        }
+    }
 }
 
 // Info Grids & Cards
@@ -923,5 +956,104 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .info-card {
+        padding: 20px 15px;
+        
+        h4 {
+            text-align: center;
+        }
+        
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            li {
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                align-items: center;
+                gap: 4px;
+                
+                i {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+    
+    .destination-item {
+        .dest-content {
+            padding: 15px;
+            text-align: center;
+            
+            h4, h5 {
+                text-align: center;
+            }
+            
+            .inline-list {
+                justify-content: center;
+            }
+        }
+    }
+    
+    .highlight-box {
+        padding: 20px 15px;
+        text-align: center;
+        
+        h4 {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        
+        .inline-list-boxed {
+            justify-content: center;
+            gap: 8px;
+            
+            li {
+                width: 100%;
+                text-align: center;
+                padding: 8px 12px;
+                font-size: 0.85rem;
+                display: block;
+                box-sizing: border-box;
+            }
+        }
+    }
+    
+    .sub-service-list {
+        .sub-service-item {
+            padding-left: 0;
+            border-left: none;
+            border-top: 2px solid #cbd5e1;
+            padding-top: 15px;
+            text-align: center;
+            
+            h4 {
+                text-align: center;
+            }
+            
+            p {
+                text-align: center;
+            }
+        }
+    }
+    
+    .closing-statement {
+        padding: 30px 15px 15px;
+        
+        h4 {
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        p {
+            font-size: 0.95rem;
+            text-align: center;
+        }
     }
 }

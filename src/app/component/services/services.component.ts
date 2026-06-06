@@ -8,7 +8,7 @@ import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, BreadcrumbComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss'
 })
@@ -89,7 +89,7 @@ export class ServicesComponent {
         }
       }
     }
-    
+
     if (this.activeSection !== currentSection) {
       this.activeSection = currentSection;
     }

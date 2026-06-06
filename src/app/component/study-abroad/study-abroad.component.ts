@@ -260,34 +260,112 @@ export class StudyAbroadComponent implements AfterViewInit {
     this.selectedFilter = filter;
   }
 
-  get filteredCourses() {
-    let data = this.coursesData;
+  enrichCourse(courseName: string, categoryName: string, level: string) {
+    let cleanCategory = 'GENERAL';
+    let icon = 'fas fa-graduation-cap';
+    let desc = 'Unlock world-class education and build your career path.';
+    let duration = '3 Years';
+    let mode = 'FULL TIME';
 
-    // Apply level filter
-    if (this.selectedFilter === "Bachelor's") {
-      data = data.filter(level => level.level === 'Bachelor programs');
-    } else if (this.selectedFilter === "Master's") {
-      data = data.filter(level => level.level === 'Master programs');
-    } else if (this.selectedFilter !== 'All Programs') {
-      // Apply category filter (e.g., Engineering, Business)
-      data = data.map(level => ({
-        ...level,
-        categories: level.categories.filter(cat => cat.name.toLowerCase().includes(this.selectedFilter.toLowerCase()))
-      })).filter(level => level.categories.length > 0);
+    const lowerCat = categoryName.toLowerCase();
+    const lowerName = courseName.toLowerCase();
+
+    if (lowerCat.includes('business')) {
+      cleanCategory = 'BUSINESS';
+      icon = 'fas fa-chart-line';
+      desc = 'A comprehensive program focusing on modern corporate strategies, finance, and management.';
+    } else if (lowerCat.includes('engineering') || lowerCat.includes('it') || lowerCat.includes('tech')) {
+      cleanCategory = 'TECH';
+      icon = 'fas fa-laptop-code';
+      if (lowerName.includes('computer')) {
+        desc = 'Master software development, AI, and systems architecture in a world-class lab.';
+        icon = 'fas fa-code';
+      } else if (lowerName.includes('mechanical')) {
+        desc = 'Study thermodynamics, robotics, and manufacturing systems with hands-on practice.';
+        icon = 'fas fa-cog';
+      } else if (lowerName.includes('civil')) {
+        desc = 'Learn structural design, infrastructure planning, and environmental systems engineering.';
+        icon = 'fas fa-building';
+      } else {
+        desc = 'Hands-on training in technical concepts, industrial applications, and engineering design.';
+      }
+    } else if (lowerCat.includes('agriculture')) {
+      cleanCategory = 'AGRICULTURE';
+      icon = 'fas fa-leaf';
+      desc = 'Focusing on sustainable farming technologies, modern agronomy, and global food security.';
+    } else if (lowerCat.includes('health') || lowerCat.includes('medical') || lowerCat.includes('pharmaceutical')) {
+      cleanCategory = 'HEALTH';
+      icon = 'fas fa-heartbeat';
+      desc = 'Prepare for public health systems, clinical practices, and professional nursing careers.';
+    } else if (lowerCat.includes('humanities') || lowerCat.includes('education')) {
+      cleanCategory = 'HUMANITIES';
+      icon = 'fas fa-book';
+      desc = 'Explore literature, communication theories, languages, and human psychology.';
+    } else if (lowerCat.includes('music')) {
+      cleanCategory = 'MUSIC';
+      icon = 'fas fa-music';
+      desc = 'Develop advanced performance skills, musicology research, and artistic creation.';
+    } else if (lowerCat.includes('science')) {
+      cleanCategory = 'SCIENCE';
+      icon = 'fas fa-flask';
+      desc = 'Investigate fundamental principles of biology, chemistry, physics, and mathematics.';
+    } else if (lowerCat.includes('law')) {
+      cleanCategory = 'LAW';
+      icon = 'fas fa-gavel';
+      desc = 'Analyze legal frameworks, corporate governance, and international business laws.';
+    }
+
+    if (level.toLowerCase().includes('master')) {
+      duration = '2 Years';
+    } else {
+      if (lowerName.includes('engineering')) {
+        duration = '3.5 Years';
+      }
+    }
+
+    return {
+      name: courseName.trim(),
+      category: categoryName.replace(' Programs', '').replace(' Program', ''),
+      cleanCategory,
+      description: desc,
+      duration,
+      mode,
+      icon
+    };
+  }
+
+  get bachelorCourses() {
+    return this.getEnrichedCoursesByLevel('Bachelor programs');
+  }
+
+  get masterCourses() {
+    return this.getEnrichedCoursesByLevel('Master programs');
+  }
+
+  private getEnrichedCoursesByLevel(levelName: string) {
+    const levelData = this.coursesData.find(l => l.level === levelName);
+    if (!levelData) return [];
+
+    let courses: any[] = [];
+    levelData.categories.forEach(cat => {
+      cat.courses.forEach(cName => {
+        courses.push(this.enrichCourse(cName, cat.name, levelName));
+      });
+    });
+
+    // Apply active category filter (Engineering, Business, Health)
+    if (this.selectedFilter !== 'All Programs' && this.selectedFilter !== "Bachelor's" && this.selectedFilter !== "Master's") {
+      const activeFilterLower = this.selectedFilter.toLowerCase();
+      courses = courses.filter(c => c.category.toLowerCase().includes(activeFilterLower));
     }
 
     // Apply search query
-    if (!this.searchQuery) {
-      return data;
+    if (this.searchQuery) {
+      const query = this.searchQuery.toLowerCase();
+      courses = courses.filter(c => c.name.toLowerCase().includes(query) || c.category.toLowerCase().includes(query));
     }
-    const query = this.searchQuery.toLowerCase();
-    return data.map(level => ({
-      ...level,
-      categories: level.categories.map(cat => ({
-        ...cat,
-        courses: cat.courses.filter(course => course.toLowerCase().includes(query))
-      })).filter(cat => cat.courses.length > 0)
-    })).filter(level => level.categories.length > 0);
+
+    return courses;
   }
 
   get allCoursesList(): string[] {
@@ -311,14 +389,23 @@ export class StudyAbroadComponent implements AfterViewInit {
     this.searchQuery = '';
   }
 
-  expandedCategories: Set<string> = new Set();
-
-  toggleCategory(name: string) {
-    if (this.expandedCategories.has(name)) {
-      this.expandedCategories.delete(name);
-    } else {
-      this.expandedCategories.add(name);
+  scrollCarousel(carouselId: string, direction: 'left' | 'right') {
+    const container = document.getElementById(carouselId + '-carousel');
+    if (container) {
+      const scrollAmount = container.clientWidth * 0.8;
+      container.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
     }
+  }
+
+  applyForCourse(courseName: string) {
+    this.enquiryForm.patchValue({
+      interestedCourse: courseName,
+      programLevel: courseName.includes('BSc') || courseName.includes('BA') ? 'Bachelors' : 'Masters'
+    });
+    this.scrollToEnquiry();
   }
 
   get suggestions(): string[] {
