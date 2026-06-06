@@ -268,7 +268,7 @@
 
 // Services Layout Section
 .services-layout-section {
-    padding: 60px 0;
+    padding: 80px 0;
     background: #f8fafc;
     position: relative;
     z-index: 10;
@@ -1882,9 +1882,11 @@
     // Roles sections centering
     .roles-section {
         padding: 50px 0;
+
         .section-title {
             font-size: 1.5rem;
         }
+
         .job-grid.grid-4-col {
             grid-template-columns: 1fr;
         }

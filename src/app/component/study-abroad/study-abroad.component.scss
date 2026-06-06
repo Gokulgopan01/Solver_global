@@ -604,10 +604,12 @@
         width: 100%;
         overflow-x: auto;
         scroll-behavior: smooth;
-        scrollbar-width: none; /* Firefox */
-        
+        scrollbar-width: none;
+        /* Firefox */
+
         &::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Edge */
+            display: none;
+            /* Chrome, Safari, Edge */
         }
     }
 
@@ -655,7 +657,7 @@
 
             .course-icon-wrap {
                 font-size: 0.95rem;
-                
+
                 i {
                     color: #94a3b8;
                 }
@@ -759,6 +761,37 @@
 
     /* Mobile breakpoint (2 cards in a row for 300 to 480 precise) */
     @media (max-width: 480px) {
+        .carousel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .carousel-title-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: nowrap;
+        }
+
+        .carousel-section-title {
+            font-size: 1rem !important;
+            line-height: 1.1;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .count-badge {
+            flex-shrink: 0;
+            font-size: 0.65rem;
+            padding: 4px 8px;
+        }
+
+        .carousel-controls {
+            flex-shrink: 0;
+        }
+
         .course-card {
             flex: 0 0 calc(50% - 10px) !important;
             min-width: calc(50% - 10px) !important;
@@ -793,6 +826,8 @@
                 }
             }
 
+
+
             .card-footer {
                 padding-top: 8px;
                 margin-top: 8px;
@@ -815,6 +850,9 @@
         }
     }
 }
+
+
+
 
 /* =========================================
    4. Our Process Timeline Section

@@ -17,10 +17,15 @@ export class AppComponent {
   isGalleryPage = false;
 
   constructor(private router: Router) {
+    // Prevent browser from restoring scroll position on back/forward nav
+    if (typeof history !== 'undefined') {
+      history.scrollRestoration = 'manual';
+    }
+
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       const url = event.urlAfterRedirects || event.url || '';
       this.isGalleryPage = url.split('?')[0] === '/success-gallery';
     });
