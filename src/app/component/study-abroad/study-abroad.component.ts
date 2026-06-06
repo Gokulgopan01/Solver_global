@@ -115,9 +115,9 @@ export class StudyAbroadComponent implements AfterViewInit {
             'Engineering Management, BSc',
             'Environmental Engineering, BSc',
             'Mechanical Engineering, BSc',
-            '  a., Automotive Production Process Control Specialization',
-            '  b., Building Services Engineering Specializaton',
-            '  c., Operation and Maintenance Specialization',
+            'Automotive Production Process Control Specialization',
+            'Building Services Engineering Specializaton',
+            'Operation and Maintenance Specialization',
             'Mechatronics Engineering, BSc',
             'Vehicle Engineering, BSc'
           ]
