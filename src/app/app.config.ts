@@ -8,7 +8,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,
-      withInMemoryScrolling({ scrollPositionRestoration: 'disabled' })
+      withInMemoryScrolling({ scrollPositionRestoration: 'top' })
     )
   ]
 };

@@ -197,7 +197,7 @@
 
             @media (max-width: 768px) {
                 top: auto !important;
-                bottom: 80px !important;
+                bottom: 60px !important;
                 left: 50% !important;
                 transform: translateX(-50%) !important;
                 text-align: center !important;
@@ -206,13 +206,12 @@
 
                 .slide-title {
                     font-size: 1.8rem !important;
+                    margin-bottom: 1.2rem !important;
                 }
 
+                // Hide description on mobile — only show image, title, titleHighlight & button
                 .slide-description {
-                    font-size: 0.95rem !important;
-                    margin-bottom: 1.5rem !important;
-                    margin-left: auto !important;
-                    margin-right: auto !important;
+                    display: none !important;
                 }
             }
         }

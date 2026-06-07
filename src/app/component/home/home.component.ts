@@ -229,7 +229,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
     }, {
       threshold: 0.15,
-       rootMargin: "0px 0px -50px 0px"
+      rootMargin: "0px 0px -50px 0px"
     });
 
     // Existing elements
