@@ -7,11 +7,9 @@
                 <img [src]="slide.imagePath" [alt]="slide.title">
             </div>
             <div class="slide-overlay"></div>
-            <div class="slide-content ">
-                <!-- <div class="slide-eyebrow fade-in">
-                    <span class="eyebrow-icon"><i class="fas fa-sparkles"></i></span>
-                    <span class="eyebrow-text">{{ slide.eyebrow }}</span>
-                </div> -->
+
+            <!-- Desktop Content -->
+            <div class="slide-content desktop-content">
                 <h2 class="slide-title fade-in">{{ slide.title }} <span class="highlight">{{ slide.titleHighlight
                         }}</span></h2>
                 <p class="slide-description fade-up">{{ slide.description }}</p>
@@ -19,6 +17,23 @@
                     {{ slide.buttonText }}
                     <i class="fas fa-arrow-right"></i>
                 </button>
+            </div>
+
+            <!-- Mobile Content -->
+            <div class="slide-content mobile-content">
+                <h2 class="slide-title fade-in">{{ slide.title }}<br><span class="highlight">{{ slide.titleHighlight
+                        }}</span></h2>
+                <div class="mobile-gold-line"></div>
+                <button class="mobile-cta-btn fade-in" (click)="navigateTo(slide.route)">
+                    <span class="mobile-cta-circle"><i class="fas fa-arrow-right"></i></span>
+                    <span class="mobile-cta-text">{{ slide.buttonText }}</span>
+                </button>
+            </div>
+
+            <!-- Mobile Scroll Indicator -->
+            <div class="mobile-scroll-indicator">
+                <span class="scroll-line"></span>
+                <span class="scroll-label">SCROLL TO DISCOVER</span>
             </div>
         </div>
         }
