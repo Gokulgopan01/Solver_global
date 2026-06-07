@@ -74,7 +74,7 @@ export class WorkComponent implements AfterViewInit {
     { code: '+91', flag: '🇮🇳', name: 'India' },
     { code: '+36', flag: '🇭🇺', name: 'Hungary' },
     { code: '+971', flag: '🇦🇪', name: 'UAE' },
-    { code: '+1',  flag: '🇺🇸', name: 'USA' },
+    { code: '+1', flag: '🇺🇸', name: 'USA' },
     { code: '+44', flag: '🇬🇧', name: 'UK' },
     { code: '+49', flag: '🇩🇪', name: 'Germany' },
     { code: '+33', flag: '🇫🇷', name: 'France' },
@@ -378,17 +378,10 @@ export class WorkComponent implements AfterViewInit {
   }
 
   scrollToSection(sectionId: string) {
-    this.activeSection = sectionId;
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 120; // Offset for fixed header if any
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      this.activeSection = sectionId;
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
@@ -407,16 +400,22 @@ export class WorkComponent implements AfterViewInit {
     ];
 
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    const offset = 150; // Offset for active state triggering
+    const offset = 180; // Offset for active state triggering (triggers slightly before section reaches top)
+    let newActiveSection = this.activeSection;
 
     for (let i = sections.length - 1; i >= 0; i--) {
       const currentSection = document.getElementById(sections[i]);
       if (currentSection) {
-        if (currentSection.offsetTop - offset <= scrollPosition) {
-          this.activeSection = sections[i];
+        const sectionTop = currentSection.getBoundingClientRect().top + window.scrollY;
+        if (sectionTop - offset <= scrollPosition) {
+          newActiveSection = sections[i];
           break;
         }
       }
+    }
+
+    if (this.activeSection !== newActiveSection) {
+      this.activeSection = newActiveSection;
     }
   }
 

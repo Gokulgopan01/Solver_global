@@ -1,3 +1,19 @@
+//Animations
+@keyframes arrowBlink {
+
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: translateX(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(3px);
+    }
+}
+
+
 .navbar {
     width: 100%;
     position: fixed;
@@ -75,17 +91,33 @@
         letter-spacing: 0.5px;
         padding: 1.5rem 0;
         transition: color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
 
         &:hover,
         &.active {
-            color: var(--color-gold-600);
+            color: var(--color-gold-500);
         }
+
+        .dropdown-arrow {
+            font-size: 0.65rem;
+            transition: transform 0.3s ease;
+            opacity: 0.7;
+        }
+    }
+
+    .has-dropdown:hover .nav-link .dropdown-arrow {
+        transform: rotate(180deg);
+        opacity: 1;
+        color: var(--color-gold-500);
     }
 
     .has-dropdown:hover .dropdown-menu {
         opacity: 1;
         visibility: visible;
-        transform: translateY(0);
+        transform: scaleY(1);
+        /* ← replaces translateY(0) */
     }
 
     .dropdown-menu {
@@ -95,17 +127,22 @@
         width: 240px;
         background: var(--color-slate-900);
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        border-radius: 0;
         padding: 1rem 0;
         list-style: none;
         opacity: 0;
         visibility: hidden;
-        transform: translateY(15px);
-        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+
+        /* KEY CHANGE — scale from top */
+        transform: scaleY(0);
+        transform-origin: top center;
+        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+            opacity 0.3s ease,
+            visibility 0.3s ease;
 
         li a {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; // pushes arrow to far right
             padding: 0.8rem 1.5rem;
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
@@ -118,7 +155,17 @@
                 color: var(--color-gold-500);
                 padding-left: 1.8rem;
             }
+
+            .item-arrow {
+                font-size: 0.65rem;
+                color: var(--color-gold-500);
+                flex-shrink: 0;
+                margin-left: auto;
+                animation: arrowBlink 1.4s ease-in-out infinite;
+            }
         }
+
+
 
         .has-nested-dropdown {
             position: relative;
@@ -159,8 +206,11 @@
             list-style: none;
             opacity: 0;
             visibility: hidden;
-            transform: translateX(15px);
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity 0.25s ease,
+                visibility 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.05);
 
             li a {
@@ -170,6 +220,12 @@
                 &:hover {
                     padding-left: 1.8rem;
                 }
+            }
+
+            .has-nested-dropdown:hover .nested-dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: scaleX(1);
             }
         }
     }
@@ -244,18 +300,42 @@
     width: 55vw;
     max-width: 320px;
     min-width: 260px;
-    // max-width: 380px;
     height: 100vh;
     background: var(--color-slate-900);
     z-index: 1000;
-    transform: translateX(100%);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* KEY CHANGE */
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.4s ease;
+    opacity: 0;
+
     padding: 2.5rem;
     box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
     color: white;
 
     &.active {
+        transform: scaleX(1);
+        /* ← replaces translateX(0) */
+        opacity: 1;
+    }
+
+    .mobile-menu .mobile-header,
+    .mobile-menu .mobile-links,
+    .mobile-menu .mobile-cta {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.3s ease 0.3s,
+            /* 0.3s delay = after panel opens */
+            transform 0.3s ease 0.3s;
+    }
+
+    .mobile-menu.active .mobile-header,
+    .mobile-menu.active .mobile-links,
+    .mobile-menu.active .mobile-cta {
+        opacity: 1;
         transform: translateX(0);
     }
 
@@ -332,19 +412,32 @@
     }
 
     .mobile-submenu {
-        height: 0;
+        max-height: 0;
         overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 0;
         display: flex;
         flex-direction: column;
         background: rgba(255, 255, 255, 0.03);
-        border-radius: 0;
+
+        /* CLOSING transition — ease-in, faster */
+        transition: max-height 0.35s ease-in,
+            opacity 0.25s ease-in,
+            margin 0.3s ease,
+            padding 0.3s ease;
 
         &.active {
-            height: auto;
+            max-height: 350px;
+            /* tighter ceiling — reduces close lag */
+            opacity: 1;
             margin-top: 0.5rem;
             margin-bottom: 1rem;
             padding: 0.5rem 0;
+
+            /* OPENING transition — ease-out, smooth */
+            transition: max-height 0.45s cubic-bezier(0.0, 0.0, 0.2, 1),
+                opacity 0.35s ease-out 0.05s,
+                margin 0.3s ease,
+                padding 0.3s ease;
         }
 
         a {
@@ -400,16 +493,25 @@
             }
 
             .mobile-sub-submenu {
-                height: 0;
+                max-height: 0;
                 overflow: hidden;
-                transition: all 0.3s ease;
+                opacity: 0;
                 display: flex;
                 flex-direction: column;
                 background: rgba(255, 255, 255, 0.01);
 
+                /* CLOSING */
+                transition: max-height 0.3s ease-in,
+                    opacity 0.2s ease-in;
+
                 &.active {
-                    height: auto;
+                    max-height: 250px;
+                    opacity: 1;
                     padding: 0.2rem 0;
+
+                    /* OPENING */
+                    transition: max-height 0.4s cubic-bezier(0.0, 0.0, 0.2, 1),
+                        opacity 0.3s ease-out 0.05s;
                 }
 
                 a {

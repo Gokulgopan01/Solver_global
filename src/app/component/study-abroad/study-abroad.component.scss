@@ -22,11 +22,16 @@
 
     background: url('/assets/study_abroad/abroad_study.png') no-repeat center center;
     background-size: cover;
-    background-position: center;
-
+    background-position: center -600%;
+    border-radius: 12px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     overflow: hidden;
+
+    @media (max-width: 480px) {
+        background-position: center -10000%;
+    }
 
     &::before {
         content: '';

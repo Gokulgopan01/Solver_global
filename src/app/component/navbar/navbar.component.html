@@ -10,50 +10,74 @@
         <!-- Desktop Links -->
         <ul class="nav-links">
             <li class="has-dropdown">
-                <a routerLink="/work-abroad" routerLinkActive="active" class="nav-link">Work</a>
+                <a routerLink="/work-abroad" routerLinkActive="active" class="nav-link">
+                    Work <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </a>
                 <ul class="dropdown-menu">
-                    <li><a routerLink="/work-abroad">Work Permit Visa</a></li>
-                    <li><a routerLink="/work-abroad">Job Placement</a></li>
-                    <li><a routerLink="/work-abroad">Accommodation</a></li>
-                    <li><a routerLink="/work-abroad">Other Services</a></li>
+                    <li><a routerLink="/work-abroad">Work Permit Visa <i
+                                class="fas fa-chevron-right item-arrow"></i></a>
+                    </li>
+                    <li><a routerLink="/work-abroad">Job Placement <i class="fas fa-chevron-right item-arrow"></i></a>
+                    </li>
+                    <li><a routerLink="/work-abroad">Accommodation <i class="fas fa-chevron-right item-arrow"></i></a>
+                    </li>
+                    <li><a routerLink="/work-abroad">Other Services <i class="fas fa-chevron-right item-arrow"></i></a>
+                    </li>
                 </ul>
             </li>
             <li class="has-dropdown">
-                <a routerLink="/study-abroad-programs" routerLinkActive="active" class="nav-link">Study Abroad</a>
+                <a routerLink="/study-abroad-programs" routerLinkActive="active" class="nav-link">
+                    Study Abroad <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </a>
                 <ul class="dropdown-menu">
-                    <li><a routerLink="/study-abroad-programs">Student Visa</a></li>
-                    <li><a routerLink="/study-abroad-programs">University admission</a></li>
-                    <li><a routerLink="/study-abroad-programs">View Courses</a></li>
+                    <li><a routerLink="/study-abroad-programs">Student
+                            Visa <i class="fas fa-chevron-right item-arrow"></i></a></li>
+                    <li><a routerLink="/study-abroad-programs">University
+                            Admission <i class="fas fa-chevron-right item-arrow"></i></a></li>
+                    <li><a routerLink="/study-abroad-programs">View
+                            Courses <i class="fas fa-chevron-right item-arrow"></i></a></li>
                 </ul>
             </li>
             <li class="has-dropdown">
-                <a routerLink="/services" routerLinkActive="active" class="nav-link">Services</a>
+                <a routerLink="/services" routerLinkActive="active" class="nav-link">
+                    Services <i class="fas fa-chevron-down dropdown-arrow"></i>
+                </a>
                 <ul class="dropdown-menu">
                     <li class="has-nested-dropdown">
-                        <a routerLink="/services" (click)="closeMenu()">Visa <i
-                                class="fas fa-chevron-right nested-arrow"></i></a>
+                        <a routerLink="/services" (click)="closeMenu()">
+                            Visa <i class="fas fa-chevron-right nested-arrow"></i>
+                        </a>
                         <ul class="nested-dropdown-menu">
-                            <li><a routerLink="/services" (click)="closeMenu()">Visit Visa</a></li>
-                            <li><a routerLink="/services" (click)="closeMenu()">Tourist Visa</a></li>
-                            <li><a routerLink="/services" (click)="closeMenu()">Visa Renewal</a></li>
+                            <li><a routerLink="/services" (click)="closeMenu()">Visit Visa <i
+                                        class="fas fa-chevron-right item-arrow"></i></a></li>
+                            <li><a routerLink="/services" (click)="closeMenu()">Tourist Visa <i
+                                        class="fas fa-chevron-right item-arrow"></i></a></li>
+                            <li><a routerLink="/services" (click)="closeMenu()">Visa Renewal <i
+                                        class="fas fa-chevron-right item-arrow"></i></a></li>
                         </ul>
                     </li>
-                    <li><a routerLink="/services" (click)="closeMenu()">Part Time Jobs</a></li>
-                    <li><a routerLink="/services" (click)="closeMenu()">Accommodation</a></li>
+                    <li><a routerLink="/services" (click)="closeMenu()">Part Time Jobs <i
+                                class="fas fa-chevron-right item-arrow"></i></a></li>
+                    <li><a routerLink="/services" (click)="closeMenu()">Accommodation <i
+                                class="fas fa-chevron-right item-arrow"></i></a></li>
                     <li class="has-nested-dropdown">
-                        <a routerLink="/services" (click)="closeMenu()">Legal Documents <i
-                                class="fas fa-chevron-right nested-arrow"></i></a>
+                        <a routerLink="/services" (click)="closeMenu()">
+                            Legal Documents <i class="fas fa-chevron-right nested-arrow"></i>
+                        </a>
                         <ul class="nested-dropdown-menu">
-                            <li><a routerLink="/services" (click)="closeMenu()">Insurance</a></li>
-                            <li><a routerLink="/services" (click)="closeMenu()">Tax Card Registration</a></li>
+                            <li><a routerLink="/services" (click)="closeMenu()">Insurance <i
+                                        class="fas fa-chevron-right item-arrow"></i></a></li>
+                            <li><a routerLink="/services" (click)="closeMenu()">Tax Card Registration <i
+                                        class="fas fa-chevron-right item-arrow"></i></a></li>
                         </ul>
                     </li>
-                    <li><a routerLink="/services" (click)="closeMenu()">Family Sponsorship</a></li>
+                    <li><a routerLink="/services" (click)="closeMenu()">Family Sponsorship <i
+                                class="fas fa-chevron-right item-arrow"></i></a></li>
                 </ul>
             </li>
             <li><a routerLink="/client-reviews" routerLinkActive="active" class="nav-link">Reviews</a></li>
             <li><a routerLink="/international-recruitment" class="nav-link">Employer</a></li>
-            <li><a routerLink="/success-gallery" class="btn-cta">GALLERY</a></li>
+            <li><a routerLink="/success-gallery" class="nav-link">GALLERY</a></li>
         </ul>
 
         <!-- Mobile Menu Button -->
