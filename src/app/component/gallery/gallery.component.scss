@@ -92,6 +92,13 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
+
+.full-bg-img,
+.full-bg-video {
+  will-change: transform, filter;
+  transition: filter 0.8s ease;
+}
+
 // Main background swiper covering the entire viewport
 .main-swiper {
   position: absolute;
@@ -103,6 +110,24 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   swiper-slide {
     overflow: hidden;
     transition: opacity 1s ease;
+
+    &.swiper-slide-next {
+      filter: blur(2px);
+    }
+
+    // Slide leaving to left — push back with scale
+    &.swiper-slide-prev {
+      filter: blur(1px);
+    }
+
+    &.swiper-slide-active {
+      filter: blur(0px);
+      transition: filter 0.6s ease;
+
+      .full-bg-img {
+        animation: cinematicZoom 7s ease forwards;
+      }
+    }
   }
 
   swiper-slide-active {
@@ -126,15 +151,16 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 
 @keyframes cinematicZoom {
   0% {
-    transform: scale(1.08);
-    filter: brightness(0.7);
+    transform: scale(1.12) translateX(-15px);
+    filter: brightness(0.6);
   }
 
   100% {
-    transform: scale(1);
+    transform: scale(1.0) translateX(0px);
     filter: brightness(1);
   }
 }
+
 
 @keyframes fadeUp {
   from {
@@ -251,6 +277,7 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 
   will-change: transform;
 }
+
 // Carousel Navigation Arrows Container (bottom-left)
 .nav-arrows-container {
   position: absolute;
@@ -412,15 +439,15 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     transform: translateY(-6px);
 
     .thumb-card-overlay {
-      background: linear-gradient(
-        to top,
-        rgba(15, 10, 5, 0.92) 0%,
-        rgba(15, 10, 5, 0.05) 100%
-      );
+      background: linear-gradient(to top,
+          rgba(15, 10, 5, 0.92) 0%,
+          rgba(15, 10, 5, 0.05) 100%);
     }
+
     .thumb-image {
       transform: scale(1.14);
     }
+
     .thumb-card-text {
       color: $color-warm-gold;
       font-weight: 700;
