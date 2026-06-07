@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
       title: 'UNSKILLED JOBS IN',
       titleHighlight: 'EUROPE',
-      description: 'We connect you with trusted unskilled job opportunities across European countries. From job placement to accommodation, transportation, and complete paperwork assistance, we support you at every step of your journey.',
+      description: 'We connect you with trusted unskilled job opportunities across European countries.',
       imagePath: 'assets/home_images/Unskilled_Jobs_in_Europe.png',
       buttonText: 'FIND JOBS',
       route: '/work-abroad'
@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
       title: 'STUDY',
       titleHighlight: 'ABROAD',
-      description: 'Pursue your education in top international institutions with our complete guidance. From course selection and university applications to visa processing and accommodation, we support you throughout your study abroad journey.',
+      description: 'Pursue your education in top international institutions with our complete guidance.',
       imagePath: 'assets/home_images/Study_Abroad.png',
       buttonText: 'LEARN MORE',
       route: '/study-abroad-programs'
@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
       title: 'DOCUMENTATION',
       titleHighlight: 'SERVICES',
-      description: 'We assist with visa renewals, and all types of legal documentation in Hungary. Our team ensures accurate processing and complete support at every stage.',
+      description: 'We assist with visa renewals, and all types of legal documentation in Hungary.',
       imagePath: 'assets/home_images/Documentation_Services.png',
       buttonText: 'LEARN MORE',
       route: '/work-abroad'
@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
       title: 'VISIT VISA',
       titleHighlight: 'SERVICES',
-      description: 'Travel abroad with confidence through our reliable visit visa assistance. We handle documentation, application processing, and travel guidance to ensure a smooth and hassle-free experience.',
+      description: 'Travel abroad with confidence through our reliable visit visa assistance.',
       imagePath: 'assets/home_images/Visit_Visa_Services.png',
       buttonText: 'SEE SERVICES',
       route: '/services'
