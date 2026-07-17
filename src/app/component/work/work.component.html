@@ -647,24 +647,24 @@
                                     <i class="fas fa-globe-europe"></i>
                                     <select formControlName="country">
                                         <option value="" disabled selected>Select your country</option>
-                                        <option value="India">🇮🇳 India</option>
-                                        <option value="Hungary">🇭🇺 Hungary</option>
-                                        <option value="UAE">🇦🇪 UAE</option>
-                                        <option value="USA">🇺🇸 USA</option>
-                                        <option value="UK">🇬🇧 UK</option>
-                                        <option value="Germany">🇩🇪 Germany</option>
-                                        <option value="France">🇫🇷 France</option>
-                                        <option value="Italy">🇮🇹 Italy</option>
-                                        <option value="Spain">🇪🇸 Spain</option>
-                                        <option value="Netherlands">🇳🇱 Netherlands</option>
-                                        <option value="Poland">🇵🇱 Poland</option>
-                                        <option value="Austria">🇦🇹 Austria</option>
-                                        <option value="Romania">🇷🇴 Romania</option>
-                                        <option value="Sri Lanka">🇱🇰 Sri Lanka</option>
-                                        <option value="Bangladesh">🇧🇩 Bangladesh</option>
-                                        <option value="Nepal">🇳🇵 Nepal</option>
-                                        <option value="Pakistan">🇵🇰 Pakistan</option>
-                                        <option value="Other">🌐 Other</option>
+                                        <option value="India">India</option>
+                                        <option value="Hungary">Hungary</option>
+                                        <option value="UAE">UAE</option>
+                                        <option value="USA">USA</option>
+                                        <option value="UK">UK</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="France">France</option>
+                                        <option value="Italy">Italy</option>
+                                        <option value="Spain">Spain</option>
+                                        <option value="Netherlands">Netherlands</option>
+                                        <option value="Poland">Poland</option>
+                                        <option value="Austria">Austria</option>
+                                        <option value="Romania">Romania</option>
+                                        <option value="Sri Lanka">Sri Lanka</option>
+                                        <option value="Bangladesh">Bangladesh</option>
+                                        <option value="Nepal">Nepal</option>
+                                        <option value="Pakistan">Pakistan</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                 </div>
                             </div>
@@ -690,15 +690,21 @@
                         <div class="form-group full-width">
                             <label>Upload CV</label>
                             <div class="file-upload-wrapper">
-                                <input type="file" (change)="onFileChange($event)" id="cv-upload">
+                                <input type="file" (change)="onFileChange($event)" id="cv-upload" accept=".pdf,.doc,.docx">
                                 <label for="cv-upload">
                                     <div class="upload-icon-circle">
-                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <i class="fas fa-cloud-upload-alt" *ngIf="!applicationForm.get('resume')?.value"></i>
+                                        <i class="fas fa-check" style="color: #28a745;" *ngIf="applicationForm.get('resume')?.value"></i>
                                     </div>
-                                    <div class="upload-text">
+                                    <div class="upload-text" *ngIf="!applicationForm.get('resume')?.value">
                                         <span class="main-text">Drag & drop your file here</span>
                                         <span class="sub-text">or choose a file</span>
                                         <span class="format-text">PDF, DOCX (Max. 1MB)</span>
+                                    </div>
+                                    <div class="upload-text" *ngIf="applicationForm.get('resume')?.value">
+                                        <span class="main-text" style="color: #28a745;">CV Selected Successfully</span>
+                                        <span class="sub-text" style="font-weight: 600; margin-top: 5px; font-size: 15px;"><i class="fas fa-file-alt"></i> {{ resumeFileName }}</span>
+                                        <span class="format-text" style="margin-top: 4px;">Click to replace file</span>
                                     </div>
                                 </label>
                             </div>
@@ -751,7 +757,7 @@
 
                             <div class="submit-row">
                                 <div class="checkbox-group">
-                                    <input type="checkbox" id="policy" formControlName="agreeToPolicy">
+                                    <input type="checkbox" id="policy" formControlName="agreeToPolicy" (change)="onPolicyChange($event)">
                                     <label for="policy">I agree to the <a href="#">Privacy Policy</a>.</label>
                                 </div>
                                 <button type="submit" class="btn-submit-support" [disabled]="applicationForm.invalid">

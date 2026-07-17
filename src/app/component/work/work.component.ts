@@ -417,6 +417,24 @@ export class WorkComponent implements AfterViewInit {
     }
   }
 
+  onPolicyChange(event: any) {
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      const controls = this.applicationForm.controls;
+      const errors: string[] = [];
+      if (controls.name.invalid) errors.push('Full Name');
+      if (controls.phone.invalid) errors.push('Phone Number');
+      if (controls.email.invalid) errors.push('Email Address');
+      if (controls.country.invalid) errors.push('Country of Residence');
+
+      if (errors.length > 0) {
+        event.target.checked = false;
+        this.applicationForm.patchValue({ agreeToPolicy: false });
+        this.notificationService.showError(`Please fill the following required fields before agreeing: ${errors.join(', ')}`);
+      }
+    }
+  }
+
   async uploadFile(file: File): Promise<string | null> {
 
     const fileName = `${Date.now()}-${file.name}`;
@@ -426,7 +444,6 @@ export class WorkComponent implements AfterViewInit {
       .upload(fileName, file);
 
     if (error) {
-      console.error(error);
       return null;
     }
 
@@ -493,7 +510,6 @@ export class WorkComponent implements AfterViewInit {
       ]);
 
     if (error) {
-      console.error(error);
       this.notificationService.showError('Something went wrong.');
       return;
     }

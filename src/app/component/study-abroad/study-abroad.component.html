@@ -95,7 +95,8 @@
         <div class="section-header text-center animate-fade-down">
             <div class="tag-line-small center">BROWSE PROGRAMS</div>
             <h2 class="section-title text-dark">Popular Programs to Study in Hungary</h2>
-            <p class="section-subtitle">Discover world-class education in the heart of Europe. From historic institutions to cutting-edge research centers, find the perfect program for your academic journey.</p>
+            <p class="section-subtitle">Discover world-class education in the heart of Europe. From historic
+                institutions to cutting-edge research centers, find the perfect program for your academic journey.</p>
         </div>
 
         <!-- Search and Filters Section -->
@@ -141,103 +142,111 @@
         <!-- Courses Display (Carousels) -->
         <div class="courses-display-carousels">
             <!-- Bachelor Programs Carousel -->
-            @if (selectedFilter === 'All Programs' || selectedFilter === 'Bachelor\'s' || selectedFilter === 'Engineering' || selectedFilter === 'Business' || selectedFilter === 'Health') {
-                @if (bachelorCourses.length > 0) {
-                <div class="carousel-section">
-                    <div class="carousel-header">
-                        <div class="carousel-title-group">
-                            <span class="vertical-gold-line"></span>
-                            <h3 class="carousel-section-title">Bachelor Programs</h3>
-                            <span class="count-badge">{{ bachelorCourses.length }} OPEN</span>
-                        </div>
-                        <div class="carousel-controls">
-                            <button class="carousel-arrow-btn prev" (click)="scrollCarousel('bachelors', 'left')" aria-label="Previous">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-arrow-btn next" (click)="scrollCarousel('bachelors', 'right')" aria-label="Next">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
+            @if (selectedFilter === 'All Programs' || selectedFilter === 'Bachelor\'s' || selectedFilter ===
+            'Engineering' || selectedFilter === 'Business' || selectedFilter === 'Health') {
+            @if (bachelorCourses.length > 0) {
+            <div class="carousel-section">
+                <div class="carousel-header">
+                    <div class="carousel-title-group">
+                        <span class="vertical-gold-line"></span>
+                        <h3 class="carousel-section-title">Bachelor Programs</h3>
+                        <span class="count-badge">{{ bachelorCourses.length }} OPEN</span>
                     </div>
-
-                    <div class="carousel-viewport" id="bachelors-carousel">
-                        <div class="carousel-track">
-                            @for (course of bachelorCourses; track course.name) {
-                            <div class="course-card">
-                                <div class="card-top">
-                                    <span class="course-badge" [attr.data-category]="course.cleanCategory">{{ course.cleanCategory }}</span>
-                                    <div class="course-icon-wrap">
-                                        <i [class]="course.icon"></i>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="course-title">{{ course.name }}</h4>
-                                    <p class="course-desc">{{ course.description }}</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="course-info">
-                                        <span class="duration">{{ course.duration }}</span>
-                                        <span class="divider">•</span>
-                                        <span class="mode">{{ course.mode }}</span>
-                                    </div>
-                                    <button class="btn-apply-now" (click)="applyForCourse(course.name)">Apply Now</button>
-                                </div>
-                            </div>
-                            }
-                        </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-arrow-btn prev" (click)="scrollCarousel('bachelors', 'left')"
+                            aria-label="Previous">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow-btn next" (click)="scrollCarousel('bachelors', 'right')"
+                            aria-label="Next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
-                }
+
+                <div class="carousel-viewport" id="bachelors-carousel">
+                    <div class="carousel-track">
+                        @for (course of bachelorCourses; track course.name) {
+                        <div class="course-card">
+                            <div class="card-top">
+                                <span class="course-badge" [attr.data-category]="course.cleanCategory">{{
+                                    course.cleanCategory }}</span>
+                                <div class="course-icon-wrap">
+                                    <i [class]="course.icon"></i>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="course-title">{{ course.name }}</h4>
+                                <p class="course-desc">{{ course.description }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="course-info">
+                                    <span class="duration">{{ course.duration }}</span>
+                                    <span class="divider">•</span>
+                                    <span class="mode">{{ course.mode }}</span>
+                                </div>
+                                <button class="btn-apply-now" (click)="applyForCourse(course.name)">Apply Now</button>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            }
             }
 
             <!-- Master Programs Carousel -->
-            @if (selectedFilter === 'All Programs' || selectedFilter === 'Master\'s' || selectedFilter === 'Engineering' || selectedFilter === 'Business' || selectedFilter === 'Health') {
-                @if (masterCourses.length > 0) {
-                <div class="carousel-section">
-                    <div class="carousel-header">
-                        <div class="carousel-title-group">
-                            <span class="vertical-gold-line"></span>
-                            <h3 class="carousel-section-title">Master Programs</h3>
-                            <span class="count-badge">{{ masterCourses.length }} OPEN</span>
-                        </div>
-                        <div class="carousel-controls">
-                            <button class="carousel-arrow-btn prev" (click)="scrollCarousel('masters', 'left')" aria-label="Previous">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-arrow-btn next" (click)="scrollCarousel('masters', 'right')" aria-label="Next">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
+            @if (selectedFilter === 'All Programs' || selectedFilter === 'Master\'s' || selectedFilter === 'Engineering'
+            || selectedFilter === 'Business' || selectedFilter === 'Health') {
+            @if (masterCourses.length > 0) {
+            <div class="carousel-section">
+                <div class="carousel-header">
+                    <div class="carousel-title-group">
+                        <span class="vertical-gold-line"></span>
+                        <h3 class="carousel-section-title">Master Programs</h3>
+                        <span class="count-badge">{{ masterCourses.length }} OPEN</span>
                     </div>
-
-                    <div class="carousel-viewport" id="masters-carousel">
-                        <div class="carousel-track">
-                            @for (course of masterCourses; track course.name) {
-                            <div class="course-card">
-                                <div class="card-top">
-                                    <span class="course-badge" [attr.data-category]="course.cleanCategory">{{ course.cleanCategory }}</span>
-                                    <div class="course-icon-wrap">
-                                        <i [class]="course.icon"></i>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="course-title">{{ course.name }}</h4>
-                                    <p class="course-desc">{{ course.description }}</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="course-info">
-                                        <span class="duration">{{ course.duration }}</span>
-                                        <span class="divider">•</span>
-                                        <span class="mode">{{ course.mode }}</span>
-                                    </div>
-                                    <button class="btn-apply-now" (click)="applyForCourse(course.name)">Apply Now</button>
-                                </div>
-                            </div>
-                            }
-                        </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-arrow-btn prev" (click)="scrollCarousel('masters', 'left')"
+                            aria-label="Previous">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow-btn next" (click)="scrollCarousel('masters', 'right')"
+                            aria-label="Next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
-                }
+
+                <div class="carousel-viewport" id="masters-carousel">
+                    <div class="carousel-track">
+                        @for (course of masterCourses; track course.name) {
+                        <div class="course-card">
+                            <div class="card-top">
+                                <span class="course-badge" [attr.data-category]="course.cleanCategory">{{
+                                    course.cleanCategory }}</span>
+                                <div class="course-icon-wrap">
+                                    <i [class]="course.icon"></i>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="course-title">{{ course.name }}</h4>
+                                <p class="course-desc">{{ course.description }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="course-info">
+                                    <span class="duration">{{ course.duration }}</span>
+                                    <span class="divider">•</span>
+                                    <span class="mode">{{ course.mode }}</span>
+                                </div>
+                                <button class="btn-apply-now" (click)="applyForCourse(course.name)">Apply Now</button>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            }
             }
 
             @if (bachelorCourses.length === 0 && masterCourses.length === 0) {
@@ -312,14 +321,16 @@
             <div class="support-info animate-fade-in">
                 <div class="tag-line-small">
                     <svg class="plane-path-svg" width="90" height="24" viewBox="0 0 90 24" fill="none">
-                        <path d="M5 18 C 25 2, 55 22, 78 8" stroke="#FFD700" stroke-width="1.8" stroke-dasharray="3 3"/>
-                        <path d="M78 8 L86 5 L83 12 Z" fill="#FFD700"/>
+                        <path d="M5 18 C 25 2, 55 22, 78 8" stroke="#FFD700" stroke-width="1.8"
+                            stroke-dasharray="3 3" />
+                        <path d="M78 8 L86 5 L83 12 Z" fill="#FFD700" />
                     </svg>
                     <span>START YOUR JOURNEY TODAY</span>
                 </div>
                 <h1 class="animate-fade-down">Ready to<br><span class="text-blue">Study Abroad?</span></h1>
                 <p class="support-subtitle">
-                    Fill out the form and our experts will get in touch with you to <span class="text-blue-link">guide you step-by-step.</span>
+                    Fill out the form and our experts will get in touch with you to <span class="text-blue-link">guide
+                        you step-by-step.</span>
                 </p>
 
                 <div class="contact-details">
@@ -439,7 +450,8 @@
 
                         <div class="submit-row">
                             <div class="checkbox-group">
-                                <input type="checkbox" id="policy" formControlName="agreeToPolicy">
+                                <input type="checkbox" id="policy" formControlName="agreeToPolicy"
+                                    (change)="onPolicyChange($event)">
                                 <label for="policy">I agree to the <a href="#">Privacy Policy</a>.</label>
                             </div>
                             <button type="submit" class="btn-submit-support" [disabled]="enquiryForm.invalid">

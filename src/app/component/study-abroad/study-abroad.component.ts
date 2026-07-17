@@ -491,6 +491,24 @@ export class StudyAbroadComponent implements AfterViewInit {
     }
   }
 
+  onPolicyChange(event: any) {
+    const isChecked = event.target.checked;
+    if (isChecked) {
+      const controls = this.enquiryForm.controls;
+      const errors: string[] = [];
+      if (controls.name.invalid) errors.push('Full Name');
+      if (controls.phone.invalid) errors.push('Phone Number');
+      if (controls.email.invalid) errors.push('Email Address');
+      if (controls.programLevel.invalid) errors.push('Country of Residence');
+
+      if (errors.length > 0) {
+        event.target.checked = false;
+        this.enquiryForm.patchValue({ agreeToPolicy: false });
+        this.notificationService.showError(`Please fill the following required fields before agreeing: ${errors.join(', ')}`);
+      }
+    }
+  }
+
   async onSubmit() {
 
     if (this.enquiryForm.invalid) {
@@ -516,14 +534,11 @@ export class StudyAbroadComponent implements AfterViewInit {
       ]);
 
     if (error) {
-      console.error('Error submitting enquiry:', error);
-      alert('Something went wrong. Please try again.');
+      this.notificationService.showError('Something went wrong. Please try again.');
       return;
     }
 
-    console.log('Enquiry Saved');
-
-    alert('Thank you! Your enquiry has been submitted.');
+    this.notificationService.showSuccess('Thank you! Your enquiry has been submitted.');
 
     this.enquiryForm.reset();
 
