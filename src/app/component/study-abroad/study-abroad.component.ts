@@ -500,25 +500,20 @@ export class StudyAbroadComponent implements AfterViewInit {
 
     const form = this.enquiryForm.value;
 
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('enquiries')
       .insert([
         {
           enquiry_type: 'study',
-
           full_name: form.name,
           phone_number: form.phone,
           email: form.email,
-
           program_level: form.programLevel,
           interested_course: form.interestedCourse,
-
           message: form.message,
-
           status: 'New'
         }
-      ])
-      .select();
+      ]);
 
     if (error) {
       console.error('Error submitting enquiry:', error);
@@ -526,7 +521,7 @@ export class StudyAbroadComponent implements AfterViewInit {
       return;
     }
 
-    console.log('Enquiry Saved:', data);
+    console.log('Enquiry Saved');
 
     alert('Thank you! Your enquiry has been submitted.');
 

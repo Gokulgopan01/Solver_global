@@ -1,7 +1,7 @@
 import { Component, inject, HostListener, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
+import { supabase } from '../../supabase.client';
 import { RouterModule } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
 
@@ -53,8 +53,6 @@ export class WorkComponent implements AfterViewInit {
 
   activeSection: string = 'job-placement';
 
-  breadcrumbItems: BreadcrumbItem[] = [{ label: 'Work', url: '/work' }];
-
   // Main Application Form
   applicationForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -62,7 +60,7 @@ export class WorkComponent implements AfterViewInit {
     phone: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     country: new FormControl('', [Validators.required]),
-    age: new FormControl('', [Validators.required, Validators.min(18)]),
+    dob: new FormControl('', [Validators.required, Validators.min(18)]),
     educationSummary: new FormControl('', [Validators.required]),
     jobPreference: new FormControl('', [Validators.required]),
     resume: new FormControl(null),
@@ -419,31 +417,95 @@ export class WorkComponent implements AfterViewInit {
     }
   }
 
+  async uploadFile(file: File): Promise<string | null> {
 
+    const fileName = `${Date.now()}-${file.name}`;
 
-  onSubmitApplication() {
-    if (this.applicationForm.valid) {
-      console.log('Application Submitted:', this.applicationForm.value);
-      this.notificationService.showSuccess('Application submitted successfully! We will contact you soon.');
-      this.applicationForm.reset();
-      this.uploadedPhotos = [];
-      this.photoPreviews = [];
-      const cvInput = document.getElementById('cv-upload') as HTMLInputElement;
-      if (cvInput) cvInput.value = '';
-      const photoInput = document.getElementById('photo-upload') as HTMLInputElement;
-      if (photoInput) photoInput.value = '';
-    } else {
-      this.notificationService.showError('Please fill in all required fields correctly.');
+    const { error } = await supabase.storage
+      .from('Solvers bucket')
+      .upload(fileName, file);
+
+    if (error) {
+      console.error(error);
+      return null;
     }
+
+    const { data } = supabase.storage
+      .from('Solvers bucket')
+      .getPublicUrl(fileName);
+
+    return data.publicUrl;
   }
 
-  onSubmitServiceEnquiry() {
-    if (this.serviceForm.valid) {
-      console.log('Service Enquiry Submitted:', this.serviceForm.value);
-      this.notificationService.showSuccess(`Your enquiry for ${this.serviceForm.value.serviceType} has been sent!`);
-      this.serviceForm.reset();
-    } else {
-      this.notificationService.showError('Please fill in your contact details correctly.');
+
+
+  async onSubmitApplication() {
+
+    if (this.applicationForm.invalid) {
+      this.notificationService.showError(
+        'Please fill in all required fields correctly.'
+      );
+      return;
     }
+
+    const form = this.applicationForm.value;
+
+    // These should be the uploaded file URLs
+    const resume = this.applicationForm.get('resume')?.value as File | null;
+
+    let cvUrl: string | null = null;
+
+    if (resume) {
+      cvUrl = await this.uploadFile(resume);
+    }
+
+    const photoUrls: string[] = [];
+
+    for (const photo of this.uploadedPhotos) {
+
+      const url = await this.uploadFile(photo);
+
+      if (url) {
+        photoUrls.push(url);
+      }
+
+    }
+
+    const { error } = await supabase
+      .from('enquiries')
+      .insert([
+        {
+          enquiry_type: 'job',
+          full_name: form.name,
+          phone_number: `${form.countryCode}${form.phone}`,
+          email: form.email,
+          country: form.country,
+          DOB: form.dob,
+          education_summary: form.educationSummary,
+          job_preference: form.jobPreference,
+          cv_url: cvUrl,
+          photo_1: photoUrls[0] || null,
+          photo_2: photoUrls[1] || null,
+          photo_3: photoUrls[2] || null,
+          message: null,
+          status: 'New'
+        }
+      ]);
+
+    if (error) {
+      console.error(error);
+      this.notificationService.showError('Something went wrong.');
+      return;
+    }
+
+    this.notificationService.showSuccess(
+      'Application submitted successfully!'
+    );
+
+    this.applicationForm.reset();
+
+    this.uploadedPhotos = [];
+    this.photoPreviews = [];
   }
+
 }
