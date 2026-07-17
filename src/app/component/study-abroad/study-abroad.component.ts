@@ -2,7 +2,7 @@ import { Component, inject, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { BreadcrumbComponent, BreadcrumbItem } from '../breadcrumb/breadcrumb.component';
+import { supabase } from '../../supabase.client';
 import { NotificationService } from '../../services/notification.service';
 
 @Component({
@@ -43,7 +43,6 @@ export class StudyAbroadComponent implements AfterViewInit {
     agreeToPolicy: new FormControl(false, [Validators.requiredTrue])
   });
 
-  breadcrumbItems: BreadcrumbItem[] = [{ label: 'Study Abroad', url: '/study-abroad' }];
 
   heroFeatures = [
     {
@@ -485,20 +484,58 @@ export class StudyAbroadComponent implements AfterViewInit {
     }
   ];
 
-  onSubmit() {
-    if (this.enquiryForm.valid) {
-      console.log('Study Abroad Enquiry Submitted:', this.enquiryForm.value);
-      this.notificationService.showSuccess('Thank you for your enquiry! Our experts will get in touch with you shortly.');
-      this.enquiryForm.reset();
-    } else {
-      this.notificationService.showError('Please fill in all required fields and agree to the privacy policy.');
-    }
-  }
-
   scrollToEnquiry() {
     const element = document.getElementById('enquiry-section');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  async onSubmit() {
+
+    if (this.enquiryForm.invalid) {
+      this.enquiryForm.markAllAsTouched();
+      return;
+    }
+
+    const form = this.enquiryForm.value;
+
+    const { data, error } = await supabase
+      .from('enquiries')
+      .insert([
+        {
+          enquiry_type: 'study',
+
+          full_name: form.name,
+          phone_number: form.phone,
+          email: form.email,
+
+          program_level: form.programLevel,
+          interested_course: form.interestedCourse,
+
+          message: form.message,
+
+          status: 'New'
+        }
+      ])
+      .select();
+
+    if (error) {
+      console.error('Error submitting enquiry:', error);
+      alert('Something went wrong. Please try again.');
+      return;
+    }
+
+    console.log('Enquiry Saved:', data);
+
+    alert('Thank you! Your enquiry has been submitted.');
+
+    this.enquiryForm.reset();
+
+    // Optional: restore defaults
+    this.enquiryForm.patchValue({
+      agreeToPolicy: false
+    });
+
   }
 }
