@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { supabase } from '../../supabase.client';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,24 +14,38 @@ import { supabase } from '../../supabase.client';
 export class AdminComponent implements OnInit {
   enquiries: any[] = [];
   isAuthenticated = false;
+  showKeyPrompt = false;
 
   private route = inject(ActivatedRoute);
+  private notificationService = inject(NotificationService);
 
   async ngOnInit() {
     const urlKey = this.route.snapshot.queryParamMap.get('key');
-    const adminKey = urlKey || prompt('Enter admin key');
-    
-    if (adminKey) {
-      // Accept both the original hashed secret or the new internal key directly
-      const isValid = (adminKey === 'internal-3b7d1a-panel') || (await this.checkKey(adminKey));
-      if (isValid) {
-        this.isAuthenticated = true;
-        this.loadEnquiries();
-      } else {
-        alert('Invalid key');
-      }
+    if (urlKey) {
+      this.verifyKey(urlKey);
     } else {
-      alert('Access denied');
+      this.showKeyPrompt = true;
+    }
+  }
+
+  async submitKey(key: string) {
+    if (!key) {
+      this.notificationService.showError('Please enter a key.');
+      return;
+    }
+    await this.verifyKey(key);
+  }
+
+  async verifyKey(adminKey: string) {
+    const isValid = (adminKey === 'internal-3b7d1a-panel') || (await this.checkKey(adminKey));
+    if (isValid) {
+      this.isAuthenticated = true;
+      this.showKeyPrompt = false;
+      this.notificationService.showSuccess('Access Granted.');
+      this.loadEnquiries();
+    } else {
+      this.notificationService.showError('Invalid admin key.');
+      this.showKeyPrompt = true;
     }
   }
 

@@ -56,11 +56,16 @@
   </div>
 </div>
 
-<div *ngIf="!isAuthenticated" class="access-denied-container">
-  <div class="message-box">
-    <i class="fas fa-lock"></i>
-    <h2>Access Denied</h2>
-    <p>You must provide a valid secret key to view this page.</p>
-    <button (click)="ngOnInit()" class="btn-retry">Try Again</button>
+<div class="modal-overlay" *ngIf="showKeyPrompt && !isAuthenticated">
+  <div class="modal-content">
+    <i class="fas fa-user-shield modal-icon"></i>
+    <h2>Admin Authentication</h2>
+    <p>Please enter your secret key to access the dashboard.</p>
+    <div class="input-group">
+      <input type="password" #keyInput placeholder="Enter Secret Key" (keyup.enter)="submitKey(keyInput.value)">
+      <button class="btn-submit" (click)="submitKey(keyInput.value)">
+        Access <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
   </div>
-</div>
+</div>

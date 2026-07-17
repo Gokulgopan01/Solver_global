@@ -39,7 +39,7 @@ export const routes: Routes = [
         component: ReviewsComponent
     },
     {
-        path: 'admin',
+        path: 'internal-admin-console',
         component: AdminComponent
     }
 ];

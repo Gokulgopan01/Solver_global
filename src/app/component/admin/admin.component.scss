@@ -105,30 +105,39 @@
   }
 }
 
-.access-denied-container {
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
-  padding: 40px;
+  z-index: 1000;
 
-  .message-box {
-    text-align: center;
+  .modal-content {
     background: #fff;
-    padding: 50px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border-top: 5px solid #d32f2f;
+    padding: 40px 50px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    max-width: 450px;
+    width: 90%;
+    border-top: 5px solid #FFD700;
+    animation: slideUpFadeIn 0.4s ease-out forwards;
 
-    i {
-      font-size: 50px;
-      color: #d32f2f;
+    .modal-icon {
+      font-size: 48px;
+      color: #333;
       margin-bottom: 20px;
     }
 
     h2 {
       font-size: 24px;
-      color: #333;
+      color: #222;
       margin-bottom: 10px;
       font-family: 'Inter', sans-serif;
     }
@@ -136,22 +145,58 @@
     p {
       color: #666;
       margin-bottom: 30px;
+      font-size: 14px;
     }
 
-    .btn-retry {
-      background: #333;
-      color: #FFD700;
-      border: none;
-      padding: 12px 30px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s;
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
 
-      &:hover {
-        background: #000;
+      input {
+        padding: 14px 20px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s ease;
+
+        &:focus {
+          border-color: #FFD700;
+          box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        }
+      }
+
+      .btn-submit {
+        padding: 14px;
+        background: #333;
+        color: #FFD700;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background: #000;
+        }
+
+        i {
+          margin-left: 8px;
+        }
       }
     }
+  }
+}
+
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
