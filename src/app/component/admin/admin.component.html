@@ -1,1 +1,66 @@
-<p>admin works!</p>
+<div class="admin-container" *ngIf="isAuthenticated">
+
+  <div class="header">
+    <h2>Admin Dashboard - Enquiries</h2>
+  </div>
+
+  <div class="table-responsive">
+    <table class="enquiry-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Details</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let eq of enquiries">
+          <td>#{{ eq.id }}</td>
+          <td>
+            <span class="badge" [ngClass]="eq.enquiry_type === 'job' ? 'badge-job' : 'badge-study'">
+              {{ eq.enquiry_type | uppercase }}
+            </span>
+          </td>
+          <td>{{ eq.full_name }}</td>
+          <td>{{ eq.email }}</td>
+          <td>{{ eq.phone_number }}</td>
+          <td>
+            <div class="small-text" *ngIf="eq.enquiry_type === 'job'">
+              Country: {{ eq.country }}<br>
+              Job: {{ eq.job_preference }}
+            </div>
+            <div class="small-text" *ngIf="eq.enquiry_type === 'study'">
+              Level: {{ eq.program_level }}<br>
+              Course: {{ eq.interested_course }}
+            </div>
+          </td>
+          <td>
+            <span class="badge badge-status">{{ eq.status || 'New' }}</span>
+          </td>
+          <td>
+            <a *ngIf="eq.cv_url" [href]="eq.cv_url" target="_blank" class="btn-action"><i class="fas fa-file-pdf"></i>
+              View CV</a>
+            <span *ngIf="!eq.cv_url" class="text-muted">No CV</span>
+          </td>
+        </tr>
+        <tr *ngIf="enquiries.length === 0">
+          <td colspan="8" class="text-center py-4">No enquiries found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="!isAuthenticated" class="access-denied-container">
+  <div class="message-box">
+    <i class="fas fa-lock"></i>
+    <h2>Access Denied</h2>
+    <p>You must provide a valid secret key to view this page.</p>
+    <button (click)="ngOnInit()" class="btn-retry">Try Again</button>
+  </div>
+</div>

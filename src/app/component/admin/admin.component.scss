@@ -1,0 +1,157 @@
+.admin-container {
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 80vh;
+  margin-top: 100px;
+  font-family: 'Inter', sans-serif;
+
+  .header {
+    margin-bottom: 30px;
+    h2 {
+      font-size: 28px;
+      color: #333;
+      border-left: 4px solid #FFD700;
+      padding-left: 15px;
+      margin: 0;
+    }
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eaeaea;
+  }
+
+  .enquiry-table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+
+    th, td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+    tbody tr {
+      transition: background 0.3s;
+      &:hover {
+        background: #fdfdfd;
+      }
+    }
+
+    .small-text {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    .badge {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+      
+      &-job {
+        background: #e3f2fd;
+        color: #1976d2;
+      }
+      &-study {
+        background: #f3e5f5;
+        color: #7b1fa2;
+      }
+      &-status {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+    }
+
+    .btn-action {
+      display: inline-block;
+      padding: 6px 12px;
+      background: #333;
+      color: #FFD700;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      transition: 0.3s;
+      
+      &:hover {
+        background: #000;
+      }
+
+      i {
+        margin-right: 5px;
+      }
+    }
+
+    .text-muted {
+      color: #999;
+      font-size: 13px;
+    }
+  }
+}
+
+.access-denied-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 40px;
+
+  .message-box {
+    text-align: center;
+    background: #fff;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-top: 5px solid #d32f2f;
+
+    i {
+      font-size: 50px;
+      color: #d32f2f;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .btn-retry {
+      background: #333;
+      color: #FFD700;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+
+      &:hover {
+        background: #000;
+      }
+    }
+  }
+}

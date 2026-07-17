@@ -7,6 +7,7 @@ import { StudyAbroadComponent } from './component/study-abroad/study-abroad.comp
 import { GalleryComponent } from './component/gallery/gallery.component';
 import { HireWorkersComponent } from './component/hire-workers/hire-workers.component';
 import { ReviewsComponent } from './component/reviews/reviews.component';
+import { AdminComponent } from './component/admin/admin.component';
 
 export const routes: Routes = [
     {
@@ -36,5 +37,9 @@ export const routes: Routes = [
     {
         path: 'client-reviews',
         component: ReviewsComponent
+    },
+    {
+        path: 'admin',
+        component: AdminComponent
     }
 ];
