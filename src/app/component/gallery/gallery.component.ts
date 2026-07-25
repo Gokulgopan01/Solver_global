@@ -104,7 +104,7 @@ export class GalleryComponent implements OnInit, AfterViewInit {
     // Configure Thumbs Swiper as horizontal at bottom-right
     Object.assign(thumbsEl, {
       direction: 'horizontal',
-      slidesPerView: 3.5,
+      slidesPerView: 4,
       spaceBetween: 16,
       centeredSlides: false,
       slideToClickedSlide: true,
@@ -135,18 +135,19 @@ export class GalleryComponent implements OnInit, AfterViewInit {
         delay: 5000,
         disableOnInteraction: false
       },
-
-      thumbs: {
-        swiper: thumbsEl,
-      },
     });
     mainEl.initialize();
 
-    // Listen to slide changes to update activeIndex and selectedImageUrl
+    // Listen to slide changes to update activeIndex, selectedImageUrl and sync thumbs swiper
     mainEl.addEventListener('swiperslidechange', (event: any) => {
       const swiper = event.detail[0];
       this.activeIndex = swiper.realIndex;
       this.selectedImageUrl = this.images[this.activeIndex].url;
+      
+      // Sync thumbs swiper manually so the active thumbnail is always the first one visible
+      if (thumbsEl.swiper) {
+        thumbsEl.swiper.slideToLoop(this.activeIndex);
+      }
     });
   }
 
