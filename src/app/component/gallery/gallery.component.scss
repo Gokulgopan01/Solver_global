@@ -123,58 +123,11 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     &.swiper-slide-active {
       filter: blur(0px);
       transition: filter 0.6s ease;
-
-      .full-bg-img {
-        animation: cinematicZoom 7s ease forwards;
-      }
-    }
-  }
-
-  swiper-slide-active {
-    .full-bg-img {
-      animation: cinematicZoom 7s ease forwards;
-    }
-
-    .slide-subheading {
-      animation: fadeUp 0.8s 0.2s both;
-    }
-
-    .slide-heading {
-      animation: fadeUp 0.9s 0.35s both;
-    }
-
-    .slide-description {
-      animation: fadeUp 1s 0.5s both;
     }
   }
 }
 
-@keyframes cinematicZoom {
-  0% {
-    transform: scale(1.12) translateX(-15px);
-    filter: brightness(0.6);
-  }
 
-  100% {
-    transform: scale(1.0) translateX(0px);
-    filter: brightness(1);
-  }
-}
-
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-    filter: blur(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
 
 .full-slide-bg {
   width: 100%;
@@ -192,7 +145,7 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
-// Slide Text Content Overlay (Animate when active)
+// Slide Text Content Overlay (Animate via GSAP)
 .slide-text-content {
   position: absolute;
   bottom: 140px; // Elevated to make room for arrows below
@@ -201,7 +154,6 @@ $transition-smooth: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   text-align: left;
   max-width: 600px;
   color: white;
-  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
   @media (max-width: 992px) {
     bottom: 230px;
