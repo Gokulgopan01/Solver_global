@@ -18,8 +18,16 @@ export class AdminComponent implements OnInit {
 
   private route = inject(ActivatedRoute);
   private notificationService = inject(NotificationService);
+  public enquiryCount = 0;
 
   async ngOnInit() {
+    const isAuth = sessionStorage.getItem('admin_authenticated');
+    if (isAuth === 'true') {
+      this.isAuthenticated = true;
+      this.loadEnquiries();
+      return;
+    }
+
     const urlKey = this.route.snapshot.queryParamMap.get('key');
     if (urlKey) {
       this.verifyKey(urlKey);
@@ -41,12 +49,20 @@ export class AdminComponent implements OnInit {
     if (isValid) {
       this.isAuthenticated = true;
       this.showKeyPrompt = false;
+      sessionStorage.setItem('admin_authenticated', 'true');
       this.notificationService.showSuccess('Access Granted.');
       this.loadEnquiries();
     } else {
       this.notificationService.showError('Invalid admin key.');
       this.showKeyPrompt = true;
     }
+  }
+
+  logout() {
+    sessionStorage.removeItem('admin_authenticated');
+    this.isAuthenticated = false;
+    this.showKeyPrompt = true;
+    this.enquiries = [];
   }
 
   async checkKey(key: string): Promise<boolean> {
@@ -71,7 +87,13 @@ export class AdminComponent implements OnInit {
           return;
         }
         this.enquiries = data || [];
+        this.enquiryCount = this.enquiries.length;
         console.log('All enquiries:', this.enquiries);
       });
+  }
+
+  viewRow(eq: any) {
+    // Placeholder for view row logic
+    console.log('Viewing row:', eq);
   }
 }
