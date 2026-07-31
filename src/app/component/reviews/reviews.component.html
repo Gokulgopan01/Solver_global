@@ -161,8 +161,14 @@
                     <i class="fas fa-filter"></i> Filters & Search
                 </button>
 
+                <!-- Mobile Filter Overlay -->
+                <div class="mobile-filter-overlay" *ngIf="isMobileFilterOpen" (click)="toggleMobileFilter()"></div>
+
                 <!-- Filter Controls -->
                 <div class="filter-controls" [class.open]="isMobileFilterOpen">
+                    <button class="mobile-close-btn" *ngIf="isMobileFilterOpen" (click)="toggleMobileFilter()">
+                        <i class="fas fa-times"></i>
+                    </button>
 
                     <div class="filter-group search-group">
                         <i class="fas fa-search search-icon"></i>
@@ -194,7 +200,7 @@
                     </div>
 
                     <button class="clear-filters-btn" (click)="clearFilters()">
-                        <i class="fas fa-filter-slash"></i> Clear Filters
+                        Clear Filters
                     </button>
                 </div>
             </div>
