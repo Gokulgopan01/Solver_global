@@ -1,63 +1,153 @@
 <div class="reviews-page">
-    <!-- Hero Section -->
-    <section class="reviews-hero" [style.background-image]="
-    'linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(assets/visit_visa/review.png)'
-">
-        <div class="container">
-            <div class="hero-header">
+    <!-- Premium Hero Section -->
+    <section class="premium-hero">
+        <!-- Map Background (using an inline SVG or CSS class) -->
+        <div class="map-bg"></div>
 
-                <!-- <div class="rating-badge">
-                    <div class="star-group">
-                        <i class="fas fa-star"></i>
-                        <span class="rating-value">4.9</span>
+        <div class="hero-content container">
+            <!-- Left Column: Title & Intro -->
+            <div class="hero-left">
+                <div class="badge-gold">
+                    <i class="fas fa-star"></i> Thousands of Success Stories
+                </div>
+                <h1>Success Stories<br>Around <span class="highlight">the World</span></h1>
+                <p>
+                    Hear directly from students, international workers, and employers who trusted Solvers Global to
+                    build their future.
+                </p>
+
+                <div class="happy-clients-row">
+                    <div class="avatars-group">
+                        <img src="assets/reviews/Arjun T J.jpeg" alt="Client 1">
+                        <img src="assets/reviews/Mathangi S R.jpeg" alt="Client 2">
+                        <img src="assets/reviews/Tijo Jerish.jpeg" alt="Client 3">
+                        <img src="assets/reviews/Akhil ML.jpeg" alt="Client 4">
+                        <img src="assets/reviews/Ajin JS.jpeg" alt="Client 5">
+                        <div class="avatar-count">500+</div>
                     </div>
-                    <div class="rating-info">
-                        <span class="avg-label">Average Rating</span>
-                        <span class="count-label">Based on 1200+ reviews</span>
+                    <div class="happy-text">
+                        <strong>Happy Clients</strong>
+                        <span>Worldwide</span>
                     </div>
-                </div> -->
+                </div>
             </div>
 
-            <div class="hero-main">
-                <span class="subtitle">REVIEWS & TESTIMONIALS</span>
-                <h1>Trusted by Thousands.<br>Chosen for Results.</h1>
-                <p>Real experiences from real people who achieved their goals with Solvers Global.</p>
+            <!-- Middle Area: Floating Country Pins over the map -->
+            <div class="map-pins">
+                <div class="pin pin-canada" style="--delay: 0s;">
+                    <span class="flag">🇨🇦</span>
+                    <span class="country-name">Canada</span>
+                    <img src="assets/reviews/Akhil ML.jpeg" class="pin-avatar" alt="Avatar">
+                </div>
+                <div class="pin pin-uk" style="--delay: 1.5s;">
+                    <span class="flag">🇬🇧</span>
+                    <span class="country-name">UK</span>
+                    <img src="assets/reviews/Ajin JS.jpeg" class="pin-avatar" alt="Avatar">
+                </div>
+                <div class="pin pin-uae" style="--delay: 0.8s;">
+                    <span class="flag">🇦🇪</span>
+                    <span class="country-name">UAE</span>
+                    <img src="assets/reviews/Tijo Jerish.jpeg" class="pin-avatar" alt="Avatar">
+                </div>
+                <div class="pin pin-brazil" style="--delay: 2.2s;">
+                    <span class="flag">🇧🇷</span>
+                    <span class="country-name">Brazil</span>
+                    <img src="assets/reviews/Arjun T J.jpeg" class="pin-avatar" alt="Avatar">
+                </div>
+                <div class="pin pin-australia" style="--delay: 0.5s;">
+                    <span class="flag">🇦🇺</span>
+                    <span class="country-name">Australia</span>
+                    <img src="assets/reviews/Mathangi S R.jpeg" class="pin-avatar" alt="Avatar">
+                </div>
+            </div>
+
+            <!-- Right Column: Stats Panel -->
+            <div class="hero-right">
+                <div class="stats-panel">
+                    <div class="rating-header">
+                        <i class="fas fa-star gold-star"></i>
+                        <div class="rating-text">
+                            <div class="rating-score">4.9<span>/5</span></div>
+                            <div class="rating-label">Average Rating</div>
+                        </div>
+                    </div>
+
+                    <div class="stats-list">
+                        <div class="stat-row">
+                            <div class="stat-icon clients"><i class="fas fa-users"></i></div>
+                            <div class="stat-details">
+                                <strong>500+</strong>
+                                <span>Happy Clients</span>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-icon students"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="stat-details">
+                                <strong>245+</strong>
+                                <span>Student Reviews</span>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-icon workers"><i class="fas fa-user-tie"></i></div>
+                            <div class="stat-details">
+                                <strong>180+</strong>
+                                <span>Worker Reviews</span>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-icon recruiters"><i class="fas fa-briefcase"></i></div>
+                            <div class="stat-details">
+                                <strong>75+</strong>
+                                <span>Recruiter Reviews</span>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-icon globe"><i class="fas fa-globe-americas"></i></div>
+                            <div class="stat-details">
+                                <strong>30+</strong>
+                                <span>Countries Served</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Bar -->
-    <section class="stats-bar">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-text">
-                        <h3>1,000+</h3>
-                        <p>Happy Clients</p>
-                    </div>
+    <!-- Review Categories -->
+    <section class="review-categories container">
+        <div class="categories-grid">
+            <!-- Study Abroad Card -->
+            <div class="category-card card-study" (click)="toggleView('student')">
+                <div class="card-content">
+                    <h3>Study Abroad<br>Reviews</h3>
+                    <p>From students who achieved their dreams with our support.</p>
+                    <div class="badge">245 Reviews</div>
+                    <div class="view-link">View Reviews &rarr;</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
-                    <div class="stat-text">
-                        <h3>6+</h3>
-                        <p>Years of Experience</p>
-                    </div>
+                <img src="assets/reviews/study_graduate.png" alt="Study Abroad" class="category-img">
+            </div>
+
+            <!-- Worker Card -->
+            <div class="category-card card-worker" (click)="toggleView('employee')">
+                <div class="card-content">
+                    <h3>Worker<br>Reviews</h3>
+                    <p>From international workers building better futures.</p>
+                    <div class="badge">180 Reviews</div>
+                    <div class="view-link">View Reviews &rarr;</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="fas fa-globe"></i></div>
-                    <div class="stat-text">
-                        <h3>28+</h3>
-                        <p>Countries Served</p>
-                    </div>
+                <img src="assets/reviews/worker_person.png" alt="Worker Reviews" class="category-img">
+            </div>
+
+            <!-- Recruiter Card -->
+            <div class="category-card card-recruiter">
+                <div class="card-content">
+                    <h3>Recruiter<br>Reviews</h3>
+                    <p>From employers who found the right talent with us.</p>
+                    <div class="badge">75 Reviews</div>
+                    <div class="view-link">View Reviews &rarr;</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="fas fa-star"></i></div>
-                    <div class="stat-text">
-                        <h3>800+</h3>
-                        <p>5-Star Reviews</p>
-                    </div>
-                </div>
+                <img src="assets/reviews/recruiters_handshake.png" alt="Recruiter Reviews" class="category-img">
             </div>
         </div>
     </section>
