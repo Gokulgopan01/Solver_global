@@ -89,7 +89,7 @@
 </div>
 
 <div class="enquiry-modal-overlay" *ngIf="showEnquiryModal && selectedEnquiry" (click)="closeModal()">
-  <div class="enquiry-modal-content" (click)="$event.stopPropagation()">
+  <div class="enquiry-modal-content" data-lenis-prevent="true" (click)="$event.stopPropagation()">
     <button class="close-btn" (click)="closeModal()"><i class="fas fa-times"></i></button>
 
     <div class="modal-header">

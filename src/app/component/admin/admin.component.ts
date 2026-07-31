@@ -109,12 +109,12 @@ export class AdminComponent implements OnInit {
 
   async updateStatus() {
     if (!this.selectedEnquiry) return;
-    
+
     const { error } = await supabase
       .from('enquiries')
       .update({ status: this.selectedEnquiry.status })
       .eq('id', this.selectedEnquiry.id);
-      
+
     if (error) {
       this.notificationService.showError('Failed to update status.');
     } else {
