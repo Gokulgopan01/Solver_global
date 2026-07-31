@@ -87,3 +87,76 @@
     </div>
   </div>
 </div>
+
+<div class="enquiry-modal-overlay" *ngIf="showEnquiryModal && selectedEnquiry" (click)="closeModal()">
+  <div class="enquiry-modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeModal()"><i class="fas fa-times"></i></button>
+
+    <div class="modal-header">
+      <h2>{{ selectedEnquiry.enquiry_type === 'study' ? 'Study Abroad Enquiry' : 'Job Enquiry' }}</h2>
+      <div class="header-meta">
+        <span class="badge" [ngClass]="selectedEnquiry.enquiry_type === 'study' ? 'badge-study' : 'badge-job'">
+          {{ selectedEnquiry.enquiry_type === 'study' ? '🎓 Study Abroad' : '💼 Job Enquiry' }}
+        </span>
+        <span class="date">{{ selectedEnquiry.created_at | date:'medium' }}</span>
+      </div>
+    </div>
+
+    <!-- Study Type Details -->
+    <div class="modal-body" *ngIf="selectedEnquiry.enquiry_type === 'study'">
+      <div class="info-grid">
+        <div class="info-card">
+          <label>Full Name</label>
+          <div class="value">{{ selectedEnquiry.full_name }}</div>
+        </div>
+        <div class="info-card">
+          <label>Phone Number</label>
+          <div class="value">{{ selectedEnquiry.phone_number }}</div>
+        </div>
+        <div class="info-card">
+          <label>Email Address</label>
+          <div class="value">{{ selectedEnquiry.email }}</div>
+        </div>
+        <div class="info-card">
+          <label>Country</label>
+          <div class="value">{{ selectedEnquiry.country || 'Not provided' }}</div>
+        </div>
+        <div class="info-card">
+          <label>Program Level</label>
+          <div class="value">{{ selectedEnquiry.program_level || 'Not provided' }}</div>
+        </div>
+        <div class="info-card">
+          <label>Interested Course</label>
+          <div class="value">{{ selectedEnquiry.interested_course || 'Not provided' }}</div>
+        </div>
+      </div>
+
+      <div class="message-section">
+        <label>Message</label>
+        <div class="message-card">{{ selectedEnquiry.message || 'No message provided.' }}</div>
+      </div>
+
+      <div class="status-section">
+        <label>Status</label>
+        <div class="status-dropdown">
+          <select [(ngModel)]="selectedEnquiry.status" class="premium-select">
+            <option value="New">🟢 New</option>
+            <option value="Seen">🔵 Seen</option>
+            <option value="Contacted">🟠 Contacted</option>
+            <option value="Completed">✅ Completed</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job Type Details Placeholder -->
+    <div class="modal-body" *ngIf="selectedEnquiry.enquiry_type === 'job'">
+      <p class="placeholder-text">Job details to be added later.</p>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="closeModal()">Close</button>
+      <button class="btn-primary" (click)="updateStatus()">Update Status</button>
+    </div>
+  </div>
+</div>

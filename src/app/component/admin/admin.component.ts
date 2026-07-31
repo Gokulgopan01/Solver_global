@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { supabase } from '../../supabase.client';
 import { NotificationService } from '../../services/notification.service';
@@ -7,7 +8,7 @@ import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
@@ -16,9 +17,12 @@ export class AdminComponent implements OnInit {
   isAuthenticated = false;
   showKeyPrompt = false;
 
+  public enquiryCount = 0;
+  public showEnquiryModal = false;
+  public selectedEnquiry: any = null;
+
   private route = inject(ActivatedRoute);
   private notificationService = inject(NotificationService);
-  public enquiryCount = 0;
 
   async ngOnInit() {
     const isAuth = sessionStorage.getItem('admin_authenticated');
@@ -66,7 +70,6 @@ export class AdminComponent implements OnInit {
   }
 
   async checkKey(key: string): Promise<boolean> {
-    // The hash of the expected key
     const expectedHash = '81beec9c203bf658fdc29b1718935b6297d64f74195d1345a915800cacd0d74b';
     const encoder = new TextEncoder();
     const data = encoder.encode(key);
@@ -88,12 +91,36 @@ export class AdminComponent implements OnInit {
         }
         this.enquiries = data || [];
         this.enquiryCount = this.enquiries.length;
-        console.log('All enquiries:', this.enquiries);
       });
   }
 
   viewRow(eq: any) {
-    // Placeholder for view row logic
-    console.log('Viewing row:', eq);
+    // Clone to avoid editing directly in the table before save
+    this.selectedEnquiry = { ...eq };
+    this.showEnquiryModal = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeModal() {
+    this.showEnquiryModal = false;
+    this.selectedEnquiry = null;
+    document.body.style.overflow = '';
+  }
+
+  async updateStatus() {
+    if (!this.selectedEnquiry) return;
+    
+    const { error } = await supabase
+      .from('enquiries')
+      .update({ status: this.selectedEnquiry.status })
+      .eq('id', this.selectedEnquiry.id);
+      
+    if (error) {
+      this.notificationService.showError('Failed to update status.');
+    } else {
+      this.notificationService.showSuccess('Status updated successfully!');
+      this.closeModal();
+      this.loadEnquiries();
+    }
   }
 }
