@@ -380,6 +380,30 @@
   }
 }
 
+.premium-select {
+  width: 100%;
+  padding: 12px 40px 12px 16px; /* Added right padding for icon */
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #0f172a;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  font-weight: 500;
+
+  &:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+  }
+}
+
 /* --- Enquiry Modal Styles (Premium SaaS Admin Look) --- */
 .enquiry-modal-overlay {
   position: fixed;
@@ -547,30 +571,6 @@
           color: #334155;
           font-weight: 700;
           margin-bottom: 12px;
-        }
-
-        .premium-select {
-          width: 100%;
-          padding: 14px 16px;
-          border: 1px solid #cbd5e1;
-          border-radius: 10px;
-          font-size: 15px;
-          color: #0f172a;
-          background-color: #fff;
-          outline: none;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          appearance: none;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: right 16px center;
-          background-size: 16px;
-          font-weight: 500;
-
-          &:focus {
-            border-color: #FFD700;
-            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
-          }
         }
       }
 

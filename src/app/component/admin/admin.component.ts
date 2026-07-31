@@ -21,6 +21,18 @@ export class AdminComponent implements OnInit {
   public showEnquiryModal = false;
   public selectedEnquiry: any = null;
 
+  public typeFilter = 'All';
+  public statusFilter = 'All';
+
+  get filteredEnquiries() {
+    return this.enquiries.filter(eq => {
+      const typeMatch = this.typeFilter === 'All' || eq.enquiry_type === this.typeFilter;
+      const statusValue = eq.status || 'New';
+      const statusMatch = this.statusFilter === 'All' || statusValue === this.statusFilter;
+      return typeMatch && statusMatch;
+    });
+  }
+
   private route = inject(ActivatedRoute);
   private notificationService = inject(NotificationService);
 

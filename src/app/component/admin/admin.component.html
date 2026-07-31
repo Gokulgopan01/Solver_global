@@ -22,6 +22,25 @@
     </div>
   </div>
 
+  <div class="filters-bar" style="margin-bottom: 20px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    <div class="filter-group">
+      <select class="premium-select" [(ngModel)]="typeFilter" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #eaeaea; outline: none; background: #fff;">
+        <option value="All">All Types</option>
+        <option value="job">💼 Job Enquiries</option>
+        <option value="study">🎓 Study Abroad</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <select class="premium-select" [(ngModel)]="statusFilter" style="padding: 8px 12px; border-radius: 8px; border: 1px solid #eaeaea; outline: none; background: #fff;">
+        <option value="All">All Statuses</option>
+        <option value="New">🟢 New</option>
+        <option value="Seen">🔵 Seen</option>
+        <option value="Contacted">🟠 Contacted</option>
+        <option value="Completed">✅ Completed</option>
+      </select>
+    </div>
+  </div>
+
   <div class="table-responsive">
     <table class="enquiry-table">
       <thead>
@@ -37,7 +56,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let eq of enquiries">
+        <tr *ngFor="let eq of filteredEnquiries">
           <td>{{ eq.created_at | date:'shortDate' }}</td>
           <td>
             <span class="badge" [ngClass]="eq.enquiry_type === 'job' ? 'badge-job' : 'badge-study'">
@@ -73,8 +92,8 @@
             </button>
           </td>
         </tr>
-        <tr *ngIf="enquiries.length === 0">
-          <td colspan="8" class="text-center py-4">No enquiries found.</td>
+        <tr *ngIf="filteredEnquiries.length === 0">
+          <td colspan="8" class="text-center py-4" style="text-align: center; color: #6b7280; font-style: italic;">No matching enquiries found.</td>
         </tr>
       </tbody>
     </table>
