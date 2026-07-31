@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 export interface SnackbarData {
   show: boolean;
   message: string;
-  type: 'success' | 'error';
+  type: 'success' | 'error' | 'loading';
 }
 
 @Injectable({
@@ -18,6 +18,11 @@ export class NotificationService {
   });
 
   snackbar$ = this.snackbarSubject.asObservable();
+  private hideTimeout: any;
+
+  showLoading(message: string) {
+    this.show(message, 'loading');
+  }
 
   showSuccess(message: string) {
     this.show(message, 'success');
@@ -27,17 +32,23 @@ export class NotificationService {
     this.show(message, 'error');
   }
 
-  private show(message: string, type: 'success' | 'error') {
+  private show(message: string, type: 'success' | 'error' | 'loading') {
+    if (this.hideTimeout) {
+      clearTimeout(this.hideTimeout);
+    }
+
     this.snackbarSubject.next({
       show: true,
       message,
       type
     });
 
-    // Auto-hide after 5 seconds
-    setTimeout(() => {
-      this.hide();
-    }, 5000);
+    // Only auto-hide for success and error
+    if (type !== 'loading') {
+      this.hideTimeout = setTimeout(() => {
+        this.hide();
+      }, 5000);
+    }
   }
 
   hide() {

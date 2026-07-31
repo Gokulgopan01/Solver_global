@@ -9,14 +9,21 @@ import { NotificationService } from '../../services/notification.service';
   template: `
     <div class="custom-snackbar" 
          [class.show]="(notificationService.snackbar$ | async)?.show" 
-         [class.error]="(notificationService.snackbar$ | async)?.type === 'error'">
+         [class.error]="(notificationService.snackbar$ | async)?.type === 'error'"
+         [class.loading]="(notificationService.snackbar$ | async)?.type === 'loading'">
         <div class="snackbar-content">
             <i class="fas" 
                [class.fa-check-circle]="(notificationService.snackbar$ | async)?.type === 'success'" 
-               [class.fa-exclamation-circle]="(notificationService.snackbar$ | async)?.type === 'error'"></i>
+               [class.fa-exclamation-circle]="(notificationService.snackbar$ | async)?.type === 'error'"
+               [class.fa-circle-notch]="(notificationService.snackbar$ | async)?.type === 'loading'"
+               [class.fa-spin]="(notificationService.snackbar$ | async)?.type === 'loading'"></i>
             <span>{{ (notificationService.snackbar$ | async)?.message }}</span>
         </div>
-        <button class="snackbar-close" (click)="notificationService.hide()">&times;</button>
+        <button class="snackbar-close" (click)="notificationService.hide()" *ngIf="(notificationService.snackbar$ | async)?.type !== 'loading'">&times;</button>
+        
+        <div class="progress-bar" *ngIf="(notificationService.snackbar$ | async)?.type === 'loading'">
+            <div class="progress-bar-value"></div>
+        </div>
     </div>
   `,
   styles: [`
@@ -38,6 +45,7 @@ import { NotificationService } from '../../services/notification.service';
         min-width: 300px;
         opacity: 0;
         pointer-events: none;
+        overflow: hidden; /* For progress bar clipping */
 
         &.show {
             bottom: 2rem;
@@ -50,6 +58,14 @@ import { NotificationService } from '../../services/notification.service';
             
             i {
                 color: #ef4444;
+            }
+        }
+
+        &.loading {
+            border-left-color: #3b82f6; /* Blue for loading */
+            
+            i {
+                color: #3b82f6;
             }
         }
 
@@ -83,6 +99,40 @@ import { NotificationService } from '../../services/notification.service';
             &:hover {
                 color: white;
             }
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+
+            .progress-bar-value {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 30%;
+                background: #3b82f6;
+                animation: indeterminate 1.5s infinite ease-in-out;
+            }
+        }
+    }
+
+    @keyframes indeterminate {
+        0% {
+            left: -30%;
+            width: 30%;
+        }
+        50% {
+            width: 50%;
+        }
+        100% {
+            left: 100%;
+            width: 30%;
         }
     }
   `]

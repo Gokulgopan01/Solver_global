@@ -467,6 +467,8 @@ export class WorkComponent implements AfterViewInit {
 
     const form = this.applicationForm.value;
 
+    this.notificationService.showLoading('Submitting application...');
+
     // These should be the uploaded file URLs
     const resume = this.applicationForm.get('resume')?.value as File | null;
 

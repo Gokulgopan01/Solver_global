@@ -518,6 +518,8 @@ export class StudyAbroadComponent implements AfterViewInit {
 
     const form = this.enquiryForm.value;
 
+    this.notificationService.showLoading('Submitting enquiry...');
+
     const { error } = await supabase
       .from('enquiries')
       .insert([
