@@ -58,7 +58,14 @@
             </div>
           </td>
           <td>
-            <span class="badge badge-status">{{ eq.status || 'New' }}</span>
+            <span class="badge" [ngClass]="'status-' + ((eq.status || 'new') | lowercase)">
+              {{ 
+                (eq.status | lowercase) === 'seen' ? '🔵 Seen' : 
+                (eq.status | lowercase) === 'contacted' ? '🟠 Contacted' : 
+                (eq.status | lowercase) === 'completed' ? '✅ Completed' : 
+                '🟢 New' 
+              }}
+            </span>
           </td>
           <td>
             <button class="btn-gradient-view" (click)="viewRow(eq)">
@@ -139,7 +146,7 @@
       <div class="status-section">
         <label>Status</label>
         <div class="status-dropdown">
-          <select [(ngModel)]="selectedEnquiry.status" class="premium-select">
+          <select [(ngModel)]="selectedEnquiry.status" class="premium-select" (change)="updateStatus()">
             <option value="New">🟢 New</option>
             <option value="Seen">🔵 Seen</option>
             <option value="Contacted">🟠 Contacted</option>

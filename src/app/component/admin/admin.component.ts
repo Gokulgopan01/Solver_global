@@ -119,8 +119,14 @@ export class AdminComponent implements OnInit {
       this.notificationService.showError('Failed to update status.');
     } else {
       this.notificationService.showSuccess('Status updated successfully!');
+
+      // Instantly update the local array to reflect changes immediately on the frontend
+      const index = this.enquiries.findIndex(e => e.id === this.selectedEnquiry.id);
+      if (index !== -1) {
+        this.enquiries[index].status = this.selectedEnquiry.status;
+      }
+
       this.closeModal();
-      this.loadEnquiries();
     }
   }
 }

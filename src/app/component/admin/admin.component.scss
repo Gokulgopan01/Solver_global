@@ -233,9 +233,21 @@
         color: #7b1fa2;
       }
 
-      &-status {
+      .status-new {
         background: #e8f5e9;
         color: #2e7d32;
+      }
+      .status-seen {
+        background: #e3f2fd;
+        color: #1976d2;
+      }
+      .status-contacted {
+        background: #fff3e0;
+        color: #e65100;
+      }
+      .status-completed {
+        background: #ede7f6;
+        color: #512da8;
       }
     }
 
