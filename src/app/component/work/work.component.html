@@ -3,7 +3,7 @@
     <section class="hero-section">
         <div class="container hero-container">
             <div class="hero-content fade-in show">
-                <h1 class="hero-title">COMPLETE RELOCATION<br><span class="text-gold">&</span> WORK SUPPORT</h1>
+                <h1 class="hero-title">Your European<br>Career <span class="text-gold">Starts here</span></h1>
                 <p class="hero-text">
                     From job placement to settling in a new country,<br>
                     we provide end-to-end support for a smooth<br>
@@ -690,11 +690,14 @@
                         <div class="form-group full-width">
                             <label>Upload CV</label>
                             <div class="file-upload-wrapper">
-                                <input type="file" (change)="onFileChange($event)" id="cv-upload" accept=".pdf,.doc,.docx">
+                                <input type="file" (change)="onFileChange($event)" id="cv-upload"
+                                    accept=".pdf,.doc,.docx">
                                 <label for="cv-upload">
                                     <div class="upload-icon-circle">
-                                        <i class="fas fa-cloud-upload-alt" *ngIf="!applicationForm.get('resume')?.value"></i>
-                                        <i class="fas fa-check" style="color: #28a745;" *ngIf="applicationForm.get('resume')?.value"></i>
+                                        <i class="fas fa-cloud-upload-alt"
+                                            *ngIf="!applicationForm.get('resume')?.value"></i>
+                                        <i class="fas fa-check" style="color: #28a745;"
+                                            *ngIf="applicationForm.get('resume')?.value"></i>
                                     </div>
                                     <div class="upload-text" *ngIf="!applicationForm.get('resume')?.value">
                                         <span class="main-text">Drag & drop your file here</span>
@@ -703,7 +706,9 @@
                                     </div>
                                     <div class="upload-text" *ngIf="applicationForm.get('resume')?.value">
                                         <span class="main-text" style="color: #28a745;">CV Selected Successfully</span>
-                                        <span class="sub-text" style="font-weight: 600; margin-top: 5px; font-size: 15px;"><i class="fas fa-file-alt"></i> {{ resumeFileName }}</span>
+                                        <span class="sub-text"
+                                            style="font-weight: 600; margin-top: 5px; font-size: 15px;"><i
+                                                class="fas fa-file-alt"></i> {{ resumeFileName }}</span>
                                         <span class="format-text" style="margin-top: 4px;">Click to replace file</span>
                                     </div>
                                 </label>
@@ -757,7 +762,8 @@
 
                             <div class="submit-row">
                                 <div class="checkbox-group">
-                                    <input type="checkbox" id="policy" formControlName="agreeToPolicy" (change)="onPolicyChange($event)">
+                                    <input type="checkbox" id="policy" formControlName="agreeToPolicy"
+                                        (change)="onPolicyChange($event)">
                                     <label for="policy">I agree to the <a href="#">Privacy Policy</a>.</label>
                                 </div>
                                 <button type="submit" class="btn-submit-support" [disabled]="applicationForm.invalid">

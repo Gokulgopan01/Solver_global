@@ -412,76 +412,76 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
         </div>
     </section>
 
-    <!-- Reviews Content -->
-    <!-- <section class="reviews-main">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">WHAT OUR CLIENTS SAY</span>
-                <h2>Success Stories That Inspire</h2>
+    <!-- Success Statistics -->
+    <section class="success-stats-section container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-blue">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">500+</h3>
+                    <p class="stat-label">Happy Clients</p>
+                </div>
             </div>
 
-            <div class="reviews-grid">
-                <div class="review-card" *ngFor="let review of reviews">
-                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p class="review-comment">{{ review.comment }}</p>
-                    <div class="reviewer-meta">
-                        <div class="reviewer-info">
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-green">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">30+</h3>
+                    <p class="stat-label">Countries</p>
+                </div>
+            </div>
 
-                            <div class="reviewer-img initials-avatar"
-                                [style.background-color]="getAvatarColor(review.name)">
-                                {{ getInitials(review.name) }}
-                            </div>
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-purple">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">95%</h3>
+                    <p class="stat-label">Visa Success Rate</p>
+                </div>
+            </div>
 
-                            <div class="reviewer-details">
-
-                                <h4>{{ review.name }}</h4>
-
-                                <div class="review-meta">
-
-                                    <span class="role" *ngIf="review.role">
-                                        {{ review.role }}
-                                    </span>
-
-                                    <span class="review-country" *ngIf="review.country">
-                                        {{ review.country }}
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <div class="review-stars">
-                            <i *ngFor="let star of getStars(review.rating)" class="fas fa-star"></i>
-                        </div>
-                    </div>
+            <div class="stat-card">
+                <div class="stat-icon-wrapper bg-yellow">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 class="stat-number">4.9/5</h3>
+                    <p class="stat-label">Average Rating</p>
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
-    <!-- Bottom CTA -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-card">
-                <div class="cta-content">
-                    <div class="cta-icon"><i class="fas fa-comment-dots"></i></div>
-                    <div class="cta-text">
-                        <h3>Your Success Story Could Be Next</h3>
-                        <p>Let our experts help you achieve your dreams.</p>
-                    </div>
+    <!-- Premium Bottom CTA -->
+    <section class="premium-cta-section container">
+        <div class="cta-banner">
+            <div class="cta-bg-map"></div>
+
+            <div class="cta-left">
+                <img src="assets/reviews/cta_students.png" alt="Happy Students and Workers" class="cta-people-img">
+            </div>
+
+            <div class="cta-middle">
+                <h2>Ready to Begin Your Journey?</h2>
+                <p>Join thousands of students, workers, and professionals who achieved their dreams with Solvers
+                    Global.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn-solid" (click)="openModal()">Add Review</button>
+                    <button class="btn-outline">Enquire Now</button>
                 </div>
-                <button class="btn-primary" (click)="openModal()">
-                    Post a Review <i class="fas fa-chevron-right"></i>
-                </button>
+            </div>
+
+            <div class="cta-right">
+                <img src="assets/reviews/cta_plane.png" alt="Travel Graphic" class="cta-plane-img floating">
             </div>
         </div>
     </section>
@@ -518,7 +518,6 @@
                 </div>
                 <div class="form-group">
                     <label for="country">Country</label>
-
                     <input type="text" id="country" name="country" [(ngModel)]="newReview.country" required
                         placeholder="Enter your country">
                 </div>
