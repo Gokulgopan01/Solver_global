@@ -529,7 +529,8 @@ export class StudyAbroadComponent implements AfterViewInit {
           program_level: form.programLevel,
           interested_course: form.interestedCourse,
           message: form.message,
-          status: 'New'
+          status: 'New',
+          created_at: new Date().toISOString()
         }
       ]);
 

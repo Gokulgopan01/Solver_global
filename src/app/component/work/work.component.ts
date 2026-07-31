@@ -505,7 +505,8 @@ export class WorkComponent implements AfterViewInit {
           photo_2: photoUrls[1] || null,
           photo_3: photoUrls[2] || null,
           message: null,
-          status: 'New'
+          status: 'New',
+          created_at: new Date().toISOString()
         }
       ]);
 
