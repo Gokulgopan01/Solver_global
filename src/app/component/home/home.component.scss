@@ -711,10 +711,6 @@
         &:nth-child(6) {
             transition-delay: 500ms;
         }
-
-        &.show {
-            transition-delay: 0ms !important;
-        }
     }
 }
 
@@ -840,12 +836,15 @@
     background-position: center;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 
-    // ONLY hover effects here — no opacity/translateX
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    // Initial transition handles the slow entrance (matching .slide-left) and slow un-hover
+    transition: opacity 1.8s ease-out, transform 1.8s ease-out, box-shadow 0.3s ease;
 
     &:hover {
         transform: translateY(-5px);
         box-shadow: 0 14px 35px rgba(0, 0, 0, 0.22);
+
+        // Fast transition for hover interaction
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
 
         .card-bg-overlay {
             background: linear-gradient(to top,
@@ -858,10 +857,6 @@
         .learn-more i {
             transform: translateX(4px);
         }
-    }
-
-    &.show {
-        transition-delay: 0ms !important;
     }
 
     .card-bg-overlay {
