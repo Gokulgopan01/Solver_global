@@ -163,10 +163,11 @@
 
                 <!-- Filter Controls -->
                 <div class="filter-controls" [class.open]="isMobileFilterOpen">
-                    
+
                     <div class="filter-group search-group">
                         <i class="fas fa-search search-icon"></i>
-                        <input type="text" [(ngModel)]="searchQuery" placeholder="Search reviews..." class="filter-input">
+                        <input type="text" [(ngModel)]="searchQuery" placeholder="Search reviews..."
+                            class="filter-input">
                     </div>
 
                     <div class="filter-group">
@@ -204,7 +205,8 @@
         <div class="container">
 
             <!-- Employee Reviews -->
-            <div class="review-section employee-section" *ngIf="getFilteredReviews(employeeReviews, 'employee').length > 0">
+            <div class="review-section employee-section"
+                *ngIf="getFilteredReviews(employeeReviews, 'employee').length > 0">
 
                 <div class="review-section-header">
                     <div>
@@ -225,65 +227,55 @@
 
                 <div class="reviews-grid">
 
-                    <div class="review-card" *ngFor="let review of getVisibleReviews(employeeReviews, 'employee')">
-
-                        <div class="quote-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-
-                        <div class="review-comment-wrapper">
-
-                            <p class="review-comment" [class.expanded]="isExpanded(review.id)">
-
-                                {{ review.comment }}
-                            </p>
-
-                            <button *ngIf="(review.comment?.length || 0) > 180" class="read-more-btn"
-                                (click)="toggleReadMore(review.id)">
-
-                                {{ isExpanded(review.id)
-                                ? 'Read Less'
-                                : 'Read More' }}
-                            </button>
-
-                        </div>
-
-                        <div class="reviewer-meta">
-
-                            <div class="reviewer-info">
-
+                    <div class="review-card new-layout"
+                        *ngFor="let review of getVisibleReviews(employeeReviews, 'employee')">
+                        <div class="card-header">
+                            <div class="reviewer-profile">
                                 <div class="reviewer-img initials-avatar"
                                     [style.background-color]="getAvatarColor(review.name)">
                                     {{ getInitials(review.name) }}
                                 </div>
-
                                 <div class="reviewer-details">
-
                                     <h4>{{ review.name }}</h4>
-
-                                    <div class="review-meta">
-                                        <span class="role">{{ review.role }}</span>
-
-                                        <span class="review-country">
-                                            {{ review.country }}
-                                        </span>
-                                    </div>
-
+                                    <span class="review-country">
+                                        <span class="flag-icon" *ngIf="getFlagEmoji(review.country)">{{
+                                            getFlagEmoji(review.country) }}</span>
+                                        {{ review.country }}
+                                    </span>
                                 </div>
                             </div>
+                            <div class="category-badge badge-worker">Worker</div>
+                        </div>
 
+                        <div class="card-rating-row">
                             <div class="review-stars">
-                                <i *ngFor="let star of getStars(review.rating)" class="fas fa-star">
-                                </i>
+                                <i *ngFor="let star of getStars(review.rating)" class="fas fa-star"></i>
                             </div>
+                            <span class="review-date">{{ review.created_at | date:'mediumDate' }}</span>
+                        </div>
 
+                        <div class="card-content-wrapper">
+                            <p class="review-comment" [class.expanded]="isExpanded(review.id)">
+                                {{ review.comment }}
+                            </p>
+                            <button *ngIf="(review.comment?.length || 0) > 180" class="read-more-btn"
+                                (click)="toggleReadMore(review.id)">
+                                {{ isExpanded(review.id) ? 'Read Less' : 'Read More' }}
+                            </button>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="card-actions">
+                                <button class="action-btn"><i class="fas fa-share-alt"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Student Reviews -->
-            <div class="review-section student-section" *ngIf="getFilteredReviews(studentReviews, 'student').length > 0">
+            <div class="review-section student-section"
+                *ngIf="getFilteredReviews(studentReviews, 'student').length > 0">
 
                 <div class="review-section-header">
                     <div>
@@ -304,65 +296,55 @@
 
                 <div class="reviews-grid">
 
-                    <div class="review-card" *ngFor="let review of getVisibleReviews(studentReviews, 'student')">
-
-                        <div class="quote-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-
-                        <div class="review-comment-wrapper">
-
-                            <p class="review-comment" [class.expanded]="isExpanded(review.id)">
-
-                                {{ review.comment }}
-                            </p>
-
-                            <button *ngIf="(review.comment?.length || 0) > 180" class="read-more-btn"
-                                (click)="toggleReadMore(review.id)">
-
-                                {{ isExpanded(review.id)
-                                ? 'Read Less'
-                                : 'Read More' }}
-                            </button>
-
-                        </div>
-
-                        <div class="reviewer-meta">
-
-                            <div class="reviewer-info">
-
+                    <div class="review-card new-layout"
+                        *ngFor="let review of getVisibleReviews(studentReviews, 'student')">
+                        <div class="card-header">
+                            <div class="reviewer-profile">
                                 <div class="reviewer-img initials-avatar"
                                     [style.background-color]="getAvatarColor(review.name)">
                                     {{ getInitials(review.name) }}
                                 </div>
-
                                 <div class="reviewer-details">
-
                                     <h4>{{ review.name }}</h4>
-
-                                    <div class="review-meta">
-                                        <span class="role">{{ review.role }}</span>
-
-                                        <span class="review-country">
-                                            {{ review.country }}
-                                        </span>
-                                    </div>
-
+                                    <span class="review-country">
+                                        <span class="flag-icon" *ngIf="getFlagEmoji(review.country)">{{
+                                            getFlagEmoji(review.country) }}</span>
+                                        {{ review.country }}
+                                    </span>
                                 </div>
                             </div>
+                            <div class="category-badge badge-student">Student</div>
+                        </div>
 
+                        <div class="card-rating-row">
                             <div class="review-stars">
-                                <i *ngFor="let star of getStars(review.rating)" class="fas fa-star">
-                                </i>
+                                <i *ngFor="let star of getStars(review.rating)" class="fas fa-star"></i>
                             </div>
+                            <span class="review-date">{{ review.created_at | date:'mediumDate' }}</span>
+                        </div>
 
+                        <div class="card-content-wrapper">
+                            <p class="review-comment" [class.expanded]="isExpanded(review.id)">
+                                {{ review.comment }}
+                            </p>
+                            <button *ngIf="(review.comment?.length || 0) > 180" class="read-more-btn"
+                                (click)="toggleReadMore(review.id)">
+                                {{ isExpanded(review.id) ? 'Read Less' : 'Read More' }}
+                            </button>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="card-actions">
+                                <button class="action-btn"><i class="fas fa-share-alt"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Employer Reviews -->
-            <div class="review-section employer-section" *ngIf="getFilteredReviews(employerReviews, 'employer').length > 0">
+            <div class="review-section employer-section"
+                *ngIf="getFilteredReviews(employerReviews, 'employer').length > 0">
 
                 <div class="review-section-header">
                     <div>
@@ -385,58 +367,47 @@
 
                 <div class="reviews-grid">
 
-                    <div class="review-card" *ngFor="let review of getVisibleReviews(employerReviews, 'employer')">
-
-                        <div class="quote-icon">
-                            <i class="fas fa-quote-left"></i>
-                        </div>
-
-                        <div class="review-comment-wrapper">
-
-                            <p class="review-comment" [class.expanded]="isExpanded(review.id)">
-
-                                {{ review.comment }}
-                            </p>
-
-                            <button *ngIf="(review.comment?.length || 0) > 180" class="read-more-btn"
-                                (click)="toggleReadMore(review.id)">
-
-                                {{ isExpanded(review.id)
-                                ? 'Read Less'
-                                : 'Read More' }}
-                            </button>
-
-                        </div>
-
-                        <div class="reviewer-meta">
-
-                            <div class="reviewer-info">
-
+                    <div class="review-card new-layout"
+                        *ngFor="let review of getVisibleReviews(employerReviews, 'employer')">
+                        <div class="card-header">
+                            <div class="reviewer-profile">
                                 <div class="reviewer-img initials-avatar"
                                     [style.background-color]="getAvatarColor(review.name)">
                                     {{ getInitials(review.name) }}
                                 </div>
-
                                 <div class="reviewer-details">
-
                                     <h4>{{ review.name }}</h4>
-
-                                    <div class="review-meta">
-                                        <span class="role">{{ review.role }}</span>
-
-                                        <span class="review-country">
-                                            {{ review.country }}
-                                        </span>
-                                    </div>
-
+                                    <span class="review-country">
+                                        <span class="flag-icon" *ngIf="getFlagEmoji(review.country)">{{
+                                            getFlagEmoji(review.country) }}</span>
+                                        {{ review.country }}
+                                    </span>
                                 </div>
                             </div>
+                            <div class="category-badge badge-recruiter">Recruiter</div>
+                        </div>
 
+                        <div class="card-rating-row">
                             <div class="review-stars">
-                                <i *ngFor="let star of getStars(review.rating)" class="fas fa-star">
-                                </i>
+                                <i *ngFor="let star of getStars(review.rating)" class="fas fa-star"></i>
                             </div>
+                            <span class="review-date">{{ review.created_at | date:'mediumDate' }}</span>
+                        </div>
 
+                        <div class="card-content-wrapper">
+                            <p class="review-comment" [class.expanded]="isExpanded(review.id)">
+                                {{ review.comment }}
+                            </p>
+                            <button *ngIf="(review.comment?.length || 0) > 180" class="read-more-btn"
+                                (click)="toggleReadMore(review.id)">
+                                {{ isExpanded(review.id) ? 'Read Less' : 'Read More' }}
+                            </button>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="card-actions">
+                                <button class="action-btn"><i class="fas fa-share-alt"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>

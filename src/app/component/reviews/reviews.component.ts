@@ -195,6 +195,20 @@ export class ReviewsComponent implements OnInit {
       !this.showAll[section];
   }
 
+  getFlagEmoji(country: string): string {
+    if (!country) return '🌐';
+    const normalized = country.toLowerCase().trim();
+    if (normalized.includes('india')) return '🇮🇳';
+    if (normalized.includes('uae') || normalized.includes('united arab emirates')) return '🇦🇪';
+    if (normalized.includes('australia')) return '🇦🇺';
+    if (normalized.includes('canada')) return '🇨🇦';
+    if (normalized.includes('uk') || normalized.includes('united kingdom')) return '🇬🇧';
+    if (normalized.includes('us') || normalized.includes('united states')) return '🇺🇸';
+    if (normalized.includes('germany')) return '🇩🇪';
+    if (normalized.includes('france')) return '🇫🇷';
+    return '🌐';
+  }
+
   toggleReadMore(reviewId: number) {
     this.expandedReviews[reviewId] =
       !this.expandedReviews[reviewId];
