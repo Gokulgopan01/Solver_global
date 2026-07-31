@@ -91,6 +91,8 @@ export class ReviewsComponent implements OnInit {
       role: r.Role
     }));
 
+    this.availableCountries = [...new Set(this.reviews.map(r => r.country).filter(c => c))].sort();
+
     this.sortReviewsByRole();
   }
 
@@ -123,13 +125,69 @@ export class ReviewsComponent implements OnInit {
     });
   }
 
+  // Filter States
+  searchQuery: string = '';
+  filterCategory: string = 'All Categories';
+  filterCountry: string = 'All Countries';
+  filterSort: string = 'Newest';
+  isMobileFilterOpen: boolean = false;
+  availableCountries: string[] = [];
+
+  toggleMobileFilter() {
+    this.isMobileFilterOpen = !this.isMobileFilterOpen;
+  }
+
+  clearFilters() {
+    this.searchQuery = '';
+    this.filterCategory = 'All Categories';
+    this.filterCountry = 'All Countries';
+    this.filterSort = 'Newest';
+  }
+
+  getFilteredReviews(reviews: Review[], sectionKey: string): Review[] {
+    // 1. Filter by Category
+    if (this.filterCategory !== 'All Categories') {
+      if (this.filterCategory === 'Study Abroad' && sectionKey !== 'student') return [];
+      if (this.filterCategory === 'Worker Reviews' && sectionKey !== 'employee') return [];
+      if (this.filterCategory === 'Recruiter Reviews' && sectionKey !== 'employer') return [];
+    }
+
+    let filtered = [...reviews];
+
+    // 2. Filter by Country
+    if (this.filterCountry !== 'All Countries') {
+      filtered = filtered.filter(r => r.country === this.filterCountry);
+    }
+
+    // 3. Search Query
+    if (this.searchQuery.trim()) {
+      const q = this.searchQuery.toLowerCase();
+      filtered = filtered.filter(r => 
+        (r.name && r.name.toLowerCase().includes(q)) || 
+        (r.comment && r.comment.toLowerCase().includes(q)) || 
+        (r.role && r.role.toLowerCase().includes(q))
+      );
+    }
+
+    // 4. Sort
+    if (this.filterSort === 'Oldest') {
+      filtered.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
+    } else {
+      // Newest by default
+      filtered.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    }
+
+    return filtered;
+  }
+
   getVisibleReviews(
     reviews: Review[],
     section: 'student' | 'employer' | 'employee'
   ) {
+    const filtered = this.getFilteredReviews(reviews, section);
     return this.showAll[section]
-      ? reviews
-      : reviews.slice(0, 3);
+      ? filtered
+      : filtered.slice(0, 3);
   }
 
   toggleView(section: 'student' | 'employer' | 'employee') {

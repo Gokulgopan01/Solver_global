@@ -152,11 +152,59 @@
         </div>
     </section>
 
+    <!-- Review Filter Toolbar -->
+    <section class="filter-toolbar-section">
+        <div class="container">
+            <div class="filter-glass-container">
+                <!-- Mobile Toggle -->
+                <button class="mobile-filter-toggle" (click)="toggleMobileFilter()">
+                    <i class="fas fa-filter"></i> Filters & Search
+                </button>
+
+                <!-- Filter Controls -->
+                <div class="filter-controls" [class.open]="isMobileFilterOpen">
+                    
+                    <div class="filter-group search-group">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" [(ngModel)]="searchQuery" placeholder="Search reviews..." class="filter-input">
+                    </div>
+
+                    <div class="filter-group">
+                        <select [(ngModel)]="filterCategory" class="filter-select">
+                            <option>All Categories</option>
+                            <option>Study Abroad</option>
+                            <option>Worker Reviews</option>
+                            <option>Recruiter Reviews</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <select [(ngModel)]="filterCountry" class="filter-select">
+                            <option>All Countries</option>
+                            <option *ngFor="let c of availableCountries" [value]="c">{{ c }}</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <select [(ngModel)]="filterSort" class="filter-select">
+                            <option>Newest</option>
+                            <option>Oldest</option>
+                        </select>
+                    </div>
+
+                    <button class="clear-filters-btn" (click)="clearFilters()">
+                        <i class="fas fa-filter-slash"></i> Clear Filters
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="reviews-main">
         <div class="container">
 
             <!-- Employee Reviews -->
-            <div class="review-section employee-section" *ngIf="employeeReviews.length">
+            <div class="review-section employee-section" *ngIf="getFilteredReviews(employeeReviews, 'employee').length > 0">
 
                 <div class="review-section-header">
                     <div>
@@ -235,7 +283,7 @@
             </div>
 
             <!-- Student Reviews -->
-            <div class="review-section student-section" *ngIf="studentReviews.length">
+            <div class="review-section student-section" *ngIf="getFilteredReviews(studentReviews, 'student').length > 0">
 
                 <div class="review-section-header">
                     <div>
@@ -314,7 +362,7 @@
             </div>
 
             <!-- Employer Reviews -->
-            <div class="review-section employer-section" *ngIf="employerReviews.length">
+            <div class="review-section employer-section" *ngIf="getFilteredReviews(employerReviews, 'employer').length > 0">
 
                 <div class="review-section-header">
                     <div>

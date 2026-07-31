@@ -376,18 +376,27 @@
         border-radius: 20px;
         position: relative;
         overflow: hidden;
-        color: white;
+        color: #0f172a;
+        background: #fff;
         padding: 30px;
         min-height: 220px;
         display: flex;
         align-items: center;
         cursor: pointer;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 45%; // Only left side gets color
+            z-index: 0;
+        }
 
         &:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 
             .view-link {
                 opacity: 1;
@@ -398,13 +407,19 @@
         .card-content {
             position: relative;
             z-index: 2;
-            width: 60%;
+            width: 50%;
 
             h3 {
                 font-size: 1.5rem;
                 font-weight: 800;
                 margin-bottom: 12px;
                 line-height: 1.2;
+            }
+
+            h3,
+            p,
+            .view-link {
+                color: #0f172a;
             }
 
             p {
@@ -416,7 +431,7 @@
 
             .badge {
                 display: inline-block;
-                background: white;
+                background: #fff;
                 color: #0f172a;
                 padding: 6px 14px;
                 border-radius: 20px;
@@ -436,28 +451,184 @@
         .category-img {
             position: absolute;
             right: 0;
-            bottom: -10px;
-            height: 110%; // Oversize it slightly
+            bottom: 0;
+            height: 100%;
             width: auto;
-            object-fit: cover;
             z-index: 1;
-            mix-blend-mode: multiply; // Removes the white background, blending it with the card gradient
+            object-fit: contain;
+            // mix-blend-mode: multiply; // Removes the white background, blending it with the card gradient
         }
     }
 
-    .card-study {
-        background: linear-gradient(135deg, #3b82f6, #60a5fa);
-        .badge { color: #2563eb; }
+    .card-study::before {
+        background: linear-gradient(90deg,
+                #dbeafe 0%,
+                #cfe3ff 45%,
+                #ffffff 100%);
     }
 
-    .card-worker {
-        background: linear-gradient(135deg, #f97316, #fb923c);
-        .badge { color: #ea580c; }
+    .card-worker::before {
+        background: linear-gradient(90deg,
+                #ffedd5 0%,
+                #ffe3c2 45%,
+                #ffffff 100%);
     }
 
-    .card-recruiter {
-        background: linear-gradient(135deg, #22c55e, #4ade80);
-        .badge { color: #16a34a; }
+    .card-recruiter::before {
+        background: linear-gradient(90deg,
+                #dcfce7 0%,
+                #d2f8de 45%,
+                #ffffff 100%);
+    }
+
+    .card-study::before {
+        background: linear-gradient(90deg, #dbeafe 0%, #ffffff 100%);
+    }
+
+    .card-worker::before {
+        background: linear-gradient(90deg, #ffedd5 0%, #ffffff 100%);
+    }
+
+    .card-recruiter::before {
+        background: linear-gradient(90deg, #dcfce7 0%, #ffffff 100%);
+    }
+
+}
+
+// Filter Toolbar
+.filter-toolbar-section {
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+    margin-bottom: 40px;
+
+    .filter-glass-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 16px;
+        padding: 16px 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile-filter-toggle {
+        display: none;
+        width: 100%;
+        padding: 12px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        color: #334155;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+
+        i {
+            margin-right: 8px;
+            color: #2563eb;
+        }
+
+        @media (max-width: 992px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .filter-controls {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+
+        @media (max-width: 992px) {
+            display: none;
+            flex-direction: column;
+            margin-top: 16px;
+            align-items: stretch;
+
+            &.open {
+                display: flex;
+            }
+        }
+    }
+
+    .filter-group {
+        position: relative;
+        flex: 1;
+        min-width: 200px;
+
+        &.search-group {
+            flex: 2;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+            appearance: none;
+            outline: none;
+
+            &:focus {
+                border-color: #2563eb;
+                box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            }
+        }
+
+        input {
+            padding-left: 42px; // Make room for search icon
+        }
+
+        select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+    }
+
+    .clear-filters-btn {
+        padding: 12px 20px;
+        background: transparent;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        color: #64748b;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+
+        &:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+            border-color: #cbd5e1;
+        }
     }
 }
 
