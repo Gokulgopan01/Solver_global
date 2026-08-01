@@ -1,4 +1,4 @@
-import { Component, inject, HostListener, AfterViewInit } from '@angular/core';
+import { Component, inject, HostListener, AfterViewInit, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { supabase } from '../../supabase.client';
@@ -30,7 +30,7 @@ export function fileArrayRangeValidator(min: number, max: number) {
   templateUrl: './work.component.html',
   styleUrl: './work.component.scss'
 })
-export class WorkComponent implements AfterViewInit {
+export class WorkComponent implements AfterViewInit, OnInit {
   private notificationService = inject(NotificationService);
 
   ngAfterViewInit() {
@@ -52,6 +52,149 @@ export class WorkComponent implements AfterViewInit {
   }
 
   activeSection: string = 'job-placement';
+
+  // Services Carousel Data
+  servicesList = [
+    {
+      id: 'airport-arrival',
+      title: 'Airport & Arrival Guidance',
+      image: 'assets/home_images/Study_Abroad.png',
+      checklist: [
+        'Airport pickup guidance',
+        'Immigration & onboarding',
+        'SIM card & banking assistance',
+        'Local orientation guidance'
+      ],
+      description: 'Our support continues even after your departure. We provide complete arrival assistance to help you settle comfortably in your new country, including airport guidance, immigration procedures, and onboarding support for a stress-free transition abroad.',
+      isFlipped: false
+    },
+    {
+      id: 'transportation-support',
+      title: 'Transportation Support',
+      image: 'assets/home_images/Unskilled_Jobs_in_Europe.png',
+      checklist: [
+        'Airport to accommodation',
+        'Local transportation guidance',
+        'Daily commute support',
+        'Safe travel arrangements'
+      ],
+      description: 'We help candidates manage their transportation needs after relocation by providing guidance for airport transfers, daily commuting, and local travel arrangements. Our goal is to ensure you travel safely and conveniently while adapting to your new environment.',
+      isFlipped: false
+    },
+    {
+      id: 'accommodation-assistance',
+      title: 'Accommodation Assistance',
+      image: 'assets/work/hungary_accommodation.png',
+      checklist: [
+        'Verified & comfortable stay',
+        'Accommodation near workplace',
+        'Utilities & Wi-Fi assistance',
+        '24/7 stay support'
+      ],
+      description: 'Relocating to a new country can be challenging, which is why we help candidates find safe, comfortable, and affordable accommodation near their workplace. We ensure reliable housing arrangements that provide convenience, security, and a smooth transition into your new environment.',
+      isFlipped: false
+    },
+    {
+      id: 'documentation-support',
+      title: 'Documentation Support',
+      image: 'assets/home_images/Documentation_Services.png',
+      checklist: [
+        'Document verification',
+        'Translation & attestation',
+        'Insurance & medical support',
+        'All legal documentation'
+      ],
+      description: 'We provide end-to-end documentation assistance to ensure every required paperwork is prepared correctly and processed without complications. Our team carefully guides you through contracts, attestations, translations, and legal formalities required for international employment and relocation.',
+      isFlipped: false
+    },
+    {
+      id: 'job-placement',
+      title: 'Job Placement Assistance',
+      image: 'assets/work/visa_renewal.png',
+      checklist: [
+        'Verified job opportunities',
+        'Employer interview support',
+        'Offer letter & contract support',
+        'Onboarding & induction'
+      ],
+      description: 'We help candidates secure trusted employment opportunities across Europe through verified employers and reliable recruitment partnerships. From initial screening and interview preparation to final job confirmation, our team provides complete support to ensure a safe, transparent, and successful hiring process for every applicant.',
+      isFlipped: false
+    },
+    {
+      id: 'visa-processing',
+      title: 'Visa Processing',
+      image: 'assets/home_images/Visit_Visa_Services.png',
+      checklist: [
+        'Work permit application',
+        'Visa filing & tracking',
+        'Embassy appointment',
+        'Visa approval support'
+      ],
+      description: 'Our experienced team manages the complete visa application process with accuracy and transparency. From work permit approvals and embassy appointments to document verification and visa filing, we ensure every step is professionally handled to maximize approval success and reduce delays.',
+      isFlipped: false
+    },
+    {
+      id: 'work-health-insurance',
+      title: 'Work & Health Insurance',
+      image: 'assets/work/insurance_service.png',
+      checklist: [
+        'Health insurance assistance',
+        'Employer-compliant coverage',
+        'Insurance documentation support',
+        'Work accident protection guidance'
+      ],
+      description: 'We assist candidates in obtaining the necessary work and health insurance coverage required for legal employment and healthcare access abroad. Our support ensures compliance with employer and government regulations while providing peace of mind during your relocation journey.',
+      isFlipped: false
+    }
+  ];
+
+  carouselOffset = 0;
+  cardsToShow = 5;
+
+  ngOnInit() {
+    this.updateCardsToShow();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.updateCardsToShow();
+  }
+
+  updateCardsToShow() {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth <= 768) {
+        this.cardsToShow = 1;
+      } else if (window.innerWidth <= 1024) {
+        this.cardsToShow = 2;
+      } else if (window.innerWidth <= 1400) {
+        this.cardsToShow = 3;
+      } else {
+        this.cardsToShow = 4;
+      }
+    }
+  }
+
+  get transformX(): string {
+    const cardWidth = 100 / this.cardsToShow;
+    return `translateX(-${this.carouselOffset * cardWidth}%)`;
+  }
+
+  nextSlide() {
+    const maxOffset = Math.max(0, this.servicesList.length - this.cardsToShow);
+    if (this.carouselOffset < maxOffset) {
+      this.carouselOffset++;
+    }
+  }
+
+  prevSlide() {
+    if (this.carouselOffset > 0) {
+      this.carouselOffset--;
+    }
+  }
+
+  toggleFlip(index: number) {
+    this.servicesList[index].isFlipped = !this.servicesList[index].isFlipped;
+  }
 
   // Main Application Form
   applicationForm = new FormGroup({
