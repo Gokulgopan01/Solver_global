@@ -51,22 +51,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     {
       id: 1,
       eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
-      title: 'UNSKILLED JOBS IN',
-      titleHighlight: 'EUROPE',
-      description: 'We connect you with trusted unskilled job opportunities across European countries.',
-      imagePath: 'assets/home_images/Unskilled_Jobs_in_Europe.png',
-      buttonText: 'FIND JOBS',
-      route: '/work-abroad'
-    },
-    {
-      id: 2,
-      eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
       title: 'STUDY',
       titleHighlight: 'ABROAD',
       description: 'Pursue your education in top international institutions with our complete guidance.',
       imagePath: 'assets/home_images/Study_Abroad.png',
       buttonText: 'LEARN MORE',
       route: '/study-abroad-programs'
+    },
+    {
+      id: 2,
+      eyebrow: 'YOUR JOURNEY. OUR SUPPORT. BETTER FUTURE.',
+      title: 'UNSKILLED JOBS IN',
+      titleHighlight: 'EUROPE',
+      description: 'We connect you with trusted unskilled job opportunities across European countries.',
+      imagePath: 'assets/home_images/Unskilled_Jobs_in_Europe.png',
+      buttonText: 'FIND JOBS',
+      route: '/work-abroad'
     },
     {
       id: 3,
