@@ -303,14 +303,14 @@
     .slide:nth-child(1) .slide-overlay,
     .slide:nth-child(4) .slide-overlay {
         background: linear-gradient(to right,
-                rgba(36, 50, 82, 0.45) 0%,
-                rgba(71, 86, 119, 0.25) 40%,
-                rgba(67, 84, 123, 0) 75%);
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(0, 0, 0, 0.1) 40%,
+                rgba(0, 0, 0, 0) 75%);
 
         @media (max-width: 768px) {
             background:
-                linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.35) 45%, transparent 80%),
-                linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, transparent 60%);
+                linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 45%, transparent 80%),
+                linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, transparent 60%);
         }
     }
 
@@ -333,14 +333,14 @@
 
     .slide:nth-child(2) .slide-overlay {
         background: linear-gradient(to left,
-                rgba(15, 23, 42, 0.45) 0%,
-                rgba(15, 23, 42, 0.25) 40%,
-                rgba(15, 23, 42, 0) 75%);
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(0, 0, 0, 0.1) 40%,
+                rgba(0, 0, 0, 0) 75%);
 
         @media (max-width: 768px) {
             background:
-                linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.35) 45%, transparent 80%),
-                linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, transparent 60%);
+                linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 45%, transparent 80%),
+                linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, transparent 60%);
         }
     }
 
@@ -358,13 +358,13 @@
 
     .slide:nth-child(3) .slide-overlay {
         background: radial-gradient(circle at center,
-                rgba(15, 23, 42, 0.35) 0%,
-                rgba(15, 23, 42, 0) 60%);
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0) 60%);
 
         @media (max-width: 768px) {
             background:
-                linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.35) 45%, transparent 80%),
-                linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, transparent 60%);
+                linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 45%, transparent 80%),
+                linear-gradient(to right, rgba(0, 0, 0, 0.2) 0%, transparent 60%);
         }
     }
 

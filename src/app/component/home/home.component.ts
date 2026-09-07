@@ -146,7 +146,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Showcase Programs
   showcasePrograms: ShowcaseProgram[] = [
-    { id: 1, name: 'Bratislava', country: 'Slovakia', image: 'assets/home_images/slovakia.png' },
+    { id: 1, name: 'Bratislava Old Town', country: 'Slovakia', image: 'assets/home_images/slovakia.png' },
     { id: 2, name: 'Amsterdam', country: 'Netherlands', image: 'assets/home_images/Armstordam.png' },
     { id: 3, name: 'Dubrovnik', country: 'Croatia', image: 'assets/home_images/croatia.png' },
     { id: 4, name: 'Prague', country: 'Czech Republic', image: 'assets/home_images/Czech Republic.png' },
