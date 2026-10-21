@@ -380,33 +380,42 @@
             <div class="application-card blur-reveal">
                 <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()">
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group" [class.has-error]="isFieldInvalid('name')">
                             <label>Full Name</label>
-                            <div class="input-wrapper">
+                            <div class="input-wrapper" [class.is-invalid]="isFieldInvalid('name')">
                                 <i class="far fa-user"></i>
                                 <input type="text" formControlName="name" placeholder="Enter your full name">
                             </div>
+                            <span class="field-error-msg" *ngIf="isFieldInvalid('name')">
+                                <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('name') }}
+                            </span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" [class.has-error]="isFieldInvalid('phone')">
                             <label>Phone Number</label>
-                            <div class="input-wrapper">
+                            <div class="input-wrapper" [class.is-invalid]="isFieldInvalid('phone')">
                                 <i class="fas fa-phone-alt"></i>
                                 <input type="tel" formControlName="phone" placeholder="Enter your phone number">
                             </div>
+                            <span class="field-error-msg" *ngIf="isFieldInvalid('phone')">
+                                <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('phone') }}
+                            </span>
                         </div>
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group" [class.has-error]="isFieldInvalid('email')">
                             <label>Email Address</label>
-                            <div class="input-wrapper">
+                            <div class="input-wrapper" [class.is-invalid]="isFieldInvalid('email')">
                                 <i class="far fa-envelope"></i>
                                 <input type="email" formControlName="email" placeholder="Enter your email address">
                             </div>
+                            <span class="field-error-msg" *ngIf="isFieldInvalid('email')">
+                                <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('email') }}
+                            </span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" [class.has-error]="isFieldInvalid('programLevel')">
                             <label>Select Program Level</label>
-                            <div class="input-wrapper">
+                            <div class="input-wrapper" [class.is-invalid]="isFieldInvalid('programLevel')">
                                 <i class="fas fa-graduation-cap"></i>
                                 <select formControlName="programLevel">
                                     <option value="" disabled selected>Select level</option>
@@ -415,12 +424,15 @@
                                     <option value="Diploma">Diploma</option>
                                 </select>
                             </div>
+                            <span class="field-error-msg" *ngIf="isFieldInvalid('programLevel')">
+                                <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('programLevel') }}
+                            </span>
                         </div>
                     </div>
 
-                    <div class="form-group full-width">
+                    <div class="form-group full-width" [class.has-error]="isFieldInvalid('interestedCourse')">
                         <label>Select Interested Course</label>
-                        <div class="input-wrapper">
+                        <div class="input-wrapper" [class.is-invalid]="isFieldInvalid('interestedCourse')">
                             <i class="fas fa-book"></i>
                             <select formControlName="interestedCourse">
                                 <option value="" disabled selected>Select course</option>
@@ -429,6 +441,41 @@
                                 }
                             </select>
                         </div>
+                        <span class="field-error-msg" *ngIf="isFieldInvalid('interestedCourse')">
+                            <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('interestedCourse') }}
+                        </span>
+                    </div>
+
+                    <!-- Mandatory Resume Upload -->
+                    <div class="form-group full-width" [class.has-error]="isFieldInvalid('resume')">
+                        <label>Upload CV / Resume <span class="required-star">*</span></label>
+                        <div class="file-upload-wrapper" [class.is-invalid]="isFieldInvalid('resume')">
+                            <input type="file" (change)="onFileChange($event)" id="cv-upload-student"
+                                accept=".pdf,.doc,.docx">
+                            <label for="cv-upload-student">
+                                <div class="upload-icon-circle">
+                                    <i class="fas fa-cloud-upload-alt"
+                                        *ngIf="!enquiryForm.get('resume')?.value"></i>
+                                    <i class="fas fa-check" style="color: #28a745;"
+                                        *ngIf="enquiryForm.get('resume')?.value"></i>
+                                </div>
+                                <div class="upload-text" *ngIf="!enquiryForm.get('resume')?.value">
+                                    <span class="main-text">Drag & drop your CV / Resume here</span>
+                                    <span class="sub-text">or choose a file</span>
+                                    <span class="format-text">PDF, DOCX (Max. 1MB) - Mandatory</span>
+                                </div>
+                                <div class="upload-text" *ngIf="enquiryForm.get('resume')?.value">
+                                    <span class="main-text" style="color: #28a745;">CV Selected Successfully</span>
+                                    <span class="sub-text"
+                                        style="font-weight: 600; margin-top: 5px; font-size: 15px;"><i
+                                            class="fas fa-file-alt"></i> {{ resumeFileName }}</span>
+                                    <span class="format-text" style="margin-top: 4px;">Click to replace file</span>
+                                </div>
+                            </label>
+                        </div>
+                        <span class="field-error-msg" *ngIf="isFieldInvalid('resume')">
+                            <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('resume') }}
+                        </span>
                     </div>
 
                     <div class="form-group full-width">
@@ -449,7 +496,7 @@
                         </div>
 
                         <div class="submit-row">
-                            <div class="checkbox-group">
+                            <div class="checkbox-group" [class.is-invalid]="isFieldInvalid('agreeToPolicy')">
                                 <input type="checkbox" id="policy" formControlName="agreeToPolicy"
                                     (change)="onPolicyChange($event)">
                                 <label for="policy">I agree to the <a href="#">Privacy Policy</a>.</label>

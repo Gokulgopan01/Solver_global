@@ -554,16 +554,19 @@
 
                     <form [formGroup]="applicationForm" (ngSubmit)="onSubmitApplication()">
                         <div class="form-row">
-                            <div class="form-group">
+                            <div class="form-group" [class.has-error]="isFieldInvalid('name')">
                                 <label>Full Name</label>
-                                <div class="input-with-icon">
+                                <div class="input-with-icon" [class.is-invalid]="isFieldInvalid('name')">
                                     <i class="fas fa-user"></i>
                                     <input type="text" formControlName="name" placeholder="Enter your full name">
                                 </div>
+                                <span class="field-error-msg" *ngIf="isFieldInvalid('name')">
+                                    <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('name') }}
+                                </span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" [class.has-error]="isFieldInvalid('phone')">
                                 <label>Phone Number</label>
-                                <div class="phone-input-group">
+                                <div class="phone-input-group" [class.is-invalid]="isFieldInvalid('phone')">
                                     <div class="country-code-select">
                                         <span class="flag">{{ selectedFlag }}</span>
                                         <select formControlName="countryCode" class="code-select">
@@ -576,30 +579,39 @@
                                     <input type="tel" formControlName="phone" placeholder="Phone number"
                                         class="phone-input">
                                 </div>
+                                <span class="field-error-msg" *ngIf="isFieldInvalid('phone')">
+                                    <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('phone') }}
+                                </span>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group">
+                            <div class="form-group" [class.has-error]="isFieldInvalid('email')">
                                 <label>Email Address</label>
-                                <div class="input-with-icon">
+                                <div class="input-with-icon" [class.is-invalid]="isFieldInvalid('email')">
                                     <i class="fas fa-envelope"></i>
                                     <input type="email" formControlName="email" placeholder="email@example.com">
                                 </div>
+                                <span class="field-error-msg" *ngIf="isFieldInvalid('email')">
+                                    <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('email') }}
+                                </span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" [class.has-error]="isFieldInvalid('dob')">
                                 <label>Date of Birth</label>
-                                <div class="input-with-icon">
+                                <div class="input-with-icon" [class.is-invalid]="isFieldInvalid('dob')">
                                     <i class="far fa-calendar-alt"></i>
                                     <input type="date" formControlName="dob">
                                 </div>
+                                <span class="field-error-msg" *ngIf="isFieldInvalid('dob')">
+                                    <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('dob') }}
+                                </span>
                             </div>
                         </div>
 
                         <div class="form-row">
-                            <div class="form-group">
+                            <div class="form-group" [class.has-error]="isFieldInvalid('country')">
                                 <label>Country of Residence</label>
-                                <div class="input-with-icon">
+                                <div class="input-with-icon" [class.is-invalid]="isFieldInvalid('country')">
                                     <i class="fas fa-globe-europe"></i>
                                     <select formControlName="country">
                                         <option value="" disabled selected>Select your country</option>
@@ -623,24 +635,33 @@
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
+                                <span class="field-error-msg" *ngIf="isFieldInvalid('country')">
+                                    <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('country') }}
+                                </span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" [class.has-error]="isFieldInvalid('educationSummary')">
                                 <label>Education Summary</label>
-                                <div class="input-with-icon">
+                                <div class="input-with-icon" [class.is-invalid]="isFieldInvalid('educationSummary')">
                                     <i class="fas fa-graduation-cap"></i>
                                     <input type="text" formControlName="educationSummary"
                                         placeholder="e.g. Bachelor's Degree in Business">
                                 </div>
+                                <span class="field-error-msg" *ngIf="isFieldInvalid('educationSummary')">
+                                    <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('educationSummary') }}
+                                </span>
                             </div>
                         </div>
 
-                        <div class="form-group full-width">
+                        <div class="form-group full-width" [class.has-error]="isFieldInvalid('jobPreference')">
                             <label>Job Preference</label>
-                            <div class="input-with-icon">
+                            <div class="input-with-icon" [class.is-invalid]="isFieldInvalid('jobPreference')">
                                 <i class="fas fa-briefcase"></i>
                                 <input type="text" formControlName="jobPreference"
                                     placeholder="e.g. Kitchen Assistant, Room Attendant">
                             </div>
+                            <span class="field-error-msg" *ngIf="isFieldInvalid('jobPreference')">
+                                <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('jobPreference') }}
+                            </span>
                         </div>
 
                         <div class="form-group full-width">
@@ -671,9 +692,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group full-width">
+                        <div class="form-group full-width" [class.has-error]="isFieldInvalid('photos')">
                             <label>Upload Photos (Min. 1, Max. 3)</label>
-                            <div class="photo-upload-container">
+                            <div class="photo-upload-container" [class.is-invalid]="isFieldInvalid('photos')">
                                 <div class="photo-preview-grid" *ngIf="photoPreviews.length > 0">
                                     <div class="photo-preview-card"
                                         *ngFor="let preview of photoPreviews; let i = index">
@@ -706,6 +727,9 @@
                                 <input type="file" #photoInput style="display: none" (change)="onPhotosChange($event)"
                                     multiple accept="image/*">
                             </div>
+                            <span class="field-error-msg" *ngIf="isFieldInvalid('photos')">
+                                <i class="fas fa-exclamation-circle"></i> {{ getErrorMessage('photos') }}
+                            </span>
                         </div>
 
                         <!-- Privacy & Submit -->
@@ -717,7 +741,7 @@
                             </div>
 
                             <div class="submit-row">
-                                <div class="checkbox-group">
+                                <div class="checkbox-group" [class.is-invalid]="isFieldInvalid('agreeToPolicy')">
                                     <input type="checkbox" id="policy" formControlName="agreeToPolicy"
                                         (change)="onPolicyChange($event)">
                                     <label for="policy">I agree to the <a href="#">Privacy Policy</a>.</label>

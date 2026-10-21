@@ -22,6 +22,33 @@ export function fileArrayRangeValidator(min: number, max: number) {
   };
 }
 
+// Custom validator to ensure applicant is at least 18 years old
+export function minimumAgeValidator(minAge: number) {
+  return (control: any) => {
+    if (!control.value) {
+      return null;
+    }
+    const parts = control.value.split('-');
+    if (parts.length !== 3) {
+      return { invalidDate: true };
+    }
+    const year = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    const day = parseInt(parts[2], 10);
+    const birthDate = new Date(year, month, day);
+    if (isNaN(birthDate.getTime())) {
+      return { invalidDate: true };
+    }
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age >= minAge ? null : { underAge: true, requiredAge: minAge };
+  };
+}
+
 
 @Component({
   selector: 'app-work',
@@ -201,15 +228,60 @@ export class WorkComponent implements AfterViewInit, OnInit {
     name: new FormControl('', [Validators.required]),
     countryCode: new FormControl('+91', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+    ]),
     country: new FormControl('', [Validators.required]),
-    dob: new FormControl('', [Validators.required, Validators.min(18)]),
+    dob: new FormControl('', [Validators.required, minimumAgeValidator(18)]),
     educationSummary: new FormControl('', [Validators.required]),
     jobPreference: new FormControl('', [Validators.required]),
     resume: new FormControl(null),
     photos: new FormControl<any>(null, [fileArrayRangeValidator(1, 3)]),
     agreeToPolicy: new FormControl(false, [Validators.requiredTrue])
   });
+
+  isFieldInvalid(fieldName: string): boolean {
+    const control = this.applicationForm.get(fieldName);
+    if (!control) return false;
+    return control.invalid && (control.touched || control.dirty);
+  }
+
+  getErrorMessage(fieldName: string): string {
+    const control = this.applicationForm.get(fieldName);
+    if (!control || !control.errors) return '';
+    if (control.errors['required']) {
+      switch (fieldName) {
+        case 'name': return 'Full Name is required';
+        case 'phone': return 'Phone Number is required';
+        case 'email': return 'Email Address is required';
+        case 'dob': return 'Date of Birth is required';
+        case 'country': return 'Country of Residence is required';
+        case 'educationSummary': return 'Education Summary is required';
+        case 'jobPreference': return 'Job Preference is required';
+        case 'photos': return 'Please upload at least 1 photo';
+        case 'agreeToPolicy': return 'Please agree to the Privacy Policy';
+        default: return 'This field is required';
+      }
+    }
+    if (control.errors['email'] || control.errors['pattern']) {
+      if (fieldName === 'email') return 'Please enter a valid email address (e.g. name@gmail.com)';
+    }
+    if (control.errors['underAge']) {
+      return 'You must be at least 18 years of age to apply';
+    }
+    if (control.errors['invalidDate']) {
+      return 'Please enter a valid date of birth';
+    }
+    if (control.errors['minPhotos']) {
+      return 'Please upload at least 1 photo';
+    }
+    if (control.errors['maxPhotos']) {
+      return 'You can upload a maximum of 3 photos';
+    }
+    return 'Invalid field';
+  }
 
   countryCodes = [
     { code: '+91', flag: '🇮🇳', name: 'India' },
@@ -563,18 +635,35 @@ export class WorkComponent implements AfterViewInit, OnInit {
   onPolicyChange(event: any) {
     const isChecked = event.target.checked;
     if (isChecked) {
+      // Mark all form fields as touched so validation errors & red borders immediately show
+      this.applicationForm.markAllAsTouched();
+
       const controls = this.applicationForm.controls;
       const errors: string[] = [];
       if (controls.name.invalid) errors.push('Full Name');
       if (controls.phone.invalid) errors.push('Phone Number');
       if (controls.email.invalid) errors.push('Email Address');
+      if (controls.dob.invalid) errors.push('Date of Birth (18+)');
       if (controls.country.invalid) errors.push('Country of Residence');
+      if (controls.educationSummary.invalid) errors.push('Education Summary');
+      if (controls.jobPreference.invalid) errors.push('Job Preference');
+      if (controls.photos.invalid) errors.push('Photos (Min. 1)');
 
       if (errors.length > 0) {
         event.target.checked = false;
         this.applicationForm.patchValue({ agreeToPolicy: false });
         this.notificationService.showError(`Please fill the following required fields before agreeing: ${errors.join(', ')}`);
+
+        // Smooth scroll to the first invalid field so user can identify it immediately
+        setTimeout(() => {
+          const firstInvalid = document.querySelector('.application-card .is-invalid, .application-card .has-error');
+          if (firstInvalid) {
+            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
       }
+    } else {
+      this.applicationForm.patchValue({ agreeToPolicy: false });
     }
   }
 
@@ -602,9 +691,16 @@ export class WorkComponent implements AfterViewInit, OnInit {
   async onSubmitApplication() {
 
     if (this.applicationForm.invalid) {
+      this.applicationForm.markAllAsTouched();
       this.notificationService.showError(
         'Please fill in all required fields correctly.'
       );
+      setTimeout(() => {
+        const firstInvalid = document.querySelector('.application-card .is-invalid, .application-card .has-error');
+        if (firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
       return;
     }
 
@@ -664,7 +760,10 @@ export class WorkComponent implements AfterViewInit, OnInit {
       'Application submitted successfully!'
     );
 
-    this.applicationForm.reset();
+    this.applicationForm.reset({
+      countryCode: '+91',
+      agreeToPolicy: false
+    });
 
     this.uploadedPhotos = [];
     this.photoPreviews = [];

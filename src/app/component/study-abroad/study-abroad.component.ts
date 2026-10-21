@@ -36,12 +36,83 @@ export class StudyAbroadComponent implements AfterViewInit {
   enquiryForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+    ]),
     programLevel: new FormControl('', [Validators.required]),
     interestedCourse: new FormControl('', [Validators.required]),
+    resume: new FormControl<File | null>(null, [Validators.required]),
     message: new FormControl(''),
     agreeToPolicy: new FormControl(false, [Validators.requiredTrue])
   });
+
+  isFieldInvalid(fieldName: string): boolean {
+    const control = this.enquiryForm.get(fieldName);
+    if (!control) return false;
+    return control.invalid && (control.touched || control.dirty);
+  }
+
+  getErrorMessage(fieldName: string): string {
+    const control = this.enquiryForm.get(fieldName);
+    if (!control || !control.errors) return '';
+    if (control.errors['required']) {
+      switch (fieldName) {
+        case 'name': return 'Full Name is required';
+        case 'phone': return 'Phone Number is required';
+        case 'email': return 'Email Address is required';
+        case 'programLevel': return 'Please select a program level';
+        case 'interestedCourse': return 'Please select your interested course';
+        case 'resume': return 'CV / Resume upload is mandatory';
+        case 'agreeToPolicy': return 'Please agree to the Privacy Policy';
+        default: return 'This field is required';
+      }
+    }
+    if (control.errors['email'] || control.errors['pattern']) {
+      if (fieldName === 'email') return 'Please enter a valid email address (e.g. name@gmail.com)';
+    }
+    return 'Invalid field';
+  }
+
+  get resumeFileName(): string {
+    const file = this.enquiryForm.get('resume')?.value as File | null;
+    return file?.name || 'Choose File (PDF/DOCX)';
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const maxSize = 1 * 1024 * 1024; // 1 MB
+      if (file.size > maxSize) {
+        this.notificationService.showError('File size exceeds 1MB. Please compress and upload.');
+        event.target.value = '';
+        this.enquiryForm.patchValue({ resume: null });
+        this.enquiryForm.get('resume')?.markAsTouched();
+        return;
+      }
+      this.enquiryForm.patchValue({ resume: file });
+      this.enquiryForm.get('resume')?.markAsTouched();
+      this.enquiryForm.get('resume')?.updateValueAndValidity();
+    }
+  }
+
+  async uploadFile(file: File): Promise<string | null> {
+    const fileName = `${Date.now()}-${file.name}`;
+    const { error } = await supabase.storage
+      .from('Solvers bucket')
+      .upload(fileName, file);
+
+    if (error) {
+      return null;
+    }
+
+    const { data } = supabase.storage
+      .from('Solvers bucket')
+      .getPublicUrl(fileName);
+
+    return data.publicUrl;
+  }
 
 
   heroFeatures = [
@@ -494,18 +565,30 @@ export class StudyAbroadComponent implements AfterViewInit {
   onPolicyChange(event: any) {
     const isChecked = event.target.checked;
     if (isChecked) {
+      this.enquiryForm.markAllAsTouched();
       const controls = this.enquiryForm.controls;
       const errors: string[] = [];
       if (controls.name.invalid) errors.push('Full Name');
       if (controls.phone.invalid) errors.push('Phone Number');
       if (controls.email.invalid) errors.push('Email Address');
-      if (controls.programLevel.invalid) errors.push('Country of Residence');
+      if (controls.programLevel.invalid) errors.push('Program Level');
+      if (controls.interestedCourse.invalid) errors.push('Interested Course');
+      if (controls.resume.invalid) errors.push('Upload CV / Resume');
 
       if (errors.length > 0) {
         event.target.checked = false;
         this.enquiryForm.patchValue({ agreeToPolicy: false });
         this.notificationService.showError(`Please fill the following required fields before agreeing: ${errors.join(', ')}`);
+
+        setTimeout(() => {
+          const firstInvalid = document.querySelector('.application-card .is-invalid, .application-card .has-error');
+          if (firstInvalid) {
+            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
       }
+    } else {
+      this.enquiryForm.patchValue({ agreeToPolicy: false });
     }
   }
 
@@ -513,12 +596,25 @@ export class StudyAbroadComponent implements AfterViewInit {
 
     if (this.enquiryForm.invalid) {
       this.enquiryForm.markAllAsTouched();
+      this.notificationService.showError('Please fill in all required fields correctly.');
+      setTimeout(() => {
+        const firstInvalid = document.querySelector('.application-card .is-invalid, .application-card .has-error');
+        if (firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
       return;
     }
 
     const form = this.enquiryForm.value;
 
     this.notificationService.showLoading('Submitting enquiry...');
+
+    const resumeFile = this.enquiryForm.get('resume')?.value as File | null;
+    let cvUrl: string | null = null;
+    if (resumeFile) {
+      cvUrl = await this.uploadFile(resumeFile);
+    }
 
     const { error } = await supabase
       .from('enquiries')
@@ -530,6 +626,7 @@ export class StudyAbroadComponent implements AfterViewInit {
           email: form.email,
           program_level: form.programLevel,
           interested_course: form.interestedCourse,
+          cv_url: cvUrl,
           message: form.message,
           status: 'New',
           created_at: new Date().toISOString()
@@ -543,10 +640,7 @@ export class StudyAbroadComponent implements AfterViewInit {
 
     this.notificationService.showSuccess('Thank you! Your enquiry has been submitted.');
 
-    this.enquiryForm.reset();
-
-    // Optional: restore defaults
-    this.enquiryForm.patchValue({
+    this.enquiryForm.reset({
       agreeToPolicy: false
     });
 
