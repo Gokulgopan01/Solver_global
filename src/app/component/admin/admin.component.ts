@@ -85,17 +85,31 @@ export class AdminComponent implements OnInit {
 
   async quickUpdateStatus(eq: any, newStatus: string, event?: Event) {
     if (event) event.stopPropagation();
-    const { error } = await supabase
-      .from('enquiries')
-      .update({ status: newStatus })
-      .eq('id', eq.id);
+    try {
+      const { data, error } = await supabase
+        .from('enquiries')
+        .update({ status: newStatus })
+        .eq('id', eq.id)
+        .select();
 
-    if (error) {
-      this.notificationService.showError('Failed to update status.');
-    } else {
+      if (error) {
+        console.error('Update status error:', error);
+        this.notificationService.showError('Failed to update status: ' + error.message);
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        console.error('Update failed: 0 rows modified. Check Supabase RLS policies.');
+        this.notificationService.showError('Database update blocked by Supabase RLS. Please add an UPDATE policy on enquiries table.');
+        return;
+      }
+
       eq.status = newStatus;
       this.notificationService.showSuccess(`Status changed to ${newStatus}`);
       this.activeActionDropdownId = null;
+    } catch (err: any) {
+      console.error('Update status exception:', err);
+      this.notificationService.showError('Error updating status.');
     }
   }
 
@@ -103,18 +117,32 @@ export class AdminComponent implements OnInit {
     if (event) event.stopPropagation();
     if (!confirm('Are you sure you want to delete this enquiry?')) return;
 
-    const { error } = await supabase
-      .from('enquiries')
-      .delete()
-      .eq('id', id);
+    try {
+      const { data, error } = await supabase
+        .from('enquiries')
+        .delete()
+        .eq('id', id)
+        .select();
 
-    if (error) {
-      this.notificationService.showError('Failed to delete enquiry.');
-    } else {
+      if (error) {
+        console.error('Delete enquiry error:', error);
+        this.notificationService.showError('Failed to delete enquiry: ' + error.message);
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        console.error('Delete failed: 0 rows deleted. Check Supabase RLS policies.');
+        this.notificationService.showError('Database delete blocked by Supabase RLS. Please add a DELETE policy on enquiries table.');
+        return;
+      }
+
       this.notificationService.showSuccess('Enquiry deleted successfully.');
       this.enquiries = this.enquiries.filter(e => e.id !== id);
       this.enquiryCount = this.enquiries.length;
       this.activeActionDropdownId = null;
+    } catch (err: any) {
+      console.error('Delete enquiry exception:', err);
+      this.notificationService.showError('Error deleting enquiry.');
     }
   }
 
@@ -207,14 +235,25 @@ export class AdminComponent implements OnInit {
   async updateStatus() {
     if (!this.selectedEnquiry) return;
 
-    const { error } = await supabase
-      .from('enquiries')
-      .update({ status: this.selectedEnquiry.status })
-      .eq('id', this.selectedEnquiry.id);
+    try {
+      const { data, error } = await supabase
+        .from('enquiries')
+        .update({ status: this.selectedEnquiry.status })
+        .eq('id', this.selectedEnquiry.id)
+        .select();
 
-    if (error) {
-      this.notificationService.showError('Failed to update status.');
-    } else {
+      if (error) {
+        console.error('Update status error:', error);
+        this.notificationService.showError('Failed to update status: ' + error.message);
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        console.error('Update failed: 0 rows modified. Check Supabase RLS policies.');
+        this.notificationService.showError('Database update blocked by Supabase RLS. Please add an UPDATE policy on enquiries table.');
+        return;
+      }
+
       this.notificationService.showSuccess('Status updated successfully!');
 
       // Instantly update the local array to reflect changes immediately on the frontend
@@ -224,6 +263,9 @@ export class AdminComponent implements OnInit {
       }
 
       this.closeModal();
+    } catch (err: any) {
+      console.error('Update status exception:', err);
+      this.notificationService.showError('Error updating status.');
     }
   }
 }
