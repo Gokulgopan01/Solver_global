@@ -1,105 +1,184 @@
-<div class="admin-container" *ngIf="isAuthenticated">
+<div class="admin-page-wrapper" *ngIf="isAuthenticated">
+  <div class="admin-container">
 
-  <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
-    <h2>Admin Dashboard - Enquiries</h2>
-    <div class="stats-card">
-      <div class="stats-icon">
-        📩
+    <!-- Top Header -->
+    <div class="dashboard-header">
+      <div class="header-left">
+        <div class="header-accent-bar"></div>
+        <div class="header-text">
+          <h1 class="header-title">Admin Dashboard – Enquiries</h1>
+          <p class="header-subtitle">Manage and track all received enquiries from applicants.</p>
+        </div>
       </div>
 
-      <div class="stats-content">
-        <p class="stats-label">Total Enquiries</p>
-        <h2 class="stats-value">{{ enquiryCount }}</h2>
+      <!-- Center Total Enquiries Stat Card -->
+      <div class="stats-card">
+        <div class="stats-icon-box">
+          <i class="fas fa-inbox"></i>
+        </div>
+        <div class="stats-info">
+          <span class="stats-label">TOTAL ENQUIRIES</span>
+          <span class="stats-value">{{ enquiryCount }}</span>
+        </div>
+      </div>
+
+      <!-- Right Action Buttons -->
+      <div class="header-actions">
+        <button class="btn-refresh" (click)="loadEnquiries()">
+          <i class="fas fa-sync-alt"></i> Refresh Data
+        </button>
+        <button class="btn-logout" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
       </div>
     </div>
-    <div style="display: flex; gap: 12px;">
-      <button class="btn-gradient-refresh" (click)="loadEnquiries()">
-        <i class="fas fa-sync-alt"></i> Refresh Data
-      </button>
-      <button class="btn-gradient-logout" (click)="logout()">
-        <i class="fas fa-sign-out-alt"></i> Logout
-      </button>
-    </div>
-  </div>
 
-  <div class="filters-bar" style="margin-bottom: 20px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
-    <div class="filter-group">
-      <select class="premium-select" [(ngModel)]="typeFilter"
-        style="padding: 8px 12px; border-radius: 8px; border: 1px solid #eaeaea; outline: none; background: #fff;">
-        <option value="All">All Types</option>
-        <option value="job">💼 Job Enquiries</option>
-        <option value="study">🎓 Study Abroad</option>
-      </select>
-    </div>
-    <div class="filter-group">
-      <select class="premium-select" [(ngModel)]="statusFilter"
-        style="padding: 8px 12px; border-radius: 8px; border: 1px solid #eaeaea; outline: none; background: #fff;">
-        <option value="All">All Statuses</option>
-        <option value="New">🟢 New</option>
-        <option value="Seen">🔵 Seen</option>
-        <option value="Contacted">🟠 Contacted</option>
-        <option value="Completed">✅ Completed</option>
-      </select>
-    </div>
-  </div>
+    <!-- Filters & Search Toolbar -->
+    <div class="toolbar-section">
+      <!-- Type Filter Pills -->
+      <div class="type-pills">
+        <button class="pill-btn" [class.active]="typeFilter === 'All'" (click)="setTypeFilter('All')">
+          All Types
+        </button>
+        <button class="pill-btn" [class.active]="typeFilter === 'job'" (click)="setTypeFilter('job')">
+          Job
+        </button>
+        <button class="pill-btn" [class.active]="typeFilter === 'study'" (click)="setTypeFilter('study')">
+          Study
+        </button>
+      </div>
 
-  <div class="table-responsive">
-    <table class="enquiry-table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Type</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Details</th>
-          <th>Status</th>
-          <th>View</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let eq of filteredEnquiries">
-          <td>{{ eq.created_at | date:'shortDate' }}</td>
-          <td>
-            <span class="badge" [ngClass]="eq.enquiry_type === 'job' ? 'badge-job' : 'badge-study'">
-              {{ eq.enquiry_type | uppercase }}
-            </span>
-          </td>
-          <td>{{ eq.full_name }}</td>
-          <td>{{ eq.email }}</td>
-          <td>{{ eq.phone_number }}</td>
-          <td>
-            <div class="small-text" *ngIf="eq.enquiry_type === 'job'">
-              Country: {{ eq.country }}<br>
-              Job: {{ eq.job_preference }}
+      <!-- Search Input & Filter Dropdown -->
+      <div class="toolbar-right">
+        <div class="search-input-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" [(ngModel)]="searchTerm" placeholder="Search by name, email, phone..." />
+          <button class="clear-search-btn" *ngIf="searchTerm" (click)="searchTerm = ''">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="filter-dropdown-wrapper">
+          <button class="btn-filter" [class.has-filter]="statusFilter !== 'All'" (click)="toggleFilterDropdown($event)">
+            <i class="fas fa-filter"></i>
+            <span>{{ statusFilter === 'All' ? 'Filter' : statusFilter }}</span>
+            <i class="fas fa-chevron-down chevron-icon"></i>
+          </button>
+
+          <div class="filter-menu" *ngIf="showFilterDropdown" (click)="$event.stopPropagation()">
+            <div class="filter-menu-header">Filter by Status</div>
+            <div class="filter-menu-item" [class.selected]="statusFilter === 'All'" (click)="setStatusFilter('All')">
+              All Statuses
             </div>
-            <div class="small-text" *ngIf="eq.enquiry_type === 'study'">
-              Level: {{ eq.program_level }}<br>
-              Course: {{ eq.interested_course }}
+            <div class="filter-menu-item" [class.selected]="statusFilter === 'New'" (click)="setStatusFilter('New')">
+              <span class="menu-dot dot-green"></span> New
             </div>
-          </td>
-          <td>
-            <span class="badge" [ngClass]="'status-' + ((eq.status || 'new') | lowercase)">
-              {{
-              (eq.status | lowercase) === 'seen' ? '🔵 Seen' :
-              (eq.status | lowercase) === 'contacted' ? '🟠 Contacted' :
-              (eq.status | lowercase) === 'completed' ? '✅ Completed' :
-              '🟢 New'
-              }}
-            </span>
-          </td>
-          <td>
-            <button class="btn-gradient-view" (click)="viewRow(eq)">
-              <i class="fas fa-eye"></i> View
-            </button>
-          </td>
-        </tr>
-        <tr *ngIf="filteredEnquiries.length === 0">
-          <td colspan="8" class="text-center py-4" style="text-align: center; color: #6b7280; font-style: italic;">No
-            matching enquiries found.</td>
-        </tr>
-      </tbody>
-    </table>
+            <div class="filter-menu-item" [class.selected]="statusFilter === 'Seen'" (click)="setStatusFilter('Seen')">
+              <span class="menu-dot dot-blue"></span> Seen
+            </div>
+            <div class="filter-menu-item" [class.selected]="statusFilter === 'Contacted'" (click)="setStatusFilter('Contacted')">
+              <span class="menu-dot dot-orange"></span> Contacted
+            </div>
+            <div class="filter-menu-item" [class.selected]="statusFilter === 'Pending'" (click)="setStatusFilter('Pending')">
+              <span class="menu-dot dot-gray"></span> Pending
+            </div>
+            <div class="filter-menu-item" [class.selected]="statusFilter === 'Completed'" (click)="setStatusFilter('Completed')">
+              <span class="menu-dot dot-emerald"></span> Completed
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Table Container Card -->
+    <div class="enquiry-table-card">
+      <div class="table-responsive">
+        <table class="enquiry-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Details</th>
+              <th>Status</th>
+              <th>View</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let eq of filteredEnquiries">
+              <td class="date-cell">{{ eq.created_at | date:'M/d/yy' }}</td>
+              <td>
+                <span class="type-pill" [ngClass]="'type-' + eq.enquiry_type">
+                  {{ eq.enquiry_type | uppercase }}
+                </span>
+              </td>
+              <td class="name-cell">{{ eq.full_name }}</td>
+              <td class="email-cell">{{ eq.email }}</td>
+              <td class="phone-cell">{{ eq.phone_number }}</td>
+              <td class="details-cell">
+                <div class="details-stack" *ngIf="eq.enquiry_type === 'job'">
+                  <span class="detail-line">Country: {{ eq.country || 'N/A' }}</span>
+                  <span class="detail-line">Job: {{ eq.job_preference || 'N/A' }}</span>
+                </div>
+                <div class="details-stack" *ngIf="eq.enquiry_type === 'study'">
+                  <span class="detail-line">Level: {{ eq.program_level || 'N/A' }}</span>
+                  <span class="detail-line">Course: {{ eq.interested_course || 'N/A' }}</span>
+                </div>
+              </td>
+              <td>
+                <span class="status-badge" [ngClass]="'status-' + ((eq.status || 'new') | lowercase)">
+                  <span class="status-dot"></span>
+                  <span class="status-text">{{ eq.status || 'New' }}</span>
+                </span>
+              </td>
+              <td>
+                <button class="btn-table-view" (click)="viewRow(eq)">
+                  <i class="fas fa-eye"></i> View
+                </button>
+              </td>
+              <td class="actions-cell text-center">
+                <div class="action-dropdown-wrapper">
+                  <button class="btn-dots" (click)="toggleActionDropdown(eq.id, $event)">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  <div class="action-menu" *ngIf="activeActionDropdownId === eq.id" (click)="$event.stopPropagation()">
+                    <div class="action-item" (click)="quickUpdateStatus(eq, 'New', $event)">
+                      <span class="menu-dot dot-green"></span> Mark as New
+                    </div>
+                    <div class="action-item" (click)="quickUpdateStatus(eq, 'Seen', $event)">
+                      <span class="menu-dot dot-blue"></span> Mark as Seen
+                    </div>
+                    <div class="action-item" (click)="quickUpdateStatus(eq, 'Contacted', $event)">
+                      <span class="menu-dot dot-orange"></span> Mark as Contacted
+                    </div>
+                    <div class="action-item" (click)="quickUpdateStatus(eq, 'Completed', $event)">
+                      <span class="menu-dot dot-emerald"></span> Mark as Completed
+                    </div>
+                    <div class="action-divider"></div>
+                    <div class="action-item text-danger" (click)="deleteEnquiry(eq.id, $event)">
+                      <i class="fas fa-trash-alt"></i> Delete Enquiry
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="filteredEnquiries.length === 0">
+              <td colspan="9" class="empty-table-state">
+                <div class="empty-box">
+                  <i class="fas fa-inbox empty-icon"></i>
+                  <p class="empty-title">No enquiries found</p>
+                  <p class="empty-subtitle">Try adjusting your search terms or filters</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </div>
 

@@ -19,39 +19,45 @@
     min-height: 350px;
     border-radius: 12px;
     overflow: hidden;
-
     background: url('/assets/work/banner.png') no-repeat center center;
     background-size: cover;
-    background-position: center;
-
-    @media (max-width: 480px) and (min-width: 300px) {
-        background-position: right center !important;
-    }
-
-
 
     &::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
         background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 75%);
         z-index: 1;
     }
 
-    .hero-section {
+    @media (max-width: 768px) {
+        display: flex; // directly on the section, not nested
+        flex-direction: column;
+        padding-top: 0;
+        height: 65vh;
+        min-height: 420px;
+        background-position: right center;
 
-        // keep your existing styles, and add this for mobile:
-        @media (max-width: 480px) {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            min-height: 85vh; // or 100svh minus header height, adjust to taste
-            padding: 0;
+        // darker at the bottom so the text is readable
+        &::before {
+            background: linear-gradient(to top,
+                    rgba(10, 18, 40, 0.85) 0%,
+                    rgba(10, 18, 40, 0.45) 40%,
+                    rgba(0, 0, 0, 0) 75%);
         }
     }
+
+    // .hero-section {
+
+    //     // // keep your existing styles, and add this for mobile:
+    //     // @media (max-width: 480px) {
+    //     //     display: flex;
+    //     //     flex-direction: column;
+    //     //     justify-content: flex-end;
+    //     //     min-height: 85vh; // or 100svh minus header height, adjust to taste
+    //     //     padding: 0;
+    //     // }
+    // }
 
     .hero-container {
         position: relative;
@@ -61,12 +67,9 @@
         align-items: flex-start;
         width: 100%;
 
-        @media (max-width: 480px) {
-            flex: 1; // fill the hero height
-            justify-content: flex-start;
+        @media (max-width: 768px) {
+            flex: 1; // stretch to fill the section height
             align-items: flex-end; // push content to the bottom
-            text-align: left;
-            padding: 0;
         }
     }
 
@@ -75,11 +78,10 @@
         padding-top: 60px;
         text-align: left;
 
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             max-width: 100%;
             width: 100%;
-            padding: 0 20px 32px; // bottom breathing room
-            text-align: left;
+            padding: 0 0 28px; // removes the 60px top padding
         }
 
         .hero-title {
@@ -121,6 +123,7 @@
         }
     }
 }
+
 
 
 .eyebrow-wrapper {
