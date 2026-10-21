@@ -284,7 +284,8 @@
           margin-left: 2px;
         }
 
-        &:hover, &.has-filter {
+        &:hover,
+        &.has-filter {
           background: #f8fafc;
           border-color: #cbd5e1;
         }
@@ -354,6 +355,7 @@
     overflow-x: auto;
     width: 100%;
     border-radius: 14px;
+    min-height: 280px;
   }
 
   .enquiry-table {
@@ -489,6 +491,7 @@
   &.status-new {
     background: #f0fdf4;
     color: #16a34a;
+
     .status-dot {
       background: #22c55e;
     }
@@ -497,6 +500,7 @@
   &.status-contacted {
     background: #fff7ed;
     color: #ea580c;
+
     .status-dot {
       background: #f97316;
     }
@@ -505,6 +509,7 @@
   &.status-seen {
     background: #eff6ff;
     color: #2563eb;
+
     .status-dot {
       background: #3b82f6;
     }
@@ -513,6 +518,7 @@
   &.status-pending {
     background: #f1f5f9;
     color: #64748b;
+
     .status-dot {
       background: #94a3b8;
     }
@@ -521,6 +527,7 @@
   &.status-completed {
     background: #ecfdf5;
     color: #059669;
+
     .status-dot {
       background: #10b981;
     }
@@ -538,15 +545,19 @@
   &.dot-green {
     background: #22c55e;
   }
+
   &.dot-blue {
     background: #3b82f6;
   }
+
   &.dot-orange {
     background: #f97316;
   }
+
   &.dot-gray {
     background: #94a3b8;
   }
+
   &.dot-emerald {
     background: #10b981;
   }
@@ -603,23 +614,26 @@
     }
 
     .action-menu {
-      position: absolute;
-      right: 0;
-      top: calc(100% + 4px);
+      position: fixed; // escapes overflow clipping of the table wrapper
+      // top / left are set from TS
       background: #ffffff;
       border: 1px solid #edf2f7;
       border-radius: 10px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-      min-width: 170px;
-      padding: 6px 0;
-      z-index: 100;
+      min-width: 165px;
+      padding: 5px 0;
+      z-index: 1000;
       text-align: left;
+
+      &.drop-up {
+        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.12);
+      }
 
       .action-item {
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 8px 16px;
+        padding: 7px 14px;
         font-size: 12.5px;
         color: #334155;
         cursor: pointer;
@@ -720,6 +734,7 @@
 
         input {
           width: 100%;
+
           &:focus {
             width: 100%;
           }
@@ -828,7 +843,8 @@
 
 .premium-select {
   width: 100%;
-  padding: 12px 40px 12px 16px; /* Added right padding for icon */
+  padding: 12px 40px 12px 16px;
+  /* Added right padding for icon */
   border: 1px solid #cbd5e1;
   border-radius: 10px;
   font-size: 15px;
@@ -883,14 +899,17 @@
     &::-webkit-scrollbar {
       width: 8px;
     }
+
     &::-webkit-scrollbar-track {
       background: #f9fafb;
       border-radius: 0 20px 20px 0;
     }
+
     &::-webkit-scrollbar-thumb {
       background: #cbd5e1;
       border-radius: 10px;
     }
+
     &::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
     }
@@ -1057,7 +1076,8 @@
         color: #334155;
       }
 
-      .cv-section, .photo-section {
+      .cv-section,
+      .photo-section {
         margin-bottom: 32px;
 
         label {
@@ -1082,7 +1102,7 @@
         &:hover {
           border-color: #cbd5e1;
         }
-        
+
         .cv-info {
           display: flex;
           align-items: center;
@@ -1090,7 +1110,8 @@
 
           .cv-icon {
             font-size: 32px;
-            color: #ef4444; /* PDF Red */
+            color: #ef4444;
+            /* PDF Red */
           }
 
           .cv-details {
@@ -1189,7 +1210,7 @@
                 text-decoration: none;
                 transform: translateY(10px);
                 transition: all 0.3s ease;
-                
+
                 &:hover {
                   background: #FFD700;
                   color: #000;
@@ -1201,8 +1222,10 @@
               img {
                 transform: scale(1.05);
               }
+
               .photo-overlay {
                 opacity: 1;
+
                 .btn-circle {
                   transform: translateY(0);
                 }
@@ -1226,6 +1249,7 @@
           i {
             font-size: 24px;
           }
+
           span {
             font-size: 13px;
             font-weight: 500;
@@ -1283,6 +1307,7 @@
     opacity: 0;
     transform: scale(0.96) translateY(15px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -1306,7 +1331,7 @@
 
       .modal-header {
         padding: 24px 20px 20px;
-        
+
         h2 {
           font-size: 22px;
         }
@@ -1334,6 +1359,7 @@
 
           .cv-actions {
             flex-direction: column;
+
             .btn-icon {
               justify-content: center;
             }
@@ -1343,7 +1369,7 @@
         .photo-gallery {
           grid-template-columns: 1fr;
         }
-        
+
         .message-section {
           margin-bottom: 24px;
         }
@@ -1353,7 +1379,7 @@
         padding: 20px;
         flex-direction: column-reverse;
         gap: 12px;
-        
+
         button {
           width: 100%;
           padding: 14px;

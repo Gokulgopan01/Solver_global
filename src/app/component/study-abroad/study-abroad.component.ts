@@ -610,39 +610,55 @@ export class StudyAbroadComponent implements AfterViewInit {
 
     this.notificationService.showLoading('Submitting enquiry...');
 
-    const resumeFile = this.enquiryForm.get('resume')?.value as File | null;
-    let cvUrl: string | null = null;
-    if (resumeFile) {
-      cvUrl = await this.uploadFile(resumeFile);
-    }
-
-    const { error } = await supabase
-      .from('enquiries')
-      .insert([
-        {
-          enquiry_type: 'study',
-          full_name: form.name,
-          phone_number: form.phone,
-          email: form.email,
-          program_level: form.programLevel,
-          interested_course: form.interestedCourse,
-          cv_url: cvUrl,
-          message: form.message,
-          status: 'New',
-          created_at: new Date().toISOString()
+    try {
+      const resumeFile = this.enquiryForm.get('resume')?.value as File | null;
+      let cvUrl: string | null = null;
+      if (resumeFile) {
+        cvUrl = await this.uploadFile(resumeFile);
+        if (!cvUrl) {
+          this.notificationService.showError('Failed to upload CV / Resume. Please try again.');
+          return;
         }
-      ]);
+      }
 
-    if (error) {
-      this.notificationService.showError('Something went wrong. Please try again.');
-      return;
+      const { data, error } = await supabase
+        .from('enquiries')
+        .insert([
+          {
+            enquiry_type: 'study',
+            full_name: form.name,
+            phone_number: form.phone,
+            email: form.email,
+            program_level: form.programLevel,
+            interested_course: form.interestedCourse,
+            cv_url: cvUrl,
+            message: form.message,
+            status: 'New',
+            created_at: new Date().toISOString()
+          }
+        ])
+        .select();
+
+      if (error) {
+        console.error('Supabase study enquiry submission error:', error);
+        this.notificationService.showError('Submission failed: ' + (error.message || 'Database error'));
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        console.error('Submission failed: No confirmation data returned by Supabase.');
+        this.notificationService.showError('Submission failed: Database did not confirm the entry.');
+        return;
+      }
+
+      this.notificationService.showSuccess('Thank you! Your enquiry has been submitted.');
+
+      this.enquiryForm.reset({
+        agreeToPolicy: false
+      });
+    } catch (err: any) {
+      console.error('Unexpected enquiry submission error:', err);
+      this.notificationService.showError('An unexpected error occurred while submitting.');
     }
-
-    this.notificationService.showSuccess('Thank you! Your enquiry has been submitted.');
-
-    this.enquiryForm.reset({
-      agreeToPolicy: false
-    });
-
   }
 }

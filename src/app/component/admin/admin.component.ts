@@ -27,6 +27,20 @@ export class AdminComponent implements OnInit {
   public showFilterDropdown: boolean = false;
   public activeActionDropdownId: string | null = null;
 
+  public showNoteBox: boolean = false;
+  public applicantNote: string = '';
+
+  public statusList = [
+    { label: 'New', value: 'New', color: 'green' },
+    { label: 'Contacted', value: 'Contacted', color: 'orange' },
+    { label: 'Shortlisted', value: 'Shortlisted', color: 'blue' },
+    { label: 'Interview', value: 'Interview', color: 'purple' },
+    { label: 'Rejected', value: 'Rejected', color: 'red' },
+    { label: 'Completed', value: 'Completed', color: 'emerald' }
+  ];
+  actionMenuStyle: { [key: string]: string } = {};
+
+
   get filteredEnquiries() {
     return this.enquiries.filter(eq => {
       const typeMatch = this.typeFilter === 'All' || eq.enquiry_type === this.typeFilter;
@@ -71,10 +85,34 @@ export class AdminComponent implements OnInit {
     this.activeActionDropdownId = null;
   }
 
+  isActionDropUp = false;
+
   toggleActionDropdown(id: string, event?: Event) {
     if (event) event.stopPropagation();
-    this.activeActionDropdownId = this.activeActionDropdownId === id ? null : id;
+    if (this.activeActionDropdownId === id) {
+      this.activeActionDropdownId = null;
+      return;
+    }
+
+    this.activeActionDropdownId = id;
     this.showFilterDropdown = false;
+
+    const btn = event?.currentTarget as HTMLElement | undefined;
+    if (!btn) return;
+
+    const rect = btn.getBoundingClientRect();
+    const gap = 4;
+    const edgePadding = 8;
+    const menuHeight = 210; // your menu is about 206px tall with 4 items + delete
+
+    this.isActionDropUp = window.innerHeight - rect.bottom < menuHeight + gap;
+
+    // right edge of the menu lines up with the right edge of the button
+    const right = Math.max(edgePadding, window.innerWidth - rect.right);
+
+    this.actionMenuStyle = this.isActionDropUp
+      ? { right: `${right}px`, left: 'auto', top: 'auto', bottom: `${window.innerHeight - rect.top + gap}px` }
+      : { right: `${right}px`, left: 'auto', bottom: 'auto', top: `${rect.bottom + gap}px` };
   }
 
   @HostListener('document:click')
@@ -223,13 +261,32 @@ export class AdminComponent implements OnInit {
     // Clone to avoid editing directly in the table before save
     this.selectedEnquiry = { ...eq };
     this.showEnquiryModal = true;
+    this.showNoteBox = false;
+    this.applicantNote = localStorage.getItem('admin_note_' + eq.id) || '';
     document.body.style.overflow = 'hidden';
   }
 
   closeModal() {
     this.showEnquiryModal = false;
     this.selectedEnquiry = null;
+    this.showNoteBox = false;
     document.body.style.overflow = '';
+  }
+
+  toggleNoteBox() {
+    this.showNoteBox = !this.showNoteBox;
+  }
+
+  saveApplicantNote() {
+    if (!this.selectedEnquiry) return;
+    localStorage.setItem('admin_note_' + this.selectedEnquiry.id, this.applicantNote);
+    this.notificationService.showSuccess('Note saved successfully!');
+  }
+
+  openImage(url?: string | null) {
+    if (url) {
+      window.open(url, '_blank');
+    }
   }
 
   async updateStatus() {

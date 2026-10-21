@@ -76,13 +76,16 @@
             <div class="filter-menu-item" [class.selected]="statusFilter === 'Seen'" (click)="setStatusFilter('Seen')">
               <span class="menu-dot dot-blue"></span> Seen
             </div>
-            <div class="filter-menu-item" [class.selected]="statusFilter === 'Contacted'" (click)="setStatusFilter('Contacted')">
+            <div class="filter-menu-item" [class.selected]="statusFilter === 'Contacted'"
+              (click)="setStatusFilter('Contacted')">
               <span class="menu-dot dot-orange"></span> Contacted
             </div>
-            <div class="filter-menu-item" [class.selected]="statusFilter === 'Pending'" (click)="setStatusFilter('Pending')">
+            <div class="filter-menu-item" [class.selected]="statusFilter === 'Pending'"
+              (click)="setStatusFilter('Pending')">
               <span class="menu-dot dot-gray"></span> Pending
             </div>
-            <div class="filter-menu-item" [class.selected]="statusFilter === 'Completed'" (click)="setStatusFilter('Completed')">
+            <div class="filter-menu-item" [class.selected]="statusFilter === 'Completed'"
+              (click)="setStatusFilter('Completed')">
               <span class="menu-dot dot-emerald"></span> Completed
             </div>
           </div>
@@ -108,7 +111,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let eq of filteredEnquiries">
+            <tr *ngFor="let eq of filteredEnquiries; let i = index">
               <td class="date-cell">{{ eq.created_at | date:'M/d/yy' }}</td>
               <td>
                 <span class="type-pill" [ngClass]="'type-' + eq.enquiry_type">
@@ -144,7 +147,8 @@
                   <button class="btn-dots" (click)="toggleActionDropdown(eq.id, $event)">
                     <i class="fas fa-ellipsis-h"></i>
                   </button>
-                  <div class="action-menu" *ngIf="activeActionDropdownId === eq.id" (click)="$event.stopPropagation()">
+                  <div class="action-menu" [class.drop-up]="isActionDropUp" *ngIf="activeActionDropdownId === eq.id"
+                    (click)="$event.stopPropagation()">
                     <div class="action-item" (click)="quickUpdateStatus(eq, 'New', $event)">
                       <span class="menu-dot dot-green"></span> Mark as New
                     </div>
@@ -198,204 +202,249 @@
 
 <div class="enquiry-modal-overlay" *ngIf="showEnquiryModal && selectedEnquiry" (click)="closeModal()">
   <div class="enquiry-modal-content" data-lenis-prevent="true" (click)="$event.stopPropagation()">
-    <button class="close-btn" (click)="closeModal()"><i class="fas fa-times"></i></button>
-
-    <div class="modal-header">
-      <h2>{{ selectedEnquiry.enquiry_type === 'study' ? 'Study Abroad Enquiry' : 'Job Enquiry' }}</h2>
-      <div class="header-meta">
-        <span class="badge" [ngClass]="selectedEnquiry.enquiry_type === 'study' ? 'badge-study' : 'badge-job'">
-          {{ selectedEnquiry.enquiry_type === 'study' ? '🎓 Study Abroad' : '💼 Job Enquiry' }}
-        </span>
-        <span class="date">{{ selectedEnquiry.created_at | date:'medium' }}</span>
+    
+    <!-- Modal Top Header -->
+    <div class="app-modal-header">
+      <div class="header-left-group">
+        <div class="header-icon-badge">
+          <i class="far fa-file-alt"></i>
+        </div>
+        <div class="header-titles">
+          <h2>View Application Details</h2>
+          <p>Complete information about the applicant and their application.</p>
+        </div>
       </div>
+      <button class="modal-close-btn" (click)="closeModal()" title="Close">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
 
-    <!-- Study Type Details -->
-    <div class="modal-body" *ngIf="selectedEnquiry.enquiry_type === 'study'">
-      <div class="info-grid">
-        <div class="info-card">
-          <label>Full Name</label>
-          <div class="value">{{ selectedEnquiry.full_name }}</div>
-        </div>
-        <div class="info-card">
-          <label>Phone Number</label>
-          <div class="value">{{ selectedEnquiry.phone_number }}</div>
-        </div>
-        <div class="info-card">
-          <label>Email Address</label>
-          <div class="value">{{ selectedEnquiry.email }}</div>
-        </div>
-        <div class="info-card">
-          <label>Country</label>
-          <div class="value">{{ selectedEnquiry.country || 'Not provided' }}</div>
-        </div>
-        <div class="info-card">
-          <label>Program Level</label>
-          <div class="value">{{ selectedEnquiry.program_level || 'Not provided' }}</div>
-        </div>
-        <div class="info-card">
-          <label>Interested Course</label>
-          <div class="value">{{ selectedEnquiry.interested_course || 'Not provided' }}</div>
-        </div>
-      </div>
+    <!-- Modal Body: 2 Columns -->
+    <div class="app-modal-body">
+      
+      <!-- LEFT COLUMN: Main details -->
+      <div class="modal-left-column">
+        
+        <!-- Top Hero Profile Card -->
+        <div class="applicant-hero-card">
+          <div class="hero-top-row">
+            
+            <!-- 3 Photos -->
+            <div class="applicant-photos-row">
+              <!-- Photo 1 -->
+              <div class="photo-box" [class.has-img]="selectedEnquiry.photo_1">
+                <img *ngIf="selectedEnquiry.photo_1" [src]="selectedEnquiry.photo_1" alt="Photo 1" (click)="openImage(selectedEnquiry.photo_1)" />
+                <div class="photo-empty" *ngIf="!selectedEnquiry.photo_1">
+                  <i class="fas fa-user"></i>
+                  <span>Photo 1</span>
+                </div>
+              </div>
 
-      <div class="cv-section" *ngIf="selectedEnquiry.cv_url">
-        <label>Uploaded CV / Resume</label>
-        <div class="cv-card">
-          <div class="cv-info">
-            <i class="fas fa-file-pdf cv-icon"></i>
-            <div class="cv-details">
-              <span class="cv-name">Student_Resume.pdf</span>
+              <!-- Photo 2 -->
+              <div class="photo-box" [class.has-img]="selectedEnquiry.photo_2">
+                <img *ngIf="selectedEnquiry.photo_2" [src]="selectedEnquiry.photo_2" alt="Photo 2" (click)="openImage(selectedEnquiry.photo_2)" />
+                <div class="photo-empty" *ngIf="!selectedEnquiry.photo_2">
+                  <i class="fas fa-user"></i>
+                  <span>Photo 2</span>
+                </div>
+              </div>
+
+              <!-- Photo 3 -->
+              <div class="photo-box" [class.has-img]="selectedEnquiry.photo_3">
+                <img *ngIf="selectedEnquiry.photo_3" [src]="selectedEnquiry.photo_3" alt="Photo 3" (click)="openImage(selectedEnquiry.photo_3)" />
+                <div class="photo-empty" *ngIf="!selectedEnquiry.photo_3">
+                  <i class="fas fa-user"></i>
+                  <span>Photo 3</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Applicant Header Info -->
+            <div class="applicant-meta-info">
+              <h3 class="applicant-name">{{ selectedEnquiry.full_name }}</h3>
+              <div class="meta-line">
+                <i class="far fa-envelope"></i>
+                <span class="meta-val">{{ selectedEnquiry.email }}</span>
+              </div>
+              <div class="meta-line">
+                <i class="fas fa-phone-alt"></i>
+                <span class="meta-val">{{ selectedEnquiry.phone_number }}</span>
+              </div>
+              <div class="meta-line">
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="meta-val">{{ selectedEnquiry.country || 'Not provided' }}</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Download Resume Button below photos -->
+          <div class="hero-resume-action">
+            <a *ngIf="selectedEnquiry.cv_url" [href]="selectedEnquiry.cv_url" target="_blank" download class="btn-download-cv">
+              <i class="fas fa-download"></i> Download Resume
+            </a>
+            <span *ngIf="!selectedEnquiry.cv_url" class="btn-download-cv disabled">
+              <i class="fas fa-file-alt"></i> No Resume Attached
+            </span>
+          </div>
+        </div>
+
+        <!-- Remaining Details Bottom Cards -->
+        
+        <!-- 1. Personal Information Card -->
+        <div class="modal-section-card">
+          <div class="section-card-header">
+            <i class="fas fa-user section-icon"></i>
+            <h4>Personal Information</h4>
+          </div>
+          <div class="section-grid">
+            <div class="grid-field">
+              <span class="field-label">Full Name</span>
+              <span class="field-value">{{ selectedEnquiry.full_name }}</span>
+            </div>
+            <div class="grid-field">
+              <span class="field-label">Email</span>
+              <span class="field-value">{{ selectedEnquiry.email }}</span>
+            </div>
+            <div class="grid-field">
+              <span class="field-label">Phone Number</span>
+              <span class="field-value">{{ selectedEnquiry.phone_number }}</span>
+            </div>
+            <div class="grid-field" *ngIf="selectedEnquiry.DOB">
+              <span class="field-label">Date of Birth</span>
+              <span class="field-value">{{ selectedEnquiry.DOB }}</span>
+            </div>
+            <div class="grid-field">
+              <span class="field-label">Country</span>
+              <span class="field-value">{{ selectedEnquiry.country || 'Not specified' }}</span>
+            </div>
+            <div class="grid-field">
+              <span class="field-label">Application Type</span>
+              <span class="field-value type-tag" [ngClass]="'type-' + selectedEnquiry.enquiry_type">
+                {{ selectedEnquiry.enquiry_type | uppercase }}
+              </span>
+            </div>
+            <div class="grid-field">
+              <span class="field-label">Submitted On</span>
+              <span class="field-value">{{ selectedEnquiry.created_at | date:'mediumDate' }}</span>
             </div>
           </div>
-          <div class="cv-actions">
-            <a [href]="selectedEnquiry.cv_url" target="_blank" class="btn-icon"><i class="fas fa-eye"></i> Preview</a>
-            <a [href]="selectedEnquiry.cv_url" target="_blank" download class="btn-icon outline"><i
-                class="fas fa-download"></i> Download</a>
+        </div>
+
+        <!-- 2. Job Details Card (when type === 'job') -->
+        <div class="modal-section-card" *ngIf="selectedEnquiry.enquiry_type === 'job'">
+          <div class="section-card-header">
+            <i class="fas fa-briefcase section-icon"></i>
+            <h4>Job Preference & Career Details</h4>
           </div>
-        </div>
-      </div>
-
-      <div class="message-section">
-        <label>Message</label>
-        <div class="message-card">{{ selectedEnquiry.message || 'No message provided.' }}</div>
-      </div>
-
-      <div class="status-section">
-        <label>Status</label>
-        <div class="status-dropdown">
-          <select [(ngModel)]="selectedEnquiry.status" class="premium-select" (change)="updateStatus()">
-            <option value="New">🟢 New</option>
-            <option value="Seen">🔵 Seen</option>
-            <option value="Contacted">🟠 Contacted</option>
-            <option value="Completed">✅ Completed</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <!-- Job Type Details -->
-    <div class="modal-body" *ngIf="selectedEnquiry.enquiry_type === 'job'">
-      <div class="info-grid">
-        <div class="info-card">
-          <label>Full Name</label>
-          <div class="value">{{ selectedEnquiry.full_name }}</div>
-        </div>
-        <div class="info-card">
-          <label>Phone Number</label>
-          <div class="value">{{ selectedEnquiry.phone_number }}</div>
-        </div>
-        <div class="info-card">
-          <label>Email Address</label>
-          <div class="value">{{ selectedEnquiry.email }}</div>
-        </div>
-        <div class="info-card">
-          <label>Country</label>
-          <div class="value">{{ selectedEnquiry.country || 'Not provided' }}</div>
-        </div>
-        <div class="info-card">
-          <label>Date of Birth</label>
-          <div class="value">{{ selectedEnquiry.DOB || 'Not provided' }}</div>
-        </div>
-      </div>
-
-      <div class="section-divider">
-        <h3>Education & Career</h3>
-      </div>
-
-      <div class="info-grid">
-        <div class="info-card">
-          <label>Job Preference</label>
-          <div class="value highlighted-badge">{{ selectedEnquiry.job_preference || 'Not specified' }}</div>
-        </div>
-        <div class="info-card" style="grid-column: 1 / -1;">
-          <label>Education Summary</label>
-          <div class="value multi-line">{{ selectedEnquiry.education_summary || 'No details provided.' }}</div>
-        </div>
-      </div>
-
-      <div class="section-divider">
-        <h3>Attachments</h3>
-      </div>
-
-      <div class="cv-section" *ngIf="selectedEnquiry.cv_url">
-        <label>Uploaded CV</label>
-        <div class="cv-card">
-          <div class="cv-info">
-            <i class="fas fa-file-pdf cv-icon"></i>
-            <div class="cv-details">
-              <span class="cv-name">Applicant_CV.pdf</span>
+          <div class="section-grid">
+            <div class="grid-field full-width" *ngIf="selectedEnquiry.job_preference">
+              <span class="field-label">Job Preference</span>
+              <span class="field-value preference-pill">{{ selectedEnquiry.job_preference }}</span>
+            </div>
+            <div class="grid-field full-width" *ngIf="selectedEnquiry.education_summary">
+              <span class="field-label">Education Summary</span>
+              <span class="field-value multiline-box">{{ selectedEnquiry.education_summary }}</span>
             </div>
           </div>
-          <div class="cv-actions">
-            <a [href]="selectedEnquiry.cv_url" target="_blank" class="btn-icon"><i class="fas fa-eye"></i> Preview</a>
-            <a [href]="selectedEnquiry.cv_url" target="_blank" download class="btn-icon outline"><i
-                class="fas fa-download"></i> Download</a>
+        </div>
+
+        <!-- 3. Study Details Card (when type === 'study') -->
+        <div class="modal-section-card" *ngIf="selectedEnquiry.enquiry_type === 'study'">
+          <div class="section-card-header">
+            <i class="fas fa-graduation-cap section-icon"></i>
+            <h4>Study Program Details</h4>
+          </div>
+          <div class="section-grid">
+            <div class="grid-field" *ngIf="selectedEnquiry.program_level">
+              <span class="field-label">Program Level</span>
+              <span class="field-value">{{ selectedEnquiry.program_level }}</span>
+            </div>
+            <div class="grid-field" *ngIf="selectedEnquiry.interested_course">
+              <span class="field-label">Interested Course</span>
+              <span class="field-value">{{ selectedEnquiry.interested_course }}</span>
+            </div>
+            <div class="grid-field full-width" *ngIf="selectedEnquiry.message">
+              <span class="field-label">Applicant Statement / Message</span>
+              <span class="field-value multiline-box">{{ selectedEnquiry.message }}</span>
+            </div>
           </div>
         </div>
+
       </div>
 
-      <div class="photo-section">
-        <label>Uploaded Photos</label>
-        <div class="photo-gallery">
-          <!-- Photo 1 -->
-          <div class="photo-card" *ngIf="selectedEnquiry.photo_1; else noPhoto">
-            <div class="photo-wrapper">
-              <img [src]="selectedEnquiry.photo_1" alt="Photo 1" />
-              <div class="photo-overlay">
-                <a [href]="selectedEnquiry.photo_1" target="_blank" class="btn-circle"><i class="fas fa-eye"></i></a>
-                <a [href]="selectedEnquiry.photo_1" target="_blank" download class="btn-circle"><i
-                    class="fas fa-download"></i></a>
+      <!-- RIGHT COLUMN: Sidebar (Status & Quick Actions) -->
+      <div class="modal-right-sidebar">
+        
+        <!-- Application Status Card -->
+        <div class="sidebar-box">
+          <h4 class="sidebar-heading">Application Status</h4>
+
+          <!-- Current Status Selector -->
+          <div class="current-status-dropdown">
+            <select [(ngModel)]="selectedEnquiry.status" class="status-select-input">
+              <option *ngFor="let s of statusList" [value]="s.value">
+                ● {{ s.label }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Update Status Button -->
+          <button class="btn-update-status" (click)="updateStatus()">
+            <i class="fas fa-check-circle"></i> Update Status
+          </button>
+
+          <!-- Status Options Selection List -->
+          <div class="status-options-list">
+            <div class="status-item-row"
+                 *ngFor="let s of statusList"
+                 [class.active]="(selectedEnquiry.status || 'New').toLowerCase() === s.value.toLowerCase()"
+                 (click)="selectedEnquiry.status = s.value">
+              <div class="status-left">
+                <span class="dot-indicator" [ngClass]="'dot-' + s.color"></span>
+                <span class="status-name">{{ s.label }}</span>
+              </div>
+              <i class="fas fa-check checkmark" *ngIf="(selectedEnquiry.status || 'New').toLowerCase() === s.value.toLowerCase()"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions Card (All three action items from picture) -->
+        <div class="sidebar-box">
+          <div class="sidebar-header-with-icon">
+            <i class="fas fa-bolt action-bolt-icon"></i>
+            <h4 class="sidebar-heading">Quick Actions</h4>
+          </div>
+
+          <div class="action-buttons-stack">
+            <!-- 1. Call Applicant -->
+            <a [href]="'tel:' + selectedEnquiry.phone_number" class="quick-btn btn-call">
+              <i class="fas fa-phone-alt"></i> Call Applicant
+            </a>
+
+            <!-- 2. Send Email -->
+            <a [href]="'mailto:' + selectedEnquiry.email" class="quick-btn btn-email">
+              <i class="far fa-envelope"></i> Send Email
+            </a>
+
+            <!-- 3. Add Note -->
+            <button class="quick-btn btn-note" (click)="toggleNoteBox()">
+              <i class="far fa-sticky-note"></i> Add Note
+            </button>
+
+            <!-- Expandable Note Container -->
+            <div class="inline-note-box" *ngIf="showNoteBox">
+              <textarea [(ngModel)]="applicantNote" placeholder="Write internal note for this applicant..."></textarea>
+              <div class="note-btn-row">
+                <button class="btn-save-note" (click)="saveApplicantNote()">Save Note</button>
               </div>
             </div>
           </div>
-          <!-- Photo 2 -->
-          <div class="photo-card" *ngIf="selectedEnquiry.photo_2; else noPhoto">
-            <div class="photo-wrapper">
-              <img [src]="selectedEnquiry.photo_2" alt="Photo 2" />
-              <div class="photo-overlay">
-                <a [href]="selectedEnquiry.photo_2" target="_blank" class="btn-circle"><i class="fas fa-eye"></i></a>
-                <a [href]="selectedEnquiry.photo_2" target="_blank" download class="btn-circle"><i
-                    class="fas fa-download"></i></a>
-              </div>
-            </div>
-          </div>
-          <!-- Photo 3 -->
-          <div class="photo-card" *ngIf="selectedEnquiry.photo_3; else noPhoto">
-            <div class="photo-wrapper">
-              <img [src]="selectedEnquiry.photo_3" alt="Photo 3" />
-              <div class="photo-overlay">
-                <a [href]="selectedEnquiry.photo_3" target="_blank" class="btn-circle"><i class="fas fa-eye"></i></a>
-                <a [href]="selectedEnquiry.photo_3" target="_blank" download class="btn-circle"><i
-                    class="fas fa-download"></i></a>
-              </div>
-            </div>
-          </div>
         </div>
-        <ng-template #noPhoto>
-          <div class="photo-placeholder">
-            <i class="fas fa-image"></i>
-            <span>No Photo</span>
-          </div>
-        </ng-template>
+
       </div>
 
-      <div class="status-section">
-        <label>Status</label>
-        <div class="status-dropdown">
-          <select [(ngModel)]="selectedEnquiry.status" class="premium-select">
-            <option value="New">🟢 New</option>
-            <option value="Seen">🔵 Seen</option>
-            <option value="Contacted">🟠 Contacted</option>
-            <option value="Completed">✅ Completed</option>
-          </select>
-        </div>
-      </div>
     </div>
 
-    <div class="modal-footer">
-      <button class="btn-secondary" (click)="closeModal()">Close</button>
-      <button class="btn-primary" (click)="updateStatus()">Update Status</button>
-    </div>
   </div>
 </div>

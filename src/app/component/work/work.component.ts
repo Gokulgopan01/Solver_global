@@ -708,65 +708,79 @@ export class WorkComponent implements AfterViewInit, OnInit {
 
     this.notificationService.showLoading('Submitting application...');
 
-    // These should be the uploaded file URLs
-    const resume = this.applicationForm.get('resume')?.value as File | null;
+    try {
+      // These should be the uploaded file URLs
+      const resume = this.applicationForm.get('resume')?.value as File | null;
 
-    let cvUrl: string | null = null;
+      let cvUrl: string | null = null;
 
-    if (resume) {
-      cvUrl = await this.uploadFile(resume);
-    }
-
-    const photoUrls: string[] = [];
-
-    for (const photo of this.uploadedPhotos) {
-
-      const url = await this.uploadFile(photo);
-
-      if (url) {
-        photoUrls.push(url);
+      if (resume) {
+        cvUrl = await this.uploadFile(resume);
+        if (!cvUrl) {
+          this.notificationService.showError('Failed to upload CV / Resume. Please try again.');
+          return;
+        }
       }
 
-    }
+      const photoUrls: string[] = [];
 
-    const { error } = await supabase
-      .from('enquiries')
-      .insert([
-        {
-          enquiry_type: 'job',
-          full_name: form.name,
-          phone_number: `${form.countryCode}${form.phone}`,
-          email: form.email,
-          country: form.country,
-          DOB: form.dob,
-          education_summary: form.educationSummary,
-          job_preference: form.jobPreference,
-          cv_url: cvUrl,
-          photo_1: photoUrls[0] || null,
-          photo_2: photoUrls[1] || null,
-          photo_3: photoUrls[2] || null,
-          message: null,
-          status: 'New',
-          created_at: new Date().toISOString()
+      for (const photo of this.uploadedPhotos) {
+        const url = await this.uploadFile(photo);
+        if (url) {
+          photoUrls.push(url);
         }
-      ]);
+      }
 
-    if (error) {
-      this.notificationService.showError('Something went wrong.');
-      return;
+      const { data, error } = await supabase
+        .from('enquiries')
+        .insert([
+          {
+            enquiry_type: 'job',
+            full_name: form.name,
+            phone_number: `${form.countryCode}${form.phone}`,
+            email: form.email,
+            country: form.country,
+            DOB: form.dob,
+            education_summary: form.educationSummary,
+            job_preference: form.jobPreference,
+            cv_url: cvUrl,
+            photo_1: photoUrls[0] || null,
+            photo_2: photoUrls[1] || null,
+            photo_3: photoUrls[2] || null,
+            message: null,
+            status: 'New',
+            created_at: new Date().toISOString()
+          }
+        ])
+        .select();
+
+      if (error) {
+        console.error('Supabase application submission error:', error);
+        this.notificationService.showError('Submission failed: ' + (error.message || 'Database error'));
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        console.error('Submission failed: No confirmation data returned by Supabase.');
+        this.notificationService.showError('Submission failed: Database did not confirm the entry.');
+        return;
+      }
+
+      this.notificationService.showSuccess(
+        'Application submitted successfully!'
+      );
+
+      this.applicationForm.reset({
+        countryCode: '+91',
+        agreeToPolicy: false
+      });
+
+      this.uploadedPhotos = [];
+      this.photoPreviews = [];
+    } catch (err: any) {
+      console.error('Unexpected submission error:', err);
+      this.notificationService.showError('An unexpected error occurred while submitting.');
     }
-
-    this.notificationService.showSuccess(
-      'Application submitted successfully!'
-    );
-
-    this.applicationForm.reset({
-      countryCode: '+91',
-      agreeToPolicy: false
-    });
-
-    this.uploadedPhotos = [];
-    this.photoPreviews = [];
   }
 
 }
