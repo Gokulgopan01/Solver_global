@@ -147,7 +147,7 @@
                   <button class="btn-dots" (click)="toggleActionDropdown(eq.id, $event)">
                     <i class="fas fa-ellipsis-h"></i>
                   </button>
-                  <div class="action-menu" [class.drop-up]="isActionDropUp" *ngIf="activeActionDropdownId === eq.id"
+                  <div class="action-menu" [class.drop-up]="isActionDropUp" [ngStyle]="actionMenuStyle" *ngIf="activeActionDropdownId === eq.id"
                     (click)="$event.stopPropagation()">
                     <div class="action-item" (click)="quickUpdateStatus(eq, 'New', $event)">
                       <span class="menu-dot dot-green"></span> Mark as New
@@ -210,7 +210,12 @@
           <i class="far fa-file-alt"></i>
         </div>
         <div class="header-titles">
-          <h2>View Application Details</h2>
+          <div class="title-with-badge">
+            <h2>View Application Details</h2>
+            <span class="application-type-badge" [ngClass]="'badge-' + selectedEnquiry.enquiry_type">
+              {{ selectedEnquiry.enquiry_type === 'study' ? '🎓 STUDY ABROAD' : '💼 JOB APPLICATION' }}
+            </span>
+          </div>
           <p>Complete information about the applicant and their application.</p>
         </div>
       </div>

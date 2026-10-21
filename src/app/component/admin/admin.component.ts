@@ -102,12 +102,12 @@ export class AdminComponent implements OnInit {
 
     const rect = btn.getBoundingClientRect();
     const gap = 4;
-    const edgePadding = 8;
+    const edgePadding = 16;
     const menuHeight = 210; // your menu is about 206px tall with 4 items + delete
 
     this.isActionDropUp = window.innerHeight - rect.bottom < menuHeight + gap;
 
-    // right edge of the menu lines up with the right edge of the button
+    // right edge of the menu lines up with the right edge of the button, keeping at least 16px from viewport edge
     const right = Math.max(edgePadding, window.innerWidth - rect.right);
 
     this.actionMenuStyle = this.isActionDropUp
@@ -115,6 +115,8 @@ export class AdminComponent implements OnInit {
       : { right: `${right}px`, left: 'auto', bottom: 'auto', top: `${rect.bottom + gap}px` };
   }
 
+  @HostListener('window:scroll')
+  @HostListener('window:resize')
   @HostListener('document:click')
   onDocumentClick() {
     this.showFilterDropdown = false;
