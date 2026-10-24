@@ -24,6 +24,14 @@ export const routes: Routes = [
         component: ServicesComponent
     },
     {
+        path: 'agencys',
+        component: ServicesComponent
+    },
+    {
+        path: 'agencies',
+        component: ServicesComponent
+    },
+    {
         path: 'study-abroad-programs',
         component: StudyAbroadComponent
     },

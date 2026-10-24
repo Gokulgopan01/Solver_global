@@ -78,42 +78,19 @@ $card-radius: 16px;
 // ==========================================
 .hero-section {
     position: relative;
-    background: linear-gradient(135deg, #070e1e 0%, #0f1f38 60%, #15294a 100%);
-    padding: 110px 0 80px;
+    background: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.42)),
+        url('/assets/images/budapest_study_relocation_journey.png') center/cover no-repeat;
+    padding: 130px 0 90px;
     color: #ffffff;
     overflow: hidden;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.25);
 
     @media (max-width: 768px) {
-        padding: 90px 0 60px;
+        padding: 100px 0 70px;
     }
 
     .hero-bg-shapes {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-        }
-
-        .shape-1 {
-            width: 500px;
-            height: 500px;
-            background: $gold;
-            top: -150px;
-            right: -100px;
-        }
-
-        .shape-2 {
-            width: 400px;
-            height: 400px;
-            background: #3b82f6;
-            bottom: -100px;
-            left: -100px;
-        }
+        display: none;
     }
 
     .hero-container {
@@ -131,8 +108,9 @@ $card-radius: 16px;
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: rgba(255, 215, 0, 0.12);
-        border: 1px solid rgba(255, 215, 0, 0.3);
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 215, 0, 0.4);
         padding: 6px 16px;
         border-radius: 30px;
         font-size: 0.8rem;
@@ -153,6 +131,7 @@ $card-radius: 16px;
         line-height: 1.15;
         margin: 0 0 20px 0;
         letter-spacing: -0.5px;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
 
         .highlight-gold {
             background: linear-gradient(135deg, #ffd700 0%, #ffea79 100%);
@@ -168,9 +147,10 @@ $card-radius: 16px;
     .hero-desc {
         font-size: 1.1rem;
         line-height: 1.7;
-        color: #cbd5e1;
+        color: #f1f5f9;
         margin: 0 auto 36px;
         max-width: 720px;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
 
         strong {
             color: #ffffff;
@@ -250,10 +230,11 @@ $card-radius: 16px;
             align-items: center;
             gap: 14px;
             text-align: left;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
             padding: 12px 18px;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
 
             i {
                 font-size: 1.5rem;

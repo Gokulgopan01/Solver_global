@@ -39,39 +39,21 @@
                 </ul>
             </li>
             <li class="has-dropdown">
-                <a routerLink="/services" routerLinkActive="active" class="nav-link">
-                    Services <i class="fas fa-chevron-down dropdown-arrow"></i>
+                <a routerLink="/agencys" routerLinkActive="active" class="nav-link">
+                    Agencys <i class="fas fa-chevron-down dropdown-arrow"></i>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="has-nested-dropdown">
-                        <a routerLink="/services" (click)="closeMenu()">
-                            Visa <i class="fas fa-chevron-right nested-arrow"></i>
-                        </a>
-                        <ul class="nested-dropdown-menu">
-                            <li><a routerLink="/services" (click)="closeMenu()">Visit Visa <i
-                                        class="fas fa-chevron-right item-arrow"></i></a></li>
-                            <li><a routerLink="/services" (click)="closeMenu()">Tourist Visa <i
-                                        class="fas fa-chevron-right item-arrow"></i></a></li>
-                            <li><a routerLink="/services" (click)="closeMenu()">Visa Renewal <i
-                                        class="fas fa-chevron-right item-arrow"></i></a></li>
-                        </ul>
-                    </li>
-                    <li><a routerLink="/part-time-jobs-accommodation" (click)="closeMenu()">Part Time Jobs <i
+                    <li><a routerLink="/agencys" (click)="closeMenu()">Agency Partnership <i
                                 class="fas fa-chevron-right item-arrow"></i></a></li>
-                    <li><a routerLink="/part-time-jobs-accommodation" (click)="closeMenu()">Accommodation <i
+                    <li><a routerLink="/agencys" (click)="closeMenu()">Part Time Jobs for Clients <i
                                 class="fas fa-chevron-right item-arrow"></i></a></li>
-                    <li class="has-nested-dropdown">
-                        <a routerLink="/services" (click)="closeMenu()">
-                            Legal Documents <i class="fas fa-chevron-right nested-arrow"></i>
-                        </a>
-                        <ul class="nested-dropdown-menu">
-                            <li><a routerLink="/services" (click)="closeMenu()">Insurance <i
-                                        class="fas fa-chevron-right item-arrow"></i></a></li>
-                            <li><a routerLink="/services" (click)="closeMenu()">Tax Card Registration <i
-                                        class="fas fa-chevron-right item-arrow"></i></a></li>
-                        </ul>
-                    </li>
-                    <li><a routerLink="/services" (click)="closeMenu()">Family Sponsorship <i
+                    <li><a routerLink="/agencys" (click)="closeMenu()">Client Accommodation <i
+                                class="fas fa-chevron-right item-arrow"></i></a></li>
+                    <li><a routerLink="/agencys" (click)="closeMenu()">Legal Documentation <i
+                                class="fas fa-chevron-right item-arrow"></i></a></li>
+                    <li><a routerLink="/agencys" (click)="closeMenu()">Airport & City Transport <i
+                                class="fas fa-chevron-right item-arrow"></i></a></li>
+                    <li><a routerLink="/agencys" (click)="closeMenu()">Book for Clients <i
                                 class="fas fa-chevron-right item-arrow"></i></a></li>
                 </ul>
             </li>
@@ -122,30 +104,15 @@
             </div>
 
             <div class="mobile-group">
-                <a class="mobile-link" [class.active]="activeDropdown === 'services'"
-                    (click)="toggleDropdown('services', $event)">Services <i class="fas fa-chevron-down"></i></a>
-                <div class="mobile-submenu" [class.active]="activeDropdown === 'services'">
-                    <div class="mobile-subgroup">
-                        <a class="mobile-sublink" [class.active]="activeSubDropdown === 'visa'"
-                            (click)="toggleSubDropdown('visa', $event)">Visa <i class="fas fa-chevron-down"></i></a>
-                        <div class="mobile-sub-submenu" [class.active]="activeSubDropdown === 'visa'">
-                            <a routerLink="/services" (click)="closeMenu()">Visit Visa</a>
-                            <a routerLink="/services" (click)="closeMenu()">Tourist Visa</a>
-                            <a routerLink="/services" (click)="closeMenu()">Visa Renewal</a>
-                        </div>
-                    </div>
-                    <a routerLink="/part-time-jobs-accommodation" (click)="closeMenu()">Part Time Jobs</a>
-                    <a routerLink="/part-time-jobs-accommodation" (click)="closeMenu()">Accommodation</a>
-                    <div class="mobile-subgroup">
-                        <a class="mobile-sublink" [class.active]="activeSubDropdown === 'legal'"
-                            (click)="toggleSubDropdown('legal', $event)">Legal Documents <i
-                                class="fas fa-chevron-down"></i></a>
-                        <div class="mobile-sub-submenu" [class.active]="activeSubDropdown === 'legal'">
-                            <a routerLink="/services" (click)="closeMenu()">Insurance</a>
-                            <a routerLink="/services" (click)="closeMenu()">Tax Card Registration</a>
-                        </div>
-                    </div>
-                    <a routerLink="/services" (click)="closeMenu()">Family Sponsorship</a>
+                <a class="mobile-link" [class.active]="activeDropdown === 'agencys'"
+                    (click)="toggleDropdown('agencys', $event)">Agencys <i class="fas fa-chevron-down"></i></a>
+                <div class="mobile-submenu" [class.active]="activeDropdown === 'agencys'">
+                    <a routerLink="/agencys" (click)="closeMenu()">Agency Partnership</a>
+                    <a routerLink="/agencys" (click)="closeMenu()">Part Time Jobs for Clients</a>
+                    <a routerLink="/agencys" (click)="closeMenu()">Client Accommodation</a>
+                    <a routerLink="/agencys" (click)="closeMenu()">Legal Documentation</a>
+                    <a routerLink="/agencys" (click)="closeMenu()">Airport & City Transport</a>
+                    <a routerLink="/agencys" (click)="closeMenu()">Book for Clients</a>
                 </div>
             </div>
 
