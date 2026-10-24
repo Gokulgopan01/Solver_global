@@ -56,9 +56,9 @@
                                         class="fas fa-chevron-right item-arrow"></i></a></li>
                         </ul>
                     </li>
-                    <li><a routerLink="/services" (click)="closeMenu()">Part Time Jobs <i
+                    <li><a routerLink="/part-time-jobs-accommodation" (click)="closeMenu()">Part Time Jobs <i
                                 class="fas fa-chevron-right item-arrow"></i></a></li>
-                    <li><a routerLink="/services" (click)="closeMenu()">Accommodation <i
+                    <li><a routerLink="/part-time-jobs-accommodation" (click)="closeMenu()">Accommodation <i
                                 class="fas fa-chevron-right item-arrow"></i></a></li>
                     <li class="has-nested-dropdown">
                         <a routerLink="/services" (click)="closeMenu()">
@@ -75,7 +75,7 @@
                                 class="fas fa-chevron-right item-arrow"></i></a></li>
                 </ul>
             </li>
-            <li><a routerLink="/client-reviews" routerLinkActive="active" class="nav-link">Reviews</a></li>
+            <li><a routerLink="/part-time-jobs-accommodation" routerLinkActive="active" class="nav-link">Jobs & Accommodation</a></li>
             <li><a routerLink="/international-recruitment" class="nav-link">Employer</a></li>
             <li><a routerLink="/success-gallery" class="nav-link">GALLERY</a></li>
         </ul>
@@ -134,8 +134,8 @@
                             <a routerLink="/services" (click)="closeMenu()">Visa Renewal</a>
                         </div>
                     </div>
-                    <a routerLink="/services" (click)="closeMenu()">Part Time Jobs</a>
-                    <a routerLink="/services" (click)="closeMenu()">Accommodation</a>
+                    <a routerLink="/part-time-jobs-accommodation" (click)="closeMenu()">Part Time Jobs</a>
+                    <a routerLink="/part-time-jobs-accommodation" (click)="closeMenu()">Accommodation</a>
                     <div class="mobile-subgroup">
                         <a class="mobile-sublink" [class.active]="activeSubDropdown === 'legal'"
                             (click)="toggleSubDropdown('legal', $event)">Legal Documents <i
@@ -149,7 +149,7 @@
                 </div>
             </div>
 
-            <a routerLink="/client-reviews" class="mobile-link" (click)="closeMenu()">Reviews</a>
+            <a routerLink="/part-time-jobs-accommodation" class="mobile-link" (click)="closeMenu()">Jobs & Accommodation</a>
             <a routerLink="/international-recruitment" class="mobile-link" (click)="closeMenu()">Hire Workers</a>
             <a routerLink="/success-gallery" class="mobile-cta" (click)="closeMenu()">GALLERY</a>
         </div>

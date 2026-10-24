@@ -1,0 +1,336 @@
+<div class="jobs-accommodation-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="flag">🇭🇺</span>
+                    <span>LOCAL HUNGARY SUPPORT & GUIDANCE</span>
+                </div>
+                <h1 class="hero-title">
+                    Part-Time Jobs &amp; Verified <span class="highlight-gold">Accommodation in Hungary</span>
+                </h1>
+                <p class="hero-desc">
+                    Are you a student or expat living in Hungary? Our on-the-ground support team assists you with
+                    student-friendly <strong>part-time jobs</strong>, verified <strong>accommodations</strong> with
+                    address cards,
+                    and <strong>legal documentation</strong> across Budapest and Hungarian counties.
+                </p>
+
+                <div class="hero-cta-group">
+                    <button class="btn-primary" (click)="scrollToForm()">
+                        Apply for Support <i class="fas fa-arrow-down"></i>
+                    </button>
+                    <a routerLink="/work-abroad" class="btn-secondary">
+                        View Full-Time Career <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="hero-metrics">
+                    <div class="metric-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <strong>24h / Week</strong>
+                            <span>Legal Student Work</span>
+                        </div>
+                    </div>
+                    <div class="metric-item">
+                        <i class="fas fa-home"></i>
+                        <div>
+                            <strong>Lakcímkártya</strong>
+                            <span>Address Card Ready</span>
+                        </div>
+                    </div>
+                    <div class="metric-item">
+                        <i class="fas fa-file-contract"></i>
+                        <div>
+                            <strong>Adókártya</strong>
+                            <span>Tax Card Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview Strip -->
+    <section class="overview-section">
+        <div class="container">
+            <div class="overview-grid">
+                <div class="overview-card" (click)="scrollToForm()">
+                    <div class="icon-circle icon-gold"><i class="fas fa-business-time"></i></div>
+                    <h3>Student Part-Time Jobs</h3>
+                    <p>Flexible shifts tailored around university timetables in restaurants, hotels, warehouses, and
+                        retail.</p>
+                    <span class="card-link">Explore Roles <i class="fas fa-arrow-right"></i></span>
+                </div>
+
+                <div class="overview-card" (click)="scrollToForm()">
+                    <div class="icon-circle icon-blue"><i class="fas fa-building-user"></i></div>
+                    <h3>Verified Accommodations</h3>
+                    <p>Shared rooms, student dormitories, and private flats with legitimate lease contracts for
+                        immigration.</p>
+                    <span class="card-link">Find Housing <i class="fas fa-arrow-right"></i></span>
+                </div>
+
+                <div class="overview-card" (click)="scrollToForm()">
+                    <div class="icon-circle icon-purple"><i class="fas fa-id-card"></i></div>
+                    <h3>Legal &amp; Tax Documents</h3>
+                    <p>Hassle-free assistance with Hungarian Tax Number (Adóazonosító), TAJ card, and residence card
+                        renewals.</p>
+                    <span class="card-link">Get Support <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Part-Time Jobs Section -->
+    <section class="jobs-section" id="jobs-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="eyebrow">HIGH DEMAND IN HUNGARY</span>
+                <h2 class="section-title">Popular Part-Time Jobs for Students &amp; Expats</h2>
+                <div class="gold-line-center"></div>
+                <p class="section-subtitle">
+                    Legal, hourly-paid opportunities in Budapest, Pest County, Debrecen, Győr, and across Hungary.
+                </p>
+            </div>
+
+            <div class="jobs-grid">
+                @for (job of featuredJobs; track job.title) {
+                <div class="job-card">
+                    <div class="job-card-top">
+                        <div class="job-icon-wrap">
+                            <i [class]="job.icon"></i>
+                        </div>
+                        <span class="job-rate-badge">{{ job.hourlyRate }}</span>
+                    </div>
+
+                    <h3 class="job-title">{{ job.title }}</h3>
+                    <p class="job-desc">{{ job.desc }}</p>
+
+                    <div class="job-meta">
+                        <span><i class="fas fa-clock"></i> {{ job.type }}</span>
+                        <span><i class="fas fa-map-marker-alt"></i> {{ job.location }}</span>
+                    </div>
+
+                    <button class="job-select-btn" (click)="selectJob(job.title)">
+                        Apply for this Role <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodation Section -->
+    <section class="accommodation-section" id="housing-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="eyebrow">SAFE &amp; VERIFIED HOUSING</span>
+                <h2 class="section-title">Accommodation Options in Hungary</h2>
+                <div class="gold-line-center"></div>
+                <p class="section-subtitle">
+                    Whether you need short-term temporary stay upon landing or a long-term lease for university studies.
+                </p>
+            </div>
+
+            <div class="acc-grid">
+                @for (acc of accommodationCards; track acc.title) {
+                <div class="acc-card">
+                    <div class="acc-badge">{{ acc.badge }}</div>
+                    <div class="acc-icon-box">
+                        <i [class]="acc.icon"></i>
+                    </div>
+                    <h3 class="acc-title">{{ acc.title }}</h3>
+                    <div class="acc-duration"><i class="far fa-calendar-alt"></i> {{ acc.type }}</div>
+                    <div class="acc-price">{{ acc.price }}</div>
+
+                    <ul class="acc-features">
+                        @for (feat of acc.features; track feat) {
+                        <li><i class="fas fa-check-circle"></i> {{ feat }}</li>
+                        }
+                    </ul>
+
+                    <button class="btn-acc-select" (click)="selectAccommodation(acc.type)">
+                        Select &amp; Request <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Form Section (Core Requirement) -->
+    <section class="request-form-section" id="support-form-section">
+        <div class="container form-split">
+
+            <!-- Left Info Panel -->
+            <div class="form-info-left">
+                <span class="tagline">HUNGARY LOCAL ASSISTANCE</span>
+                <h2 class="form-title">Request Part-Time Job &amp; Accommodation</h2>
+                <p class="form-desc">
+                    Tell us what you need in Hungary. Our local team in Szada and Budapest will review your application
+                    and connect you with verified jobs, rooms, or documentation support.
+                </p>
+
+                <ul class="benefits-list">
+                    <li><i class="fas fa-check-circle"></i> 100% Legal &amp; Student-Permitted Jobs</li>
+                    <li><i class="fas fa-check-circle"></i> Official Rental Contracts for Address Card</li>
+                    <li><i class="fas fa-check-circle"></i> Tax Number (Adókártya) Guidance</li>
+                    <li><i class="fas fa-check-circle"></i> Prompt 24-Hour Callback Support</li>
+                </ul>
+
+                <div class="contact-support-box">
+                    <h4>Direct Hungary Helpline</h4>
+                    <div class="support-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <a href="tel:+36706097991">+36 706097991</a>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <a href="tel:+918921123257">+91 8921123257</a>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:solversglobalhr@gmail.com">solversglobalhr&#64;gmail.com</a>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Prevent Webmarket KFT Cserje utca. 3A. Szada 2111 Hungary</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Form Card -->
+            <div class="form-card-right">
+                <div class="form-card-header">
+                    <h3>Application Form</h3>
+                    <p>Fill out the fields below and select your preferences</p>
+                </div>
+
+                <form [formGroup]="supportForm" (ngSubmit)="onSubmit()">
+                    <div class="form-grid">
+
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label>YOUR FULL NAME <span class="req">*</span></label>
+                            <input type="text" formControlName="name" placeholder="Enter your full name">
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="form-group">
+                            <label>PHONE NUMBER <span class="req">*</span></label>
+                            <input type="tel" formControlName="phone" placeholder="+36 70 123 4567 / +91 ...">
+                        </div>
+
+                        <!-- Email / Gmail -->
+                        <div class="form-group full-width">
+                            <label>GMAIL / EMAIL ADDRESS <span class="req">*</span></label>
+                            <input type="email" formControlName="email" placeholder="example@gmail.com">
+                        </div>
+
+                        <!-- Place: Hungary States Dropdown -->
+                        <div class="form-group">
+                            <label>PLACE (SELECT HUNGARY STATE) <span class="req">*</span></label>
+                            <select formControlName="place">
+                                <option value="" disabled selected>Select Hungary State / County</option>
+                                @for (state of hungaryStates; track state.code) {
+                                <option [value]="state.name">{{ state.name }}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <!-- Service Needed -->
+                        <div class="form-group">
+                            <label>SERVICE NEEDED <span class="req">*</span></label>
+                            <select formControlName="serviceNeeded">
+                                <option value="" disabled selected>Select Service Needed</option>
+                                @for (service of serviceOptions; track service) {
+                                <option [value]="service">{{ service }}</option>
+                                }
+                            </select>
+                        </div>
+
+                        <!-- Conditional: Which Job (if part-time job selected) -->
+                        @if (isJobRequired()) {
+                        <div class="form-group full-width dynamic-field animate-fade-in">
+                            <label>WHICH JOB ARE YOU LOOKING FOR? <span class="req">*</span></label>
+                            <select formControlName="jobType">
+                                <option value="" disabled selected>Select Job Role</option>
+                                @for (job of jobOptions; track job) {
+                                <option [value]="job">{{ job }}</option>
+                                }
+                            </select>
+                            <span class="field-hint"><i class="fas fa-info-circle"></i> Jobs matched with
+                                student-friendly schedules in Hungary.</span>
+                        </div>
+                        }
+
+                        <!-- Conditional: Accommodation Duration (if accommodation selected) -->
+                        @if (isAccommodationRequired()) {
+                        <div class="form-group full-width dynamic-field animate-fade-in">
+                            <label>ACCOMMODATION DURATION / TYPE <span class="req">*</span></label>
+                            <select formControlName="accommodationType">
+                                <option value="" disabled selected>Select Duration</option>
+                                @for (acc of accommodationTypes; track acc) {
+                                <option [value]="acc">{{ acc }}</option>
+                                }
+                            </select>
+                            <span class="field-hint"><i class="fas fa-info-circle"></i> Includes contract for address
+                                card (Lakcímkártya).</span>
+                        </div>
+                        }
+
+                        <!-- Message -->
+                        <div class="form-group full-width">
+                            <label>MESSAGE / SPECIFIC REQUIREMENTS (OPTIONAL)</label>
+                            <textarea formControlName="message" rows="3"
+                                placeholder="Tell us about your university, current location, preferred start date, or specific questions..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" [disabled]="!supportForm.valid">
+                        SUBMIT SUPPORT REQUEST <i class="fas fa-paper-plane"></i>
+                    </button>
+
+                    <p class="form-footer">
+                        <i class="fas fa-shield-alt"></i> Your data is protected. We respect your privacy and only use
+                        it for official Hungarian placement.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="eyebrow">FREQUENTLY ASKED QUESTIONS</span>
+                <h2 class="section-title">Working &amp; Living in Hungary</h2>
+                <div class="gold-line-center"></div>
+            </div>
+
+            <div class="faq-list">
+                @for (faq of faqs; track faq.question; let idx = $index) {
+                <div class="faq-item" [class.open]="faq.open">
+                    <div class="faq-question" (click)="toggleFaq(idx)">
+                        <h4>{{ faq.question }}</h4>
+                        <i class="fas" [class.fa-plus]="!faq.open" [class.fa-minus]="faq.open"></i>
+                    </div>
+                    @if (faq.open) {
+                    <div class="faq-answer animate-fade-in">
+                        <p>{{ faq.answer }}</p>
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+        </div>
+    </section>
+</div>

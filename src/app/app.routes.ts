@@ -8,6 +8,7 @@ import { GalleryComponent } from './component/gallery/gallery.component';
 import { HireWorkersComponent } from './component/hire-workers/hire-workers.component';
 import { ReviewsComponent } from './component/reviews/reviews.component';
 import { AdminComponent } from './component/admin/admin.component';
+import { JobsAccommodationComponent } from './component/jobs-accommodation/jobs-accommodation.component';
 
 export const routes: Routes = [
     {
@@ -37,6 +38,14 @@ export const routes: Routes = [
     {
         path: 'client-reviews',
         component: ReviewsComponent
+    },
+    {
+        path: 'part-time-jobs-accommodation',
+        component: JobsAccommodationComponent
+    },
+    {
+        path: 'jobs-accommodation',
+        component: JobsAccommodationComponent
     },
     {
         path: 'internal-admin-console',

@@ -1060,6 +1060,43 @@
             opacity: 0.5;
         }
     }
+
+    .reviews-action {
+        margin-top: 45px;
+        text-align: center;
+
+        .btn-see-reviews {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 34px;
+            background: #0f172a;
+            color: #FFD700;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.15);
+            transition: all 0.3s ease;
+
+            i {
+                font-size: 0.85rem;
+                transition: transform 0.2s ease;
+            }
+
+            &:hover {
+                background: #1e293b;
+                color: #ffffff;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(15, 23, 42, 0.25);
+
+                i {
+                    transform: translateX(4px);
+                }
+            }
+        }
+    }
 }
 
 /* =========================================
