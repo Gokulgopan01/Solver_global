@@ -235,7 +235,7 @@ export class AdminComponent implements OnInit {
   }
 
   async checkKey(key: string): Promise<boolean> {
-    const expectedHash = '81beec9c203bf658fdc29b1718935b6297d64f74195d1345a915800cacd0d74b';
+    const expectedHash = '9d0c1c9b384189acc0277908409bbf3210d3ee7d5a8836e7a07930536c8b5f12';
     const encoder = new TextEncoder();
     const data = encoder.encode(key);
     const hashBuffer = await crypto.subtle.digest('SHA-256', data);

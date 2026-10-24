@@ -16,11 +16,17 @@ export class HireWorkersComponent {
 
   hireForm = new FormGroup({
     employerName: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+      Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+    ]),
     shopName: new FormControl('', [Validators.required]),
     shopType: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
     workerType: new FormControl('', [Validators.required]),
+    workerDuration: new FormControl('', [Validators.required]),
     message: new FormControl('')
   });
 
