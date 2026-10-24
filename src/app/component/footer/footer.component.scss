@@ -69,8 +69,8 @@ $border-subtle: rgba(255, 255, 255, 0.08);
     margin: 0 auto;
     padding: 0 24px 28px; // was 60px bottom
     display: grid;
-    grid-template-columns: 1.5fr 1.2fr 0.8fr 1fr 1.2fr;
-    gap: 24px 32px;
+    grid-template-columns: 1.2fr 1.6fr 0.8fr 1fr 1.2fr;
+    gap: 24px 28px;
     position: relative;
     z-index: 1;
 
@@ -252,6 +252,42 @@ $border-subtle: rgba(255, 255, 255, 0.08);
             align-items: center;
             gap: 10px;
             margin-top: 8px;
+
+            i {
+                color: $gold;
+                font-size: 0.82rem;
+                flex-shrink: 0;
+            }
+
+            .contact-links {
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+                gap: 5px;
+
+                @media (max-width: 600px) {
+                    flex-wrap: wrap;
+                }
+
+                a {
+                    font-size: 0.8rem;
+                    color: $text-muted;
+                    text-decoration: none;
+                    white-space: nowrap;
+                    transition: color 0.2s ease;
+
+                    &:hover {
+                        color: $gold;
+                    }
+                }
+
+                .sep {
+                    color: $text-muted;
+                    font-size: 0.8rem;
+                    margin-left: -2px;
+                    opacity: 0.7;
+                }
+            }
 
             .icon-circle-small {
                 flex-shrink: 0;
