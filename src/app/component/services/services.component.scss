@@ -130,116 +130,130 @@ $ease: 0.2s ease;
 }
 
 // ----------------------------------------------------
-// 1. HERO (clean image, no overlay; text sits on a card)
+// 1. HERO (inside the image, text fits at bottom)
 // ----------------------------------------------------
 .hero-section {
     position: relative;
-    padding: 90px 0;
-    background: url('/assets/images/agency_meeting.jpg') center/cover no-repeat;
-    border-bottom: 1px solid $border;
+    min-height: 560px;
+    display: flex;
+    align-items: flex-end;
+    padding: 140px 0 50px;
+    background: linear-gradient(to top, rgba(8, 14, 26, 0.94) 0%, rgba(8, 14, 26, 0.62) 48%, rgba(8, 14, 26, 0.15) 100%),
+        url('/assets/images/agency_meeting.jpg') center/cover no-repeat;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.25);
+    color: #ffffff;
 
     @include up-to(768) {
-        padding: 64px 0;
+        min-height: 460px;
+        padding: 90px 0 35px;
     }
 
     @include up-to(480) {
-        // leaves the top of the photo visible above the card
-        padding: 150px 0 24px;
+        min-height: 420px;
+        padding: 70px 0 24px;
         background-position: center top;
     }
 
     .hero-container {
+        width: 100%;
         display: flex;
-        align-items: center;
+        align-items: flex-end;
     }
 
     .hero-content {
-        max-width: 720px;
-        background: rgba(255, 255, 255, 0.97);
-        border: 1px solid $border;
-        border-radius: $radius-lg;
-        box-shadow: $shadow-md;
-        padding: 48px;
-
-        @include up-to(768) {
-            padding: 36px 30px;
-        }
-
-        @include up-to(480) {
-            padding: 26px 20px;
-            border-radius: $radius;
-            width: 100%;
-        }
+        max-width: 860px;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: $gold-soft;
-            border: 1px solid $gold-line;
-            color: $gold;
-            font-size: 0.76rem;
-            font-weight: 600;
-            padding: 6px 14px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 6px 16px;
             border-radius: 30px;
             letter-spacing: 1.2px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
 
             i {
-                color: $gold;
+                color: #ffd700;
+            }
+
+            @include up-to(768) {
+                font-size: 0.72rem;
+                padding: 5px 12px;
+                margin-bottom: 10px;
             }
 
             @include up-to(480) {
-                font-size: 0.68rem;
-                padding: 5px 12px;
-                letter-spacing: 1px;
-                margin-bottom: 16px;
+                font-size: 0.65rem;
+                padding: 4px 10px;
+                margin-bottom: 8px;
+                letter-spacing: 0.8px;
             }
         }
 
         .hero-title {
-            font-size: 2.6rem;
-            font-weight: 700;
-            color: $text;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #ffffff;
             line-height: 1.15;
-            letter-spacing: -0.8px;
-            margin: 0 0 1rem;
+            letter-spacing: -0.6px;
+            margin: 0 0 14px;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
 
             @include up-to(768) {
-                font-size: 2.1rem;
+                font-size: 1.75rem;
+                line-height: 1.2;
+                margin: 0 0 10px;
             }
 
             @include up-to(480) {
-                font-size: 1.65rem;
-                letter-spacing: -0.4px;
+                font-size: 1.35rem;
+                line-height: 1.25;
+                letter-spacing: -0.2px;
+                margin: 0 0 8px;
             }
         }
 
         .hero-subtitle {
-            font-size: 1.08rem;
-            color: $text-body;
-            line-height: 1.7;
+            font-size: 1.1rem;
+            color: #f1f5f9;
+            line-height: 1.65;
             margin: 0 0 1.75rem;
+            max-width: 800px;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
 
             @include up-to(768) {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                line-height: 1.55;
+                margin: 0 0 1.2rem;
             }
 
             @include up-to(480) {
-                font-size: 0.93rem;
-                margin-bottom: 1.4rem;
+                font-size: 0.84rem;
+                line-height: 1.48;
+                margin: 0 0 1rem;
             }
         }
 
         .hero-actions {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             flex-wrap: wrap;
 
             @include up-to(480) {
                 flex-direction: column;
-                gap: 10px;
+                gap: 8px;
             }
 
             .btn-primary-hero,
@@ -249,39 +263,54 @@ $ease: 0.2s ease;
                 justify-content: center;
                 gap: 8px;
                 min-height: 48px;
-                padding: 0 26px;
-                border-radius: $radius-sm;
+                padding: 0 28px;
+                border-radius: 8px;
                 font-family: inherit;
-                font-size: 0.92rem;
-                font-weight: 600;
+                font-size: 0.95rem;
+                font-weight: 700;
                 letter-spacing: 0.3px;
                 cursor: pointer;
-                transition: background $ease, border-color $ease, color $ease;
+                transition: all 0.25s ease;
+
+                @include up-to(768) {
+                    min-height: 44px;
+                    padding: 0 22px;
+                    font-size: 0.9rem;
+                }
 
                 @include up-to(480) {
                     width: 100%;
+                    min-height: 42px;
+                    padding: 0 16px;
+                    font-size: 0.86rem;
+                    border-radius: 6px;
                 }
             }
 
             .btn-primary-hero {
-                background: $gold;
-                color: $on-gold;
-                border: 1px solid $gold;
+                background: linear-gradient(135deg, #ffd700 0%, #eab308 100%);
+                color: #0b132b;
+                border: 1px solid #ffd700;
+                box-shadow: 0 4px 18px rgba(255, 215, 0, 0.35);
 
                 &:hover {
-                    background: $gold-hover;
-                    border-color: $gold-hover;
+                    background: linear-gradient(135deg, #ffea79 0%, #ffd700 100%);
+                    box-shadow: 0 6px 24px rgba(255, 215, 0, 0.5);
+                    transform: translateY(-2px);
                 }
             }
 
             .btn-secondary-hero {
-                background: transparent;
-                color: $text;
-                border: 1px solid $border-strong;
+                background: rgba(255, 255, 255, 0.12);
+                backdrop-filter: blur(8px);
+                color: #ffffff;
+                border: 1px solid rgba(255, 255, 255, 0.4);
 
                 &:hover {
-                    border-color: $gold;
-                    color: $gold;
+                    background: rgba(255, 255, 255, 0.22);
+                    border-color: #ffd700;
+                    color: #ffd700;
+                    transform: translateY(-2px);
                 }
             }
         }
