@@ -608,7 +608,7 @@ export class StudyAbroadComponent implements AfterViewInit {
 
     const form = this.enquiryForm.value;
 
-    this.notificationService.showLoading('Submitting enquiry...');
+    this.notificationService.showLoading('Submitting enquiry and documents...', 'Sending Enquiry');
 
     try {
       const resumeFile = this.enquiryForm.get('resume')?.value as File | null;
@@ -651,7 +651,7 @@ export class StudyAbroadComponent implements AfterViewInit {
         return;
       }
 
-      this.notificationService.showSuccess('Thank you! Your enquiry has been submitted.');
+      this.notificationService.showSuccess('Thank you! Your enquiry has been submitted.', 'Enquiry Confirmed!');
 
       this.enquiryForm.reset({
         agreeToPolicy: false

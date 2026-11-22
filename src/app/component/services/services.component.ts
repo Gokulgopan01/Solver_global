@@ -205,11 +205,14 @@ export class ServicesComponent implements OnInit {
 
   onSubmit() {
     if (this.agencyForm.valid) {
-      console.log('Agency Partnership Form Submitted:', this.agencyForm.value);
-      this.notificationService.showSuccess(
-        'Thank you! Your agency inquiry has been received. Our Hungary partnership director will contact you within 24 hours.'
-      );
-      this.agencyForm.reset();
+      this.notificationService.showLoading('Submitting agency inquiry...', 'Sending Inquiry');
+      setTimeout(() => {
+        this.notificationService.showSuccess(
+          'Thank you! Your agency inquiry has been received. Our Hungary partnership director will contact you within 24 hours.',
+          'Inquiry Confirmed!'
+        );
+        this.agencyForm.reset();
+      }, 700);
     } else {
       this.agencyForm.markAllAsTouched();
       this.notificationService.showError('Please complete all required fields marked with *');

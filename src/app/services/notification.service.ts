@@ -5,6 +5,7 @@ export interface SnackbarData {
   show: boolean;
   message: string;
   type: 'success' | 'error' | 'loading';
+  title?: string;
 }
 
 @Injectable({
@@ -14,25 +15,30 @@ export class NotificationService {
   private snackbarSubject = new BehaviorSubject<SnackbarData>({
     show: false,
     message: '',
-    type: 'success'
+    type: 'success',
+    title: ''
   });
 
   snackbar$ = this.snackbarSubject.asObservable();
   private hideTimeout: any;
 
-  showLoading(message: string) {
-    this.show(message, 'loading');
+  get currentValue(): SnackbarData {
+    return this.snackbarSubject.value;
   }
 
-  showSuccess(message: string) {
-    this.show(message, 'success');
+  showLoading(message: string, title?: string) {
+    this.show(message, 'loading', title);
   }
 
-  showError(message: string) {
-    this.show(message, 'error');
+  showSuccess(message: string, title?: string) {
+    this.show(message, 'success', title);
   }
 
-  private show(message: string, type: 'success' | 'error' | 'loading') {
+  showError(message: string, title?: string) {
+    this.show(message, 'error', title);
+  }
+
+  private show(message: string, type: 'success' | 'error' | 'loading', title?: string) {
     if (this.hideTimeout) {
       clearTimeout(this.hideTimeout);
     }
@@ -40,18 +46,22 @@ export class NotificationService {
     this.snackbarSubject.next({
       show: true,
       message,
-      type
+      type,
+      title
     });
 
     // Only auto-hide for success and error
     if (type !== 'loading') {
       this.hideTimeout = setTimeout(() => {
         this.hide();
-      }, 5000);
+      }, 7000);
     }
   }
 
   hide() {
+    if (this.hideTimeout) {
+      clearTimeout(this.hideTimeout);
+    }
     const current = this.snackbarSubject.value;
     this.snackbarSubject.next({ ...current, show: false });
   }

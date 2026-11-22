@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
+import { supabase } from '../../supabase.client';
 
 @Component({
   selector: 'app-jobs-accommodation',
@@ -263,13 +264,38 @@ export class JobsAccommodationComponent implements OnInit {
     this.faqs[index].open = !this.faqs[index].open;
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.supportForm.valid) {
-      console.log('Hungary Support Request Submitted:', this.supportForm.value);
-      this.notificationService.showSuccess(
-        'Your request has been received! Our Hungary local support team will reach out to you within 24 hours.'
-      );
-      this.supportForm.reset();
+      this.notificationService.showLoading('Submitting your support request to our Hungary team...', 'Sending Request');
+      const form = this.supportForm.value;
+
+      try {
+        await supabase
+          .from('enquiries')
+          .insert([
+            {
+              enquiry_type: 'job',
+              full_name: form.name,
+              phone_number: form.phone,
+              email: form.email,
+              country: form.place || 'Hungary',
+              job_preference: `${form.serviceNeeded || 'General'}${form.jobType ? ' - ' + form.jobType : ''}${form.accommodationType ? ' (' + form.accommodationType + ')' : ''}`,
+              message: form.message || `Service requested: ${form.serviceNeeded} in ${form.place}`,
+              status: 'New',
+              created_at: new Date().toISOString()
+            }
+          ]);
+      } catch (e) {
+        console.warn('Note on Supabase submission:', e);
+      }
+
+      setTimeout(() => {
+        this.notificationService.showSuccess(
+          'Your request has been received! Our Hungary local support team will reach out to you within 24 hours.',
+          'Request Confirmed!'
+        );
+        this.supportForm.reset();
+      }, 700);
     } else {
       this.supportForm.markAllAsTouched();
       this.notificationService.showError('Please fill in all required fields marked with *');

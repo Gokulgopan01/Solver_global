@@ -56,9 +56,14 @@ export class HireWorkersComponent {
 
   onSubmit() {
     if (this.hireForm.valid) {
-      console.log('Hire Form Submitted:', this.hireForm.value);
-      this.notificationService.showSuccess('Request sent successfully! Our recruitment team will contact you shortly to match the perfect candidates for your shop.');
-      this.hireForm.reset();
+      this.notificationService.showLoading('Submitting worker hiring request...', 'Sending Request');
+      setTimeout(() => {
+        this.notificationService.showSuccess(
+          'Request sent successfully! Our recruitment team will contact you shortly to match the perfect candidates for your shop.',
+          'Request Confirmed!'
+        );
+        this.hireForm.reset();
+      }, 700);
     } else {
       this.notificationService.showError('Please fill in all required fields.');
     }

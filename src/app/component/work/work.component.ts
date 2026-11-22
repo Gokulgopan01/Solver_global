@@ -706,7 +706,7 @@ export class WorkComponent implements AfterViewInit, OnInit {
 
     const form = this.applicationForm.value;
 
-    this.notificationService.showLoading('Submitting application...');
+    this.notificationService.showLoading('Submitting application and uploading files...', 'Sending Application');
 
     try {
       // These should be the uploaded file URLs
@@ -767,7 +767,8 @@ export class WorkComponent implements AfterViewInit, OnInit {
       }
 
       this.notificationService.showSuccess(
-        'Application submitted successfully!'
+        'Your application has been submitted successfully! We will contact you soon.',
+        'Application Confirmed!'
       );
 
       this.applicationForm.reset({
